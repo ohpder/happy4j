@@ -1,5 +1,11 @@
 # Happy4J · 欢乐斗地主 Java 客户端
 
+本项目的核心是两部分逆向工程成果：完整脱机恢复的**欢乐斗地主（HLDDZ）网络协议**
+（QQ/微信扫码、TSDK SafeLogin、Lotus TCP 线格式、52 个 `.proto` / 1,350 个消息），
+以及基于 **DouZero** ResNet 模型、在浏览器本地推理的**全自动打牌 AI**。协议细节见
+[`docs/hlddz-protocol.md`](docs/hlddz-protocol.md)，AI 部分见
+[`docs/ai-douzero.md`](docs/ai-douzero.md)。
+
 当前版本采用 MySQL + Flyway、BCrypt 注册登录、多用户会话隔离和原生 WebSocket 命令总线。
 前端采用 Vue 3 Composition API + Vite 8，扫码轮询在服务端执行，浏览器只接收
 `EVENT/SNAPSHOT` 推送。架构说明见 [`docs/architecture.md`](docs/architecture.md)。
@@ -102,6 +108,28 @@ protocol/generated/     Gradle 构建生成的强类型 Java
 逆向地址、字段和线格式见 [`docs/hlddz-protocol.md`](docs/hlddz-protocol.md)。运行产物只保留在线客户端所需的 descriptor 与协议实现。
 
 - 完整的 JS 牌局/换桌/再来一局对照见 `docs/wxpkg-round-flow.md`。
+
+## AI 全自动出牌（DouZero）
+
+默认推理引擎是 **DouZero FullAuto ResNet**：叫抢地主、加倍、出牌三个阶段各自加载
+独立的 ONNX 模型，全部在浏览器内用 `onnxruntime-web` 本地推理，手牌不会上传到任何
+服务端或第三方。模型与转换脚本来自两个上游开源项目（均为 Apache-2.0，见
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)）：
+
+- [`DouZero_For_HappyDouDiZhu`](https://github.com/tianqiraf/DouZero_For_HappyDouDiZhu) —
+  早期 WP 模型家族，训练/导出脚本保留在 `tools/douzero_happy/`。
+- [`DouZero_For_HLDDZ_FullAuto`](https://github.com/Vincentzyx/DouZero_For_HLDDZ_FullAuto) —
+  当前生产使用的三角色 ResNet ADP 模型（`frontend/public/models/douzero_fullauto/`），
+  相比旧 WP 模型使用完整 `40×54` 局面矩阵、独立的叫抢/加倍评分网络，并在模型评分之外叠加
+  主动压制、连续控牌等启发式，避免长期保守不出牌。
+
+决策链：进入选定场次 → 叫/抢地主（`bid.onnx` 打分 + 阈值）→ 加倍（局前评分模型 + 超级加倍道具
+核对）→ 出牌（枚举合法动作、批量取 ADP 评分，按立即出完/控牌路径/低分炸弹/模型最高分依次决策）。
+完整实现细节、特征工程和状态完整性校验见 [`docs/ai-douzero.md`](docs/ai-douzero.md)。
+
+除本地 DouZero 模型外，也可以在 AI 面板里切换为 **OpenAI 兼容大模型**决策
+（`OpenAiDecisionService`）：把当前候选动作和公开牌局信息发给任意 OpenAI 协议兼容的
+Chat Completions 接口，由大模型返回一个 `choice`；调用失败时自动回退到本地 DouZero 模型。
 
 ## 并发容量与代码质量
 
