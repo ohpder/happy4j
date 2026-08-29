@@ -1,0 +1,72 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LbsConvertMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.lbsconvertmsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LbsConvertMsgParaProto";
+
+enum ApolloLbsGender {
+  ApolloLbsGender_EApollolbsGenderUnknown = 0;
+  ApolloLbsGender_EApollolbsGenderMale = 1;
+  ApolloLbsGender_EApollolbsGenderFemale = 2;
+  ApolloLbsGender_EApollolbsGenderAny = 3;
+}
+
+enum LbsError {
+  LbsError_ESuccess = 0;
+  LbsError_EConfigErr = 10001;
+  LbsError_EConvertErr = 10002;
+  LbsError_EReportApolloErr = 10003;
+}
+
+enum MacroDefineForLbsConvertMsgPara {
+  MacroDefineForLbsConvertMsgPara_Tdr2PbDummyMacroDefineForLbsConvertMsgPara = 0;
+}
+
+message CReqCoordinate2Address {
+  TUserInfo user_info = 1;
+  int32 lat = 2;
+  int32 lng = 3;
+  int32 gender = 4;
+  int32 need_report_date_lbs_info = 5;
+}
+
+message CRspCoordinate2Address {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 lat = 6;
+  int32 lng = 7;
+  int32 province_len = 8;
+  bytes province = 9;
+  int32 city_len = 10;
+  bytes city = 11;
+  int32 city_code = 12;
+  int32 city_number = 13;
+  int32 province_number = 14;
+  int32 district_len = 15;
+  bytes district = 16;
+  int32 district_number = 17;
+  int32 nation_len = 18;
+  bytes nation = 19;
+  int32 nation_number = 20;
+  int32 street_len = 21;
+  bytes street = 22;
+  int32 formatted_addr_len = 23;
+  bytes formatted_addr = 24;
+}
+
+message TUserInfo {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 client_version = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 trans_len = 7;
+  bytes transparent = 8;
+}

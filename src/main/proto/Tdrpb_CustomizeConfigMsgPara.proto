@@ -1,0 +1,293 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.CustomizeConfigMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.customizeconfigmsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_CustomizeConfigMsgParaProto";
+
+enum MacroDefineForCustomizeConfigMsgPara {
+  option allow_alias = true;
+  MacroDefineForCustomizeConfigMsgPara_Tdr2PbDummyMacroDefineForCustomizeConfigMsgPara = 0;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxTransmsgLen = 256;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxOpenidLen = 128;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxVersionLen = 64;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxMd5HashLen = 16;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxConfigLen = 30000;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxConfigNum = 10;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxReqKeyNum = 30;
+  MacroDefineForCustomizeConfigMsgPara_ProtoConfigContentMaxKeyLen = 256;
+  MacroDefineForCustomizeConfigMsgPara_ProtoConfigContentMaxValueLen = 1024;
+  MacroDefineForCustomizeConfigMsgPara_ProtoConfigContentMaxOpenkeyStrLen = 256;
+  MacroDefineForCustomizeConfigMsgPara_ProtoConfigContentMaxPfRelatedStrLen = 1024;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxMissionEventExtraDataNum = 8;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxConfigNumInOneGroup = 32;
+  MacroDefineForCustomizeConfigMsgPara_ProtoMaxExtValueCount = 8;
+}
+
+enum RET_TYPE {
+  RET_TYPE_RtSuc = 0;
+  RET_TYPE_RtErr = 1;
+  RET_TYPE_RtSameMd5 = 100;
+}
+
+enum RULE_CHG_CAPACITY {
+  RULE_CHG_CAPACITY_Tdr2PbDummyRuleChgCapacity = 0;
+  RULE_CHG_CAPACITY_DecreaseCount = 1;
+}
+
+enum TLV_TYPE {
+  TLV_TYPE_Tdr2PbDummyTlvType = 0;
+  TLV_TYPE_EmReqPlayerInfo = 1;
+  TLV_TYPE_EmReqConfigInfo = 2;
+  TLV_TYPE_EmReqReserve = 3;
+  TLV_TYPE_EmRspPlayerInfo = 4;
+  TLV_TYPE_EmRspConfigInfo = 5;
+  TLV_TYPE_EmRspReserve = 6;
+}
+
+message CNotifyChangeRuleStatus {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  uint32 uin = 3;
+  int32 account_type = 4;
+  int32 cliene_type = 5;
+  int32 game_id = 6;
+  int32 rule_id = 7;
+  int64 change_type = 8;
+  int32 mission_event_extra_data_num = 9;
+  repeated int32 mission_event_extra_data = 10;
+}
+
+message CNotifyChangeRuleStatusByGameID {
+  int32 game_id = 1;
+  CNotifyChangeRuleStatus notify_change_rule_status = 2;
+}
+
+message CReqCustomizedConfig {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  TLVUNIT req_player_info = 3;
+  int32 req_config_num = 4;
+  repeated TLVUNIT req_config_info = 5;
+  TLVUNIT req_reserve = 6;
+}
+
+message CReqCustomizedConfigByGameID {
+  int32 game_id = 1;
+  CReqCustomizedConfig req_customized_config = 2;
+}
+
+message CReqCustomizedConfigContent {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  uint32 uin = 3;
+  int32 account_type = 4;
+  int32 cliene_type = 5;
+  int32 game_id = 6;
+  int32 config_id = 7;
+  int32 key_num = 8;
+  repeated ConfigContentKey key = 9;
+  int32 open_id_len = 10;
+  bytes open_id = 11;
+  int32 open_key_len = 12;
+  bytes open_key = 13;
+  int32 pf_key_len = 14;
+  bytes pf_key = 15;
+  int32 pf_len = 16;
+  bytes pf = 17;
+  int32 pay_token_len = 18;
+  bytes pay_token = 19;
+  uint32 version = 20;
+  uint32 channel_id = 21;
+  string table_name = 22;
+  string filter_str = 23;
+  int32 ext_value_count = 24;
+  repeated int32 ext_value_list = 25;
+}
+
+message CReqCustomizedConfigContentByGameID {
+  int32 game_id = 1;
+  CReqCustomizedConfigContent req_customized_config_content = 2;
+}
+
+message CReqGroupCustomizedConfig {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  TReqPlayerInfoForGroup req_player_info = 3;
+  int32 req_group_id = 4;
+  int32 req_group_config_num = 5;
+  repeated TReqConfigInfo req_group_config_info = 6;
+  uint32 capacity = 7;
+  uint32 channel_id = 8;
+  int32 ext_value_count = 9;
+  repeated int32 ext_value_list = 10;
+}
+
+message CReqGroupCustomizedConfigByGameID {
+  int32 game_id = 1;
+  CReqGroupCustomizedConfig req_group_customized_config = 2;
+}
+
+message CRspCustomizedConfig {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  int32 ret = 3;
+  int32 system_time = 4;
+  TLVUNIT rsp_player_info = 5;
+  int32 rsp_config_num = 6;
+  repeated TLVUNIT rsp_config_info = 7;
+  TLVUNIT rsp_reserve = 8;
+}
+
+message CRspCustomizedConfigByGameID {
+  int32 game_id = 1;
+  CRspCustomizedConfig rsp_customized_config = 2;
+}
+
+message CRspCustomizedConfigContent {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  int32 result_id = 3;
+  int32 found_kv_num = 4;
+  repeated ConfigContentKV found_kv = 5;
+  int32 rule_id = 6;
+  int64 rule_chg_capacity = 7;
+  int32 md5_len = 8;
+  bytes md5 = 9;
+}
+
+message CRspCustomizedConfigContentByGameID {
+  int32 game_id = 1;
+  CRspCustomizedConfigContent rsp_customized_config_content = 2;
+}
+
+message CRspGroupCustomizedConfig {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  int32 ret = 3;
+  int32 system_time = 4;
+  int32 rsp_group_id = 5;
+  int32 rsp_group_config_num = 6;
+  repeated TRspConfigInfoForGroup rsp_group_config_info = 7;
+  repeated uint32 rsp_group_config_flag = 8;
+  repeated int32 rsp_group_config_ori_len = 9;
+  repeated int32 rsp_group_config_rule_id = 10;
+}
+
+message CRspGroupCustomizedConfigByGameID {
+  int32 game_id = 1;
+  CRspGroupCustomizedConfig rsp_group_customized_config = 2;
+}
+
+message ConfigContentKV {
+  ConfigContentKey key = 1;
+  ConfigContentValue value = 2;
+  int32 ret = 3;
+}
+
+message ConfigContentKey {
+  int32 key_len = 1;
+  bytes key = 2;
+}
+
+message ConfigContentValue {
+  int32 value_len = 1;
+  bytes value = 2;
+}
+
+message TLVUNIT {
+  int32 type = 1;
+  int32 len = 2;
+  TLVValue value = 3;
+}
+
+message TLVValue {
+  TReqPlayerInfo req_player_info = 1;
+  TReqConfigInfo req_config_info = 2;
+  TReqReserve req_reserve = 3;
+  TRspPlayerInfo rsp_player_info = 4;
+  TRspConfigInfo rsp_config_info = 5;
+  TRspReserve rsp_reserve = 6;
+}
+
+message TReqConfigInfo {
+  int32 id = 1;
+  int32 md5_len = 2;
+  bytes md5 = 3;
+}
+
+message TReqPlayerInfo {
+  uint32 uin = 1;
+  int32 open_id_len = 2;
+  bytes open_id = 3;
+  int32 account_type = 4;
+  int32 cliene_type = 5;
+  int32 game_id = 6;
+  uint32 version = 7;
+  int32 open_key_len = 8;
+  bytes open_key = 9;
+  int32 pf_key_len = 10;
+  bytes pf_key = 11;
+  int32 pf_len = 12;
+  bytes pf = 13;
+  int32 pay_token_len = 14;
+  bytes pay_token = 15;
+  uint32 channel_id = 16;
+}
+
+message TReqPlayerInfoForGroup {
+  uint32 uin = 1;
+  int32 open_id_len = 2;
+  bytes open_id = 3;
+  int32 account_type = 4;
+  int32 cliene_type = 5;
+  int32 game_id = 6;
+  uint32 version = 7;
+  int32 open_key_len = 8;
+  bytes open_key = 9;
+  int32 pf_key_len = 10;
+  bytes pf_key = 11;
+  int32 pf_len = 12;
+  bytes pf = 13;
+  int32 pay_token_len = 14;
+  bytes pay_token = 15;
+}
+
+message TReqReserve {
+  uint32 capacity = 1;
+  int32 ext_value_count = 2;
+  repeated int32 ext_value_list = 3;
+}
+
+message TRspConfigInfo {
+  int32 ret = 1;
+  int32 id = 2;
+  int32 md5_len = 3;
+  bytes md5 = 4;
+  int32 cfg_len = 5;
+  bytes cfg = 6;
+  int32 valid_time = 7;
+  uint32 cfg_flag = 8;
+  int32 ori_len = 9;
+  int32 rule_id = 10;
+}
+
+message TRspConfigInfoForGroup {
+  int32 ret = 1;
+  int32 id = 2;
+  int32 md5_len = 3;
+  bytes md5 = 4;
+  int32 cfg_len = 5;
+  bytes cfg = 6;
+  int32 valid_time = 7;
+}
+
+message TRspPlayerInfo {
+  uint32 uin = 1;
+}
+
+message TRspReserve {
+  int32 reserve = 1;
+}

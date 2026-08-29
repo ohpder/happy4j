@@ -1,0 +1,152 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLDDZNewbieGuidePara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlddznewbieguidepara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLDDZNewbieGuideParaProto";
+
+enum HLDDZ_NEWBIE_RETCODE {
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeOk = 0;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeSys = 1;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeReqAvatarFailed = 2;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeRspAvatarFailed = 3;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeReqFightdetailFailed = 4;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeRspFightdetailFailed = 5;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeNotNewbie = 6;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeBadAvatar = 7;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeInitAvatarFailed = 8;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeQueryGameinfoFailed = 9;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeUpdateGameinfoFailed = 10;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeVirtualGameGiftFailed = 11;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeVirtualGameReportFightEventFailed = 12;
+  HLDDZ_NEWBIE_RETCODE_EmHlddzNewbieRetcodeVirtualGameReportGetLockFailed = 13;
+}
+
+enum INIT_AVATAR_INDEX {
+  INIT_AVATAR_INDEX_EmInitAvatarIndexBegin = 0;
+  INIT_AVATAR_INDEX_EmInitAvatarIndexDefaultMale = 1;
+  INIT_AVATAR_INDEX_EmInitAvatarIndexDefaultFemale = 2;
+  INIT_AVATAR_INDEX_EmInitAvatarIndexEnd = 20;
+}
+
+enum MacroDefineForHLDDZNewbieGuidePara {
+  MacroDefineForHLDDZNewbieGuidePara_Tdr2PbDummyMacroDefineForHlddznewbieGuidePara = 0;
+  MacroDefineForHLDDZNewbieGuidePara_MsgidC2SHlddzNewbieGuideInit = 16027;
+  MacroDefineForHLDDZNewbieGuidePara_MsgidC2SHlddzNewbieGuideCheck = 16028;
+  MacroDefineForHLDDZNewbieGuidePara_MsgidC2SHlddzNewbieGuideVirtualGameEnd = 16029;
+  MacroDefineForHLDDZNewbieGuidePara_MsgidC2SHlddzNewbieGuideInitAvatar = 17005;
+  MacroDefineForHLDDZNewbieGuidePara_MsgidC2SHlddzNewbieGuideFinish = 17006;
+  MacroDefineForHLDDZNewbieGuidePara_MaxNewbieGuideRewardCount = 8;
+}
+
+message CReqHLDDZNewbieCheckPara {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  int32 game_id = 3;
+  uint32 client_ver = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 game_app_id_len = 7;
+  bytes game_app_id = 8;
+  int32 is_male = 9;
+}
+
+message CReqHLDDZNewbieGuideFinishPara {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  int32 game_id = 3;
+  uint32 client_ver = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 user_cancel = 7;
+  int32 cancel_stage = 8;
+  int32 sel_avatar_idx = 9;
+  int32 reward = 10;
+}
+
+message CReqHLDDZNewbieGuideInitAvatarPara {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  int32 game_id = 3;
+  uint32 client_ver = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 avatar_index = 7;
+}
+
+message CReqHLDDZNewbieInitPara {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  int32 game_id = 3;
+  uint32 client_ver = 4;
+  TInitAvatarInfo init_avatar_info = 5;
+  int32 open_id_len = 6;
+  bytes open_id = 7;
+  int32 game_app_id_len = 8;
+  bytes game_app_id = 9;
+}
+
+message CReqHLDDZNewbieVirtualGameEndPara {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  int32 game_id = 3;
+  uint32 client_ver = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+}
+
+message CRspHLDDZNewbieCheckPara {
+  int32 result_id = 1;
+  int32 is_with_avatar = 2;
+  TAvatarMetaInfo avatar_info = 3;
+  uint32 fight_relive_times = 4;
+  uint32 fight_rescue_times = 5;
+  TInitAvatarInfo free_male_avatar = 6;
+  TInitAvatarInfo free_female_avatar = 7;
+  int32 normal_game_count = 8;
+  int32 fight_game_count = 9;
+  int32 min_normal_game_count_to_start_virtual_game = 10;
+  int32 min_normal_game_count_to_unlock_fight_mode = 11;
+  int32 is_gift_avatar_on_check = 12;
+}
+
+message CRspHLDDZNewbieGuideFinishPara {
+  int32 result_id = 1;
+  int32 reward_info_count = 2;
+  repeated TNewbieGuideReward reward_info = 3;
+}
+
+message CRspHLDDZNewbieGuideInitAvatarPara {
+  int32 result_id = 1;
+  TAvatarMetaInfo avatar_info = 2;
+}
+
+message CRspHLDDZNewbieInitPara {
+  int32 result_id = 1;
+  TAvatarMetaInfo avatar_info = 2;
+}
+
+message CRspHLDDZNewbieVirtualGameEndPara {
+  int32 result_id = 1;
+}
+
+message TAvatarMetaInfo {
+  int32 avatar_id = 1;
+  int32 avatar_seq_id = 2;
+  int32 avatar_lvl = 3;
+  int32 avatar_exp = 4;
+}
+
+message TInitAvatarInfo {
+  int32 avatar_index = 1;
+  int32 avatar_id = 2;
+  int32 avatar_lvl = 3;
+}
+
+message TNewbieGuideReward {
+  int32 item_id = 1;
+  int32 add_count = 2;
+  int64 cur_count = 3;
+}

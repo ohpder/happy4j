@@ -1,0 +1,555 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLDDZTeamMatchSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlddzteammatchsvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLDDZTeamMatchSvrProto";
+
+enum EIDIP_OPTTYPE {
+  EIDIP_OPTTYPE_EidipOpQuery = 0;
+  EIDIP_OPTTYPE_EidipOpCreate = 1;
+  EIDIP_OPTTYPE_EidipOpJoin = 2;
+  EIDIP_OPTTYPE_EidipOpKick = 3;
+  EIDIP_OPTTYPE_EidipOpQuit = 4;
+}
+
+enum EN_JOIN_SOURCE_TYPE {
+  EN_JOIN_SOURCE_TYPE_EnpJoinSourceTypeOnlineInvite = 0;
+  EN_JOIN_SOURCE_TYPE_EnpJoinSourceTypeDefault = -1;
+  EN_JOIN_SOURCE_TYPE_EnpJoinSourceTypeChatWorldChannel = 1;
+  EN_JOIN_SOURCE_TYPE_EnpJoinSourceTypePlatform = 2;
+}
+
+enum EN_PLAYER_OPERTYPE {
+  EN_PLAYER_OPERTYPE_EnoOperNone = 0;
+  EN_PLAYER_OPERTYPE_EnoOperReady = 1;
+  EN_PLAYER_OPERTYPE_EnoOperCancel = 2;
+  EN_PLAYER_OPERTYPE_EnoOperQuit = 3;
+  EN_PLAYER_OPERTYPE_EnoOperKick = 4;
+  EN_PLAYER_OPERTYPE_EnoOperChgscene = 5;
+  EN_PLAYER_OPERTYPE_EnoOperJoin = 6;
+  EN_PLAYER_OPERTYPE_EnoOperTimeout = 7;
+  EN_PLAYER_OPERTYPE_EnoOperMoneychg = 8;
+  EN_PLAYER_OPERTYPE_EnoOperChgSeat = 9;
+  EN_PLAYER_OPERTYPE_EnoOperAckSeat = 10;
+  EN_PLAYER_OPERTYPE_EnoOperQuitInAltTeamMatch = 11;
+  EN_PLAYER_OPERTYPE_EnoOperFakeLeaveRoom = 12;
+  EN_PLAYER_OPERTYPE_EnoOperFakeChangeTable = 13;
+  EN_PLAYER_OPERTYPE_EnoOperChangeMode = 14;
+  EN_PLAYER_OPERTYPE_EnoOperChange3DDress = 15;
+}
+
+enum EN_PLAYER_STATUS {
+  EN_PLAYER_STATUS_EnpStatusNone = 0;
+  EN_PLAYER_STATUS_EnpStatusReady = 1;
+  EN_PLAYER_STATUS_EnpStatusGame = 2;
+  EN_PLAYER_STATUS_EnpStatusQuit = 3;
+}
+
+enum EN_ROUND_WINFLAG {
+  EN_ROUND_WINFLAG_EnrStatusEqual = 0;
+  EN_ROUND_WINFLAG_EnrStatusWin = 1;
+  EN_ROUND_WINFLAG_EnrStatusLose = 2;
+}
+
+enum EN_TEAM_STATUS {
+  EN_TEAM_STATUS_EntStatusNone = 0;
+  EN_TEAM_STATUS_EntStatusGame = 1;
+  EN_TEAM_STATUS_EntStatusMatch = 2;
+  EN_TEAM_STATUS_EntStatusMatchTimeout = 3;
+}
+
+enum ETALK_TYPE {
+  ETALK_TYPE_EtalkText = 0;
+  ETALK_TYPE_EtalkEmoj = 1;
+}
+
+enum ETeamMatch_ERRCODE {
+  ETeamMatch_ERRCODE_ErrSucc = 0;
+  ETeamMatch_ERRCODE_ErrInputUin = 36800;
+  ETeamMatch_ERRCODE_ErrInputGameid = 36801;
+  ETeamMatch_ERRCODE_ErrInputSceneid = 36802;
+  ETeamMatch_ERRCODE_ErrUserLocked = 36803;
+  ETeamMatch_ERRCODE_ErrUserMoneyNmatch = 36804;
+  ETeamMatch_ERRCODE_ErrSystem = 36805;
+  ETeamMatch_ERRCODE_ErrTeamInvalid = 36806;
+  ETeamMatch_ERRCODE_ErrInputPara = 36807;
+  ETeamMatch_ERRCODE_ErrTeamFull = 36808;
+  ETeamMatch_ERRCODE_ErrTeamValid = 36809;
+  ETeamMatch_ERRCODE_ErrTeamEmpty = 36810;
+  ETeamMatch_ERRCODE_ErrApiFailed = 36811;
+  ETeamMatch_ERRCODE_ErrTeamMatching = 36812;
+  ETeamMatch_ERRCODE_ErrOperInvalid = 36813;
+  ETeamMatch_ERRCODE_ErrTalkSwitchNotOpen = 36814;
+  ETeamMatch_ERRCODE_ErrTalkPlayerBeForbidden = 36815;
+  ETeamMatch_ERRCODE_ErrTalkPlayerTooFast = 36816;
+  ETeamMatch_ERRCODE_ErrTalkDirtyRule = 36817;
+  ETeamMatch_ERRCODE_ErrTalkType = 36818;
+  ETeamMatch_ERRCODE_ErrChgSeatPendingChgSeat = 36819;
+  ETeamMatch_ERRCODE_ErrChgSeatTargetNotVaild = 36820;
+  ETeamMatch_ERRCODE_ErrChgSeatNotAllowWhen1Player = 36821;
+  ETeamMatch_ERRCODE_ErrChgSeatNotFoundContext = 36822;
+  ETeamMatch_ERRCODE_ErrChgSeatContextMismatch = 36823;
+}
+
+enum E_AVATAR_DATA_INDEX {
+  E_AVATAR_DATA_INDEX_IsSupportRealtimevoice = 0;
+  E_AVATAR_DATA_INDEX_Joinsource = 1;
+}
+
+enum MacroDefineForHLDDZTeamMatchSvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_Tdr2PbDummyMacroDefineForHlddzteamMatchSvrMsgPara = 0;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SGetTeaminfo = 36810;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SCreateTeam = 36811;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SJoinTeam = 36812;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SUpdateTeam = 36813;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdS2CNotifyTeamInfo = 36814;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdS2CNotifyMatchmake = 36815;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SGetLastRoundinfo = 36816;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdS2SNotifyRtimsg = 36817;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdS2SUpdateTeamMsg = 36818;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SNotifyXgMsg = 36819;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SReqTalk = 36820;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdS2CNotifyTalk = 36821;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdIdipTeamMsg = 36822;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SInvite = 36823;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SNotifyInvite = 36824;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdIntGetAqmarkid = 36825;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_ConstIdC2SChangeMode = 36826;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MsgidOffsetFor3V3Mode = 3700;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamPlayerNum = 3;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamTalkMessageLength = 1024;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamNum = 2;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamAvatarCount = 8;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamIdentLength = 22;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamOpenidLenth = 128;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamNicknameLenth = 64;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamAlbumyrlLenth = 256;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamErrDescLen = 256;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxLastRoundCount = 20;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxXgTitleLen = 128;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxXgContentLen = 512;
+  MacroDefineForHLDDZTeamMatchSvrMsgPara_MaxTeamInviteTransparentDataLenth = 10240;
+}
+
+message CIntQueryAQMarkID {
+  uint32 uin = 1;
+  uint32 player_cache_id = 2;
+}
+
+message CNotifyInvite {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 invit_uin = 4;
+  int32 invite_transparent_data_len = 5;
+  bytes invite_transparent_data = 6;
+}
+
+message CNotifyMatchMake {
+  int32 game_id = 1;
+  uint32 uin = 2;
+  uint32 scene_id = 3;
+  uint32 server_id = 4;
+  uint32 room_id = 5;
+  TTeamMatchInfo team_match_info = 6;
+  TRealTimeVoiceInfo real_time_voice_info = 7;
+  TTeamPlayerListEx team_player_list_ex = 8;
+  TTeamPlayerList player_list = 9;
+  TTeamPlayerList opponent_player_list = 10;
+  TTeamPlayerListEx opponent_player_list_ex = 11;
+}
+
+message CNotifyTableMsgsParaHG {
+  uint32 src_uin = 1;
+  uint32 dst_uin = 2;
+  int32 type = 3;
+  int32 talk_id = 4;
+  uint32 msg_length = 5;
+  bytes msg = 6;
+  uint32 nick_len = 7;
+  bytes nick = 8;
+}
+
+message CNotifyTeamInfo {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 uin = 4;
+  uint32 team_status = 5;
+  uint32 game_style = 6;
+  uint32 scene_id = 7;
+  TTeamPlayerList player_list = 8;
+  uint32 oper_type = 9;
+  TPlayerTeamMatch team_info = 10;
+  TRealTimeVoiceInfo real_time_voice_info = 11;
+  uint32 is_chg_seat_ok = 12;
+  TTeamPlayerListEx team_player_list_ex = 13;
+  uint32 req_uin = 14;
+}
+
+message CNotifyXGMessage {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  uint32 dst_uin = 5;
+  uint32 post_time = 6;
+  int32 xg_title_len = 7;
+  bytes xg_title = 8;
+  int32 xg_content_len = 9;
+  bytes xg_content = 10;
+}
+
+message CReqChangeTeamMode {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+}
+
+message CReqCreatTeam {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 uin = 4;
+  uint32 scene_id = 5;
+  uint32 client_version = 6;
+  uint32 game_style = 7;
+  int32 is_support_real_time_voice = 8;
+  int32 is_support_change_mode = 9;
+}
+
+message CReqGetTeamInfo {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 uin = 4;
+}
+
+message CReqGetTeamRoundList {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 uin = 4;
+}
+
+message CReqIDIPTeamMsg {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 uin = 4;
+  uint32 cmd = 5;
+  uint32 leader_uin = 6;
+  int32 leader_acc_type = 7;
+  int32 leader_open_id_len = 8;
+  bytes leader_open_id = 9;
+  uint32 game_style = 10;
+  uint32 scene_id = 11;
+}
+
+message CReqInvite {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 invitee_uin = 4;
+  int32 invite_transparent_data_len = 5;
+  bytes invite_transparent_data = 6;
+}
+
+message CReqJoinTeam {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 uin = 4;
+  uint32 leader_uin = 5;
+  uint32 game_style = 6;
+  uint32 scene_id = 7;
+  uint32 client_version = 8;
+  int32 is_support_real_time_voice = 9;
+  int32 join_source = 10;
+  int32 is_change_mode = 11;
+  int32 is_support_change_mode = 12;
+}
+
+message CReqS2SUpdateTeam {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 src_uin = 4;
+  uint32 leader_uin = 5;
+  uint32 oper_type = 6;
+  int64 src_money = 7;
+  int32 is_support_real_time_voice = 8;
+  int32 join_source = 9;
+  uint32 is_chg_seat_ok = 10;
+  uint32 req_chg_seat_uin = 11;
+  uint32 req_chg_seat_id = 12;
+  int32 is_support_change_mode = 13;
+  int32 is_change_mode = 14;
+}
+
+message CReqUpdateTeam {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 uin = 4;
+  uint32 oper_type = 5;
+  uint32 game_style = 6;
+  uint32 scene_id = 7;
+  uint32 kick_uin = 8;
+  uint32 is_chg_seat_ok = 9;
+}
+
+message CRequestTalkOnTeam {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 leader_uin = 4;
+  uint32 dst_uin = 5;
+  int64 match_id = 6;
+  int32 type = 7;
+  int32 talk_id = 8;
+  uint32 msg_length = 9;
+  bytes msg = 10;
+}
+
+message CResponseTalkOnTeam {
+  uint32 result_id = 1;
+}
+
+message CRspChangeTeamMode {
+  int32 result_id = 1;
+  string result_str = 2;
+  TPlayerTeamMatch team_info = 3;
+  TTeamPlayerList player_list = 4;
+  TTeamMatchInfo team_match_info = 5;
+  TRealTimeVoiceInfo real_time_voice_info = 6;
+  TTeamPlayerListEx team_player_list_ex = 7;
+}
+
+message CRspCreateTeam {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  uint32 uin = 6;
+  TPlayerTeamMatch team_info = 7;
+  TTeamPlayerList player_list = 8;
+  TTeamMatchInfo team_match_info = 9;
+  TRealTimeVoiceInfo real_time_voice_info = 10;
+  TTeamPlayerListEx team_player_list_ex = 11;
+}
+
+message CRspGetTeamInfo {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  uint32 uin = 6;
+  TPlayerTeamMatch team_info = 7;
+  TTeamPlayerList player_list = 8;
+  TTeamMatchInfo team_match_info = 9;
+  TRealTimeVoiceInfo real_time_voice_info = 10;
+  TTeamPlayerListEx team_player_list_ex = 11;
+}
+
+message CRspGetTeamRoundList {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  uint32 uin = 6;
+  TLastTeamRoundInfo last_round_list = 7;
+}
+
+message CRspIDIPTeamMsg {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  uint32 uin = 6;
+  uint32 cmd = 7;
+  TPlayerTeamMatch team_info = 8;
+  TTeamPlayerList player_list = 9;
+  TTeamMatchInfo team_match_info = 10;
+  TRealTimeVoiceInfo real_time_voice_info = 11;
+}
+
+message CRspInvite {
+  int32 result_id = 1;
+  string result_str = 2;
+}
+
+message CRspJoinTeam {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  uint32 uin = 6;
+  TPlayerTeamMatch team_info = 7;
+  TTeamPlayerList player_list = 8;
+  TTeamMatchInfo team_match_info = 9;
+  TRealTimeVoiceInfo real_time_voice_info = 10;
+  TTeamPlayerListEx team_player_list_ex = 11;
+}
+
+message CRspS2SUpdateTeam {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  uint32 src_uin = 6;
+  uint32 leader_uin = 7;
+  uint32 oper_type = 8;
+  TPlayerTeamMatch team_info = 9;
+  TTeamPlayerList player_list = 10;
+  TRealTimeVoiceInfo real_time_voice_info = 11;
+  TTeamPlayerListEx team_player_list_ex = 12;
+}
+
+message CRspUpdateTeam {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  uint32 uin = 6;
+  uint32 oper_type = 7;
+  TPlayerTeamMatch team_info = 8;
+  TTeamPlayerList player_list = 9;
+  TRealTimeVoiceInfo real_time_voice_info = 10;
+  TTeamPlayerListEx team_player_list_ex = 11;
+}
+
+message T2V2InviteTransparentInfo {
+  uint32 scene_id = 1;
+  TTeamPlayer invite_player_info = 2;
+}
+
+message TChangeSeatContext {
+  uint32 src_uin = 1;
+  uint32 dst_uin = 2;
+  uint32 src_seat_id = 3;
+  uint32 dst_seat_id = 4;
+  uint32 req_chg_seat_time = 5;
+}
+
+message TDBPlayerMatchTeamListInfo {
+  TTeamList team_list = 1;
+  TRealTimeVoiceInfo real_time_voice_info = 2;
+  TTeamPlayerListEx team_player_list_ex = 3;
+  TChangeSeatContext change_seat_context = 4;
+}
+
+message TLastTeamRoundInfo {
+  int32 last_count = 1;
+  repeated TeamRoundInfo round_list = 2;
+}
+
+message TPlayerRealTimeVoiceInfo {
+  uint32 uin = 1;
+  int32 can_real_time_voice = 2;
+}
+
+message TPlayerTeamMatch {
+  uint32 leader_uin = 1;
+  uint32 create_time = 2;
+  uint32 expire_time = 3;
+  uint32 match_mode = 4;
+  uint32 team_status = 5;
+  uint32 game_style = 6;
+  uint64 match_id = 7;
+  uint32 seat_id = 8;
+  uint32 scene_id = 9;
+  uint32 server_id = 10;
+  uint32 room_id = 11;
+}
+
+message TRealTimeVoiceInfo {
+  uint32 player_num = 1;
+  repeated TPlayerRealTimeVoiceInfo player_real_time_voice_info = 2;
+  string group_id = 3;
+}
+
+message TTeamInfo {
+  int32 player_num = 1;
+  repeated TTeamPlayerInfo team_player_info = 2;
+}
+
+message TTeamList {
+  int32 team_num = 1;
+  repeated TTeamInfo team_info = 2;
+}
+
+message TTeamMatchInfo {
+  uint64 match_id = 1;
+  uint32 start_time = 2;
+  uint32 end_time = 3;
+  uint32 game_style = 4;
+  TTeamList team_list = 5;
+  int32 trans_len = 6;
+  bytes trans_parent = 7;
+}
+
+message TTeamPlayer {
+  uint32 uin = 1;
+  uint32 status = 2;
+  int64 money = 3;
+  int32 gender = 4;
+  int32 head_frame_id = 5;
+  string nick = 6;
+  string album_url = 7;
+}
+
+message TTeamPlayerInfo {
+  uint32 uin = 1;
+  int32 team_leader = 2;
+  int32 seat_id = 3;
+}
+
+message TTeamPlayerList {
+  uint32 player_num = 1;
+  repeated TTeamPlayer player_list = 2;
+}
+
+message TTeamPlayerListEx {
+  uint32 player_num = 1;
+  repeated tbTeamPlayerEx player_list = 2;
+}
+
+message TTransParentInfo {
+  uint32 match_mode = 1;
+}
+
+message TeamRoundInfo {
+  uint32 team_mate_uin = 1;
+  uint32 scene_id = 2;
+  uint32 game_style = 3;
+  uint32 end_time = 4;
+  uint32 win_flag = 5;
+  int32 fan_number = 6;
+  int32 score_chg = 7;
+  int32 money_chg = 8;
+  int32 nick_len = 9;
+  bytes nick = 10;
+  int32 album_url_len = 11;
+  bytes album_url = 12;
+  uint32 reserve = 13;
+}
+
+message tbTeamPlayerEx {
+  uint32 seat_id = 1;
+  int32 is_support_change_mode = 2;
+  int32 reserved1 = 3;
+  int32 reserved2 = 4;
+  int32 reserved3 = 5;
+}

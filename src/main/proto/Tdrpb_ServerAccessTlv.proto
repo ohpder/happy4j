@@ -1,0 +1,51 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.ServerAccessTlv;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.serveraccesstlv";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_ServerAccessTlvProto";
+
+enum ACCESS_DATA_TV_TYPE {
+  ACCESS_DATA_TV_TYPE_Tdr2PbDummyAccessDataTvType = 0;
+  ACCESS_DATA_TV_TYPE_TvAccessDataTypeInt8 = 1;
+  ACCESS_DATA_TV_TYPE_TvAccessDataTypeInt32 = 2;
+  ACCESS_DATA_TV_TYPE_TvAccessDataTypeInt64 = 3;
+  ACCESS_DATA_TV_TYPE_TvAccessDataTypeStrBuf126 = 4;
+}
+
+enum MacroDefineForServerAccessTlv {
+  MacroDefineForServerAccessTlv_Tdr2PbDummyMacroDefineForServerAccessTlv = 0;
+  MacroDefineForServerAccessTlv_MaxDataAccessStrLen = 126;
+}
+
+message ServerAcessDataBase {
+  int32 type = 1;
+  int32 len = 2;
+  UServerAccessData value = 3;
+}
+
+message TAccessDataInt32 {
+  int32 int32 = 1;
+}
+
+message TAccessDataInt64 {
+  int64 int64 = 1;
+}
+
+message TAccessDataInt8 {
+  int32 int8 = 1;
+}
+
+message TAccessDataStrBuf {
+  int32 buf_len = 1;
+  bytes buff = 2;
+}
+
+message UServerAccessData {
+  TAccessDataInt8 access_data_int8 = 1;
+  TAccessDataInt32 access_data_int32 = 2;
+  TAccessDataInt64 access_data_int64 = 3;
+  TAccessDataStrBuf access_data_str_buf = 4;
+}

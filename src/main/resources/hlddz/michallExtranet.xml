@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by tina (EMBRACE) -->
+<MIC>
+
+	  <com.qqgame.hlddz>
+			 <Version MiniVersion="5.6.005" CurrVersion="5.6.006" Name="NewHLDDZ" effect="no" />
+			  <UpdateURL>http://dlied5.qq.com/hlgame/hlddz/NewHLDDZ.apk</UpdateURL>
+			 <CanUpdateTip  Value="游戏版本已更新，现有版本已经不能使用，请下载最新版本后再进入游戏。新版特性：大奖赛火热开启，斗地主赢话费！游戏更稳定，快来体验！" />
+			 <MustUpdateTip  Value="游戏版本已更新，现有版本已经不能使用，请下载最新版本后再进入游戏。新版特性：大奖赛火热开启，斗地主赢话费！游戏更稳定，快来体验！"  />
+			 <UseBackImg>no</UseBackImg>
+			 <UseQingmingBackImg>no</UseQingmingBackImg>
+	 </com.qqgame.hlddz>
+	<Version MiniVersion="5.2.5" CurrVersion="5.2.6" />
+	<!-- 新升级提示 -->
+	<UpdateTip>
+		<CanUpdate  Title="新版本发布啦！ 新版本特性：1、斗地主赢话费；2、天地癞子新玩法火热上线；3、新版活动中心丰富活动等你赢取欢乐豆；4、Bug修复，游戏更流畅。请更新新版本。"    />
+		<MustUpdate  Title="当前版本过低！ 新版本特性：1、斗地主赢话费；2、天地癞子新玩法火热上线；3、新版活动中心丰富活动等你赢取欢乐豆；4、Bug修复，游戏更流畅。请更新新版本。"  />
+	</UpdateTip>
+	
+	<NewSceneNode>
+		<Node SceneID="1260" SceneName="新手场" minbean="1000" maxbean="80000"  fengding="3000" difen="5"  isEnable="true"  />
+		<Node SceneID="15260" SceneName="初级场" minbean="2000" maxbean="300000" fengding="20000" difen="20" isEnable="true"  />
+		<Node SceneID="2260" SceneName="中级场"  minbean="10000" maxbean="-1" fengding="30000" difen="60" isEnable="true" />
+		<Node SceneID="3260" SceneName="高级场"  minbean="50000" maxbean="-1" fengding="400000" difen="300" isEnable="true"/>
+		<Node SceneID="4260" SceneName="癞子新手场"  minbean="1000" maxbean="80000" fengding="5000" difen="4" isEnable="true" />
+		<Node SceneID="16260" SceneName="癞子初级场" minbean="2000" maxbean="300000" fengding="30000" difen="16" isEnable="true"  />
+		<Node SceneID="5260" SceneName="癞子中级场"  minbean="10000" maxbean="-1" fengding="60000" difen="50" isEnable="true"  />
+		<Node SceneID="6260" SceneName="癞子高级场"  minbean="50000" maxbean="-1" fengding="600000" difen="250" isEnable="true" />
+		<Node SceneID="9260" SceneName="新手挑战赛"  minbean="1000" maxbean="300000" fengding="0" difen="0" isEnable="false" />
+		<Node SceneID="10260" SceneName="精英挑战赛" minbean="10000" maxbean="-1" fengding="0" difen="0" isEnable="false" />
+		<Node SceneID="11260" SceneName="大师挑战赛"  minbean="50000" maxbean="-1" fengding="0" difen="0" isEnable="false" />
+		<Node SceneID="12260" SceneName="新手癞子挑战赛"  minbean="1000" maxbean="300000" fengding="0" difen="0" isEnable="false" />
+		<Node SceneID="13260" SceneName="精英癞子挑战赛" minbean="10000" maxbean="-1" fengding="0" difen="0" isEnable="false"  />
+		<Node SceneID="14260" SceneName="大师癞子挑战赛"  minbean="50000" maxbean="-1" fengding="0" difen="0" isEnable="false" />
+	</NewSceneNode>
+	
+	<PrivateRoomInfo>
+		<Node SceneID="17260" SceneName="经典私人房" nGameType="1" isEnable="true"/>
+		<Node SceneID="18260" SceneName="癞子私人房" nGameType="2" isEnable="true"/>
+		<Node SceneID="70260" SceneName="经典私人房" nGameType="1" isEnable="true"/>
+		<Node SceneID="71260" SceneName="癞子私人房" nGameType="2" isEnable="true"/>
+	</PrivateRoomInfo>
+	
+	<BuyItem_LianShengFu>
+		<Item productId="902250001" price="6" bean="60000"  resid="0" identifier="com.tencent.ioshlddz.6WWXBean"/>
+		<Item productId="902250002" price="12" bean="130000"  resid="1" identifier="com.tencent.ioshlddz.13WWXBean"/>
+		<Item productId="902250003" price="18" bean="200000"  resid="2" identifier="com.tencent.ioshlddz.20WWXBean"/>
+		<Item productId="902250004" price="25" bean="280000" resid="3" identifier="com.tencent.ioshlddz.28WWXBean"/>
+		<Item productId="902250005" price="50" bean="700000" resid="4" identifier="com.tencent.ioshlddz.70WWXBean"/>
+		<Item productId="902260001" price="6" bean="3"  resid="5" identifier="com.tencent.ioshlddz.WX3LSF"/>
+		<Item productId="902250001" price="6" bean="60000"  resid="0" identifier="com.tencent.ioshlddz.6WQQBean"/>
+		<Item productId="902250002" price="12" bean="130000"  resid="1" identifier="com.tencent.ioshlddz.13WQQBean"/>
+		<Item productId="902250003" price="18" bean="200000"  resid="2" identifier="com.tencent.ioshlddz.20WQQBean"/>
+		<Item productId="902250004" price="25" bean="280000" resid="3" identifier="com.tencent.ioshlddz.28WQQBean"/>
+		<Item productId="902250005" price="50" bean="700000" resid="4" identifier="com.tencent.ioshlddz.70WQQBean"/>
+		<Item productId="902260001" price="6" bean="3" resid="5" identifier="com.tencent.ioshlddz.QQ3LSF"/>
+	</BuyItem_LianShengFu>
+	
+	<AppStorURL>https://itunes.apple.com/cn/app/huan-le-dou-zhu-qq-you-xi/id446324234?mt=8</AppStorURL>
+	
+	<VerifyURL>http://zf.minigamecgi.qq.com/cgi-bin/IOSHLDDZVerifyReceiptAndSendItems?</VerifyURL>
+    <!--qq2wx-->
+		<Lotus timeout="5000">
+		<LotusURL ip="weixinlotus.minigame.qq.com" port="443" isDomian="true"/>
+        
+		<!--E_REPORTINFO_NETTYPE_UNKNOWN 配成CAP的，可以用域名 -->
+		<SvrGroup svrtype="0">
+			<SvrInfo ip="124.220.120.19" port="443" isDomian="true"/>
+			<SvrInfo ip="124.220.120.160" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+		<!--E_REPORTINFO_NETTYPE_WIFI    wifi配成电信的，可以用域名解析-->
+		<SvrGroup svrtype="1">
+			<SvrInfo ip="101.91.33.33" port="443" isDomian="true"/>
+			<SvrInfo ip="61.151.229.123" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+		<!--E_REPORTINFO_NETTYPE_CHINAUNICOM  联通-->
+		<SvrGroup svrtype="2">
+		   <SvrInfo ip="140.207.120.71" port="443"/>
+		   <SvrInfo ip="220.196.141.120" port="443" isDomian="true"/>
+		</SvrGroup>
+
+		<!--E_REPORTINFO_NETTYPE_CHINAMOBILE  移动-->
+		<SvrGroup svrtype="3">
+		  <SvrInfo ip="117.144.240.48" port="443"/>
+		  <SvrInfo ip="221.181.98.211" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+		<!--E_REPORTINFO_NETTYPE_CHINATELECOM 电信-->
+		<SvrGroup svrtype="4">
+			<SvrInfo ip="101.91.33.33" port="443"/>
+			<SvrInfo ip="61.151.229.123" port="443" isDomian="true"/>
+		</SvrGroup>
+
+        
+		<!--E_REPORTINFO_NETTYPE_NETCOM=5  配成CAP的，可以用域名 -->
+        <!--E_REPORTINFO_NETTYPE_LOCAL=6   配成CAP的，可以用域名 -->
+
+		<SvrGroup svrtype="5">
+			<SvrInfo ip="124.220.120.19" port="443" isDomian="true"/>
+			<SvrInfo ip="124.220.120.160" port="443" isDomian="true"/>
+		</SvrGroup>
+		<SvrGroup svrtype="6">
+			<SvrInfo ip="124.220.120.19" port="443" isDomian="true"/>
+			<SvrInfo ip="124.220.120.160" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+	</Lotus>
+	
+	<!--weixin-->
+	<Lotus timeout="5000">
+		<LotusURL ip="weixinlotus.minigame.qq.com" port="443" isDomian="true"/>
+        
+		<!--E_REPORTINFO_NETTYPE_UNKNOWN 配成CAP的，可以用域名 -->
+		<SvrGroup svrtype="0">
+			<SvrInfo ip="124.220.120.19" port="443" isDomian="true"/>
+			<SvrInfo ip="124.220.120.160" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+		<!--E_REPORTINFO_NETTYPE_WIFI    wifi配成电信的，可以用域名解析-->
+		<SvrGroup svrtype="1">
+			<SvrInfo ip="101.91.33.33" port="443" isDomian="true"/>
+			<SvrInfo ip="61.151.229.123" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+		<!--E_REPORTINFO_NETTYPE_CHINAUNICOM  联通-->
+		<SvrGroup svrtype="2">
+		   <SvrInfo ip="140.207.120.71" port="443"/>
+		   <SvrInfo ip="220.196.141.120" port="443" isDomian="true"/>
+		</SvrGroup>
+
+		<!--E_REPORTINFO_NETTYPE_CHINAMOBILE  移动-->
+		<SvrGroup svrtype="3">
+		  <SvrInfo ip="117.144.240.48" port="443"/>
+		  <SvrInfo ip="221.181.98.211" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+		<!--E_REPORTINFO_NETTYPE_CHINATELECOM 电信-->
+		<SvrGroup svrtype="4">
+			<SvrInfo ip="101.91.33.33" port="443"/>
+			<SvrInfo ip="61.151.229.123" port="443" isDomian="true"/>
+		</SvrGroup>
+
+        
+		<!--E_REPORTINFO_NETTYPE_NETCOM=5  配成CAP的，可以用域名 -->
+        <!--E_REPORTINFO_NETTYPE_LOCAL=6   配成CAP的，可以用域名 -->
+
+		<SvrGroup svrtype="5">
+			<SvrInfo ip="124.220.120.19" port="443" isDomian="true"/>
+			<SvrInfo ip="124.220.120.160" port="443" isDomian="true"/>
+		</SvrGroup>
+		<SvrGroup svrtype="6">
+			<SvrInfo ip="124.220.120.19" port="443" isDomian="true"/>
+			<SvrInfo ip="124.220.120.160" port="443" isDomian="true"/>
+		</SvrGroup>
+        
+	</Lotus>
+	
+	<CgiSvr>
+		<SvrInfo host="http://happyapp.huanle.qq.com"/>
+	</CgiSvr>
+	<NewCgiSvr>
+		<SvrInfo host="http://happyapp.huanle.qq.com"/>
+	</NewCgiSvr>
+	<QqConfig>
+		<invite       host="http://gamecenter.qq.com/gcjump?pf=invite&amp;appid=363&amp;plat=qq"  />
+		<SvrInfo      host="http://happyapp.huanle.qq.com"/>
+		<LoginSvrInfo host="http://qqtranslogin.huanleapp.huanle.qq.com"/>
+		<AndroidBuySvrInfo host="http://happyapp.huanle.qq.com"/>
+		<IosBuySvrInfo     host="http://happyapp.huanle.qq.com"/>
+		<BuySvrInfo        host="http://happyapp.huanle.qq.com"/>
+		<WetestSvrInfo host="https://oldapi.fsight.ai/ugc/upload.cgi"/>
+	</QqConfig>
+	<WeixinConfig>
+		<invite  host="http://gamecenter.qq.com/gcjump?pf=invite&amp;appid=wx76fc280041c16519&amp;plat=wx"  />
+		<SvrInfo host="http://happyapp.huanle.qq.com"/>
+		<LoginSvrInfo host="http://wechatlogin.huanleapp.huanle.qq.com"/>
+		<AndroidBuySvrInfo host="http://happyapp.huanle.qq.com"/>
+		<IosBuySvrInfo     host="http://happyapp.huanle.qq.com"/>
+		<BuySvrInfo        host="http://happyapp.huanle.qq.com"/>
+		<WetestSvrInfo host="https://oldapi.fsight.ai/ugc/upload.cgi"/>
+	</WeixinConfig>
+
+	<UIConfig>
+		<UseGameHallIcon value="yes" />
+	</UIConfig>	
+	<StatisticsReport enable="true" />
+	<MonitorReport enable="true" />
+	<ActivityConfig>
+	  <keyindex key="19" />
+	  <daid ptoacom="8" />
+	  <activity host="http://huanle.qq.com/m/ddz/app/hdcenter.html" />
+	</ActivityConfig>
+	<ExitGame  Value="逃跑托管"  />
+	<WeChatPayActivity enable="true"/>
+	
+	<Android>
+	       <ShopTips>钻石可以购买欢乐豆、角色、道具、经验物品哦，快去充值钻石吧！</ShopTips>
+		   <DiamondBGURL>http://huanle.qq.com/m/image/texture/newddz/market2.png</DiamondBGURL>    
+	</Android>
+	
+	<Hello>
+		<Send value="4000"/>
+		<TimeOut min="2000" max="15000" count="2"/>
+	</Hello>
+
+
+	<!--EagleEyeSvr配置，其中ip端口需要EagleEye重连后生效-->
+	<EagleEyeSvr>
+		<UploadSvr host="https://cgi.huanle.qq.com/eagle/cgi-bin/EagleEye/EagleEye_TransFile" />
+	</EagleEyeSvr>
+
+	<HttpsConfig>
+	<Windows>
+	  <HttpsOpen value="false"/>
+	  <QQLogin host="http://auth.huanle.qq.com/qqtranslogin"/>
+      <WXLogin host="http://wechatlogin.huanleapp.huanle.qq.com"/>
+      <QQSvr host="http://happyapp.huanle.qq.com"/>
+      <WXSvr host="http://happyapp.huanle.qq.com"/>
+      <QQBuySvr host="http://happyapp.huanle.qq.com"/>
+	  <WXBuySvr host="http://happyapp.huanle.qq.com"/>
+	</Windows>
+	<Android>
+	  <HttpsOpen value="false"/>
+	  <QQLogin host="http://auth.huanle.qq.com/qqtranslogin"/>
+      <WXLogin host="http://wechatlogin.huanleapp.huanle.qq.com"/>
+      <QQSvr host="http://happyapp.huanle.qq.com"/>
+      <WXSvr host="http://happyapp.huanle.qq.com"/>
+      <QQBuySvr host="http://happyapp.huanle.qq.com"/>
+	  <WXBuySvr host="http://happyapp.huanle.qq.com"/>
+	</Android>
+	<IOS>
+	  <HttpsOpen value="false"/>
+	  <QQLogin host="http://auth.huanle.qq.com/qqtranslogin"/>
+      <WXLogin host="http://wechatlogin.huanleapp.huanle.qq.com"/>
+      <QQSvr host="http://happyapp.huanle.qq.com"/>
+      <WXSvr host="http://happyapp.huanle.qq.com"/>
+      <QQBuySvr host="http://happyapp.huanle.qq.com"/>
+	  <WXBuySvr host="http://happyapp.huanle.qq.com"/>
+	</IOS>
+	</HttpsConfig>
+
+	<!-- sns批量上报，需放现有配置的最后，尤其是httpsconfig;当mold为1，remainder为0时，即是100%上报,maxCatch是缓存的最大值，最多只能到100；bReportWhileInterrupt切后台上报开关；nFlushInterval上报时间间隔，和点击次数联合使用 -->
+	<BatchReportSns  mold="100" remainder="0"  maxCatch="20"  bReportWhileInterrupt="1"  nFlushInterval="300000"  />
+	
+</MIC>

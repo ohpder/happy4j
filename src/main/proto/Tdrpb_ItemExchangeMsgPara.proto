@@ -1,0 +1,396 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.ItemExchangeMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.itemexchangemsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_ItemExchangeMsgParaProto";
+
+enum ExchangeNormalItemResultType {
+  ExchangeNormalItemResultType_ENormalItemExchangeItemSucc = 0;
+  ExchangeNormalItemResultType_ENormalItemExchangeEqualReward = 1;
+}
+
+enum ItemExchangeError {
+  ItemExchangeError_ESuccess = 0;
+  ItemExchangeError_ENoConfig = 1;
+  ItemExchangeError_EParaNotMatchConfig = 2;
+  ItemExchangeError_EFetchPersonalInfoError = 3;
+  ItemExchangeError_EWrongIdcardnum = 4;
+  ItemExchangeError_EDeductItemTimeout = 5;
+  ItemExchangeError_EDeductItemError = 6;
+  ItemExchangeError_EFetchrecordTimeout = 7;
+  ItemExchangeError_EFetchrecordError = 8;
+  ItemExchangeError_EPhoneInfoError = 9;
+  ItemExchangeError_EQqnumError = 10;
+  ItemExchangeError_EPhoneFilter = 11;
+  ItemExchangeError_EPhoneExchangeError = 12;
+  ItemExchangeError_EQmoneyExchangeError = 13;
+  ItemExchangeError_EPhoneExchangeBuhuo = 14;
+  ItemExchangeError_EPhoneExchangeDown = 15;
+  ItemExchangeError_EExchangeTotalLimit = 16;
+  ItemExchangeError_EExchangePersonLimit = 17;
+  ItemExchangeError_EItemExchangeError = 18;
+  ItemExchangeError_EItemInvalidError = 19;
+  ItemExchangeError_EGetExchangecodeError = 20;
+  ItemExchangeError_ENetworkError = 21;
+  ItemExchangeError_ERunoutError = 22;
+  ItemExchangeError_EGameitemExpired = 23;
+  ItemExchangeError_EChangeCodeEmpty = 24;
+  ItemExchangeError_EExchangeNewPlayerOnly = 25;
+  ItemExchangeError_ENotSupportNumber = 26;
+  ItemExchangeError_EExpressavatarFaildIngameSameIdDiffLvlOrDiffType = 27;
+  ItemExchangeError_EGetGameidConfigFailed = 28;
+  ItemExchangeError_EGetItemidConfigFailed = 29;
+  ItemExchangeError_EInputParaInvalid = 30;
+  ItemExchangeError_ESourceItemNumNotEnough = 31;
+  ItemExchangeError_EDeductSourceItemFailed = 32;
+  ItemExchangeError_EQueryDstItemInfoFailed = 33;
+  ItemExchangeError_ESendDstItemFailed = 34;
+  ItemExchangeError_EExpressWxMoneyFails = 35;
+  ItemExchangeError_EWxMoneyNotBegin = 36;
+  ItemExchangeError_EWxMoneyAlreadyEnd = 37;
+  ItemExchangeError_EWxMoneyPause = 38;
+  ItemExchangeError_EWxMoneySystemErr = 39;
+  ItemExchangeError_EWxMoneyTouchPersonalDayLimit = 40;
+  ItemExchangeError_EWxMoneyTouchPersonalWeekLimit = 41;
+  ItemExchangeError_EWxMoneyTouchPersonalTotalLimit = 42;
+  ItemExchangeError_EWxMoneyTouchRankDayLimit = 43;
+  ItemExchangeError_EWxMoneyTouchRankWeekLimit = 44;
+  ItemExchangeError_EWxMoneyTouchRankTotalLimit = 45;
+  ItemExchangeError_EWxMoneyTouchPersonalLimit = 46;
+  ItemExchangeError_EWxMoneyNotWxEvilUsers = 47;
+  ItemExchangeError_EActExchangeTotalLimited = 48;
+  ItemExchangeError_EInvalidRealInfo = 49;
+}
+
+enum ItemExchangeType {
+  ItemExchangeType_Tdr2PbDummyItemExchangeType = 0;
+  ItemExchangeType_PhoneFare = 1;
+  ItemExchangeType_QMoney = 2;
+  ItemExchangeType_RealItem = 3;
+  ItemExchangeType_GameItem = 4;
+  ItemExchangeType_ActItem = 5;
+  ItemExchangeType_CodeItem = 6;
+  ItemExchangeType_WxMoney = 7;
+}
+
+enum MacroDefineForItemExchangeMsgPara {
+  option allow_alias = true;
+  MacroDefineForItemExchangeMsgPara_Tdr2PbDummyMacroDefineForItemExchangeMsgPara = 0;
+  MacroDefineForItemExchangeMsgPara_IeMaxOpenidLenth = 128;
+  MacroDefineForItemExchangeMsgPara_IeMaxDescLenth = 128;
+  MacroDefineForItemExchangeMsgPara_IeMaxInfoNum = 100;
+  MacroDefineForItemExchangeMsgPara_IeMaxNameLen = 128;
+  MacroDefineForItemExchangeMsgPara_IeMaxPhoneNum = 20;
+  MacroDefineForItemExchangeMsgPara_IeMaxItemnameNum = 32;
+  MacroDefineForItemExchangeMsgPara_IeMaxTransLen = 100;
+  MacroDefineForItemExchangeMsgPara_IeMaxIdcardNum = 20;
+  MacroDefineForItemExchangeMsgPara_IeMaxExchangeRecordNum = 100;
+  MacroDefineForItemExchangeMsgPara_IeMaxIconnameLen = 64;
+  MacroDefineForItemExchangeMsgPara_IeMaxExchangeCodeLen = 128;
+  MacroDefineForItemExchangeMsgPara_IeMaxExchangeCfgNum = 100;
+  MacroDefineForItemExchangeMsgPara_MaxActivityExchangeIdNum = 64;
+  MacroDefineForItemExchangeMsgPara_MaxActivityItemInfoNum = 4;
+  MacroDefineForItemExchangeMsgPara_MaxExchangeDescLen = 256;
+  MacroDefineForItemExchangeMsgPara_MaxFakeUrlLen = 128;
+  MacroDefineForItemExchangeMsgPara_MaxReserveNum = 4;
+}
+
+message CActivityItemExchangeReq {
+  int32 exchange_id = 1;
+  TUserInfo user_info = 2;
+  TCommonDiamondReqInfoItemExchange req_exchange_diamond_info = 3;
+  int32 exchange_repeat_num = 4;
+}
+
+message CActivityItemExchangeRsp {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  TActivityItemExchange activity_item_exchange = 6;
+}
+
+message CFetchActivityItemExchangeInfoReq {
+  TUserInfo user_info = 1;
+  int32 exchange_id_num = 2;
+  repeated int32 exchange_id = 3;
+}
+
+message CFetchActivityItemExchangeInfoRsp {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 activity_item_exchange_num = 6;
+  repeated TActivityItemExchange activity_item_exchange = 7;
+}
+
+message CRequestAvatarExchange {
+  TUserInfo user_info = 1;
+  TCommonDiamondReqInfoItemExchange req_info = 2;
+  int32 source_item_id = 3;
+}
+
+message CRequestExchangeNormalItem {
+  TUserInfo user_info = 1;
+  TCommonDiamondReqInfoItemExchange common_diamond_req_info = 2;
+  int32 source_item_id = 3;
+  int32 source_item_num = 4;
+}
+
+message CRequestFetchExchangeCfg {
+  TUserInfo user_info = 1;
+  int32 exchange_count = 2;
+  repeated int32 exchange_id = 3;
+}
+
+message CRequestFetchExchangeCode {
+  TUserInfo user_info = 1;
+  int32 item_id = 2;
+  int32 item_seq = 3;
+}
+
+message CRequestFetchExchangeRecord {
+  TUserInfo user_info = 1;
+  int32 from = 2;
+  int32 to = 3;
+}
+
+message CRequestItemExchange {
+  TUserInfo user_info = 1;
+  int32 exchange_id = 2;
+  int32 source_item_num = 3;
+  int32 source_item_id = 4;
+  int32 dest_item_num = 5;
+  int32 dest_item_id = 6;
+  int32 phone_num_len = 7;
+  bytes phone_num = 8;
+  int32 id_card_len = 9;
+  bytes id_card = 10;
+  uint32 qq_num = 11;
+  int32 nick_name_len = 12;
+  bytes nick_name = 13;
+  TCommonDiamondReqInfoItemExchange req_info = 14;
+}
+
+message CRequestStoreRealItemExchange {
+  TUserInfo user_info = 1;
+  int32 exchange_id = 2;
+  int32 source_item_num = 3;
+  int32 source_item_id = 4;
+  int32 dest_item_num = 5;
+  int32 dest_item_id = 6;
+  uint32 uin = 7;
+}
+
+message CResponseAvatarExchange {
+  int32 result_id = 1;
+  int32 exchange_result_type = 2;
+  int32 source_item_id = 3;
+  int32 source_item_remain = 4;
+  int32 avatar_id = 5;
+  int32 avatar_seq = 6;
+  int32 avatar_exp = 7;
+  int32 avatar_lvl = 8;
+  int32 avatar_type = 9;
+  int32 avatar_valid_value = 10;
+  int32 skill_id_count = 11;
+  repeated int32 skill_id = 12;
+  int32 reserved_len = 13;
+  bytes reserved = 14;
+  int32 reward_item_id = 15;
+  int32 reward_item_num = 16;
+  int32 express_avatar_valid_value = 17;
+}
+
+message CResponseExchangeNormalItem {
+  int32 result_id = 1;
+  int32 exchange_result_type = 2;
+  int32 source_item_id = 3;
+  int32 source_item_remain_num = 4;
+  int32 exchange_item_id = 5;
+  int32 exchange_item_remain_num = 6;
+  int32 exchange_item_valid_time = 7;
+  int32 reward_item_id = 8;
+  int32 reward_item_num = 9;
+}
+
+message CResponseFetchExchangeCfg {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 cfg_num = 6;
+  repeated TExchangeCfg exchange_cfg = 7;
+}
+
+message CResponseFetchExchangeCode {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  TExchangeCodeInfo code_info = 6;
+}
+
+message CResponseFetchExchangeRecord {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 total_record_num = 6;
+  int32 from = 7;
+  int32 to = 8;
+  int32 record_num = 9;
+  repeated TExchangeRecord exchange_record = 10;
+}
+
+message CResponseItemExchange {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 source_item_id = 4;
+  int32 source_item_remain = 5;
+  int32 dest_item_id = 6;
+  int32 dest_item_num = 7;
+  int32 desc_len = 8;
+  bytes desc = 9;
+  int32 exchange_id = 10;
+  int32 limit_remain = 11;
+  int32 limit_total = 12;
+  int32 person_remain = 13;
+  int32 person_total = 14;
+  int32 person_duration = 15;
+  int32 limit_duration = 16;
+  int32 reserve_num = 17;
+  repeated int32 reserve = 18;
+}
+
+message CResponseStoreRealItemExchange {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 reserve_num = 4;
+  repeated int32 reserve = 5;
+}
+
+message TActivityItemExchange {
+  int32 exchange_id = 1;
+  int64 start_time = 2;
+  int64 end_time = 3;
+  int32 limit_type = 4;
+  int32 max_exchange_num = 5;
+  int32 cur_exchange_num = 6;
+  int32 src_item_info_num = 7;
+  repeated TActivityItemInfo src_item_info = 8;
+  repeated int32 player_src_item_count = 9;
+  int32 dst_item_info_num = 10;
+  repeated TActivityItemInfo dst_item_info = 11;
+  int32 exchange_desc_len = 12;
+  bytes exchange_desc = 13;
+  int32 fake_url_len = 14;
+  bytes fake_url = 15;
+  int32 reserved_num = 16;
+  repeated int32 reserved = 17;
+}
+
+message TActivityItemInfo {
+  int32 item_id = 1;
+  int32 item_count = 2;
+}
+
+message TCommonDiamondReqInfoItemExchange {
+  int32 open_id_len = 1;
+  bytes open_id = 2;
+  int32 open_key_len = 3;
+  bytes open_key = 4;
+  int32 pf_key_len = 5;
+  bytes pf_key = 6;
+  int32 pf_len = 7;
+  bytes pf = 8;
+  int32 pay_token_len = 9;
+  bytes pay_token = 10;
+  int32 service_tag = 11;
+}
+
+message TDataPlayerExchangeCode {
+  int32 version = 1;
+  int32 num = 2;
+  repeated TExchangeCodeInfo ast_exchange_code = 3;
+}
+
+message TExchangeBaseCfg {
+  int32 exchange_type = 1;
+  int32 source_item_num = 2;
+  int32 source_item_id = 3;
+  int32 source_desc_len = 4;
+  bytes source_desc = 5;
+  int32 dest_item_num = 6;
+  int32 dest_item_id = 7;
+  int32 dest_desc_len = 8;
+  bytes dest_desc = 9;
+  int32 dest_icon_len = 10;
+  bytes dest_icon = 11;
+  uint32 start_time = 12;
+  uint32 end_time = 13;
+}
+
+message TExchangeCfg {
+  int32 exchange_id = 1;
+  int32 base_cfg_num = 2;
+  repeated TExchangeBaseCfg base_cfg = 3;
+  int32 dynamic_cfg_num = 4;
+  repeated TExchangeDynamicCfg dynamic_cfg = 5;
+}
+
+message TExchangeCodeInfo {
+  int32 item_id = 1;
+  int32 item_seq = 2;
+  int32 code_len = 3;
+  bytes exchange_code = 4;
+  uint32 start_time = 5;
+  uint32 expired_time = 6;
+  uint32 account = 7;
+  uint32 client = 8;
+  int32 reserved_num = 9;
+  repeated int32 reserved = 10;
+}
+
+message TExchangeDynamicCfg {
+  int32 limit_remain = 1;
+  int32 limit_total = 2;
+  int32 person_remain = 3;
+  int32 person_total = 4;
+  int32 person_duration = 5;
+  int32 limit_duration = 6;
+  int32 reserve_num = 7;
+  repeated int32 reserve = 8;
+}
+
+message TExchangeRecord {
+  uint32 time = 1;
+  int32 name_len = 2;
+  bytes name = 3;
+  int32 item_desc_len = 4;
+  bytes item_desc = 5;
+  int32 reserve1 = 6;
+  int32 reserve2 = 7;
+}
+
+message TUserInfo {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 client_version = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 trans_len = 7;
+  bytes transparent = 8;
+}

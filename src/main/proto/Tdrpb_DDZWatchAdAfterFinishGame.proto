@@ -1,0 +1,55 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.DDZWatchAdAfterFinishGame;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.ddzwatchadafterfinishgame";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_DDZWatchAdAfterFinishGameProto";
+
+enum DDZ_WATCH_AD_CHECK_OP_TYPE {
+  DDZ_WATCH_AD_CHECK_OP_TYPE_WatchAd = 0;
+  DDZ_WATCH_AD_CHECK_OP_TYPE_Share = 1;
+}
+
+enum MacroDefineForDDZWatchAdAfterFinishGameMsgPara {
+  MacroDefineForDDZWatchAdAfterFinishGameMsgPara_Tdr2PbDummyMacroDefineForDdzwatchAdAfterFinishGameMsgPara = 0;
+  MacroDefineForDDZWatchAdAfterFinishGameMsgPara_MsgIdC2SDdzWatchadCheckData = 18214;
+  MacroDefineForDDZWatchAdAfterFinishGameMsgPara_MsgIdC2SDdzWatchadGetAward = 18215;
+  MacroDefineForDDZWatchAdAfterFinishGameMsgPara_DdzWatchAdPrizeCount = 4;
+  MacroDefineForDDZWatchAdAfterFinishGameMsgPara_DdzWatchAdAfterFinishGameResultStrLen = 512;
+  MacroDefineForDDZWatchAdAfterFinishGameMsgPara_DdzWatchAdKeyDataLen = 256;
+}
+
+message CReqCheckWatchAdData {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 check_op = 4;
+  int32 check_bean_num = 5;
+}
+
+message CReqGetAwardWatchAdOrShare {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 reward_bean_num = 5;
+  string trans_data = 6;
+}
+
+message CRspCheckWatchAdData {
+  int32 result_id = 1;
+  string result_str = 2;
+  string trans_data = 3;
+  int32 cur_left_times_today = 4;
+  int32 total_left_times_today = 5;
+  string display_str = 6;
+  int32 reward_bean_num = 7;
+}
+
+message CRspGetAwardWatchAdOrShare {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 reward_bean_num = 3;
+}

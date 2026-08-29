@@ -1,0 +1,2642 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HuanLeOlympicSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.huanleolympicsvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HuanLeOlympicSvrProto";
+
+enum BONUS_TYPE {
+  BONUS_TYPE_EBtDiamond = 0;
+  BONUS_TYPE_EBtTicket = 1;
+  BONUS_TYPE_EBtHappybean = 2;
+}
+
+enum CLIENT_ABILITY_BIT {
+  CLIENT_ABILITY_BIT_Tdr2PbDummyClientAbilityBit = 0;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportNewOlympicCommon = 1;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportNewOlympicChallenge = 2;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportTdtMax16SeriesPerMatch = 4;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportWxHongbaoMatch = 8;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportDoubleLaiziMatch = 16;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportWjMatch = 32;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportNewWxHongbaoMatch = 64;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupport16MatchListNum = 128;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportNewTdt = 256;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportTencentTvTdt = 512;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportRegularTdt = 1024;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupport2V2Match = 2048;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportUsergame = 4096;
+  CLIENT_ABILITY_BIT_EClientAbilityBitSupportDisplayManualStartGame = 8192;
+}
+
+enum CLOSE_ROOM_REASON {
+  CLOSE_ROOM_REASON_ECloseRoomReasonOlympicChallengeEmptyRoomClose = 0;
+  CLOSE_ROOM_REASON_ECloseOlympicMatchFailed = 1;
+  CLOSE_ROOM_REASON_ECloseOlympicMatchNotEmpty = 2;
+  CLOSE_ROOM_REASON_ECloseRoomReasonCanNotFindGameObj = 3;
+  CLOSE_ROOM_REASON_ECloseRoomReasonUserDefinedCancelGame = 4;
+  CLOSE_ROOM_REASON_ECloseRoomReasonUsergameCancel = 5;
+}
+
+enum E_FETCH_PLAYER_GAME_LIST_GAME_TYPE_BIT_ENUM {
+  E_FETCH_PLAYER_GAME_LIST_GAME_TYPE_BIT_ENUM_Tdr2PbDummyEFetchPlayerGameListGameTypeBitEnum = 0;
+  E_FETCH_PLAYER_GAME_LIST_GAME_TYPE_BIT_ENUM_EFetchPlayerGameListGameTypeBitWj = 1;
+  E_FETCH_PLAYER_GAME_LIST_GAME_TYPE_BIT_ENUM_EFetchPlayerGameListGameTypeBitTencentSportTdt = 2;
+}
+
+enum E_OLYMPIC_MATCH_SOURCE_TYPE_ENUM {
+  E_OLYMPIC_MATCH_SOURCE_TYPE_ENUM_EOlympicMatchSourceTypeNormal = 0;
+  E_OLYMPIC_MATCH_SOURCE_TYPE_ENUM_EOlympicMatchSourceTypeTdtOfflineMatch = 1;
+  E_OLYMPIC_MATCH_SOURCE_TYPE_ENUM_EOlympicMatchSourceTypeWeisai = 99;
+  E_OLYMPIC_MATCH_SOURCE_TYPE_ENUM_EOlympicMatchSourceTypeDasheng = 100;
+}
+
+enum E_OLYMPIC_UPDATE_GAMEDATA_OPTYPE_ENUM {
+  E_OLYMPIC_UPDATE_GAMEDATA_OPTYPE_ENUM_EOlympicUpdateGamedataOptypeDelEnrollNum = 0;
+}
+
+enum E_USERDEFINED_MATCH_ROLE_TYPE {
+  E_USERDEFINED_MATCH_ROLE_TYPE_FixTime = 0;
+  E_USERDEFINED_MATCH_ROLE_TYPE_FixRound = 1;
+  E_USERDEFINED_MATCH_ROLE_TYPE_Roundrobin = 2;
+}
+
+enum E_USERDEINFED_CMD_TYPE_ENUM {
+  E_USERDEINFED_CMD_TYPE_ENUM_EUserdeinfedCmdTypeStartGame = 0;
+}
+
+enum GAMESVR_GAME_STATUS {
+  GAMESVR_GAME_STATUS_EGamesvrGameStatusStart = 0;
+}
+
+enum GAMESVR_OLYMPIC_SYNC_MATCHINFO_TYPE {
+  GAMESVR_OLYMPIC_SYNC_MATCHINFO_TYPE_EGamesvrOlympicSyncMatchinfoTypeSyncPlayernum = 0;
+  GAMESVR_OLYMPIC_SYNC_MATCHINFO_TYPE_EGamesvrOlympicSyncMatchinfoTypeAskStartMatch = 1;
+}
+
+enum GAME_END_RESULT_TYPE {
+  GAME_END_RESULT_TYPE_EGameEndResultNormal = 0;
+  GAME_END_RESULT_TYPE_EGameEndResultPlayerLessThanMinnum = 1;
+  GAME_END_RESULT_TYPE_EGameEndResultNotFinished = 2;
+  GAME_END_RESULT_TYPE_EGameEndResultPickGameSvrFailed = 3;
+  GAME_END_RESULT_TYPE_EGameEndResultGameEndTimeout = 4;
+  GAME_END_RESULT_TYPE_EGameEndResultGamesvrRestart = 5;
+  GAME_END_RESULT_TYPE_EGameEndResultConfigChanged = 6;
+  GAME_END_RESULT_TYPE_EGameEndResultOlympicChallengeCloseRoom = 7;
+  GAME_END_RESULT_TYPE_EGameEndResultUserDefinedCancelGame = 8;
+  GAME_END_RESULT_TYPE_EGameEndResultStartFailed = 9;
+  GAME_END_RESULT_TYPE_EGameEndResultWjCheckMatchidFailed = 10;
+  GAME_END_RESULT_TYPE_EGameEndResultWjNotFinisgedReportRankinfo = 11;
+  GAME_END_RESULT_TYPE_EGameEndResultFightTopMatchNoLeftPlayer = 12;
+  GAME_END_RESULT_TYPE_EGameEndResultUsergamePlayerCancel = 13;
+}
+
+enum GAME_STATUS_TYPE {
+  GAME_STATUS_TYPE_EGstInit = 0;
+  GAME_STATUS_TYPE_EGstCreated = 1;
+  GAME_STATUS_TYPE_EGstCanJoin = 2;
+  GAME_STATUS_TYPE_EGstReady = 3;
+  GAME_STATUS_TYPE_EGstIngame = 4;
+  GAME_STATUS_TYPE_EGstEnd = 5;
+}
+
+enum INTERNAL_UPDATE_PLAYER_DATA_CMD {
+  INTERNAL_UPDATE_PLAYER_DATA_CMD_EInternalUpdatePlayerDataCmdUpdateRank = 0;
+  INTERNAL_UPDATE_PLAYER_DATA_CMD_EInternalUpdatePlayerDataCmdDelOlympicChallengeTicket = 1;
+  INTERNAL_UPDATE_PLAYER_DATA_CMD_EInternalUpdatePlayerDataCmdGivebackCurrentEnrollTimes = 2;
+}
+
+enum JOIN_GAME_COST_TYPE {
+  JOIN_GAME_COST_TYPE_EJgctNone = 0;
+  JOIN_GAME_COST_TYPE_EJgctTimes = 1;
+}
+
+enum MATCH_TYPE {
+  MATCH_TYPE_EMtTdt = 0;
+  MATCH_TYPE_EMtCommon = 1;
+  MATCH_TYPE_EMtChallenge = 2;
+  MATCH_TYPE_EMtUserDefinedOfflineMatch = 3;
+  MATCH_TYPE_EMtWxHongbaoMatch = 4;
+  MATCH_TYPE_EMtWjMatch = 5;
+  MATCH_TYPE_EMtFuliMatchLikeTdt = 6;
+  MATCH_TYPE_EMtTencentTvTdt = 7;
+  MATCH_TYPE_EMatchTypeFightTop = 8;
+  MATCH_TYPE_EMatchTypeTdtRegualr = 9;
+  MATCH_TYPE_EMtUsergameMatch = 10;
+  MATCH_TYPE_EMatchTypeCount = 11;
+}
+
+enum MacroDefineForOlympicSvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForOlympicSvrMsgPara_Tdr2PbDummyMacroDefineForOlympicSvrMsgPara = 0;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicTlvNum = 32;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchMatchlist = 16601;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchSerieslist = 16602;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchSeriesdetail = 16603;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoGetGameRank = 16604;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoJoinGame = 16605;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoStartGame = 16607;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoGetMarquee = 16608;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoSetWechatSubscribe = 16609;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoReqFetchPlayerGamelist = 16610;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchGamelist = 16611;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoFetchGameinfo = 16612;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoCreateUserGame = 16613;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoCancelUserGame = 16614;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchUsergameList = 16615;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoQueryCreateAuthority = 16616;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchUsergameApplyStatus = 16617;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncrank = 16620;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoCreateGame = 16621;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoEndGame = 16622;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUpdatePlayerData = 16623;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncGameInfo = 16624;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoPlayerCancelGame = 16625;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoCloseGame = 16626;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoPlayerDieoutGame = 16627;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncGameResult = 16628;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedQueryGame = 16629;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedCreateGame = 16630;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedModGame = 16631;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedCancelGame = 16632;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedQueryGameInfoList = 16633;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncSeriesData = 16634;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncGameData = 16635;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedQueryEnrollPlayerList = 16636;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncEnrollPlayerData = 16637;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncLocalGameRankList = 16638;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoReqSyncLocalGameData = 16639;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncGameCfg = 16640;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedGameCmd = 16641;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoGivebackTicketForPlayer = 16642;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoSyncMatchInfo = 16643;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedQueryGamePlayerList = 16644;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedQueryPlayerRecord = 16645;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchMatchCommonData = 16646;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoFetchMatchRankRewardHistoryRecord = 16647;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoActAfterGamesvrReportResult = 16648;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoJoinGameSendToLeader = 16649;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoPlayerCancelJoinGame = 16650;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SUpdateGameData = 16651;
+  MacroDefineForOlympicSvrMsgPara_MsgidOlympicCheckEnrollInfo = 16652;
+  MacroDefineForOlympicSvrMsgPara_MsgidOlympicNotifyJoinInfo = 16653;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SReportTeamMatchGameResult = 16654;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoGetTeammatchRank = 16655;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoPauseGame = 16656;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoUserDefinedPauseGame = 16657;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoReportGameStatus = 16658;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoCancelEnrollGame = 16659;
+  MacroDefineForOlympicSvrMsgPara_MsgidS2SHoNotifyStartGameInfo = 16660;
+  MacroDefineForOlympicSvrMsgPara_MsgidC2SHoQueryGameByPassword = 16661;
+  MacroDefineForOlympicSvrMsgPara_OlympicMaxOpenidLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxOpenkeyStrLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxPfkeyStrLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxPfStrLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxPaytokenStrLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxTitleStrLen = 32;
+  MacroDefineForOlympicSvrMsgPara_MaxSeriesTimeDescStrLen = 32;
+  MacroDefineForOlympicSvrMsgPara_MaxMatchlistNum = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxSeriesNumPerMatch = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxTicketTypeNum = 3;
+  MacroDefineForOlympicSvrMsgPara_MaxTicketTypeExtNum = 6;
+  MacroDefineForOlympicSvrMsgPara_MaxBonusTypeNum = 3;
+  MacroDefineForOlympicSvrMsgPara_MaxSerieslistBonusLevelNum = 5;
+  MacroDefineForOlympicSvrMsgPara_MaxBonusLevelNum = 100;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicDescLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxMatchRoleLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxMatchBonusdescLen = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxFetchGamelistNum = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxObGameUinNum = 4;
+  MacroDefineForOlympicSvrMsgPara_MaxPointRadixArrayLen = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxDieoutArrayLen = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicNickLen = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxRspRankPerReq = 32;
+  MacroDefineForOlympicSvrMsgPara_MaxAnnouncementStrLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxMarqueeStrLen = 512;
+  MacroDefineForOlympicSvrMsgPara_MaxMarqueeNum = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxRoomNumPerGamesvr = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicMsgCryptkeyLength = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxGamaparaLength = 128;
+  MacroDefineForOlympicSvrMsgPara_MsgRankListNum = 100;
+  MacroDefineForOlympicSvrMsgPara_MsgNewRankListNum = 150;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicGameTickKeyLen = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxPlayerPerGame = 50000;
+  MacroDefineForOlympicSvrMsgPara_MaxGameNumPerSeries = 100;
+  MacroDefineForOlympicSvrMsgPara_MaxGameNumPerSeriesSyn = 2000;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicResultStrLen = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicTransparentDataLen = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicGameinfoInPlayerData = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxAlertConfigStrLen = 50;
+  MacroDefineForOlympicSvrMsgPara_MaxSimpleBonusdescStrLen = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxReserveStrLen = 1024;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicRewardCfgLength = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicRewardNum = 4;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicRewardDescLength = 256;
+  MacroDefineForOlympicSvrMsgPara_MaxSyncGameInfoUinLength = 6000;
+  MacroDefineForOlympicSvrMsgPara_LocksvrTransBufMaxLen = 256;
+  MacroDefineForOlympicSvrMsgPara_MaxUserDefinedRewardNum = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxUserDefinedRewardDescLength = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxUserDefinedGetgameInfoNum = 512;
+  MacroDefineForOlympicSvrMsgPara_OlympicQqidentLength = 12;
+  MacroDefineForOlympicSvrMsgPara_OlympicUrlLength = 256;
+  MacroDefineForOlympicSvrMsgPara_MaxSavaEnrollPlayerNum = 10000;
+  MacroDefineForOlympicSvrMsgPara_MaxReportResultPerMsgNum = 500;
+  MacroDefineForOlympicSvrMsgPara_MaxTeammatchReportResultPerMsgNum = 100;
+  MacroDefineForOlympicSvrMsgPara_MaxSyncEnrollDataPerMsgNum = 1000;
+  MacroDefineForOlympicSvrMsgPara_MaxSavaEnrollOpenidLen = 32;
+  MacroDefineForOlympicSvrMsgPara_MaxSavaEnrollOpenkeyLen = 512;
+  MacroDefineForOlympicSvrMsgPara_MaxRspEnrollPlayerNum = 50;
+  MacroDefineForOlympicSvrMsgPara_MaxRewardUrlLen = 256;
+  MacroDefineForOlympicSvrMsgPara_MaxBonusnumPerRankInUserdefinedMatch = 4;
+  MacroDefineForOlympicSvrMsgPara_MaxWjMatchidLen = 21;
+  MacroDefineForOlympicSvrMsgPara_MaxSeriesPanelDescLen = 50;
+  MacroDefineForOlympicSvrMsgPara_MaxOfflineTdtMatchPlayerNum = 200;
+  MacroDefineForOlympicSvrMsgPara_MaxReservedNum = 4;
+  MacroDefineForOlympicSvrMsgPara_MaxRoomPerGame = 100;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicPlayRecordPerMsg = 100;
+  MacroDefineForOlympicSvrMsgPara_MaxCondNum = 4;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicSpecGameinfoNum = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxSpecMatchDataNum = 6;
+  MacroDefineForOlympicSvrMsgPara_MaxMatchRewardInfoLen = 32;
+  MacroDefineForOlympicSvrMsgPara_MaxIncrementTicketNum = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicRecentGameinfoInPlayerData = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicJoinExtInfoNum = 6;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicReservedNum = 12;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicFetchHistoryRecordNum = 20;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicTodaySeriesinfoInPlayerData = 128;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicMatchSpecDataTlvNum = 16;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicRewardCondNum = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxMatchGamePlayerShowNum = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxOlympicTeamPlayerNum = 3;
+  MacroDefineForOlympicSvrMsgPara_MaxFetchUsergameGamelistNum = 64;
+  MacroDefineForOlympicSvrMsgPara_MaxRecordNumPerGame = 100;
+  MacroDefineForOlympicSvrMsgPara_MaxRecordPlayerNumPerGame = 200;
+  MacroDefineForOlympicSvrMsgPara_OlympicMaxNicknameStrLen = 64;
+}
+
+enum OLYMPIC_CHECK_PLAYER_ENROLL_INFO_MATCH_TYPE {
+  OLYMPIC_CHECK_PLAYER_ENROLL_INFO_MATCH_TYPE_Tdr2PbDummyOlympicCheckPlayerEnrollInfoMatchType = 0;
+  OLYMPIC_CHECK_PLAYER_ENROLL_INFO_MATCH_TYPE_EOlympicCheckPlayerEnrollInfoMatchType2V2Match = 1;
+}
+
+enum OLYMPIC_CREATE_TOOLS_TYPE_ENUM {
+  OLYMPIC_CREATE_TOOLS_TYPE_ENUM_EOlympicCreateToolsTypePageTools = 0;
+  OLYMPIC_CREATE_TOOLS_TYPE_ENUM_EOlympicCreateToolsTypeWeisaiTools = 1;
+  OLYMPIC_CREATE_TOOLS_TYPE_ENUM_EOlympicCreateToolsTypeDashengTools = 2;
+}
+
+enum OLYMPIC_MATCHDATA_TLV_TYPE {
+  OLYMPIC_MATCHDATA_TLV_TYPE_Tdr2PbDummyOlympicMatchdataTlvType = 0;
+  OLYMPIC_MATCHDATA_TLV_TYPE_TdtRegular = 1;
+}
+
+enum OLYMPIC_PLAYER_DATA_SPEC_MATCH_INDEX_INFO {
+  OLYMPIC_PLAYER_DATA_SPEC_MATCH_INDEX_INFO__0 = 0;
+}
+
+enum OLYMPIC_RANK_REWARD_HISTORY_RECORD_TYPE {
+  OLYMPIC_RANK_REWARD_HISTORY_RECORD_TYPE_SingleGame = 0;
+  OLYMPIC_RANK_REWARD_HISTORY_RECORD_TYPE_PerWeek = 1;
+  OLYMPIC_RANK_REWARD_HISTORY_RECORD_TYPE_PerMonth = 2;
+}
+
+enum OLYMPIC_REWARD_PLAYER_PERCENT_TYPE {
+  OLYMPIC_REWARD_PLAYER_PERCENT_TYPE_FromStart = 0;
+  OLYMPIC_REWARD_PLAYER_PERCENT_TYPE_Section = 1;
+}
+
+enum OLYMPIC_REWARD_TYPE_ENUM {
+  OLYMPIC_REWARD_TYPE_ENUM_EOlympicRewardTypeNormal = 0;
+  OLYMPIC_REWARD_TYPE_ENUM_EOlympicRewardTypeCdkey = 1;
+}
+
+enum OLYMPIC_USERDEFINED_MATCH_SCENE_TYPE {
+  OLYMPIC_USERDEFINED_MATCH_SCENE_TYPE_Jd = 0;
+  OLYMPIC_USERDEFINED_MATCH_SCENE_TYPE_Bxp = 1;
+}
+
+enum OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS {
+  OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS_EOlympicUpaUnkown = 0;
+  OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS_EOlympicUpaApplyWait = 100;
+  OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS_EOlympicUpaApplyOk = 300;
+  OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS_EOlympicUpaReject = 400;
+  OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS_EOlympicUpaCancel = 500;
+  OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS_EOlympicUpaTimeout = 600;
+  OLYMPIC_USERGAME_PLAYER_AUTHORITY_STATUS_EOlympicUpaNoApply = 101;
+}
+
+enum OLYMPIC_USERGAME_SCENE_TYPE {
+  OLYMPIC_USERGAME_SCENE_TYPE_Tdr2PbDummyOlympicUsergameSceneType = 0;
+  OLYMPIC_USERGAME_SCENE_TYPE_EOlympicUsergameSceneJd = 1;
+  OLYMPIC_USERGAME_SCENE_TYPE_EOlympicUsergameSceneBxp = 2;
+  OLYMPIC_USERGAME_SCENE_TYPE_EOlympicUsergameSceneLz = 3;
+  OLYMPIC_USERGAME_SCENE_TYPE_EOlympicUsergameSceneTdlz = 4;
+}
+
+enum SERIES_TIMETYPE_ENUM {
+  SERIES_TIMETYPE_ENUM_ESeriesTimetypeInterval = 0;
+  SERIES_TIMETYPE_ENUM_ESeriesTimetypeTimelist = 1;
+  SERIES_TIMETYPE_ENUM_ESeriesTimetypeChallenge = 2;
+  SERIES_TIMETYPE_ENUM_ESeriesTimetypeOlympicChallenge = 3;
+  SERIES_TIMETYPE_ENUM_ESeriesTimetypeOlympicOfflineMatch = 4;
+  SERIES_TIMETYPE_ENUM_ESeriesTimetypeTimePoint = 5;
+}
+
+enum SYNC_DATA_TYPE_ENUM {
+  SYNC_DATA_TYPE_ENUM_ESyncDataTypeUpdateOrAdd = 0;
+  SYNC_DATA_TYPE_ENUM_ESyncDataTypeDelete = 1;
+}
+
+enum TENCENT_SPORT_TDT_COND {
+  TENCENT_SPORT_TDT_COND__0 = 0;
+  TENCENT_SPORT_TDT_COND__1 = 1;
+  TENCENT_SPORT_TDT_COND__2 = 2;
+  TENCENT_SPORT_TDT_COND__3 = 3;
+}
+
+enum TENCENT_SPORT_TDT_MATCH_INFO {
+  TENCENT_SPORT_TDT_MATCH_INFO_TencentSportTdtMatchData0 = 0;
+  TENCENT_SPORT_TDT_MATCH_INFO_TencentSportTdtMatchData1 = 1;
+  TENCENT_SPORT_TDT_MATCH_INFO_TencentSportTdtMatchData2 = 2;
+  TENCENT_SPORT_TDT_MATCH_INFO_TencentSportTdtMatchData3 = 3;
+  TENCENT_SPORT_TDT_MATCH_INFO_TencentSportTdtMatchData4 = 4;
+  TENCENT_SPORT_TDT_MATCH_INFO_TencentSportTdtMatchData5 = 5;
+}
+
+enum TENCENT_SPORT_TDT_PLAYER_EXT_INFO {
+  TENCENT_SPORT_TDT_PLAYER_EXT_INFO__0 = 0;
+  TENCENT_SPORT_TDT_PLAYER_EXT_INFO__1 = 1;
+  TENCENT_SPORT_TDT_PLAYER_EXT_INFO__2 = 2;
+  TENCENT_SPORT_TDT_PLAYER_EXT_INFO__3 = 3;
+}
+
+enum TICKET_TYPE {
+  TICKET_TYPE_ETtDiamond = 0;
+  TICKET_TYPE_ETtTicket = 1;
+  TICKET_TYPE_ETtHappybean = 2;
+}
+
+enum TLV_TYPE {
+  TLV_TYPE_Tdr2PbDummyTlvType = 0;
+  TLV_TYPE_EmReportFightTopMatchInfo = 1;
+  TLV_TYPE_EmFightTopmatchTotalInfo = 1000;
+  TLV_TYPE_EmStartMatchResult = 1001;
+}
+
+enum TOlympicPlayerTodaySeriesInfo_Reserveinfo_Type {
+  TOlympicPlayerTodaySeriesInfo_Reserveinfo_Type_RealEnrollCount = 0;
+  TOlympicPlayerTodaySeriesInfo_Reserveinfo_Type_TolympicPlayerTodaySeriesInfoReserveinfoNum = 1;
+}
+
+message CInternalActAfterGameSvrReportResult {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  int32 olympic_series_id = 5;
+  int32 olympic_game_id = 6;
+  int32 game_start_time_stamp = 7;
+  int32 rank = 8;
+  int32 rank_total_num = 9;
+  int32 game_end_time_stamp = 10;
+}
+
+message CInternalUpdatePlayerData {
+  uint32 uin = 1;
+  int32 series_id = 2;
+  int32 game_id = 3;
+  int32 game_start_time_stamp = 4;
+  int32 cmd_id = 5;
+  TRankInfo rank_info = 6;
+  int32 rank_score = 7;
+}
+
+message CNotifyGameResult {
+  int32 game_end_result = 1;
+  TSvrInfo server_info = 2;
+  uint32 game_seq = 3;
+  int32 ranklist_len = 4;
+  repeated TRankInfo ranklist = 5;
+  repeated int32 rank_scorelist = 6;
+  int32 extra_ranklist_len = 7;
+  repeated uint32 extra_rank_uinlist = 8;
+  int32 cur_round_index = 9;
+  repeated int32 extra_rank_scorelist = 10;
+}
+
+message CNotifyJoinInfo {
+  int32 match_id = 1;
+  int32 series_id = 2;
+  int32 series_game_id = 3;
+  int32 notify_type = 4;
+}
+
+message CNotifyPlayerCancelGame {
+  TSvrInfo svr_info = 1;
+  uint32 uin = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  uint32 join_timestamp = 5;
+  uint32 seq = 6;
+  uint32 game_id = 7;
+}
+
+message CNotifyPlayerDieoutGame {
+  TSvrInfo svr_info = 1;
+  uint32 uin = 2;
+  uint32 join_timestamp = 3;
+  uint32 game_seq = 4;
+  int32 total_rank_num = 5;
+  int32 rank = 6;
+  int32 game_start_time = 7;
+  int32 game_end_time = 8;
+}
+
+message CNotifyPlayerStartGame {
+  uint32 uin = 1;
+  TUserInfo user_info = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+}
+
+message CNotifySyncEnrollPlayerData {
+  int32 series_id = 1;
+  int32 game_id = 2;
+  int32 total = 3;
+  int32 player_num = 4;
+  repeated int32 index_list = 5;
+  repeated TEnrollPlayerData enroll_player_info = 6;
+  repeated TTicketInfo ticket_info = 7;
+}
+
+message CNotifySyncGameData {
+  int32 op_type = 1;
+  int32 series_id = 2;
+  int32 game_id = 3;
+  TGameData game_data = 4;
+}
+
+message CNotifySyncGameInfo {
+  TSvrInfo svr_info = 1;
+  uint32 current_package_index = 2;
+  uint32 total_package_num = 3;
+  uint32 uin_list_len = 4;
+  repeated uint32 uin_list = 5;
+  uint32 game_seq = 6;
+}
+
+message CNotifySyncLocalGameRankList {
+  int32 series_id = 1;
+  int32 game_id = 2;
+  int32 ranklist_len = 3;
+  repeated uint32 ranklist = 4;
+  repeated int32 scorelist = 5;
+  repeated int32 win_timeslist = 6;
+  repeated uint32 give_timelist = 7;
+  int32 total_num = 8;
+  int32 start_num = 9;
+}
+
+message CNotifySyncOlympicCfg {
+  TSvrInfo svr_info = 1;
+  int32 role_info = 2;
+  int32 crypt_key_len = 3;
+  bytes crypt_key = 4;
+  TOlympicRewardPolicy reward_policy = 5;
+  int32 olympic_series_time_type = 6;
+  int32 report_rank_time_interval = 7;
+  int32 background_scene_id = 8;
+  int32 match_id = 9;
+  int32 ui_table_id = 10;
+  int32 is_anti_cheat_match = 11;
+  TOlympicRewardPolicyExt reward_policy_ext = 12;
+}
+
+message CNotifySyncRank {
+  TSvrInfo svr_info = 1;
+  int32 ranklist_len = 2;
+  repeated TRankInfo ranklist = 3;
+  repeated int32 rank_scorelist = 4;
+  bytes pool_index_list = 5;
+  bytes group_index_list = 6;
+  int32 round_type = 7;
+}
+
+message CNotifySyncSeriesData {
+  int32 op_type = 1;
+  int32 series_id = 2;
+  TSeriesData series_data = 3;
+}
+
+message CNotifyWechatSubscribe {
+  TUserInfo user_info = 1;
+  int32 client_version = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+}
+
+message CReqCancelEnrollGame {
+  TSvrInfo svr_info = 1;
+  uint32 uin = 2;
+}
+
+message CReqCancelUserGame {
+  int32 match_type = 1;
+  int32 game_type = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+  uint32 op_uin = 5;
+  TUserInfo user_info = 6;
+  uint32 create_uin = 7;
+  int32 add_create_count = 8;
+}
+
+message CReqCheckPlayerEnrollInfo {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 matchtype = 3;
+}
+
+message CReqCloseGame {
+  TSvrInfo svr_info = 1;
+  int32 reason_code = 2;
+}
+
+message CReqCreateGame {
+  TSvrInfo svr_info = 1;
+  int32 role_info = 2;
+  int32 starttime = 3;
+  int32 crypt_key_len = 4;
+  bytes crypt_key = 5;
+  TOlympicRewardPolicy reward_policy = 6;
+  int32 olympic_series_time_type = 7;
+  int32 olympic_match_type = 8;
+  int32 user_defined_title_len = 9;
+  bytes user_defined_title = 10;
+  int32 user_defined_time_in_fixed_time_match = 11;
+  int32 user_defined_marquee_len = 12;
+  bytes user_defined_marquee = 13;
+  int32 report_rank_time_interval = 14;
+  int32 wj_match_id_len = 15;
+  bytes wj_match_id = 16;
+  uint32 wj_cp_id = 17;
+  int32 background_scene_id = 18;
+  int32 match_id = 19;
+  int32 user_defined_match_role_type = 20;
+  int32 user_defined_round_num_in_fixed_round_match = 21;
+  int32 user_defined_score_calc_mode = 22;
+  int32 user_defined_init_score = 23;
+  int32 user_defined_init_small_score = 24;
+  int32 user_defined_init_base_score = 25;
+  int32 user_defined_dieout_score = 26;
+  int32 user_defined_offline_tdt_match_player_num = 27;
+  repeated uint32 user_defined_offline_tdt_match_player_uin_list = 28;
+  repeated uint32 user_defined_offline_tdt_match_player_score_list = 29;
+  repeated uint32 user_defined_offline_tdt_match_player_uin2_list = 30;
+  int32 max_player_num = 31;
+  int32 ui_table_id = 32;
+  int32 is_anti_cheat_match = 33;
+  int32 game_para_len = 34;
+  bytes game_para = 35;
+  int32 is_display_score = 36;
+  int32 assign_table_manual = 37;
+  int32 is_need_report_play_record_rti = 38;
+  TOlympicRewardPolicyExt reward_policy_ext = 39;
+  int32 is_use_match_item = 40;
+  int32 can_not_kick_in_match = 41;
+  int32 min_player_num = 42;
+  int32 ob_uin_num = 43;
+  repeated uint32 ob_uin = 44;
+  uint32 upgrade_player_num_in_round_robin_match = 45;
+  uint32 pool_num_in_round_robin_match = 46;
+  uint32 match_loop_num_in_round_robin_match = 47;
+  uint32 pause_round_num_in_round_robin_match = 48;
+}
+
+message CReqCreateUserGame {
+  int32 match_type = 1;
+  int32 game_type = 2;
+  uint32 op_uin = 3;
+  int32 op_need_apply = 4;
+  TUserInfo user_info = 5;
+  int32 title_len = 6;
+  bytes title = 7;
+  int32 user_game_time_type = 8;
+  int32 user_game_scene_type = 9;
+  int32 enroll_ts = 10;
+  int32 start_ts = 11;
+  int32 join_pwd = 12;
+  int32 join_lbs = 13;
+  int32 join_player_num = 14;
+  int32 start_player_num = 15;
+  int32 ob_uin_num = 16;
+  repeated uint32 ob_uin = 17;
+  int32 authority_level = 18;
+}
+
+message CReqEndGame {
+  int32 game_end_result = 1;
+  TSvrInfo server_info = 2;
+  int32 ranklist_len = 3;
+  repeated TRankInfo ranklist = 4;
+  repeated int32 rank_score_list = 5;
+  int32 tlv_num = 6;
+  repeated TLVUNIT tl_vs = 7;
+}
+
+message CReqFetchGameList {
+  TUserInfo user_info = 1;
+  int32 client_version = 2;
+  int32 client_ability = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+}
+
+message CReqFetchMatchList {
+  TUserInfo user_info = 1;
+  int32 client_ability = 2;
+  int32 client_version = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+  int32 match_id = 6;
+  int32 need_enroll_status = 7;
+  uint32 channel_id = 8;
+}
+
+message CReqFetchMatchRankRewardHistoryRecord {
+  int32 match_id = 1;
+  int32 match_type = 2;
+  int32 client_version = 3;
+  TUserInfo user_info = 4;
+  int32 client_ability = 5;
+  int32 type = 6;
+  int32 start_index = 7;
+  int32 fetch_num = 8;
+}
+
+message CReqFetchOlympicGameInfo {
+  int32 game_type = 1;
+  int32 dst_uin = 2;
+  int32 match_series_id = 3;
+  int32 match_game_id = 4;
+}
+
+message CReqFetchPlayerGameList {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  int32 game_type_flag = 5;
+}
+
+message CReqFetchSeriesList {
+  int32 match_id = 1;
+  int32 client_version = 2;
+  TUserInfo user_info = 3;
+  int32 client_ability = 4;
+  int32 series_id = 5;
+  int32 game_id = 6;
+  int32 is_ob = 7;
+  uint32 channel_id = 8;
+  int32 lbs = 9;
+  int32 page_start_idx = 10;
+  int32 page_size = 11;
+}
+
+message CReqFetchUserGameApplyStatus {
+  int32 match_type = 1;
+  int32 game_type = 2;
+  TUserInfo user_info = 3;
+  uint32 create_uin = 4;
+  int32 apply_len = 5;
+  repeated TUserGameApplyStatus apply = 6;
+}
+
+message CReqFetchUserGameList {
+  int32 match_type = 1;
+  int32 game_type = 2;
+  TUserInfo user_info = 3;
+  uint32 create_uin = 4;
+}
+
+message CReqGameRank {
+  int32 series_id = 1;
+  int32 game_id = 2;
+  int32 start = 3;
+  int32 num = 4;
+  int32 client_version = 5;
+  TUserInfo user_info = 6;
+  uint32 user_defined_uin = 7;
+}
+
+message CReqGiveBackTicketForPlayer {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 series_id = 5;
+  int32 game_id = 6;
+  int32 start_game_begin_timestamp = 7;
+  int32 start_game_end_timestamp = 8;
+  TTicketInfo join_ticket_info = 9;
+}
+
+message CReqJoinGame {
+  TUserInfo user_info = 1;
+  int32 series_id = 2;
+  int32 game_id = 3;
+  int32 is_check_join_time = 4;
+  int32 client_version = 5;
+  uint32 uin = 6;
+  int32 qq_ident_len = 7;
+  bytes qq_ident = 8;
+  int32 head_url_len = 9;
+  bytes head_url = 10;
+  int32 ticket_type = 11;
+  int32 ticket_id = 12;
+  int32 ticket_num = 13;
+  int32 team_player_num = 14;
+  repeated uint32 team_player_list = 15;
+  uint32 leader_uin = 16;
+  int32 is_leader_req = 17;
+  int32 join_pwd = 18;
+  string pass_word = 19;
+}
+
+message CReqMarquee {
+  TUserInfo user_info = 1;
+  int32 match_id = 2;
+  int32 client_version = 3;
+}
+
+message CReqMatchCommonData {
+  int32 match_id = 1;
+  int32 match_type = 2;
+  int32 client_version = 3;
+  TUserInfo user_info = 4;
+  int32 client_ability = 5;
+  int32 tranparent_data_len = 6;
+  bytes tranparent_data = 7;
+}
+
+message CReqPauseGame {
+  TSvrInfo svr_info = 1;
+  int32 op_type = 2;
+}
+
+message CReqPlayerCancelGame {
+  TUserInfo user_info = 1;
+  uint32 uin = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+}
+
+message CReqQueryCreateAuthority {
+  int32 match_type = 1;
+  int32 game_type = 2;
+  TUserInfo user_info = 3;
+}
+
+message CReqQueryGameByPassword {
+  TUserInfo user_info = 1;
+  string pass_word = 2;
+}
+
+message CReqReportGameResult {
+  int32 game_end_result = 1;
+  TSvrInfo server_info = 2;
+  int32 total_rank_num = 3;
+  int32 cur_start_index = 4;
+  int32 ranklist_len = 5;
+  repeated TRankInfoDetail ranklist = 6;
+  int32 session_seq = 7;
+  int32 game_start_time = 8;
+  int32 game_end_time = 9;
+  int32 round_robin_rank_infolist_len = 10;
+  repeated int32 round_robin_rank_list = 11;
+  repeated int32 round_robin_pool_list = 12;
+  repeated int32 round_robin_group_list = 13;
+}
+
+message CReqReportGameStatus {
+  int32 game_status = 1;
+  TSvrInfo server_info = 2;
+  uint32 game_seq = 3;
+}
+
+message CReqReportTeamMatchGameResult {
+  int32 game_end_result = 1;
+  TSvrInfo server_info = 2;
+  int32 total_rank_num = 3;
+  int32 cur_start_index = 4;
+  int32 ranklist_len = 5;
+  repeated TTeamRankInfoDetail ranklist = 6;
+  int32 session_seq = 7;
+  int32 game_start_time = 8;
+  int32 game_end_time = 9;
+}
+
+message CReqSeriesDetail {
+  int32 series_id = 1;
+  int32 client_version = 2;
+  TUserInfo user_info = 3;
+  int32 game_id = 4;
+}
+
+message CReqStartGame {
+  TUserInfo user_info = 1;
+  int32 series_id = 2;
+  int32 game_id = 3;
+  int32 client_version = 4;
+  int32 ob_flag = 5;
+  int32 team_player_num = 6;
+  repeated uint32 team_player_list = 7;
+}
+
+message CReqSyncLocalGameData {
+  int32 series_id = 1;
+  int32 game_id = 2;
+  int32 player_index = 3;
+}
+
+message CReqSyncMatchInfo {
+  TSvrInfo server_info = 1;
+  int32 cmd = 2;
+  int32 tlv_num = 3;
+  repeated TLVUNIT tl_vs = 4;
+}
+
+message CReqTeamMatchGameRank {
+  int32 series_id = 1;
+  int32 game_id = 2;
+  int32 start = 3;
+  int32 num = 4;
+  int32 client_version = 5;
+  TUserInfo user_info = 6;
+  uint32 user_defined_uin = 7;
+}
+
+message CReqUpdateGameData {
+  int32 op_type = 1;
+  UPDATE_GAME_PARA_UNION op_para = 2;
+  int32 game_num = 3;
+  repeated int32 series_id_list = 4;
+  repeated int32 series_game_id_list = 5;
+}
+
+message CReqUserDefinedCancelGame {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+}
+
+message CReqUserDefinedCreateGame {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 title_len = 3;
+  bytes title = 4;
+  int32 account_type = 5;
+  int32 enroll_time_stamp = 6;
+  int32 start_time_stamp = 7;
+  int32 match_type = 8;
+  int32 time_in_fixed_time_match = 9;
+  int32 max_player_num = 10;
+  int32 user_defined_reward_policy_len = 11;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list = 12;
+  int32 user_defined_marquee_len = 13;
+  bytes user_defined_marquee = 14;
+  int32 reward_type = 15;
+  int32 reward_url_len = 16;
+  bytes reward_url = 17;
+  int32 create_tools_type = 18;
+  int32 match_source = 19;
+  int32 match_role_type = 20;
+  int32 round_num_in_fixed_round_match = 21;
+  int32 score_calc_mode = 22;
+  int32 init_score = 23;
+  int32 init_small_score = 24;
+  int32 init_base_score = 25;
+  int32 dieout_score = 26;
+  int32 offline_tdt_match_player_num = 27;
+  repeated uint32 offline_tdt_match_player_uin_list = 28;
+  repeated uint32 offline_tdt_match_player_score_list = 29;
+  repeated uint32 offline_tdt_match_player_uin2_list = 30;
+  int32 user_defined_match_anti_cheat_match = 31;
+  int32 user_defined_match_start_type = 32;
+  int32 user_defined_match_role_type = 33;
+  int32 is_display_score = 34;
+  int32 assign_table_manual = 35;
+  int32 is_use_match_item = 36;
+  int32 can_not_kick_in_match = 37;
+  int32 min_player_num = 38;
+  int32 is2_v2_match = 39;
+  string i_con_url = 40;
+  uint32 upgrade_player_num_in_round_robin_match = 41;
+  uint32 pool_num_in_round_robin_match = 42;
+  uint32 match_loop_num_in_round_robin_match = 43;
+  uint32 pause_round_num_in_round_robin_match = 44;
+  uint32 scene_type = 45;
+  string pass_word = 46;
+}
+
+message CReqUserDefinedGameCMD {
+  uint32 uin = 1;
+  uint32 cmd = 2;
+  int32 game_type = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+}
+
+message CReqUserDefinedGetGameInfoList {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 game_num = 3;
+  repeated int32 series_id_list = 4;
+  repeated int32 game_id_list = 5;
+}
+
+message CReqUserDefinedModGame {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+  int32 title_len = 5;
+  bytes title = 6;
+  int32 account_type = 7;
+  int32 enroll_time_stamp = 8;
+  int32 start_time_stamp = 9;
+  int32 match_type = 10;
+  int32 time_in_fixed_time_match = 11;
+  int32 max_player_num = 12;
+  int32 user_defined_reward_policy_len = 13;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list = 14;
+  int32 user_defined_marquee_len = 15;
+  bytes user_defined_marquee = 16;
+  int32 reward_type = 17;
+  int32 reward_url_len = 18;
+  bytes reward_url = 19;
+  int32 create_tools_type = 20;
+  int32 match_source = 21;
+  int32 match_role_type = 22;
+  int32 round_num_in_fixed_round_match = 23;
+  int32 score_calc_mode = 24;
+  int32 init_score = 25;
+  int32 init_small_score = 26;
+  int32 init_base_score = 27;
+  int32 dieout_score = 28;
+  int32 offline_tdt_match_player_num = 29;
+  repeated uint32 offline_tdt_match_player_uin_list = 30;
+  repeated uint32 offline_tdt_match_player_score_list = 31;
+  repeated uint32 offline_tdt_match_player_uin2_list = 32;
+  int32 user_defined_match_anti_cheat_match = 33;
+  int32 user_defined_match_start_type = 34;
+  int32 user_defined_match_role_type = 35;
+  int32 is_display_score = 36;
+  int32 assign_table_manual = 37;
+  int32 is_use_match_item = 38;
+  int32 can_not_kick_in_match = 39;
+  int32 min_player_num = 40;
+  int32 is2_v2_match = 41;
+  uint32 upgrade_player_num_in_round_robin_match = 42;
+  uint32 pool_num_in_round_robin_match = 43;
+  uint32 match_loop_num_in_round_robin_match = 44;
+  uint32 pause_round_num_in_round_robin_match = 45;
+  uint32 scene_type = 46;
+  string pass_word = 47;
+}
+
+message CReqUserDefinedPauseGame {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+  int32 op_type = 5;
+}
+
+message CReqUserDefinedQueryEnrollPlayerList {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+  int32 cur_pos = 5;
+}
+
+message CReqUserDefinedQueryGame {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+}
+
+message CReqUserDefinedQueryGamePlayerList {
+  uint32 uin = 1;
+  int32 game_type = 2;
+  int32 series_id = 3;
+  int32 game_id = 4;
+}
+
+message CReqUserDefinedQueryPlayerRecord {
+  uint32 uin = 1;
+  uint32 player_uin = 2;
+  int32 game_type = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+}
+
+message CRspCancelEnrollGame {
+  int32 result_id = 1;
+  TSvrInfo svr_info = 2;
+}
+
+message CRspCancelUserGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+}
+
+message CRspCheckPlayerEnrollInfo {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 matchtype = 4;
+  int32 is_enrolled = 5;
+}
+
+message CRspCloseGame {
+  int32 result_id = 1;
+  TSvrInfo svr_info = 2;
+}
+
+message CRspCreateGame {
+  int32 result_id = 1;
+  TSvrInfo svr_info = 2;
+}
+
+message CRspCreateUserGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+}
+
+message CRspEndGame {
+  int32 result_id = 1;
+  TSvrInfo svr_info = 2;
+  int32 tlv_num = 3;
+  repeated TLVUNIT tl_vs = 4;
+}
+
+message CRspFetchGameList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 game_list_len = 4;
+  repeated TGameInfo game_list = 5;
+  repeated TSvrInfo svr_info_list = 6;
+}
+
+message CRspFetchMatchList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 match_list_len = 4;
+  repeated TMatchInfo match_list = 5;
+  repeated TMatchInfoExtra match_extra_list = 6;
+}
+
+message CRspFetchMatchRankRewardHistoryRecord {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 match_id = 4;
+  int32 type = 5;
+  int32 record_num = 6;
+  repeated TMatchRankRewardHistoryRecord records = 7;
+}
+
+message CRspFetchOlympicGameInfo {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  TSvrInfo svr_info = 4;
+  int32 ob_uin_num = 5;
+  repeated uint32 ob_uin = 6;
+}
+
+message CRspFetchPlayerGameList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  uint32 uin = 4;
+  int32 game_id = 5;
+  int32 client_type = 6;
+  int32 account_type = 7;
+  uint32 cp_id = 8;
+  int32 match_info_len = 9;
+  repeated TOlympicPlayerMatchInfo match_info = 10;
+  repeated TOlympicPlayerMatchExtraInfo match_extra_info = 11;
+}
+
+message CRspFetchSeriesList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 series_list_len = 4;
+  repeated TSeriesInfo series_list = 5;
+  int32 alert_config_list_len = 6;
+  repeated TAlertConfigInfo alert_config_list = 7;
+  int32 simple_bonus_desc_list_len = 8;
+  repeated TSimpleBonusDescInfo simple_bonus_desc_list = 9;
+  repeated TSeriesInfoExtra series_extra_list = 10;
+  repeated TOlympicUrl cdkey_url_list = 11;
+  repeated TSeriesPaneldesc series_paneldesc_list = 12;
+  repeated int32 user_defined_match_source_list = 13;
+  repeated TOlympicJoinCountLimitInfo user_join_count_limit_list = 14;
+  repeated TSeriesOtherInfo other_info_list = 15;
+  repeated int32 discount = 16;
+  repeated TOlympicJoinExtInfo user_join_ext_info_list = 17;
+  repeated TOlympicRewardAndRankInfo olympic_reward_and_rank_info_list = 18;
+  TMatchShowGamePlayer match_show_game_player = 19;
+  bytes team_player_num_list = 20;
+  bytes allow_cancel_game = 21;
+  int32 page_start_idx = 22;
+  int32 page_size = 23;
+  int32 page_total_num = 24;
+  repeated TSeriesInfoExtra2 series_extra_list2 = 25;
+}
+
+message CRspFetchUserGameApplyStatus {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 apply_len = 4;
+  repeated TUserGameApplyStatus apply = 5;
+}
+
+message CRspFetchUserGameList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 game_list_len = 4;
+  repeated TUserGameInfo game_info = 5;
+}
+
+message CRspGameRank {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+  int32 total_num = 6;
+  int32 rank_list_len = 7;
+  repeated TPlayerRankInfo rank_list = 8;
+  repeated TPlayerRankInfoEx rank_info_ex_list = 9;
+  int32 game_status = 10;
+  repeated TPlayerRankInfoEx2 rank_info_ex2_list = 11;
+}
+
+message CRspJoinGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+  int32 ticket_len = 6;
+  repeated TTicketNotice ticket = 7;
+  TGameInfo cur_game = 8;
+  TLockDetail lock_info = 9;
+  TMatchShowGamePlayer show_game_player = 10;
+  int32 enroll_cost = 11;
+}
+
+message CRspMarquee {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 marquee_list_len = 4;
+  repeated TMarqueeInfo marquee_list = 5;
+}
+
+message CRspMatchCommonData {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 tlv_num = 4;
+  repeated TOlympicMatchDataTLV match_data_tlv = 5;
+  TOlympicCommonData common_data = 6;
+  int32 tranparent_data_len = 7;
+  bytes tranparent_data = 8;
+}
+
+message CRspPauseGame {
+  int32 result_id = 1;
+  TSvrInfo svr_info = 2;
+}
+
+message CRspPlayerCancelGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+}
+
+message CRspQueryCreateAuthority {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 authority_status = 4;
+  int32 authority_level = 5;
+  int32 authority_end_ts = 6;
+  int32 authority_reason_str_len = 7;
+  bytes authority_reason_str = 8;
+}
+
+message CRspQueryGameByPassword {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+}
+
+message CRspReportGameResult {
+  int32 result_id = 1;
+  TSvrInfo server_info = 2;
+  int32 total_rank_num = 3;
+  int32 cur_start_index = 4;
+  int32 ranklist_len = 5;
+}
+
+message CRspReportGameStatus {
+  int32 result = 1;
+  int32 is_leader = 2;
+  TSvrInfo server_info = 3;
+  uint32 game_seq = 4;
+}
+
+message CRspReportTeamMatchGameResult {
+  int32 result_id = 1;
+  TSvrInfo server_info = 2;
+  int32 total_rank_num = 3;
+  int32 cur_start_index = 4;
+  int32 ranklist_len = 5;
+}
+
+message CRspSeriesDetail {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  TSeriesDetail series_detail = 4;
+}
+
+message CRspStartGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  TSvrInfo svr_info = 4;
+  int32 ticket_key_len = 5;
+  bytes ticket_key = 6;
+  int32 start_time_interval = 7;
+}
+
+message CRspSyncMatchInfo {
+  int32 result_id = 1;
+  TSvrInfo server_info = 2;
+  int32 cmd = 3;
+  int32 tlv_num = 4;
+  repeated TLVUNIT tl_vs = 5;
+}
+
+message CRspTeamMatchGameRank {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+  int32 game_status = 6;
+  int32 total_num = 7;
+  int32 rank_list_len = 8;
+  repeated TRspTeamMatchGameRank_RankInfo rank_list = 9;
+  repeated TRspTeamMatchGameRank_RankInfo_Ex rank_ex_info_list = 10;
+}
+
+message CRspUpdateGameData {
+  int32 result_id = 1;
+}
+
+message CRspUserDefinedCancelGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+}
+
+message CRspUserDefinedCreateGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+}
+
+message CRspUserDefinedGameCMD {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  uint32 cmd = 4;
+}
+
+message CRspUserDefinedGetGameInfoList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 game_num = 4;
+  repeated TUserDefinedGameInfo cur_game_list = 5;
+  bytes is2_v2_match = 6;
+  repeated string pass_word = 7;
+}
+
+message CRspUserDefinedModGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+}
+
+message CRspUserDefinedPauseGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+}
+
+message CRspUserDefinedQueryEnrollPlayerList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 cur_enroll_player_num = 4;
+  int32 cur_pos = 5;
+  int32 playerlist_num = 6;
+  repeated TEnrollPlayerData playerlist = 7;
+  int32 game_status = 8;
+}
+
+message CRspUserDefinedQueryGame {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 title_len = 4;
+  bytes title = 5;
+  int32 account_type = 6;
+  int32 enroll_time_stamp = 7;
+  int32 start_time_stamp = 8;
+  int32 match_type = 9;
+  int32 time_in_fixed_time_match = 10;
+  int32 max_player_num = 11;
+  int32 user_defined_reward_policy_len = 12;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list = 13;
+  int32 user_defined_marquee_len = 14;
+  bytes user_defined_marquee = 15;
+  int32 cur_enroll_player_num = 16;
+  int32 status = 17;
+  int32 reward_type = 18;
+  int32 reward_url_len = 19;
+  bytes reward_url = 20;
+  int32 enter_room_player_num = 21;
+  int32 create_tools_type = 22;
+  int32 match_source = 23;
+  int32 match_role_type = 24;
+  int32 round_num_in_fixed_round_match = 25;
+  int32 score_calc_mode = 26;
+  int32 init_score = 27;
+  int32 init_small_score = 28;
+  int32 init_base_score = 29;
+  int32 dieout_score = 30;
+  int32 offline_tdt_match_player_num = 31;
+  repeated uint32 offline_tdt_match_player_uin_list = 32;
+  repeated uint32 offline_tdt_match_player_score_list = 33;
+  repeated uint32 offline_tdt_match_player_uin2_list = 34;
+  int32 user_defined_match_anti_cheat_match = 35;
+  int32 user_defined_match_start_type = 36;
+  int32 user_defined_match_role_type = 37;
+  int32 is_display_score = 38;
+  int32 assign_table_manual = 39;
+  int32 is_use_match_item = 40;
+  int32 can_not_kick_in_match = 41;
+  int32 min_player_num = 42;
+  int32 is2_v2_match = 43;
+  uint32 upgrade_player_num_in_round_robin_match = 44;
+  uint32 pool_num_in_round_robin_match = 45;
+  uint32 match_loop_num_in_round_robin_match = 46;
+  uint32 pause_round_num_in_round_robin_match = 47;
+  uint32 scene_type = 48;
+  string pass_word = 49;
+}
+
+message CRspUserDefinedQueryGamePlayerList {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 player_num = 4;
+  repeated uint32 uin_list = 5;
+  repeated TOlympicNickInfo nick_list = 6;
+}
+
+message CRspUserDefinedQueryPlayerRecord {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  uint32 player_uin = 4;
+  OlympicPlayerPlayRecordList play_back_info = 5;
+}
+
+message OlympicPlayBackUserInfo {
+  uint32 uin = 1;
+  int32 bean = 2;
+  int32 point = 3;
+  int32 multi = 4;
+  int32 flag = 5;
+  string user_name = 6;
+}
+
+message OlympicPlayRecordPlayerInfo {
+  uint32 uin = 1;
+  int32 nick_len = 2;
+  bytes nick = 3;
+}
+
+message OlympicPlayerPlayRecord {
+  int32 time_stamp = 1;
+  uint32 lord_uin = 2;
+  string round_id = 3;
+}
+
+message OlympicPlayerPlayRecordList {
+  int32 nick_len = 1;
+  bytes nick = 2;
+  int32 player_record_num = 3;
+  repeated OlympicPlayerPlayRecord player_record_list = 4;
+}
+
+message OlympicPlayerRecordPlayerList {
+  int32 player_num = 1;
+  repeated OlympicPlayRecordPlayerInfo player_list = 2;
+}
+
+message TAlertConfigInfo {
+  int32 series_id = 1;
+  int32 alert_config_str_len = 2;
+  bytes alert_config_str = 3;
+}
+
+message TBonusGroup {
+  int32 bonus_list_len = 1;
+  repeated TBonusInfo bonus_list = 2;
+}
+
+message TBonusGroupEx {
+  int32 bonus_list_len = 1;
+  repeated TBonusInfoEx bonus_list = 2;
+}
+
+message TBonusGroupNew {
+  int32 bonus_lvl_min = 1;
+  int32 bonus_lvl_max = 2;
+  int32 bonus_list_len = 3;
+  repeated TBonusInfo bonus_list = 4;
+}
+
+message TBonusInfo {
+  int32 type = 1;
+  int32 id = 2;
+  int32 num = 3;
+}
+
+message TBonusInfoEx {
+  string icon = 1;
+  int32 reserve1 = 2;
+  int32 reserve2 = 3;
+}
+
+message TDelEnrollNumPara {
+  int32 uin = 1;
+}
+
+message TEnrollPlayerData {
+  uint32 uin = 1;
+  int32 client_type = 2;
+  int32 account_type = 3;
+  int32 nick_len = 4;
+  bytes nick = 5;
+  int32 open_id_len = 6;
+  bytes open_id = 7;
+  int32 open_key_len = 8;
+  bytes open_key = 9;
+}
+
+message TFightTopMatchTotalInfoTlv {
+  int32 total_left_player_num = 1;
+}
+
+message TGameData {
+  int32 version = 1;
+  int32 timestamp = 2;
+  int32 role_id = 3;
+  int32 cur_player_num = 4;
+  int32 enter_room_player_num = 5;
+  int32 max_player_num = 6;
+  int32 start_time = 7;
+  int32 end_time = 8;
+  int32 game_status = 9;
+  int32 start_count_down_timestamp = 10;
+  int32 join_count_down_timestamp = 11;
+  int32 crypt_key_len = 12;
+  bytes crypt_key = 13;
+  int32 svr_info_list_len = 14;
+  repeated TSvrInfo svr_info_list = 15;
+  int32 ranklist_len = 16;
+  repeated TRankInfo ranklist = 17;
+  repeated int32 rank_scorelist = 18;
+  int32 account_type = 19;
+  int32 match_type = 20;
+  int32 round_num_in_fixed_round_match = 21;
+  int32 time_in_fixed_time_match = 22;
+  int32 title_len = 23;
+  bytes title = 24;
+  int32 marquee_len = 25;
+  bytes marquee = 26;
+  int32 reward_type = 27;
+  int32 reward_url_len = 28;
+  bytes reward_url = 29;
+  int32 user_defined_reward_policy_len_v2 = 30;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list_v2 = 31;
+  int32 create_tools_type = 32;
+  int32 match_id_len = 33;
+  bytes match_id = 34;
+  int32 match_source = 35;
+  int32 match_role_type = 36;
+  int32 score_calc_mode = 37;
+  int32 init_score = 38;
+  int32 init_small_score = 39;
+  int32 init_base_score = 40;
+  int32 dieout_score = 41;
+  int32 offline_tdt_match_player_num = 42;
+  repeated uint32 offline_tdt_match_player_uin_list = 43;
+  repeated uint32 offline_tdt_match_player_score_list = 44;
+  int32 user_defined_match_anti_cheat_match = 45;
+  int32 user_defined_match_start_type = 46;
+  int32 user_defined_match_role_type = 47;
+  int32 is_reach_min_player_num = 48;
+  bytes room_match_status_list = 49;
+  int32 is_display_score = 50;
+  int32 assign_table_manual = 51;
+  int32 is_use_match_item = 52;
+  int32 can_not_kick_in_match = 53;
+  int32 min_player_num = 54;
+  repeated uint32 offline_tdt_match_player_uin2_list = 55;
+  uint32 upgrade_player_num_in_round_robin_match = 56;
+  uint32 pool_num_in_round_robin_match = 57;
+  uint32 match_loop_num_in_round_robin_match = 58;
+  uint32 pause_round_num_in_round_robin_match = 59;
+  uint32 create_uin = 60;
+  int32 create_ts = 61;
+  int32 user_game_pwd = 62;
+  int32 user_game_lbs = 63;
+  int32 user_game_time_type = 64;
+  int32 user_game_scene_type = 65;
+  int32 user_game_ob_uin_num = 66;
+  repeated uint32 user_game_ob_uin = 67;
+  int32 user_game_apply_status = 68;
+  int32 round_robin_ex_ranklist_len = 69;
+  bytes pool_indexlist = 70;
+  bytes group_indexlist = 71;
+  int32 pass_word_len = 72;
+  bytes pass_word = 73;
+}
+
+message TGameDataV1 {
+  int32 timestamp = 1;
+  int32 role_id = 2;
+  int32 cur_player_num = 3;
+  int32 enter_room_player_num = 4;
+  int32 max_player_num = 5;
+  int32 start_time = 6;
+  int32 end_time = 7;
+  int32 game_status = 8;
+  int32 start_count_down_timestamp = 9;
+  int32 join_count_down_timestamp = 10;
+  int32 crypt_key_len = 11;
+  bytes crypt_key = 12;
+  TSvrInfo svr_info = 13;
+  int32 ranklist_len = 14;
+  repeated TRankInfo ranklist = 15;
+  TUserDefinedMatchRole user_defined_match_role = 16;
+  repeated int32 rank_scorelist = 17;
+  int32 reward_type = 18;
+  int32 reward_url_len = 19;
+  bytes reward_url = 20;
+  int32 user_defined_reward_policy_len_v2 = 21;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list_v2 = 22;
+  int32 create_tools_type = 23;
+  int32 match_id_len = 24;
+  bytes match_id = 25;
+  int32 match_source = 26;
+  int32 match_role_type = 27;
+  int32 round_num_in_fixed_round_match = 28;
+  int32 score_calc_mode = 29;
+  int32 init_score = 30;
+  int32 init_small_score = 31;
+  int32 init_base_score = 32;
+  int32 dieout_score = 33;
+  int32 offline_tdt_match_player_num = 34;
+  repeated uint32 offline_tdt_match_player_uin_list = 35;
+  repeated uint32 offline_tdt_match_player_score_list = 36;
+  repeated uint32 offline_tdt_match_player_small_score_list = 37;
+}
+
+message TGameDataV2 {
+  int32 version = 1;
+  int32 timestamp = 2;
+  int32 role_id = 3;
+  int32 cur_player_num = 4;
+  int32 enter_room_player_num = 5;
+  int32 max_player_num = 6;
+  int32 start_time = 7;
+  int32 end_time = 8;
+  int32 game_status = 9;
+  int32 start_count_down_timestamp = 10;
+  int32 join_count_down_timestamp = 11;
+  int32 crypt_key_len = 12;
+  bytes crypt_key = 13;
+  TSvrInfo svr_info = 14;
+  int32 ranklist_len = 15;
+  repeated TRankInfo ranklist = 16;
+  repeated int32 rank_scorelist = 17;
+  int32 account_type = 18;
+  int32 match_type = 19;
+  int32 round_num_in_fixed_round_match = 20;
+  int32 time_in_fixed_time_match = 21;
+  int32 title_len = 22;
+  bytes title = 23;
+  int32 marquee_len = 24;
+  bytes marquee = 25;
+  int32 reward_type = 26;
+  int32 reward_url_len = 27;
+  bytes reward_url = 28;
+  int32 user_defined_reward_policy_len_v2 = 29;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list_v2 = 30;
+  int32 create_tools_type = 31;
+  int32 match_id_len = 32;
+  bytes match_id = 33;
+  int32 match_source = 34;
+  int32 match_role_type = 35;
+  int32 score_calc_mode = 36;
+  int32 init_score = 37;
+  int32 init_small_score = 38;
+  int32 init_base_score = 39;
+  int32 dieout_score = 40;
+  int32 offline_tdt_match_player_num = 41;
+  repeated uint32 offline_tdt_match_player_uin_list = 42;
+  repeated uint32 offline_tdt_match_player_score_list = 43;
+  int32 user_defined_match_anti_cheat_match = 44;
+  int32 user_defined_match_start_type = 45;
+  int32 user_defined_match_role_type = 46;
+}
+
+message TGameDataV3 {
+  int32 version = 1;
+  int32 timestamp = 2;
+  int32 role_id = 3;
+  int32 cur_player_num = 4;
+  int32 enter_room_player_num = 5;
+  int32 max_player_num = 6;
+  int32 start_time = 7;
+  int32 end_time = 8;
+  int32 game_status = 9;
+  int32 start_count_down_timestamp = 10;
+  int32 join_count_down_timestamp = 11;
+  int32 crypt_key_len = 12;
+  bytes crypt_key = 13;
+  int32 svr_info_list_len = 14;
+  repeated TSvrInfo svr_info_list = 15;
+  int32 ranklist_len = 16;
+  repeated TRankInfo ranklist = 17;
+  repeated int32 rank_scorelist = 18;
+  int32 account_type = 19;
+  int32 match_type = 20;
+  int32 round_num_in_fixed_round_match = 21;
+  int32 time_in_fixed_time_match = 22;
+  int32 title_len = 23;
+  bytes title = 24;
+  int32 marquee_len = 25;
+  bytes marquee = 26;
+  int32 reward_type = 27;
+  int32 reward_url_len = 28;
+  bytes reward_url = 29;
+  int32 user_defined_reward_policy_len_v2 = 30;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list_v2 = 31;
+  int32 create_tools_type = 32;
+  int32 match_id_len = 33;
+  bytes match_id = 34;
+  int32 match_source = 35;
+  int32 match_role_type = 36;
+  int32 score_calc_mode = 37;
+  int32 init_score = 38;
+  int32 init_small_score = 39;
+  int32 init_base_score = 40;
+  int32 dieout_score = 41;
+  int32 offline_tdt_match_player_num = 42;
+  repeated uint32 offline_tdt_match_player_uin_list = 43;
+  repeated uint32 offline_tdt_match_player_score_list = 44;
+  int32 user_defined_match_anti_cheat_match = 45;
+  int32 user_defined_match_start_type = 46;
+  int32 user_defined_match_role_type = 47;
+  int32 is_reach_min_player_num = 48;
+  bytes room_match_status_list = 49;
+}
+
+message TGameDataV4 {
+  int32 version = 1;
+  int32 timestamp = 2;
+  int32 role_id = 3;
+  int32 cur_player_num = 4;
+  int32 enter_room_player_num = 5;
+  int32 max_player_num = 6;
+  int32 start_time = 7;
+  int32 end_time = 8;
+  int32 game_status = 9;
+  int32 start_count_down_timestamp = 10;
+  int32 join_count_down_timestamp = 11;
+  int32 crypt_key_len = 12;
+  bytes crypt_key = 13;
+  int32 svr_info_list_len = 14;
+  repeated TSvrInfo svr_info_list = 15;
+  int32 ranklist_len = 16;
+  repeated TRankInfo ranklist = 17;
+  repeated int32 rank_scorelist = 18;
+  int32 account_type = 19;
+  int32 match_type = 20;
+  int32 round_num_in_fixed_round_match = 21;
+  int32 time_in_fixed_time_match = 22;
+  int32 title_len = 23;
+  bytes title = 24;
+  int32 marquee_len = 25;
+  bytes marquee = 26;
+  int32 reward_type = 27;
+  int32 reward_url_len = 28;
+  bytes reward_url = 29;
+  int32 user_defined_reward_policy_len_v2 = 30;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list_v2 = 31;
+  int32 create_tools_type = 32;
+  int32 match_id_len = 33;
+  bytes match_id = 34;
+  int32 match_source = 35;
+  int32 match_role_type = 36;
+  int32 score_calc_mode = 37;
+  int32 init_score = 38;
+  int32 init_small_score = 39;
+  int32 init_base_score = 40;
+  int32 dieout_score = 41;
+  int32 offline_tdt_match_player_num = 42;
+  repeated uint32 offline_tdt_match_player_uin_list = 43;
+  repeated uint32 offline_tdt_match_player_score_list = 44;
+  int32 user_defined_match_anti_cheat_match = 45;
+  int32 user_defined_match_start_type = 46;
+  int32 user_defined_match_role_type = 47;
+  int32 is_reach_min_player_num = 48;
+  bytes room_match_status_list = 49;
+  int32 is_display_score = 50;
+  int32 assign_table_manual = 51;
+  int32 is_use_match_item = 52;
+  int32 can_not_kick_in_match = 53;
+}
+
+message TGameDataV5 {
+  int32 version = 1;
+  int32 timestamp = 2;
+  int32 role_id = 3;
+  int32 cur_player_num = 4;
+  int32 enter_room_player_num = 5;
+  int32 max_player_num = 6;
+  int32 start_time = 7;
+  int32 end_time = 8;
+  int32 game_status = 9;
+  int32 start_count_down_timestamp = 10;
+  int32 join_count_down_timestamp = 11;
+  int32 crypt_key_len = 12;
+  bytes crypt_key = 13;
+  int32 svr_info_list_len = 14;
+  repeated TSvrInfo svr_info_list = 15;
+  int32 ranklist_len = 16;
+  repeated TRankInfo ranklist = 17;
+  repeated int32 rank_scorelist = 18;
+  int32 account_type = 19;
+  int32 match_type = 20;
+  int32 round_num_in_fixed_round_match = 21;
+  int32 time_in_fixed_time_match = 22;
+  int32 title_len = 23;
+  bytes title = 24;
+  int32 marquee_len = 25;
+  bytes marquee = 26;
+  int32 reward_type = 27;
+  int32 reward_url_len = 28;
+  bytes reward_url = 29;
+  int32 user_defined_reward_policy_len_v2 = 30;
+  repeated TUserDefinedRewardPolicyV2 user_defined_reward_policy_list_v2 = 31;
+  int32 create_tools_type = 32;
+  int32 match_id_len = 33;
+  bytes match_id = 34;
+  int32 match_source = 35;
+  int32 match_role_type = 36;
+  int32 score_calc_mode = 37;
+  int32 init_score = 38;
+  int32 init_small_score = 39;
+  int32 init_base_score = 40;
+  int32 dieout_score = 41;
+  int32 offline_tdt_match_player_num = 42;
+  repeated uint32 offline_tdt_match_player_uin_list = 43;
+  repeated uint32 offline_tdt_match_player_score_list = 44;
+  int32 user_defined_match_anti_cheat_match = 45;
+  int32 user_defined_match_start_type = 46;
+  int32 user_defined_match_role_type = 47;
+  int32 is_reach_min_player_num = 48;
+  bytes room_match_status_list = 49;
+  int32 is_display_score = 50;
+  int32 assign_table_manual = 51;
+  int32 is_use_match_item = 52;
+  int32 can_not_kick_in_match = 53;
+  int32 min_player_num = 54;
+  repeated uint32 offline_tdt_match_player_uin2_list = 55;
+}
+
+message TGameInfo {
+  int32 is_already_join = 1;
+  int32 id = 2;
+  int32 series_id = 3;
+  int32 start_time = 4;
+  int32 end_time = 5;
+  int32 status = 6;
+  int32 player_num = 7;
+}
+
+message TGameKeyType {
+  int32 series_id = 1;
+  int32 game_id = 2;
+}
+
+message TIncrementTicketGroup {
+  int32 incre_ticket_lvl_min = 1;
+  int32 incre_ticket_lvl_max = 2;
+  int32 ticket_len = 3;
+  repeated TTicketInfo ticket = 4;
+}
+
+message TLVUNIT {
+  int32 type = 1;
+  int32 len = 2;
+  TLVValue value = 3;
+}
+
+message TLVValue {
+  TReportFightTopMatchInfoTlv report_fight_top_match_info = 1;
+  TFightTopMatchTotalInfoTlv fight_top_match_total_info = 2;
+  TRspStartMatchTlv rsp_start_match = 3;
+}
+
+message TLockDetail {
+  int32 lock_type = 1;
+  int32 locked_svr_type = 2;
+  int32 locked_svr_id = 3;
+  int32 locked_room_id = 4;
+  int32 extend_buf_len = 5;
+  bytes extend_buf = 6;
+}
+
+message TMarqueeInfo {
+  int32 text_len = 1;
+  bytes text = 2;
+}
+
+message TMatchInfo {
+  int32 id = 1;
+  int32 title_len = 2;
+  bytes title = 3;
+  int32 announcement_len = 4;
+  bytes announcement = 5;
+}
+
+message TMatchInfoExtra {
+  int32 match_type = 1;
+  int32 online_player_num = 2;
+  int32 is_enroll = 3;
+  int32 reserve3 = 4;
+  int32 reserve4 = 5;
+  int32 reserve5 = 6;
+  int32 reserve6 = 7;
+  int32 reserve7 = 8;
+  int32 reserve8 = 9;
+  int32 reserve9 = 10;
+  int32 reserve10 = 11;
+  int32 reserve_text1_len = 12;
+  bytes reserve_text1 = 13;
+  int32 reserve_text2_len = 14;
+  bytes reserve_text2 = 15;
+  int32 reserve_text3_len = 16;
+  bytes reserve_text3 = 17;
+  int32 reserve_text4_len = 18;
+  bytes reserve_text4 = 19;
+  int32 reserve_text5_len = 20;
+  bytes reserve_text5 = 21;
+}
+
+message TMatchRankRewardHistoryRecord {
+  int32 index = 1;
+  int32 start_time = 2;
+  int32 end_time = 3;
+  int32 reward_item_num = 4;
+  int32 rank = 5;
+  string reserved_str = 6;
+  int32 reserved_num = 7;
+  repeated int32 reserveds = 8;
+}
+
+message TMatchShowGamePlayer {
+  int32 num = 1;
+  repeated TMatchShowGamePlayerItem show_info = 2;
+  int32 game_seq = 3;
+  int32 enroll_num = 4;
+}
+
+message TMatchShowGamePlayerItem {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 reserve1 = 4;
+  int32 reserve2 = 5;
+}
+
+message TOlympicChallengeGameResult {
+  int32 version = 1;
+  int32 time_stamp = 2;
+  int32 series_id = 3;
+  int32 seq = 4;
+  int32 rank_num = 5;
+  repeated uint32 uinlist = 6;
+  repeated int32 scorelist = 7;
+}
+
+message TOlympicChallengeJoinInfo {
+  int32 join_time_stamp = 1;
+  int32 seq = 2;
+}
+
+message TOlympicCommonData {
+  int32 tdt_gold_prize_num = 1;
+  int32 tdt_silver_prize_num = 2;
+  int32 tdt_copper_prize_num = 3;
+  int32 reserved1 = 4;
+  int32 reserved2 = 5;
+  int32 reserved3 = 6;
+}
+
+message TOlympicGameEnrollPlayerData {
+  int32 version = 1;
+  int32 time_stamp = 2;
+  int32 playerlist_num = 3;
+  repeated TEnrollPlayerData playerlist = 4;
+  int32 ranklist_len = 5;
+  repeated uint32 ranklist = 6;
+  repeated uint32 scorelist = 7;
+  repeated int32 win_timeslist = 8;
+  repeated uint32 give_timelist = 9;
+}
+
+message TOlympicGameEnrollPlayerDataV1 {
+  int32 time_stamp = 1;
+  int32 playerlist_num = 2;
+  repeated TEnrollPlayerData playerlist = 3;
+  int32 ranklist_len = 4;
+  repeated uint32 ranklist = 5;
+}
+
+message TOlympicGameEnrollPlayerDataV2 {
+  int32 version = 1;
+  int32 time_stamp = 2;
+  int32 playerlist_num = 3;
+  repeated TEnrollPlayerData playerlist = 4;
+  int32 ranklist_len = 5;
+  repeated uint32 ranklist = 6;
+  repeated uint32 scorelist = 7;
+}
+
+message TOlympicGameEnrollPlayerDataV3 {
+  int32 version = 1;
+  int32 time_stamp = 2;
+  int32 playerlist_num = 3;
+  repeated TEnrollPlayerData playerlist = 4;
+  int32 ranklist_len = 5;
+  repeated uint32 ranklist = 6;
+  repeated uint32 scorelist = 7;
+  repeated int32 win_timeslist = 8;
+  repeated uint32 give_timelist = 9;
+}
+
+message TOlympicGameLocalData {
+  int32 version = 1;
+  int32 time_stamp = 2;
+  int32 playerlist_num = 3;
+  repeated TPlayerInfoData playerlist = 4;
+  bytes join_flag_list = 5;
+  repeated TTicketInfo ticket_info_list = 6;
+}
+
+message TOlympicGameLocalDataV1 {
+  int32 time_stamp = 1;
+  int32 playerlist_num = 2;
+  repeated TPlayerInfoData playerlist = 3;
+  bytes join_flag_list = 4;
+  repeated TTicketInfo ticket_info_list = 5;
+}
+
+message TOlympicJoinCountLimitInfo {
+  int32 cur_join_count = 1;
+  int32 join_limit_count = 2;
+}
+
+message TOlympicJoinExtInfo {
+  int32 left_free_join_count = 1;
+  int32 join_ext_info_count = 2;
+  repeated int32 join_ext_info = 3;
+}
+
+message TOlympicMatchDataTLV {
+  int32 type = 1;
+  int32 len = 2;
+  UOlympicMatchDataTLVValue value = 3;
+}
+
+message TOlympicNickInfo {
+  int32 nick_len = 1;
+  bytes nick = 2;
+}
+
+message TOlympicPlayerData {
+  int32 timestamp = 1;
+  int32 game_info_list_len = 2;
+  repeated TOlympicPlayerGameInfo game_info_list = 3;
+  int32 first_rank_count = 4;
+  int32 second_rank_count = 5;
+  int32 third_rank_count = 6;
+  repeated TTicketInfo ticket_info_list = 7;
+  repeated TOlympicChallengeJoinInfo olympic_challenge_join_info_list = 8;
+  repeated TWjGameInfo wj_game_info_list = 9;
+  uint32 total_enroll_count = 10;
+  int32 olympic_spec_match_info_len = 11;
+  repeated TOlympicSpecMatchInfo olympic_spec_match_info = 12;
+  int32 version = 13;
+  int32 recent_game_info_list_len = 14;
+  repeated TOlympicPlayerRecentGameInfo recent_game_info_list = 15;
+  int32 today_series_info_list_len = 16;
+  repeated TOlympicPlayerTodaySeriesInfo today_series_info_list = 17;
+  int32 tdt_gold_prize_count = 18;
+  int32 tdt_silver_prize_count = 19;
+  int32 tdt_copper_prize_count = 20;
+  int32 enroll_ios_check_match_timestamp = 21;
+  int32 week_series_info_list_len = 22;
+  repeated TOlympicPlayerWeekSeriesInfo week_series_info_list = 23;
+  repeated TOlympicTeamInfo team_match_info = 24;
+  bytes is_leader = 25;
+  int32 user_game_ts = 26;
+  int32 user_game_count = 27;
+  int32 user_game_brief_list_num = 28;
+  repeated TUserGameBrief user_game_brief_list = 29;
+}
+
+message TOlympicPlayerDataBugFix {
+  int32 timestamp = 1;
+  int32 game_info_list_len = 2;
+  repeated TOlympicPlayerGameInfo game_info_list = 3;
+  int32 first_rank_count = 4;
+  int32 second_rank_count = 5;
+  int32 third_rank_count = 6;
+  repeated TTicketInfo ticket_info_list = 7;
+  repeated TOlympicChallengeJoinInfo olympic_challenge_join_info_list = 8;
+  repeated TWjGameInfo wj_game_info_list = 9;
+  uint32 total_enroll_count = 10;
+  int32 olympic_spec_match_info_len = 11;
+  repeated TOlympicSpecMatchInfo olympic_spec_match_info = 12;
+  int32 version = 13;
+  int32 recent_game_info_list_len = 14;
+  repeated TOlympicPlayerRecentGameInfo recent_game_info_list = 15;
+  int32 today_series_info_list_len = 16;
+  repeated TOlympicPlayerTodaySeriesInfo today_series_info_list = 17;
+  int32 tdt_gold_prize_count = 18;
+  int32 tdt_silver_prize_count = 19;
+  int32 tdt_copper_prize_count = 20;
+  int32 enroll_ios_check_match_timestamp = 21;
+  int32 week_series_info_list_len = 22;
+  repeated TOlympicPlayerWeekSeriesInfo week_series_info_list = 23;
+}
+
+message TOlympicPlayerDataTemp {
+  int32 timestamp = 1;
+  int32 game_info_list_len = 2;
+  repeated TOlympicPlayerGameInfo game_info_list = 3;
+  int32 first_rank_count = 4;
+  int32 second_rank_count = 5;
+  int32 third_rank_count = 6;
+  repeated TTicketInfo ticket_info_list = 7;
+  repeated TOlympicChallengeJoinInfo olympic_challenge_join_info_list = 8;
+}
+
+message TOlympicPlayerGameInfo {
+  int32 start_time_stamp = 1;
+  int32 series_id = 2;
+  int32 game_id = 3;
+  int32 rank = 4;
+}
+
+message TOlympicPlayerMatchExtraInfo {
+  int32 total_join_num = 1;
+  int32 reward_info_len = 2;
+  bytes reward_info = 3;
+}
+
+message TOlympicPlayerMatchInfo {
+  int32 series_id = 1;
+  int32 game_id = 2;
+  int32 rank = 3;
+  bytes match_id = 4;
+  int32 title_len = 5;
+  bytes title = 6;
+  int32 game_start_time_stamp = 7;
+}
+
+message TOlympicPlayerRecentGameInfo {
+  int32 start_time_stamp = 1;
+  int32 series_id = 2;
+  int32 game_id = 3;
+  int32 rank = 4;
+}
+
+message TOlympicPlayerTodaySeriesInfo {
+  int32 series_id = 1;
+  uint32 update_timestamp = 2;
+  int32 enroll_times = 3;
+  int32 reserved_num = 4;
+  repeated int32 reserveds = 5;
+}
+
+message TOlympicPlayerWeekSeriesInfo {
+  int32 series_id = 1;
+  uint32 update_timestamp = 2;
+  int32 enroll_times = 3;
+  int32 reserved_num = 4;
+  repeated int32 reserveds = 5;
+}
+
+message TOlympicRewardAndRankInfo {
+  int32 olympic_reward_item_id = 1;
+  int32 best_rank_id = 2;
+  int32 apollo_week_rank_id = 3;
+  int32 apollo_month_rank_id = 4;
+  int32 reserved_num = 5;
+  repeated int32 reserveds = 6;
+}
+
+message TOlympicRewardCfg {
+  int32 reward_player_num = 1;
+  int32 reward_player_percent = 2;
+  int32 reward_num = 3;
+  repeated TRewardInfo reward_info = 4;
+}
+
+message TOlympicRewardCfgExt {
+  int32 percent_exclusive = 1;
+  int32 reward_num = 2;
+  repeated TRewardInfoExt reward_info_ext = 3;
+  int32 reserved1 = 4;
+  int32 reserved2 = 5;
+  int32 reserved3 = 6;
+  int32 reserved4 = 7;
+  int32 reserved5 = 8;
+  int32 reserved6 = 9;
+}
+
+message TOlympicRewardPolicy {
+  int32 is_reward_protect = 1;
+  int32 all_prize_num = 2;
+  int32 total_prize_player_num = 3;
+  int32 reward_cfg_num = 4;
+  repeated TOlympicRewardCfg reward_cfg = 5;
+}
+
+message TOlympicRewardPolicyExt {
+  int32 reward_cfg_num = 1;
+  repeated TOlympicRewardCfgExt reward_cfg_ext = 2;
+}
+
+message TOlympicSpecMatchInfo {
+  int32 id = 1;
+  int32 create_time_stamp = 2;
+  int32 data_update_time_stamp = 3;
+  int32 match_data_len = 4;
+  repeated int32 match_data = 5;
+}
+
+message TOlympicTeamInfo {
+  int32 team_player_num = 1;
+  repeated uint32 team_player_list = 2;
+}
+
+message TOlympicUrl {
+  int32 url_len = 1;
+  bytes url = 2;
+}
+
+message TPlayerInfoData {
+  uint32 uin = 1;
+  int32 client_type = 2;
+  int32 account_type = 3;
+}
+
+message TPlayerRankInfo {
+  int32 rank = 1;
+  int32 nick_len = 2;
+  bytes nick = 3;
+  int32 score = 4;
+}
+
+message TPlayerRankInfoEx {
+  uint32 uin = 1;
+  int32 bonus_desc_len = 2;
+  bytes bonus_desc = 3;
+  int32 win_times = 4;
+  uint32 give_time = 5;
+  uint32 pool_index = 6;
+  uint32 group_index = 7;
+  uint32 rank_index = 8;
+  int32 client_type = 9;
+  int32 accounttype = 10;
+  uint32 reserved8 = 11;
+  uint32 reserved9 = 12;
+  uint32 reserved10 = 13;
+}
+
+message TPlayerRankInfoEx2 {
+  int32 open_id_len = 1;
+  bytes open_id = 2;
+  int32 open_key_len = 3;
+  bytes open_key = 4;
+}
+
+message TRankInfo {
+  uint32 uin = 1;
+  int32 rank = 2;
+  int32 nick_len = 3;
+  bytes nick = 4;
+}
+
+message TRankInfoDetail {
+  uint32 uin = 1;
+  int32 nick_len = 2;
+  bytes nick = 3;
+  int32 score = 4;
+  uint32 wintimes = 5;
+  uint32 give_time = 6;
+}
+
+message TRegularTDTCommonData {
+  int32 reward_item_week_value = 1;
+  int32 reward_item_week_rank = 2;
+  int32 reward_item_month_value = 3;
+  int32 reward_item_month_rank = 4;
+}
+
+message TRemainderInfo {
+  int32 time_left = 1;
+  int32 series_id = 2;
+  int32 game_id = 3;
+  int32 reserved1 = 4;
+  int32 reserved2 = 5;
+  int32 reserved3 = 6;
+  int32 reserved4 = 7;
+  int32 match_name_len = 8;
+  bytes match_name = 9;
+}
+
+message TReportFightTopMatchInfoTlv {
+  int32 left_player_num = 1;
+}
+
+message TRewardInfo {
+  int32 item_type = 1;
+  int32 item_id = 2;
+  int32 item_num = 3;
+  int32 item_desc_len = 4;
+  bytes item_desc = 5;
+  int32 display_on_client = 6;
+  int32 mail_id = 7;
+  int32 item_vip_multiple = 8;
+}
+
+message TRewardInfoExt {
+  int32 reserved1 = 1;
+  int32 reserved2 = 2;
+  int32 reserved3 = 3;
+  int32 reserved4 = 4;
+}
+
+message TRewardItemCond {
+  int32 item_id = 1;
+  int32 client_verson = 2;
+  int32 reserved_num = 3;
+  repeated int32 reserved_conds = 4;
+}
+
+message TRspStartMatchTlv {
+  int32 result = 1;
+}
+
+message TRspTeamMatchGameRank_PlayerInfo {
+  int32 rank = 1;
+  string nick = 2;
+  int32 score = 3;
+  uint32 uin = 4;
+  string bonus_desc = 5;
+  int32 win_times = 6;
+  uint32 give_time = 7;
+  string open_id = 8;
+  string open_key = 9;
+}
+
+message TRspTeamMatchGameRank_RankInfo {
+  int32 player_num = 1;
+  repeated TRspTeamMatchGameRank_PlayerInfo rank_info_list = 2;
+}
+
+message TRspTeamMatchGameRank_RankInfo_Ex {
+  int32 player_num = 1;
+  repeated int32 client_type_list = 2;
+  repeated int32 account_type_list = 3;
+}
+
+message TSeriesCondInfo {
+  int32 cond_len = 1;
+  repeated int32 cond_value = 2;
+}
+
+message TSeriesData {
+  int32 timestamp = 1;
+  int32 cur_game_id = 2;
+  int32 last_create_game_timestamp = 3;
+  int32 cur_marquee_replace_index = 4;
+  int32 cur_marquee_list_num = 5;
+  repeated TMarqueeInfo cur_marquee_list = 6;
+  int32 cur_game_list_num = 7;
+  repeated TGameKeyType cur_game_list = 8;
+  int32 olympic_challenge_match_game_id = 9;
+}
+
+message TSeriesDetail {
+  int32 id = 1;
+  int32 match_id = 2;
+  int32 has_rank = 3;
+  int32 is_hot = 4;
+  int32 interval = 5;
+  int32 bonus_level_list_len = 6;
+  repeated TBonusGroup bonus_level_list = 7;
+  int32 desc_len = 8;
+  bytes desc = 9;
+  int32 role_len = 10;
+  bytes role = 11;
+  int32 bonus_desc_len = 12;
+  bytes bonus_desc = 13;
+  int32 start_point = 14;
+  int32 re_buy_times = 15;
+  int32 add_on_times = 16;
+  int32 point_radix_grow_interval = 17;
+  int32 dieout_array_len = 18;
+  repeated int32 dieout_array = 19;
+  int32 point_radix_array_len = 20;
+  repeated int32 point_radix_array = 21;
+  int32 re_buy_array_beg_index = 22;
+  int32 re_buy_array_end_index = 23;
+  int32 add_on_array_beg_index = 24;
+  int32 add_on_array_end_index = 25;
+  int32 bonus_info_list_len = 26;
+  repeated TBonusGroupNew bonus_info_list = 27;
+  int32 show_join_game_style = 28;
+  repeated TBonusGroupEx bonus_info_list_ex = 29;
+  int32 play_type = 30;
+  int32 gid = 31;
+  string i_con_url = 32;
+}
+
+message TSeriesInfo {
+  int32 id = 1;
+  int32 match_id = 2;
+  int32 title_len = 3;
+  bytes title = 4;
+  int32 time_desc_len = 5;
+  bytes time_desc = 6;
+  int32 start_show_time = 7;
+  int32 end_show_time = 8;
+  int32 start_time = 9;
+  int32 end_time = 10;
+  int32 is_hot = 11;
+  int32 has_rank = 12;
+  int32 interval = 13;
+  int32 min_player = 14;
+  int32 max_player = 15;
+  int32 ticket_len = 16;
+  repeated TTicketInfo ticket = 17;
+  int32 bonus_level_list_len = 18;
+  repeated TBonusGroup bonus_level_list = 19;
+  int32 server_time_stamp = 20;
+  int32 start_countdown_time = 21;
+  int32 join_countdown_time = 22;
+  TGameInfo cur_game = 23;
+}
+
+message TSeriesInfoExtra {
+  int32 icon_id = 1;
+  int32 time_type = 2;
+  int32 challenge_player_num = 3;
+  int32 scene_id = 4;
+  int32 support_wx_subscribe = 5;
+  int32 is_cdkey_reward = 6;
+  int32 create_tools_type = 7;
+  int32 is_hide_count_down_panel = 8;
+  int32 is_observe_series_match = 9;
+  int32 client_req_match_id = 10;
+  int32 client_req_series_id = 11;
+  int32 client_req_game_id = 12;
+}
+
+message TSeriesInfoExtra2 {
+  int32 join_lbs = 1;
+  int32 join_pwd = 2;
+}
+
+message TSeriesOtherInfo {
+  TSeriesCondInfo cond_info = 1;
+  TSeriesPlayerExtInfo player_ext_info = 2;
+  int32 rank_id = 3;
+}
+
+message TSeriesPaneldesc {
+  int32 string_buffer_len = 1;
+  bytes string_buffer = 2;
+}
+
+message TSeriesPlayerExtInfo {
+  int32 player_ext_info_len = 1;
+  repeated int32 player_ext_info = 2;
+}
+
+message TSimpleBonusDescInfo {
+  int32 series_id = 1;
+  int32 simple_bonus_desc_len = 2;
+  bytes simple_bonus_desc = 3;
+}
+
+message TSvrInfo {
+  int32 server_id = 1;
+  int32 room_id = 2;
+  int32 scene_id = 3;
+  int32 series_id = 4;
+  int32 game_id = 5;
+}
+
+message TTeamRankInfoDetail {
+  int32 player_num = 1;
+  repeated TRankInfoDetail rank_info_list = 2;
+}
+
+message TTicketInfo {
+  int32 type = 1;
+  int32 id = 2;
+  int32 num = 3;
+}
+
+message TTicketNotice {
+  int32 type = 1;
+  int32 id = 2;
+  int32 num = 3;
+  int32 left_num = 4;
+}
+
+message TUserDefinedBonusInfoV2 {
+  int32 bonus_type = 1;
+  int32 bonus_desc_len = 2;
+  bytes bonus_desc = 3;
+  int32 ams_activity_id = 4;
+  int32 ams_moduleid = 5;
+  int32 ams_package_group = 6;
+}
+
+message TUserDefinedGameInfo {
+  int32 id = 1;
+  int32 series_id = 2;
+  int32 start_time = 3;
+  int32 end_time = 4;
+  int32 status = 5;
+  int32 player_num = 6;
+  int32 enter_room_player_num = 7;
+  int32 match_account_type = 8;
+  int32 start_type = 9;
+  int32 title_len = 10;
+  bytes title = 11;
+}
+
+message TUserDefinedMatchRole {
+  int32 account_type = 1;
+  int32 match_type = 2;
+  int32 title_len = 3;
+  bytes title = 4;
+  int32 user_defined_reward_policy_len = 5;
+  repeated TUserDefinedRewardPolicy user_defined_reward_policy_list = 6;
+  int32 time_in_fixed_time_match = 7;
+  int32 marquee_len = 8;
+  bytes marquee = 9;
+}
+
+message TUserDefinedRewardPolicy {
+  uint32 start_rank = 1;
+  uint32 end_rank = 2;
+  int32 bonus_len = 3;
+  bytes bonus = 4;
+}
+
+message TUserDefinedRewardPolicyV2 {
+  uint32 start_rank = 1;
+  uint32 end_rank = 2;
+  int32 bonus_info_list_len = 3;
+  repeated TUserDefinedBonusInfoV2 bonus_info_list = 4;
+}
+
+message TUserGameApplyStatus {
+  int32 series_id = 1;
+  int32 id = 2;
+  int32 apply_status = 3;
+}
+
+message TUserGameBrief {
+  int32 series_id = 1;
+  int32 game_id = 2;
+  int32 start_ts = 3;
+}
+
+message TUserGameInfo {
+  int32 match_type = 1;
+  int32 match_id = 2;
+  int32 series_id = 3;
+  int32 id = 4;
+  int32 start_time = 5;
+  int32 end_time = 6;
+  int32 status = 7;
+  int32 player_num = 8;
+  int32 join_pwd = 9;
+  int32 join_lbs = 10;
+  int32 apply_status = 11;
+  int32 title_len = 12;
+  bytes title = 13;
+  int32 icon_id = 14;
+  int32 time_type = 15;
+  int32 challenge_player_num = 16;
+  int32 server_time_stamp = 17;
+  int32 start_countdown_time = 18;
+  int32 join_countdown_time = 19;
+}
+
+message TUserInfo {
+  int32 game_id = 1;
+  int32 nick_len = 2;
+  bytes nick = 3;
+  int32 client_type = 4;
+  int32 account_type = 5;
+  int32 open_id_len = 6;
+  bytes open_id = 7;
+  int32 open_key_len = 8;
+  bytes open_key = 9;
+  int32 pf_key_len = 10;
+  bytes pf_key = 11;
+  int32 pf_len = 12;
+  bytes pf = 13;
+  int32 pay_token_len = 14;
+  bytes pay_token = 15;
+}
+
+message TWjGameInfo {
+  int32 match_id_len = 1;
+  bytes match_id = 2;
+}
+
+message UOlympicMatchDataTLVValue {
+  TRegularTDTCommonData regular_tdt_common_data = 1;
+}
+
+message UPDATE_GAME_PARA_UNION {
+  TDelEnrollNumPara del_enroll_num = 1;
+}

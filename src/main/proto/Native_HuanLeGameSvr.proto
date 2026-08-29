@@ -1,0 +1,2084 @@
+// Recovered directly from libTSDK4CSharp-il2cpp.so PackToPB and live ToJson output.
+syntax = "proto3";
+
+package Native.HuanLeGameSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.nativehlddz";
+option java_multiple_files = true;
+option java_outer_classname = "NativeHuanLeGameSvrProto";
+
+message CNotifyCallPlayerHGPara {
+  int32 notify_msg_type = 1 [json_name = "NotifyMsgType"];
+  int32 notify_msg_len = 2 [json_name = "NotifyMsgLen"];
+  bytes notify_msg = 3 [json_name = "NotifyMsg"];
+  int32 msg_encode_type = 4 [json_name = "MsgEncodeType"];
+  int32 notify_type = 5 [json_name = "NotifyType"];
+  int32 timeout = 6 [json_name = "Timeout"];
+}
+
+message CNotifyGameDataHGPara {
+  int32 game_data_len = 1 [json_name = "GameDataLen"];
+  bytes game_data = 2 [json_name = "GameData"];
+}
+
+message CNotifyGameEvent2ClientHGPara {
+  int32 game_event_num = 1 [json_name = "GameEventNum"];
+  repeated .Native.HuanLeGameSvr.TGameEvent game_event = 2 [json_name = "GameEvent"];
+}
+
+message CNotifyGiveGiftOnTableHGPara {
+  int32 table_id = 1 [json_name = "TableID"];
+  int32 room_id = 2 [json_name = "RoomID"];
+  uint32 src_uin = 3 [json_name = "SrcUin"];
+  uint32 dst_uin = 4 [json_name = "DstUin"];
+  int32 item_id = 5 [json_name = "ItemID"];
+  int32 src_charm_chg = 6 [json_name = "SrcCharmChg"];
+  int32 dst_charm_chg = 7 [json_name = "DstCharmChg"];
+  int32 src_charm_chg_result = 8 [json_name = "SrcCharmChgResult"];
+  int32 dst_charm_chg_result = 9 [json_name = "DstCharmChgResult"];
+  int32 src_nick_name_len = 10 [json_name = "SrcNickNameLen"];
+  bytes src_nick_name = 11 [json_name = "SrcNickName"];
+  int32 src_account_type = 12 [json_name = "SrcAccountType"];
+  int32 src_client_type = 13 [json_name = "SrcClientType"];
+}
+
+message CNotifyInfo2ClientHGPara {
+  int32 info_type = 1 [json_name = "InfoType"];
+  int32 tlv_num = 2 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 3 [json_name = "TLVInfo"];
+}
+
+message CNotifyMatchPlayerDieoutSealHGPara {
+  int32 player_num = 1 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TMatchPlayerDieoutSeal deiout_seal = 2 [json_name = "DeioutSeal"];
+}
+
+message CNotifyMatchPlayerStatusHGPara {
+  int32 match_session_id = 1 [json_name = "MatchSessionID"];
+  int32 session_status = 2 [json_name = "SessionStatus"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  .Native.HuanLeGameSvr.TMatchRoundInfo round_info = 4 [json_name = "RoundInfo"];
+  int32 locky_dog_num = 5 [json_name = "LockyDogNum"];
+  int32 player_num = 6 [json_name = "PlayerNum"];
+  int32 player_rank_num = 7 [json_name = "PlayerRankNum"];
+  repeated .Native.HuanLeGameSvr.TPlayerMatchRankInfo player_match_rank_info = 8 [json_name = "PlayerMatchRankInfo"];
+  int32 rank_num = 9 [json_name = "RankNum"];
+  repeated int32 player_match_rank = 10 [json_name = "PlayerMatchRank"];
+  .Native.HuanLeGameSvr.TMatchRoundInfoExt round_info_ext = 11 [json_name = "RoundInfoExt"];
+  uint32 uin = 12 [json_name = "Uin"];
+  int32 simple_player_rank_num = 13 [json_name = "SimplePlayerRankNum"];
+  repeated .Native.HuanLeGameSvr.TSimpleRankInfo simple_rank_info = 14 [json_name = "SimpleRankInfo"];
+  repeated int32 player_match_small_score = 15 [json_name = "PlayerMatchSmallScore"];
+  int32 enter_match_player_num = 16 [json_name = "EnterMatchPlayerNum"];
+  int32 deadline_player_num = 17 [json_name = "DeadlinePlayerNum"];
+  int32 upgraded_player_num = 18 [json_name = "UpgradedPlayerNum"];
+  int32 score_bean_scale = 19 [json_name = "ScoreBeanScale"];
+  int32 t_match_status_tlv_num = 20 [json_name = "TMatchStatusTLVNum"];
+  repeated .Native.HuanLeGameSvr.TMatchStatusTLVUNIT t_match_status_tl_vs = 21 [json_name = "TMatchStatusTLVs"];
+}
+
+message CNotifyMatchTeamStatusHGPara {
+  int32 match_session_id = 1 [json_name = "MatchSessionID"];
+  int32 session_status = 2 [json_name = "SessionStatus"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  .Native.HuanLeGameSvr.TMatchRoundInfo round_info = 4 [json_name = "RoundInfo"];
+  .Native.HuanLeGameSvr.TMatchRoundInfoExt round_info_ext = 5 [json_name = "RoundInfoExt"];
+  int32 team_rank_num = 6 [json_name = "TeamRankNum"];
+  repeated .Native.HuanLeGameSvr.TTeamMatchRankInfo team_match_rank_info = 7 [json_name = "TeamMatchRankInfo"];
+  int32 locky_dog_num = 8 [json_name = "LockyDogNum"];
+  int32 player_num = 9 [json_name = "PlayerNum"];
+  int32 enter_match_player_num = 10 [json_name = "EnterMatchPlayerNum"];
+  int32 deadline_player_num = 11 [json_name = "DeadlinePlayerNum"];
+  int32 upgraded_player_num = 12 [json_name = "UpgradedPlayerNum"];
+  int32 score_bean_scale = 13 [json_name = "ScoreBeanScale"];
+  int32 t_match_status_tlv_num = 14 [json_name = "TMatchStatusTLVNum"];
+  repeated .Native.HuanLeGameSvr.TMatchStatusTLVUNIT t_match_status_tl_vs = 15 [json_name = "TMatchStatusTLVs"];
+}
+
+message CNotifySysMsgPara {
+  int32 msg_length = 1 [json_name = "MsgLength"];
+  bytes a_msg_content = 2 [json_name = "aMsgContent"];
+}
+
+message CNotifyTableMsgsParaHG {
+  int32 table_id = 1 [json_name = "TableID"];
+  int32 room_id = 2 [json_name = "RoomID"];
+  int32 src_player_id = 3 [json_name = "SrcPlayerId"];
+  int32 dst_player_id = 4 [json_name = "DstPlayerId"];
+  int32 type = 5 [json_name = "Type"];
+  int32 talk_id = 6 [json_name = "TalkID"];
+  int32 msg_length = 7 [json_name = "MsgLength"];
+  bytes msg = 8 [json_name = "Msg"];
+  int32 nick_len = 9 [json_name = "NickLen"];
+  bytes nick = 10 [json_name = "Nick"];
+}
+
+message CNotifyTaoDouInfoHGPara {
+  uint32 is_finished = 1 [json_name = "IsFinished"];
+  int32 cur_score = 2 [json_name = "CurScore"];
+  int32 end_time_stamp = 3 [json_name = "EndTimeStamp"];
+}
+
+message CNotifyVirtualMatchScoreChangeHGPara {
+  int32 change_reason = 1 [json_name = "ChangeReason"];
+  int64 match_score = 2 [json_name = "MatchScore"];
+  int64 change_score = 3 [json_name = "ChangeScore"];
+  int64 carry_score = 4 [json_name = "CarryScore"];
+  int32 notify_str_len = 5 [json_name = "NotifyStrLen"];
+  bytes notify_str = 6 [json_name = "NotifyStr"];
+}
+
+message CNotifyVirtualMatchStatusHGPara {
+  .Native.HuanLeGameSvr.TVirtualMatchPlayerStatus match_status = 1 [json_name = "MatchStatus"];
+}
+
+message CReponseAddMatchPointHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 operation = 2 [json_name = "Operation"];
+  uint32 add_match_point = 3 [json_name = "AddMatchPoint"];
+  uint32 left_times = 4 [json_name = "LeftTimes"];
+  string result_str = 5 [json_name = "ResultStr"];
+}
+
+message CReponseGetPlayerRankInfoHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 lucky_dog_num = 2 [json_name = "LuckyDogNum"];
+  uint32 finish_flag = 3 [json_name = "FinishFlag"];
+  int32 player_num = 4 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TPlayerMatchRankInfo player_rank_info = 5 [json_name = "PlayerRankInfo"];
+  repeated .Native.HuanLeGameSvr.TPlayerMatchExtRankInfo player_ext_rank_info = 6 [json_name = "PlayerExtRankInfo"];
+  int32 rank_num = 7 [json_name = "RankNum"];
+  repeated int32 player_match_rank = 8 [json_name = "PlayerMatchRank"];
+  int32 match_session_id = 9 [json_name = "MatchSessionID"];
+  repeated int32 player_match_small_score = 10 [json_name = "PlayerMatchSmallScore"];
+}
+
+message CReponseGetRoomPlayerInfoHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 player_num = 2 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TRoomPlayerInfo player_info_list = 3 [json_name = "PlayerInfoList"];
+}
+
+message CReponseGetTeamRankInfoHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+  int32 lucky_dog_num = 3 [json_name = "LuckyDogNum"];
+  int32 team_rank_num = 4 [json_name = "TeamRankNum"];
+  repeated .Native.HuanLeGameSvr.TClientInfo team_match_rank_info = 5 [json_name = "TeamMatchRankInfo"];
+}
+
+message CReponseGiveGiftOnTableHGPara {
+  int32 result = 1 [json_name = "Result"];
+}
+
+message CReportInfo2ServerHGPara {
+  int32 info_type = 1 [json_name = "InfoType"];
+  int32 tlv_num = 2 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 3 [json_name = "TLVInfo"];
+}
+
+message CReqDebugWithAI {
+  int32 play_with_ai = 1 [json_name = "PlayWithAI"];
+}
+
+message CReqGameSoHandle {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 game_id = 2 [json_name = "GameID"];
+  int32 account_type = 3 [json_name = "AccountType"];
+  int32 client_type = 4 [json_name = "ClientType"];
+  int32 room_id = 5 [json_name = "RoomID"];
+  int32 table_id = 6 [json_name = "TableID"];
+  int32 game_data_len = 7 [json_name = "GameDataLen"];
+  bytes game_data = 8 [json_name = "GameData"];
+  int32 flag = 9 [json_name = "Flag"];
+}
+
+message CReqGameSvrInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 game_id = 2 [json_name = "GameID"];
+  int32 client_type = 3 [json_name = "ClientType"];
+  int32 account_type = 4 [json_name = "AccountType"];
+  int32 fetch_type = 5 [json_name = "FetchType"];
+}
+
+message CReqGetGameDataPara {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 seat_id = 3 [json_name = "SeatID"];
+  int32 data_length = 4 [json_name = "DataLength"];
+  bytes data = 5 [json_name = "Data"];
+}
+
+message CReqObtainTreasureBoxHGPara {
+  uint32 uin = 1 [json_name = "Uin"];
+}
+
+message CReqQueryInVirtualMatchHGPara {
+  uint32 gameuin = 1 [json_name = "gameuin"];
+}
+
+message CReqQueryTreasureBoxHGPara {
+  uint32 uin = 1 [json_name = "Uin"];
+}
+
+message CReqRebuyInVirtualMatchHGPara {
+  .Native.HuanLeGameSvr.TDiamondPayInfo diamond_pay_info = 1 [json_name = "DiamondPayInfo"];
+  int32 rebuy_type = 2 [json_name = "RebuyType"];
+  int64 rebuy_value = 3 [json_name = "RebuyValue"];
+}
+
+message CRequestAddMatchPointHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+  int32 operation = 3 [json_name = "Operation"];
+  .Native.HuanLeGameSvr.TDiamondPayInfo diamond_pay_info = 4 [json_name = "DiamondPayInfo"];
+}
+
+message CRequestCancelEnrollMatchHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+}
+
+message CRequestChangeSeatHGPara {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 seat_id = 3 [json_name = "SeatID"];
+}
+
+message CRequestEnrollMatchHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+}
+
+message CRequestFetchRoundFlowInfoPara {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 start_idx = 3 [json_name = "StartIdx"];
+  int32 req_num = 4 [json_name = "ReqNum"];
+}
+
+message CRequestFetchRoundRankListPara {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+}
+
+message CRequestGetPlayerRankInfoHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+  int32 begin_rank = 3 [json_name = "BeginRank"];
+  int32 rank_count = 4 [json_name = "RankCount"];
+}
+
+message CRequestGetRoomPlayerInfoHGPara {
+  int32 game_id = 1 [json_name = "GameID"];
+  int32 scene_id = 2 [json_name = "SceneID"];
+  int32 room_id = 3 [json_name = "RoomID"];
+}
+
+message CRequestGetTeamRankInfoHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+  int32 begin_rank = 3 [json_name = "BeginRank"];
+  int32 rank_count = 4 [json_name = "RankCount"];
+}
+
+message CRequestGiveGiftOnTableHGPara {
+  uint32 dst_uin = 1 [json_name = "DstUin"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 item_id = 3 [json_name = "ItemID"];
+  int32 src_nick_name_len = 4 [json_name = "SrcNickNameLen"];
+  bytes src_nick_name = 5 [json_name = "SrcNickName"];
+}
+
+message CRequestHelloHGPara {
+  uint32 time = 1 [json_name = "Time"];
+  int32 info_length = 2 [json_name = "InfoLength"];
+  bytes info = 3 [json_name = "Info"];
+}
+
+message CRequestKickPlayerHGPara {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+  uint32 player_game_uin = 3 [json_name = "PlayerGameUin"];
+}
+
+message CRequestLoginHGPara {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 request_src = 2 [json_name = "RequestSrc"];
+  int32 login_life_style = 3 [json_name = "LoginLifeStyle"];
+  int32 room_id = 4 [json_name = "RoomID"];
+  .Native.HuanLeGameSvr.TClientInfo client_info = 5 [json_name = "ClientInfo"];
+  int32 tlv_num = 6 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 7 [json_name = "TLVInfo"];
+}
+
+message CRequestLogoutHGPara {
+  int32 reason = 1 [json_name = "Reason"];
+}
+
+message CRequestMatchChangeTable {
+  int32 reason = 1 [json_name = "Reason"];
+  int32 tlv_num = 2 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 3 [json_name = "TLVInfo"];
+}
+
+message CRequestMatchMarqueeHGPara {
+  int32 match_session_id = 1 [json_name = "MatchSessionID"];
+  int32 marquee_idx = 2 [json_name = "MarqueeIdx"];
+  int32 marquee_num = 3 [json_name = "MarqueeNum"];
+}
+
+message CRequestMatchSessionHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+}
+
+message CRequestMatchSessionPlayerDetailHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+  int32 start = 3 [json_name = "Start"];
+  int32 count = 4 [json_name = "Count"];
+}
+
+message CRequestNeedPayEmojList {
+  uint32 uin = 1 [json_name = "Uin"];
+}
+
+message CRequestPlayHGPara {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 time = 2 [json_name = "Time"];
+  int32 player_data_length = 3 [json_name = "PlayerDataLength"];
+  bytes play_data = 4 [json_name = "PlayData"];
+}
+
+message CRequestPlayProtoHeadPara {
+  int32 player_id = 1 [json_name = "PlayerID"];
+  int32 player_data_length = 2 [json_name = "PlayerDataLength"];
+  bytes play_data = 3 [json_name = "PlayData"];
+}
+
+message CRequestReadyHGPara {
+  int32 ready_mode = 1 [json_name = "ReadyMode"];
+  int32 room_id = 2 [json_name = "RoomID"];
+  int32 table_id = 3 [json_name = "TableID"];
+  int32 tlv_num = 4 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 5 [json_name = "TLVInfo"];
+}
+
+message CRequestRenewDatePara {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 tlv_num = 3 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 4 [json_name = "TLVInfo"];
+}
+
+message CRequestSitDownFromView {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 seat_id = 3 [json_name = "SeatID"];
+}
+
+message CRequestSitDownHGPara {
+  int32 sit_down_flag = 1 [json_name = "SitDownFlag"];
+  int32 room_id = 2 [json_name = "RoomID"];
+  int32 table_id = 3 [json_name = "TableID"];
+  int32 seat_id = 4 [json_name = "SeatID"];
+  int32 tlv_num = 5 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 6 [json_name = "TLVInfo"];
+}
+
+message CRequestStandUpHGPara {
+  int32 stand_up_flag = 1 [json_name = "StandUpFlag"];
+  int32 room_id = 2 [json_name = "RoomID"];
+}
+
+message CRequestStartInfoHGPara {
+  int32 info_type = 1 [json_name = "InfoType"];
+  int32 request_src = 2 [json_name = "RequestSrc"];
+  .Native.HuanLeGameSvr.TClientInfo client_info = 3 [json_name = "ClientInfo"];
+  int32 tlv_num = 4 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 5 [json_name = "TLVInfo"];
+}
+
+message CRequestSvrInfoHGPara {
+  int32 info_type = 1 [json_name = "InfoType"];
+}
+
+message CRequestSynMatchPlayerInfoHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+}
+
+message CRequestTalkOnTableHG {
+  uint32 dst_uin = 1 [json_name = "DstUin"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 type = 3 [json_name = "Type"];
+  int32 talk_id = 4 [json_name = "TalkID"];
+  int32 msg_length = 5 [json_name = "MsgLength"];
+  bytes msg = 6 [json_name = "Msg"];
+  uint32 target_uin = 7 [json_name = "TargetUin"];
+  uint32 extra_bit_flag = 8 [json_name = "ExtraBitFlag"];
+}
+
+message CRequestTeamMatchSessionHGPara {
+  uint32 reserved = 1 [json_name = "Reserved"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+}
+
+message CRequestUseItemHGPara {
+  int32 item_id = 1 [json_name = "ItemID"];
+}
+
+message CRequestViewFromSitDown {
+  int32 room_id = 1 [json_name = "RoomID"];
+  int32 table_id = 2 [json_name = "TableID"];
+  int32 seat_id = 3 [json_name = "SeatID"];
+}
+
+message CRequestViewSeatHGPara {
+  int32 view_mode = 1 [json_name = "ViewMode"];
+  int32 room_id = 2 [json_name = "RoomID"];
+  int32 table_id = 3 [json_name = "TableID"];
+  int32 seat_id = 4 [json_name = "SeatID"];
+  int32 tlv_num = 5 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 6 [json_name = "TLVInfo"];
+}
+
+message CResponseCancelEnrollMatchHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+}
+
+message CResponseChangeSeatHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+}
+
+message CResponseEnrollMatchHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 cur_player_num = 2 [json_name = "CurPlayerNum"];
+  int32 left_player_num = 3 [json_name = "LeftPlayerNum"];
+  int32 result_str_len = 4 [json_name = "ResultStrLen"];
+  bytes result_str = 5 [json_name = "ResultStr"];
+  int32 int32_cur_player_num = 6 [json_name = "Int32CurPlayerNum"];
+  int32 int32_left_player_num = 7 [json_name = "Int32LeftPlayerNum"];
+}
+
+message CResponseFetchRoundFlowInfoPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 room_id = 4 [json_name = "RoomID"];
+  int32 table_id = 5 [json_name = "TableID"];
+  int32 total_num = 6 [json_name = "TotalNum"];
+  int32 start_idx = 7 [json_name = "StartIdx"];
+  int32 current_num = 8 [json_name = "CurrentNum"];
+  repeated .Native.HuanLeGameSvr.TGameSvrRoundInfo round_flow_list = 9 [json_name = "RoundFlowList"];
+  int32 player_num = 10 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TGameSvrPrivatePlayerInfo player_info_list = 11 [json_name = "PlayerInfoList"];
+  .Native.HuanLeGameSvr.TGameSvrPrivatePlayerInfo single_round_info = 12 [json_name = "SingleRoundInfo"];
+}
+
+message CResponseFetchRoundRankListPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 room_id = 4 [json_name = "RoomID"];
+  int32 table_id = 5 [json_name = "TableID"];
+  int32 total_round_num = 6 [json_name = "TotalRoundNum"];
+  int32 rank_list_len = 7 [json_name = "RankListLen"];
+  repeated .Native.HuanLeGameSvr.TGameSvrPrivatePlayerInfo rank_info_list = 8 [json_name = "RankInfoList"];
+}
+
+message CResponseHelloHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+}
+
+message CResponseKickPlayerHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 room_id = 4 [json_name = "RoomID"];
+  int32 table_id = 5 [json_name = "TableID"];
+  uint32 player_game_uin = 6 [json_name = "PlayerGameUin"];
+}
+
+message CResponseLoginHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  uint32 recommend_scene_id = 4 [json_name = "RecommendSceneID"];
+  int32 room_id = 5 [json_name = "RoomID"];
+  int32 room_table_num = 6 [json_name = "RoomTableNum"];
+  int32 room_player_num = 7 [json_name = "RoomPlayerNum"];
+  int32 room_ticket = 8 [json_name = "RoomTicket"];
+  int32 player_id = 9 [json_name = "PlayerID"];
+  int32 trigger_present_beans = 10 [json_name = "TriggerPresentBeans"];
+  int32 tlv_num = 11 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 12 [json_name = "TLVInfo"];
+  uint32 control_flag = 13 [json_name = "ControlFlag"];
+  uint32 talk_switch = 14 [json_name = "TalkSwitch"];
+  int32 olympic_match_type = 15 [json_name = "OlympicMatchType"];
+  int32 olympic_series_time_type = 16 [json_name = "OlympicSeriesTimeType"];
+  int32 scene_id = 17 [json_name = "SceneID"];
+}
+
+message CResponseLogoutHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 logout_reason = 4 [json_name = "LogoutReason"];
+  int32 trace_len = 5 [json_name = "TraceLen"];
+  bytes trace_id = 6 [json_name = "TraceId"];
+}
+
+message CResponseMatchChangeTable {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 tlv_num = 2 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 3 [json_name = "TLVInfo"];
+}
+
+message CResponseMatchMarqueeHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 client_refresh_interval = 2 [json_name = "ClientRefreshInterval"];
+  int32 marquee_total = 3 [json_name = "MarqueeTotal"];
+  int32 marquee_idx = 4 [json_name = "MarqueeIdx"];
+  int32 marquee_num = 5 [json_name = "MarqueeNum"];
+  repeated .Native.HuanLeGameSvr.TGameMatchMarquee match_marquee = 6 [json_name = "MatchMarquee"];
+}
+
+message CResponseMatchSessionHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  int32 session_status = 4 [json_name = "SessionStatus"];
+  int32 player_num = 5 [json_name = "PlayerNum"];
+  int32 lucky_dog_num = 6 [json_name = "LuckyDogNum"];
+  int32 room_player_num = 7 [json_name = "RoomPlayerNum"];
+  int32 time_left = 8 [json_name = "TimeLeft"];
+  int32 player_left = 9 [json_name = "PlayerLeft"];
+  int32 past_seconds = 10 [json_name = "PastSeconds"];
+  int32 round_info_num = 11 [json_name = "RoundInfoNum"];
+  .Native.HuanLeGameSvr.TMatchRoundInfo round_info = 12 [json_name = "RoundInfo"];
+  int32 server_time = 13 [json_name = "ServerTime"];
+  int32 match_begin_time = 14 [json_name = "MatchBeginTime"];
+  int32 cur_round_begin_time = 15 [json_name = "CurRoundBeginTime"];
+  int32 cur_round_countdown = 16 [json_name = "CurRoundCountdown"];
+  int32 cur_round_duaration = 17 [json_name = "CurRoundDuaration"];
+  .Native.HuanLeGameSvr.TMatchRoundInfoExt round_info_ext = 18 [json_name = "RoundInfoExt"];
+  int32 match_game_result_num = 19 [json_name = "MatchGameResultNum"];
+  repeated .Native.HuanLeGameSvr.TMatchGameResult match_game_result = 20 [json_name = "MatchGameResult"];
+  int32 cur_round_score_calc_mode = 21 [json_name = "CurRoundScoreCalcMode"];
+  int32 t_match_status_tlv_num = 22 [json_name = "TMatchStatusTLVNum"];
+  repeated .Native.HuanLeGameSvr.TMatchStatusTLVUNIT t_match_status_tl_vs = 23 [json_name = "TMatchStatusTLVs"];
+}
+
+message CResponseMatchSessionPlayerDetailHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 player_num = 2 [json_name = "PlayerNum"];
+  int32 ext_player_num = 3 [json_name = "ExtPlayerNum"];
+  repeated .Native.HuanLeGameSvr.TSimplePlayerInfo ext_player_info = 4 [json_name = "ExtPlayerInfo"];
+}
+
+message CResponseNeedPayEmojList {
+  int32 result = 1 [json_name = "Result"];
+  int32 emoj_num = 2 [json_name = "EmojNum"];
+  repeated .Native.HuanLeGameSvr.TEmojInfo emoj_list = 3 [json_name = "EmojList"];
+}
+
+message CResponsePlayHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+}
+
+message CResponsePlayProtoHeadPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+}
+
+message CResponseReadyHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 tlv_num = 4 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 5 [json_name = "TLVInfo"];
+}
+
+message CResponseRenewDatePara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 tlv_num = 4 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 5 [json_name = "TLVInfo"];
+}
+
+message CResponseSitDownFromView {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+}
+
+message CResponseSitDownHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 room_id = 4 [json_name = "RoomID"];
+  int32 table_id = 5 [json_name = "TableID"];
+  int32 seat_id = 6 [json_name = "SeatID"];
+  int32 table_seat_num = 7 [json_name = "TableSeatNum"];
+  int32 cur_player_num = 8 [json_name = "CurPlayerNum"];
+  int32 cur_viewer_num = 9 [json_name = "CurViewerNum"];
+  int32 tlv_num = 10 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 11 [json_name = "TLVInfo"];
+}
+
+message CResponseStandUpHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 stand_up_reason = 4 [json_name = "StandUpReason"];
+}
+
+message CResponseStartInfoHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 player_id = 2 [json_name = "PlayerID"];
+  int32 info_type = 3 [json_name = "InfoType"];
+  int32 tlv_num = 4 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 5 [json_name = "TLVInfo"];
+}
+
+message CResponseSvrInfoHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 info_type = 2 [json_name = "InfoType"];
+  int32 tlv_num = 3 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 4 [json_name = "TLVInfo"];
+}
+
+message CResponseSynMatchPlayerInfoHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 player_status = 2 [json_name = "PlayerStatus"];
+  int32 match_session_id = 3 [json_name = "MatchSessionID"];
+  .Native.HuanLeGameSvr.TMatchConfigPara match_config_para = 4 [json_name = "MatchConfigPara"];
+  int32 query_match_session_interval = 5 [json_name = "QueryMatchSessionInterval"];
+  int32 fetch_match_player_detail_interval = 6 [json_name = "FetchMatchPlayerDetailInterval"];
+  int32 fetch_player_rank_interval = 7 [json_name = "FetchPlayerRankInterval"];
+  .Native.HuanLeGameSvr.TAddonRebuyInfo addon_rebuy_info = 8 [json_name = "AddonRebuyInfo"];
+  int32 average_join_per_sec = 9 [json_name = "AverageJoinPerSec"];
+  int32 client_refresh_interval = 10 [json_name = "ClientRefreshInterval"];
+  int32 client_show_str_len = 11 [json_name = "ClientShowStrLen"];
+  bytes client_show_str = 12 [json_name = "ClientShowStr"];
+  int32 user_defined_marquee_len = 13 [json_name = "UserDefinedMarqueeLen"];
+  bytes user_defined_marquee = 14 [json_name = "UserDefinedMarquee"];
+  .Native.HuanLeGameSvr.TMatchRestoreInfo match_restore_info = 15 [json_name = "MatchRestoreInfo"];
+  int32 t_match_status_tlv_num = 16 [json_name = "TMatchStatusTLVNum"];
+  repeated .Native.HuanLeGameSvr.TMatchStatusTLVUNIT t_match_status_tl_vs = 17 [json_name = "TMatchStatusTLVs"];
+}
+
+message CResponseTalkOnTableHG {
+  uint32 result_id = 1 [json_name = "ResultID"];
+}
+
+message CResponseTeamMatchSessionHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 match_session_id = 2 [json_name = "MatchSessionID"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  int32 session_status = 4 [json_name = "SessionStatus"];
+  int32 player_num = 5 [json_name = "PlayerNum"];
+  int32 lucky_dog_num = 6 [json_name = "LuckyDogNum"];
+  int32 room_player_num = 7 [json_name = "RoomPlayerNum"];
+  int32 time_left = 8 [json_name = "TimeLeft"];
+  int32 player_left = 9 [json_name = "PlayerLeft"];
+  int32 past_seconds = 10 [json_name = "PastSeconds"];
+  int32 round_info_num = 11 [json_name = "RoundInfoNum"];
+  .Native.HuanLeGameSvr.TMatchRoundInfo round_info = 12 [json_name = "RoundInfo"];
+  int32 server_time = 13 [json_name = "ServerTime"];
+  int32 match_begin_time = 14 [json_name = "MatchBeginTime"];
+  int32 cur_round_begin_time = 15 [json_name = "CurRoundBeginTime"];
+  int32 cur_round_countdown = 16 [json_name = "CurRoundCountdown"];
+  int32 cur_round_duaration = 17 [json_name = "CurRoundDuaration"];
+  .Native.HuanLeGameSvr.TMatchRoundInfoExt round_info_ext = 18 [json_name = "RoundInfoExt"];
+  int32 cur_round_score_calc_mode = 19 [json_name = "CurRoundScoreCalcMode"];
+  int32 t_match_status_tlv_num = 20 [json_name = "TMatchStatusTLVNum"];
+  repeated .Native.HuanLeGameSvr.TMatchStatusTLVUNIT t_match_status_tl_vs = 21 [json_name = "TMatchStatusTLVs"];
+}
+
+message CResponseUseItemHGPara {
+  int32 item_id = 1 [json_name = "ItemID"];
+  int32 result = 2 [json_name = "Result"];
+}
+
+message CResponseViewFromSitDown {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+}
+
+message CResponseViewSeatHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 result_str_len = 2 [json_name = "ResultStrLen"];
+  bytes result_str = 3 [json_name = "ResultStr"];
+  int32 tlv_num = 4 [json_name = "TLVNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT tlv_info = 5 [json_name = "TLVInfo"];
+}
+
+message CRspDebugWithAI {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 play_with_ai = 2 [json_name = "PlayWithAI"];
+}
+
+message CRspGameSoHandle {
+  int32 result = 1 [json_name = "Result"];
+  uint32 uin = 2 [json_name = "Uin"];
+  int32 game_id = 3 [json_name = "GameID"];
+  int32 account_type = 4 [json_name = "AccountType"];
+  int32 client_type = 5 [json_name = "ClientType"];
+  int32 room_id = 6 [json_name = "RoomID"];
+  int32 table_id = 7 [json_name = "TableID"];
+  int32 game_data_len = 8 [json_name = "GameDataLen"];
+  bytes game_data = 9 [json_name = "GameData"];
+}
+
+message CRspGameSvrInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 game_id = 2 [json_name = "GameID"];
+  int32 client_type = 3 [json_name = "ClientType"];
+  int32 account_type = 4 [json_name = "AccountType"];
+  int32 fetch_type = 5 [json_name = "FetchType"];
+  .Native.HuanLeGameSvr.UGameSvrInfo value = 6 [json_name = "Value"];
+}
+
+message CRspGetGameDataPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int32 room_id = 2 [json_name = "RoomID"];
+  int32 table_id = 3 [json_name = "TableID"];
+  int32 seat_id = 4 [json_name = "SeatID"];
+  int32 data_length = 5 [json_name = "DataLength"];
+  bytes data = 6 [json_name = "Data"];
+}
+
+message CRspObtainTreasueBoxHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 obtained_reward_count = 2 [json_name = "ObtainedRewardCount"];
+  repeated .Native.HuanLeGameSvr.TTreasueBoxReward obtained_reward_info = 3 [json_name = "ObtainedRewardInfo"];
+  int32 box_id = 4 [json_name = "BoxID"];
+  int32 left_second = 5 [json_name = "LeftSecond"];
+  int32 reward_count = 6 [json_name = "RewardCount"];
+  repeated .Native.HuanLeGameSvr.TTreasueBoxReward reward_info = 7 [json_name = "RewardInfo"];
+}
+
+message CRspQueryInVirtualMatchHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  .Native.HuanLeGameSvr.TVirtualMatchPlayerStatus match_status = 2 [json_name = "MatchStatus"];
+  int32 result_str_len = 3 [json_name = "ResultStrLen"];
+  bytes result_str = 4 [json_name = "ResultStr"];
+}
+
+message CRspRebuyInVirtualMatchHGPara {
+  uint32 result_id = 1 [json_name = "ResultID"];
+  int64 left_match_score = 2 [json_name = "LeftMatchScore"];
+  int64 left_ecsys = 3 [json_name = "LeftEcsys"];
+  int32 result_str_len = 4 [json_name = "ResultStrLen"];
+  bytes result_str = 5 [json_name = "ResultStr"];
+}
+
+message CRspTreasueBoxInfoHGPara {
+  int32 result_id = 1 [json_name = "ResultID"];
+  int32 box_id = 2 [json_name = "BoxID"];
+  int32 left_second = 3 [json_name = "LeftSecond"];
+  int32 reward_count = 4 [json_name = "RewardCount"];
+  repeated .Native.HuanLeGameSvr.TTreasueBoxReward reward_info = 5 [json_name = "RewardInfo"];
+}
+
+message T3DMJPlayInfo {
+  int32 gender = 1 [json_name = "Gender"];
+  int32 avatar_num = 2 [json_name = "AvatarNum"];
+  repeated int32 avatar_list = 3 [json_name = "AvatarList"];
+  .Native.HuanLeGameSvr.TSectionScoreInfo section_score_info = 4 [json_name = "SectionScoreInfo"];
+  int32 is_support_section_score = 5 [json_name = "IsSupportSectionScore"];
+  int32 private_room_score = 6 [json_name = "PrivateRoomScore"];
+  uint64 init_model = 7 [json_name = "InitModel"];
+}
+
+message TAddonRebuyInfo {
+  int32 addon_max_times = 1 [json_name = "AddonMaxTimes"];
+  int32 addon_left_times = 2 [json_name = "AddonLeftTimes"];
+  uint32 addon_cost_money = 3 [json_name = "AddonCostMoney"];
+  uint32 addon_get_point = 4 [json_name = "AddonGetPoint"];
+  int32 addon_dieout_point_beg = 5 [json_name = "AddonDieoutPointBeg"];
+  int32 addon_dieout_point_end = 6 [json_name = "AddonDieoutPointEnd"];
+  int32 add_on_wait_time = 7 [json_name = "AddOnWaitTime"];
+  int32 rebuy_max_times = 8 [json_name = "RebuyMaxTimes"];
+  int32 rebuy_left_times = 9 [json_name = "RebuyLeftTimes"];
+  uint32 rebuy_cost_money = 10 [json_name = "RebuyCostMoney"];
+  uint32 rebuy_get_point = 11 [json_name = "RebuyGetPoint"];
+  int32 rebuy_dieout_point_beg = 12 [json_name = "RebuyDieoutPointBeg"];
+  int32 rebuy_dieout_point_end = 13 [json_name = "RebuyDieoutPointEnd"];
+  int32 rebuy_wait_time = 14 [json_name = "RebuyWaitTime"];
+  int32 addon_money_type = 15 [json_name = "AddonMoneyType"];
+  int32 rebuy_money_type = 16 [json_name = "RebuyMoneyType"];
+}
+
+message TAppointmentKey {
+  int32 appointment_key_len = 1 [json_name = "AppointmentKeyLen"];
+  bytes appointment_key = 2 [json_name = "AppointmentKey"];
+}
+
+message TBackgroundInfo {
+  int32 back_group_scene_id = 1 [json_name = "BackGroupSceneId"];
+  int32 ui_table_id = 2 [json_name = "UITableID"];
+}
+
+message TBaseGameCfgData {
+  uint32 min_money_limit = 1 [json_name = "MinMoneyLimit"];
+  int64 max_money_limit = 2 [json_name = "MaxMoneyLimit"];
+  uint32 rcmd_buy_commodity_type = 3 [json_name = "RcmdBuyCommodityType"];
+  uint32 room_max_game_money_limit = 4 [json_name = "RoomMaxGameMoneyLimit"];
+  uint32 room_ticket = 5 [json_name = "RoomTicket"];
+  uint32 result_type = 6 [json_name = "ResultType"];
+  int32 deal_mode = 7 [json_name = "DealMode"];
+  int32 can_multi = 8 [json_name = "CanMulti"];
+  int32 multi_calc_mode = 9 [json_name = "MultiCalcMode"];
+  int32 can_share = 10 [json_name = "CanShare"];
+  int32 give_role_type = 11 [json_name = "GiveRoleType"];
+  int32 has_empty_bomb = 12 [json_name = "HasEmptyBomb"];
+  int32 reserve_len = 13 [json_name = "ReserveLen"];
+  bytes reserve = 14 [json_name = "Reserve"];
+  int32 can_discard = 15 [json_name = "CanDiscard"];
+  int32 can_play_back = 16 [json_name = "CanPlayBack"];
+  int32 enable_left_card_multi = 17 [json_name = "EnableLeftCardMulti"];
+  int32 left_card_multi_config_len = 18 [json_name = "LeftCardMultiConfigLen"];
+  bytes left_card_multi_config_info = 19 [json_name = "LeftCardMultiConfigInfo"];
+  int32 can_play_back_v3 = 20 [json_name = "CanPlayBackV3"];
+  int32 flag = 21 [json_name = "Flag"];
+  int32 is_swap_card = 22 [json_name = "IsSwapCard"];
+  int32 score_bean_scale = 23 [json_name = "ScoreBeanScale"];
+  int32 game_type = 24 [json_name = "GameType"];
+  int32 is_use_match_item = 25 [json_name = "IsUseMatchItem"];
+  int32 self_select_card_ai_ability = 26 [json_name = "SelfSelectCardAIAbility"];
+  int32 player_id = 27 [json_name = "PlayerID"];
+  int32 is_title_mode = 28 [json_name = "IsTitleMode"];
+}
+
+message TCancelViewInfo {
+  int32 cancel_reason = 1 [json_name = "CancelReason"];
+}
+
+message TClientInfo {
+  int32 nick_len = 1 [json_name = "NickLen"];
+  bytes nick = 2 [json_name = "Nick"];
+  int32 age = 3 [json_name = "Age"];
+  int32 gender = 4 [json_name = "Gender"];
+  int32 account_type = 5 [json_name = "AccountType"];
+  int32 client_type = 6 [json_name = "ClientType"];
+  int64 pf_key = 7 [json_name = "PFKey"];
+  int32 network = 8 [json_name = "Network"];
+  int32 operator = 9 [json_name = "Operator"];
+  int32 channel = 10 [json_name = "Channel"];
+  uint32 client_version = 11 [json_name = "ClientVersion"];
+  int32 os_versionl_len = 12 [json_name = "OSVersionlLen"];
+  bytes os_version = 13 [json_name = "OSVersion"];
+  int32 terminal_len = 14 [json_name = "TerminalLen"];
+  bytes terminal = 15 [json_name = "Terminal"];
+  int32 open_id_len = 16 [json_name = "OpenIDLen"];
+  bytes open_id = 17 [json_name = "OpenID"];
+  int32 head_url_len = 18 [json_name = "HeadUrlLen"];
+  bytes head_url = 19 [json_name = "HeadUrl"];
+}
+
+message TCompeteBuffer {
+  int32 compete_buffer_len = 1 [json_name = "CompeteBufferLen"];
+  bytes compete_buffer = 2 [json_name = "CompeteBuffer"];
+}
+
+message TDDZAIInfo {
+  int64 bean = 1 [json_name = "Bean"];
+  int32 avatar_id = 2 [json_name = "AvatarID"];
+  int32 avatar_lvl = 3 [json_name = "AvatarLvl"];
+}
+
+message TDDZPlayInfo {
+  int32 avatar_type = 1 [json_name = "AvatarType"];
+  int32 avatar_skin_id = 2 [json_name = "AvatarSkinId"];
+  int32 transparent_len = 3 [json_name = "TransparentLen"];
+  .Native.HuanLeGameSvr.TTransparentInfo transparent_info = 4 [json_name = "TransparentInfo"];
+  int32 extra_info_buf_len = 5 [json_name = "ExtraInfoBufLen"];
+  bytes extra_info_buf = 6 [json_name = "ExtraInfoBuf"];
+}
+
+message TDNPlayInfo {
+  int32 vip_level = 1 [json_name = "VipLevel"];
+}
+
+message TDelayMatchReward {
+  int32 delay_time = 1 [json_name = "DelayTime"];
+  int32 series_id = 2 [json_name = "SeriesID"];
+  int32 scene_id = 3 [json_name = "SceneID"];
+  int32 game_id = 4 [json_name = "GameID"];
+}
+
+message TDeviceID {
+  int32 device_id_len = 1 [json_name = "DeviceIDLen"];
+  bytes device_id = 2 [json_name = "DeviceID"];
+}
+
+message TDiamondInfo {
+  int32 diamond_num = 1 [json_name = "DiamondNum"];
+}
+
+message TDiamondPayInfo {
+  int32 open_key_len = 1 [json_name = "OpenKeyLen"];
+  bytes open_key = 2 [json_name = "OpenKey"];
+  int32 pf_key_len = 3 [json_name = "PfKeyLen"];
+  bytes pf_key = 4 [json_name = "PfKey"];
+  int32 pf_len = 5 [json_name = "PfLen"];
+  bytes pf = 6 [json_name = "Pf"];
+  int32 pay_token_len = 7 [json_name = "PayTokenLen"];
+  bytes pay_token = 8 [json_name = "PayToken"];
+}
+
+message TDynaSceneInfo {
+  int32 scene_id = 1 [json_name = "SceneID"];
+}
+
+message TEmojInfo {
+  int32 talk_id = 1 [json_name = "TalkID"];
+  uint32 price = 2 [json_name = "Price"];
+  uint32 free_start_time = 3 [json_name = "FreeStartTime"];
+  uint32 free_end_time = 4 [json_name = "FreeEndTime"];
+}
+
+message TEnrollInfo {
+  int32 left_time_to_begin_match_in_sec = 1 [json_name = "LeftTimeToBeginMatchInSec"];
+  int32 current_enroll_player_cnt = 2 [json_name = "CurrentEnrollPlayerCnt"];
+}
+
+message TEnterEndGameKey {
+  int32 end_game_id = 1 [json_name = "EndGameId"];
+  int32 enter_type = 2 [json_name = "EnterType"];
+  uint32 src_uin = 3 [json_name = "SrcUin"];
+}
+
+message TEnterEndGameReplayKey {
+  int32 end_game_id = 1 [json_name = "EndGameId"];
+  int32 season_id = 2 [json_name = "SeasonId"];
+  int32 encrypt_str_len = 3 [json_name = "EncryptStrLen"];
+  int32 encrypt_str = 4 [json_name = "EncryptStr"];
+  uint64 uniq_id = 5 [json_name = "UniqID"];
+}
+
+message TExitPlayerInfo {
+  int32 n_stand_up_reason = 1 [json_name = "nStandUpReason"];
+}
+
+message TFightTopMatchConfigInfo {
+  int32 time_out_in_sec = 1 [json_name = "TimeOutInSec"];
+  int32 max_relive_cnt = 2 [json_name = "MaxReliveCnt"];
+  int32 total_money_in_cents = 3 [json_name = "TotalMoneyInCents"];
+  int32 svr_margin_in_sec = 4 [json_name = "SvrMarginInSec"];
+  int32 arrange_time_out_in_sec = 5 [json_name = "ArrangeTimeOutInSec"];
+  int32 wait_relive_in_sec = 6 [json_name = "WaitReliveInSec"];
+}
+
+message TFightTopMatchInfo {
+  int32 left_times_in_sec = 1 [json_name = "LeftTimesInSec"];
+  int32 relive_times = 2 [json_name = "ReliveTimes"];
+  int32 left_player_cnt = 3 [json_name = "LeftPlayerCnt"];
+  int32 prev_die_out_player_cnt = 4 [json_name = "PrevDieOutPlayerCnt"];
+  int32 left_times_in_sec_for_next_round = 5 [json_name = "LeftTimesInSecForNextRound"];
+  int32 relive_item_cnt = 6 [json_name = "ReliveItemCnt"];
+}
+
+message TGameEvent {
+  int32 event_id = 1 [json_name = "EventID"];
+  int32 player_id = 2 [json_name = "PlayerID"];
+  int32 room_id = 3 [json_name = "RoomID"];
+  int32 table_id = 4 [json_name = "TableID"];
+  int32 seat_id = 5 [json_name = "SeatID"];
+  int32 other_info_num = 6 [json_name = "OtherInfoNum"];
+  repeated .Native.HuanLeGameSvr.TTLVUNIT other_info = 7 [json_name = "OtherInfo"];
+}
+
+message TGameLogicMsgValue {
+  int32 len = 1 [json_name = "Len"];
+  bytes game_buf = 2 [json_name = "GameBuf"];
+}
+
+message TGameMatchMarquee {
+  string text = 1 [json_name = "Text"];
+}
+
+message TGameMsgInfo {
+  int32 game_msg_info_len = 1 [json_name = "GameMsgInfoLen"];
+  bytes game_msg_info_buffer = 2 [json_name = "GameMsgInfoBuffer"];
+}
+
+message TGameScoreValue {
+  repeated int64 game_score = 1 [json_name = "GameScore"];
+}
+
+message TGameSvrAvatarInfo {
+  int32 avatar_id = 1 [json_name = "AvatarID"];
+  int32 avatar_type = 2 [json_name = "AvatarType"];
+  int32 avatar_seq_num = 3 [json_name = "AvatarSeqNum"];
+}
+
+message TGameSvrIPPort {
+  int32 game_svr_ip_len = 1 [json_name = "GameSvrIPLen"];
+  bytes game_svr_ip = 2 [json_name = "GameSvrIP"];
+  uint32 game_svr_port = 3 [json_name = "GameSvrPort"];
+  int32 connect_ip_len = 4 [json_name = "ConnectIPLen"];
+  bytes connect_ip = 5 [json_name = "ConnectIP"];
+  uint32 connect_port = 6 [json_name = "ConnectPort"];
+}
+
+message TGameSvrPlayerRoundInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int64 score = 2 [json_name = "Score"];
+}
+
+message TGameSvrPrivatePlayerInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int64 score = 2 [json_name = "Score"];
+  int32 round_num = 3 [json_name = "RoundNum"];
+  int32 win_round_num = 4 [json_name = "WinRoundNum"];
+  int32 nick_len = 5 [json_name = "NickLen"];
+  bytes nick_name = 6 [json_name = "NickName"];
+  int32 head_url_len = 7 [json_name = "HeadUrlLen"];
+  bytes head_url = 8 [json_name = "HeadUrl"];
+}
+
+message TGameSvrRoundInfo {
+  int32 player_num = 1 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TGameSvrPlayerRoundInfo player_info_list = 2 [json_name = "PlayerInfoList"];
+}
+
+message THeadInfo {
+  int32 head_url_len = 1 [json_name = "HeadUrlLen"];
+  bytes head_url = 2 [json_name = "HeadUrl"];
+}
+
+message TInviteFriendKey {
+  uint32 time_stamp = 1 [json_name = "TimeStamp"];
+  string key = 2 [json_name = "Key"];
+}
+
+message TLocationInfo {
+  uint32 city_code = 1 [json_name = "CityCode"];
+  uint32 nation_len = 2 [json_name = "NationLen"];
+  bytes nation = 3 [json_name = "Nation"];
+  uint32 province_len = 4 [json_name = "ProvinceLen"];
+  bytes province = 5 [json_name = "Province"];
+  uint32 city_len = 6 [json_name = "CityLen"];
+  bytes city = 7 [json_name = "City"];
+  uint32 district_len = 8 [json_name = "DistrictLen"];
+  bytes district = 9 [json_name = "District"];
+  uint32 town_len = 10 [json_name = "TownLen"];
+  bytes town = 11 [json_name = "Town"];
+  uint32 village_len = 12 [json_name = "VillageLen"];
+  bytes village = 13 [json_name = "Village"];
+  uint32 street_len = 14 [json_name = "StreetLen"];
+  bytes street = 15 [json_name = "Street"];
+  uint32 street_num_len = 16 [json_name = "StreetNumLen"];
+  bytes street_num = 17 [json_name = "StreetNum"];
+}
+
+message TLockInfo {
+  int32 lock_type = 1 [json_name = "LockType"];
+  int32 locked_svr_id = 2 [json_name = "LockedSvrID"];
+  int32 locked_room_id = 3 [json_name = "LockedRoomID"];
+  int32 extend_buf_len = 4 [json_name = "ExtendBufLen"];
+  bytes extend_buf = 5 [json_name = "ExtendBuf"];
+}
+
+message TLoginPbInfo {
+  int32 data_len = 1 [json_name = "DataLen"];
+  bytes data = 2 [json_name = "Data"];
+}
+
+message TLogoutPlayerInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+}
+
+message TLudoPrivateRoomInfo {
+  uint32 create_uin = 1 [json_name = "CreateUin"];
+  uint32 create_time = 2 [json_name = "CreateTime"];
+  uint32 exp_time = 3 [json_name = "ExpTime"];
+  uint32 owner_uin = 4 [json_name = "OwnerUin"];
+  int32 room_id = 5 [json_name = "RoomID"];
+  int32 play_mode = 6 [json_name = "PlayMode"];
+  int32 owner_color = 7 [json_name = "OwnerColor"];
+  int32 jeton = 8 [json_name = "Jeton"];
+  int32 left_second = 9 [json_name = "LeftSecond"];
+  int32 reserve0 = 10 [json_name = "Reserve0"];
+  int32 reserve1 = 11 [json_name = "Reserve1"];
+  int32 reserve2 = 12 [json_name = "Reserve2"];
+  int32 reserve3 = 13 [json_name = "Reserve3"];
+  int32 reserve4 = 14 [json_name = "Reserve4"];
+  int32 reserve5 = 15 [json_name = "Reserve5"];
+  int32 reserve6 = 16 [json_name = "Reserve6"];
+  int32 reserve7 = 17 [json_name = "Reserve7"];
+}
+
+message TLudoReplaySoPlayerInfo {
+  int32 seat_id = 1 [json_name = "SeatID"];
+  int32 replay_info_len = 2 [json_name = "ReplayInfoLen"];
+  bytes replay_info = 3 [json_name = "ReplayInfo"];
+}
+
+message TLudoReplaySoRoundInfo {
+  int32 replay_info_len = 1 [json_name = "ReplayInfoLen"];
+  bytes replay_info = 2 [json_name = "ReplayInfo"];
+}
+
+message TMJCapability {
+  int64 mj_capability = 1 [json_name = "MJCapability"];
+}
+
+message TMJGameSoPlayerInfo {
+  int32 is_support_section_score = 1 [json_name = "IsSupportSectionScore"];
+  int32 private_room_score = 2 [json_name = "PrivateRoomScore"];
+}
+
+message TMJSpecificData {
+  int32 rank_item_count = 1 [json_name = "RankItemCount"];
+  repeated int32 rank_item = 2 [json_name = "RankItem"];
+}
+
+message TMatchConfigPara {
+  int32 match_name_str_len = 1 [json_name = "MatchNameStrLen"];
+  bytes match_name_str = 2 [json_name = "MatchNameStr"];
+  int32 seat_num_on_table = 3 [json_name = "SeatNumOnTable"];
+  int32 player_lower_limit = 4 [json_name = "PlayerLowerLimit"];
+  int32 player_upper_limit = 5 [json_name = "PlayerUpperLimit"];
+  int32 start_point = 6 [json_name = "StartPoint"];
+  int32 start_point_radix = 7 [json_name = "StartPointRadix"];
+  int32 start_currency_radix = 8 [json_name = "StartCurrencyRadix"];
+  int32 round_num = 9 [json_name = "RoundNum"];
+  repeated int32 round_type = 10 [json_name = "RoundType"];
+  repeated int32 round_policy_idx = 11 [json_name = "RoundPolicyIdx"];
+  int32 reward_str_len = 12 [json_name = "RewardStrLen"];
+  bytes reward_str = 13 [json_name = "RewardStr"];
+  int32 reward_policy_idx = 14 [json_name = "RewardPolicyIdx"];
+  int32 match_type = 15 [json_name = "MatchType"];
+  int32 reserved0 = 16 [json_name = "Reserved0"];
+  int32 start_player_num = 17 [json_name = "StartPlayerNum"];
+  int32 seconds_limit_to_buy_bean = 18 [json_name = "SecondsLimitToBuyBean"];
+  int32 currency_lower_limit = 19 [json_name = "CurrencyLowerLimit"];
+  int32 show_rule_tip_player_num = 20 [json_name = "ShowRuleTipPlayerNum"];
+  int32 reserved2 = 21 [json_name = "Reserved2"];
+  int32 reserved3 = 22 [json_name = "Reserved3"];
+  int32 reserved4 = 23 [json_name = "Reserved4"];
+}
+
+message TMatchFIXRoundPlayerCntInfo {
+  int32 round_cnt = 1 [json_name = "RoundCnt"];
+  repeated int32 player_cnt = 2 [json_name = "PlayerCnt"];
+  int32 game_per_round = 3 [json_name = "GamePerRound"];
+}
+
+message TMatchGameResult {
+  int32 game_result = 1 [json_name = "GameResult"];
+  int32 rank_finish = 2 [json_name = "RankFinish"];
+  int32 game_score = 3 [json_name = "GameScore"];
+  int32 game_time = 4 [json_name = "GameTime"];
+  int32 mp = 5 [json_name = "MP"];
+  int32 mp_rate = 6 [json_name = "MPRate"];
+  int32 mp_rate_rank = 7 [json_name = "MPRateRank"];
+  int32 mp_rank_score = 8 [json_name = "MPRankScore"];
+  int32 reserved1 = 9 [json_name = "Reserved1"];
+  int32 reserved2 = 10 [json_name = "Reserved2"];
+}
+
+message TMatchPersistVirtualFixRoundInfo {
+  int32 match_session_id = 1 [json_name = "MatchSessionID"];
+  int32 player_round_status = 2 [json_name = "PlayerRoundStatus"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  int32 fix_round_num = 4 [json_name = "FixRoundNum"];
+  int32 game_idx = 5 [json_name = "GameIdx"];
+  int32 fix_round_idx = 6 [json_name = "FixRoundIdx"];
+  int32 player_rank_num = 7 [json_name = "PlayerRankNum"];
+  repeated .Native.HuanLeGameSvr.TPlayerMatchRankInfo player_match_rank_info = 8 [json_name = "PlayerMatchRankInfo"];
+}
+
+message TMatchPlayerDieoutSeal {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 player_status = 2 [json_name = "PlayerStatus"];
+}
+
+message TMatchRestoreInfo {
+  int32 restore_max_times = 1 [json_name = "RestoreMaxTimes"];
+  int32 restore_left_times = 2 [json_name = "RestoreLeftTimes"];
+  int32 restore_cost_money = 3 [json_name = "RestoreCostMoney"];
+  int32 restore_dst_point = 4 [json_name = "RestoreDstPoint"];
+  int32 restore_wait_time = 5 [json_name = "RestoreWaitTime"];
+  int32 restore_money_type = 6 [json_name = "RestoreMoneyType"];
+  int32 restore_reserved_num = 7 [json_name = "RestoreReservedNum"];
+  repeated int32 restore_reserved = 8 [json_name = "RestoreReserved"];
+}
+
+message TMatchRoundInfo {
+  int32 round_phase = 1 [json_name = "RoundPhase"];
+  int32 round_idx = 2 [json_name = "RoundIdx"];
+  int32 round_type = 3 [json_name = "RoundType"];
+  int32 round_name_len = 4 [json_name = "RoundNameLen"];
+  bytes round_name = 5 [json_name = "RoundName"];
+  int32 game_idx = 6 [json_name = "GameIdx"];
+  int32 point_radix = 7 [json_name = "PointRadix"];
+  int32 currency_radix = 8 [json_name = "CurrencyRadix"];
+  int32 die_out_point = 9 [json_name = "DieOutPoint"];
+  int32 server_time = 10 [json_name = "ServerTime"];
+  int32 player_round_status = 11 [json_name = "PlayerRoundStatus"];
+  uint32 rank = 12 [json_name = "Rank"];
+  int32 desc_len = 13 [json_name = "DescLen"];
+  bytes desc = 14 [json_name = "Desc"];
+  int32 fix_round_num = 15 [json_name = "FixRoundNum"];
+  int32 fix_round_idx = 16 [json_name = "FixRoundIdx"];
+  int32 table_in_play_num = 17 [json_name = "TableInPlayNum"];
+  int32 player_rank_in_table = 18 [json_name = "PlayerRankInTable"];
+  int32 info_ctrl_flag = 19 [json_name = "InfoCtrlFlag"];
+  int32 die_out_player_this_table = 20 [json_name = "DieOutPlayerThisTable"];
+}
+
+message TMatchRoundInfoExt {
+  int32 show_remain_time = 1 [json_name = "ShowRemainTime"];
+  int32 remain_time = 2 [json_name = "RemainTime"];
+  int32 client_tips_len = 3 [json_name = "ClientTipsLen"];
+  bytes client_tips = 4 [json_name = "ClientTips"];
+  int32 cur_upgrade_waiting_msg_idx = 5 [json_name = "CurUpgradeWaitingMsgIdx"];
+  int32 round_top_string_len = 6 [json_name = "RoundTopStringLen"];
+  bytes round_top_string = 7 [json_name = "RoundTopString"];
+  int32 upgrade_waiting_msg_num = 8 [json_name = "UpgradeWaitingMsgNum"];
+  repeated .Native.HuanLeGameSvr.TUpgradeWaitingMsg upgrade_waiting_msg = 9 [json_name = "UpgradeWaitingMsg"];
+  int32 rank32 = 10 [json_name = "Rank32"];
+  int32 lucky_player32 = 11 [json_name = "LuckyPlayer32"];
+  int32 count_down_time = 12 [json_name = "CountDownTime"];
+  int32 round_center_string_len = 13 [json_name = "RoundCenterStringLen"];
+  bytes round_center_string = 14 [json_name = "RoundCenterString"];
+  int32 match_round_idx_info_len = 15 [json_name = "MatchRoundIdxInfoLen"];
+  bytes match_round_idx_info = 16 [json_name = "MatchRoundIdxInfo"];
+  repeated .Native.HuanLeGameSvr.TUpgradeWaitingStatus upgrade_waiting_status = 17 [json_name = "UpgradeWaitingStatus"];
+}
+
+message TMatchShowPlayerTable {
+  int32 num = 1 [json_name = "Num"];
+  repeated .Native.HuanLeGameSvr.TMatchShowPlayerTableItem show_info = 2 [json_name = "ShowInfo"];
+}
+
+message TMatchShowPlayerTableItem {
+  int32 player_num = 1 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TMatchShowPlayerUinItem player = 2 [json_name = "Player"];
+  int32 cur_round = 3 [json_name = "CurRound"];
+  int32 total_round = 4 [json_name = "TotalRound"];
+}
+
+message TMatchShowPlayerUin {
+  int32 num = 1 [json_name = "Num"];
+  repeated .Native.HuanLeGameSvr.TMatchShowPlayerUinItem show_info = 2 [json_name = "ShowInfo"];
+}
+
+message TMatchShowPlayerUinItem {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 account_type = 2 [json_name = "AccountType"];
+  int32 client_type = 3 [json_name = "ClientType"];
+  int32 rank = 4 [json_name = "Rank"];
+  int32 round_status = 5 [json_name = "RoundStatus"];
+  int32 reserved1 = 6 [json_name = "Reserved1"];
+  int32 reserved2 = 7 [json_name = "Reserved2"];
+}
+
+message TMatchSimpleRankInfo {
+  int32 simple_team_rank_num = 1 [json_name = "SimpleTeamRankNum"];
+  repeated .Native.HuanLeGameSvr.TTeamMatchSimpleRankInfo simple_rank_info_list = 2 [json_name = "SimpleRankInfoList"];
+}
+
+message TMatchStatusTLVUNIT {
+  int32 type = 1 [json_name = "Type"];
+  int32 len = 2 [json_name = "Len"];
+  bytes value = 3 [json_name = "Value"];
+}
+
+message TMatchTickKey {
+  int32 match_tick_key_len = 1 [json_name = "MatchTickKeyLen"];
+  bytes match_tick_key = 2 [json_name = "MatchTickKey"];
+}
+
+message TMatchTicket {
+  int32 ticket_len = 1 [json_name = "TicketLen"];
+  repeated .Native.HuanLeGameSvr.TMatchTicketItem ticket = 2 [json_name = "Ticket"];
+}
+
+message TMatchTicketItem {
+  int32 type = 1 [json_name = "Type"];
+  int32 id = 2 [json_name = "ID"];
+  int32 num = 3 [json_name = "Num"];
+}
+
+message TNewGameSvrPrivateTableInfo {
+  .Native.HuanLeGameSvr.TAppointmentKey appointment_key = 1 [json_name = "AppointmentKey"];
+  int32 cur_round_num = 2 [json_name = "CurRoundNum"];
+  uint32 owner_player_game_uin = 3 [json_name = "OwnerPlayerGameUin"];
+  .Native.HuanLeGameSvr.TPrivateRoomConfigInfo private_room_config_info = 4 [json_name = "PrivateRoomConfigInfo"];
+  int32 finaltime = 5 [json_name = "Finaltime"];
+  int32 max_viewer = 6 [json_name = "MaxViewer"];
+  int32 max_swift = 7 [json_name = "MaxSwift"];
+  .Native.HuanLeGameSvr.TPrivateRoomConfigInfoV2 private_room_config_info_v2 = 8 [json_name = "PrivateRoomConfigInfoV2"];
+}
+
+message TOBKeyInfo {
+  int32 ob_key_len = 1 [json_name = "OBKeyLen"];
+  bytes ob_key = 2 [json_name = "OBKey"];
+}
+
+message TOBMatchInfo {
+  int32 flag = 1 [json_name = "Flag"];
+}
+
+message TOBViewInfo {
+  uint32 ob_player_uin = 1 [json_name = "OBPlayerUin"];
+}
+
+message TOlympicSvrInfoTlv {
+  int32 match_id = 1 [json_name = "MatchId"];
+  int32 series_id = 2 [json_name = "SeriesId"];
+  int32 game_id = 3 [json_name = "GameId"];
+  int32 is_anti_cheat = 4 [json_name = "IsAntiCheat"];
+  int32 is_display_score = 5 [json_name = "IsDisplayScore"];
+  int32 start_time = 6 [json_name = "StartTime"];
+}
+
+message TPVEStartParam {
+  int32 addition_item_num = 1 [json_name = "AdditionItemNum"];
+  repeated int32 addition_item = 2 [json_name = "AdditionItem"];
+}
+
+message TPlayerAvatarChangeInfoHG {
+  int32 change_type = 1 [json_name = "ChangeType"];
+  .Native.HuanLeGameSvr.TGameSvrAvatarInfo cur_avatar = 2 [json_name = "CurAvatar"];
+  .Native.HuanLeGameSvr.TGameSvrAvatarInfo pre_avatar = 3 [json_name = "PreAvatar"];
+}
+
+message TPlayerCapability {
+  uint64 client_capability = 1 [json_name = "ClientCapability"];
+}
+
+message TPlayerCountNormalItemChangeInfoHG {
+  int32 item_change_reason = 1 [json_name = "ItemChangeReason"];
+  int32 item_id = 2 [json_name = "ItemID"];
+  int32 item_change_count = 3 [json_name = "ItemChangeCount"];
+  int32 item_cur_count = 4 [json_name = "ItemCurCount"];
+  int32 item_valid_time = 5 [json_name = "ItemValidTime"];
+  int32 item_seq = 6 [json_name = "ItemSeq"];
+  int32 is_air_drop_box = 7 [json_name = "IsAirDropBox"];
+}
+
+message TPlayerDetailInfoHG {
+  int32 player_id = 1 [json_name = "PlayerID"];
+  uint32 player_uin = 2 [json_name = "PlayerUin"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  int32 table_id = 4 [json_name = "TableID"];
+  int32 seat_id = 5 [json_name = "SeatID"];
+  int32 nick_len = 6 [json_name = "NickLen"];
+  bytes nick = 7 [json_name = "Nick"];
+  int32 age = 8 [json_name = "Age"];
+  int32 gender = 9 [json_name = "Gender"];
+  int32 level = 10 [json_name = "Level"];
+  uint32 experience = 11 [json_name = "Experience"];
+  int64 money = 12 [json_name = "Money"];
+  int32 heart_count = 13 [json_name = "HeartCount"];
+  int32 open_id_len = 14 [json_name = "OpenIDLen"];
+  bytes open_id = 15 [json_name = "OpenID"];
+  int32 avatar_id = 16 [json_name = "AvatarID"];
+  int32 avatar_level = 17 [json_name = "AvatarLevel"];
+  int32 avatar_skill_num = 18 [json_name = "AvatarSkillNum"];
+  repeated int32 avatar_skill_id = 19 [json_name = "AvatarSkillID"];
+  int32 client_type = 20 [json_name = "ClientType"];
+  int32 account_type = 21 [json_name = "AccountType"];
+  int32 head_url_len = 22 [json_name = "HeadUrlLen"];
+  bytes head_url = 23 [json_name = "HeadUrl"];
+  int64 score = 24 [json_name = "Score"];
+  int32 ident_len = 25 [json_name = "IdentLen"];
+  bytes ident_info = 26 [json_name = "IdentInfo"];
+  int32 using_face_item_id = 27 [json_name = "UsingFaceItemID"];
+  .Native.HuanLeGameSvr.TPlayerDetailTLV player_detail_tlv = 28 [json_name = "PlayerDetailTLV"];
+}
+
+message TPlayerDetailTLV {
+  int32 type = 1 [json_name = "Type"];
+  int32 len = 2 [json_name = "Len"];
+  bytes value = 3 [json_name = "Value"];
+}
+
+message TPlayerGameID {
+  int32 game_id = 1 [json_name = "GameID"];
+}
+
+message TPlayerKickOutInfo {
+  int32 svr_id = 1 [json_name = "SvrID"];
+  int32 room_id = 2 [json_name = "RoomID"];
+  int32 reason_id = 3 [json_name = "ReasonID"];
+  int32 result_str_len = 4 [json_name = "ResultStrLen"];
+  bytes result_str = 5 [json_name = "ResultStr"];
+}
+
+message TPlayerMatchExtRankInfo {
+  int32 nick_len = 1 [json_name = "NickLen"];
+  bytes nick = 2 [json_name = "Nick"];
+}
+
+message TPlayerMatchRankInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 rank = 2 [json_name = "Rank"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  int32 match_score = 4 [json_name = "MatchScore"];
+  int32 currency_type = 5 [json_name = "CurrencyType"];
+  int64 currency_value = 6 [json_name = "CurrencyValue"];
+}
+
+message TPlayerMoneyChangeInfoHG {
+  int32 money_change_reason = 1 [json_name = "MoneyChangeReason"];
+  int64 money_change_value = 2 [json_name = "MoneyChangeValue"];
+  int64 money_cur_value = 3 [json_name = "MoneyCurValue"];
+  int32 service_tag = 4 [json_name = "ServiceTag"];
+}
+
+message TPlayerViewSeatInfo {
+  int32 player_id = 1 [json_name = "PlayerID"];
+  uint32 player_uin = 2 [json_name = "PlayerUin"];
+  int32 nick_len = 3 [json_name = "NickLen"];
+  bytes nick = 4 [json_name = "Nick"];
+  int32 age = 5 [json_name = "Age"];
+  int32 gender = 6 [json_name = "Gender"];
+  int32 level = 7 [json_name = "Level"];
+  uint32 experience = 8 [json_name = "Experience"];
+  int64 money = 9 [json_name = "Money"];
+  int32 table_id = 10 [json_name = "TableID"];
+  int32 seat_id = 11 [json_name = "SeatID"];
+  int32 player_status = 12 [json_name = "PlayerStatus"];
+  int32 client_type = 13 [json_name = "ClientType"];
+  int32 account_type = 14 [json_name = "AccountType"];
+  int32 open_id_len = 15 [json_name = "OpenIDLen"];
+  bytes open_id = 16 [json_name = "OpenID"];
+  int32 head_url_len = 17 [json_name = "HeadUrlLen"];
+  bytes head_url = 18 [json_name = "HeadUrl"];
+  int64 score = 19 [json_name = "Score"];
+}
+
+message TPrivateRoomConfigInfo {
+  int32 support_ob = 1 [json_name = "SupportOb"];
+  uint32 max_round_num = 2 [json_name = "MaxRoundNum"];
+  uint32 lord_max_score = 3 [json_name = "LordMaxScore"];
+}
+
+message TPrivateRoomConfigInfoV2 {
+  int32 support_ob = 1 [json_name = "SupportOb"];
+  uint32 max_round_num = 2 [json_name = "MaxRoundNum"];
+  uint32 lord_max_score = 3 [json_name = "LordMaxScore"];
+  int32 order_play_mode = 4 [json_name = "OrderPlayMode"];
+  int32 forbid_share = 5 [json_name = "ForbidShare"];
+  int32 forbid_multi = 6 [json_name = "ForbidMulti"];
+  int32 reserve_param3 = 7 [json_name = "ReserveParam3"];
+  int32 reserve_param4 = 8 [json_name = "ReserveParam4"];
+  int32 reserve_param5 = 9 [json_name = "ReserveParam5"];
+  int32 reserve_param6 = 10 [json_name = "ReserveParam6"];
+}
+
+message TPrivateRoomSingleRoundInfo {
+  uint32 scene_id = 1 [json_name = "SceneID"];
+  uint32 finish_time_stamp = 2 [json_name = "FinishTimeStamp"];
+  .Native.HuanLeGameSvr.TPrivateRoomConfigInfoV2 room_cfg = 3 [json_name = "RoomCfg"];
+  int32 games_num = 4 [json_name = "GamesNum"];
+  repeated .Native.HuanLeGameSvr.TSingleGameInfo single_game_info = 5 [json_name = "SingleGameInfo"];
+}
+
+message TPrivateTableInfo {
+  int32 table_key_len = 1 [json_name = "TableKeyLen"];
+  bytes table_key = 2 [json_name = "TableKey"];
+  int32 table_password_len = 3 [json_name = "TablePasswordLen"];
+  bytes table_password = 4 [json_name = "TablePassword"];
+  int32 req_round_num = 5 [json_name = "ReqRoundNum"];
+  int32 room_id = 6 [json_name = "RoomId"];
+  int32 owner_seat_id = 7 [json_name = "OwnerSeatID"];
+  int32 left_round_num = 8 [json_name = "LeftRoundNum"];
+  uint32 left_play_time = 9 [json_name = "LeftPlayTime"];
+  int32 player_score_info_num = 10 [json_name = "PlayerScoreInfoNum"];
+  repeated int64 player_score_info = 11 [json_name = "PlayerScoreInfo"];
+  int32 max_bei_num = 12 [json_name = "MaxBeiNum"];
+  int32 is_creater_friend = 13 [json_name = "IsCreaterFriend"];
+  int32 reserve_len = 14 [json_name = "ReserveLen"];
+  bytes reserve = 15 [json_name = "Reserve"];
+  int32 self_private_room_grade_score = 16 [json_name = "SelfPrivateRoomGradeScore"];
+}
+
+message TReliefFundsInfo {
+  int32 num = 1 [json_name = "Num"];
+  repeated int64 money_in_box = 2 [json_name = "MoneyInBox"];
+}
+
+message TRoomPlayerInfo {
+  int32 player_id = 1 [json_name = "PlayerID"];
+  uint32 player_uin = 2 [json_name = "PlayerUin"];
+  int32 nick_len = 3 [json_name = "NickLen"];
+  bytes nick = 4 [json_name = "Nick"];
+  int64 money = 5 [json_name = "Money"];
+  int32 head_url_len = 6 [json_name = "HeadUrlLen"];
+  bytes head_url = 7 [json_name = "HeadUrl"];
+  int32 account_type = 8 [json_name = "AccountType"];
+  int32 client_type = 9 [json_name = "ClientType"];
+}
+
+message TRtiEventScope {
+  int32 scope = 1 [json_name = "Scope"];
+}
+
+message TSectionScoreInfo {
+  int32 cur_section_score = 1 [json_name = "CurSectionScore"];
+  int32 enter_section_score = 2 [json_name = "EnterSectionScore"];
+  int32 protect_section = 3 [json_name = "ProtectSection"];
+}
+
+message TSimpleMatchRoundInfo {
+  int32 round_phase = 1 [json_name = "RoundPhase"];
+  int32 round_type = 2 [json_name = "RoundType"];
+  int32 round_idx = 3 [json_name = "RoundIdx"];
+  int32 input_num = 4 [json_name = "InputNum"];
+  int32 output_num = 5 [json_name = "OutputNum"];
+}
+
+message TSimplePlayerInfo {
+  int32 player_id = 1 [json_name = "PlayerID"];
+  uint32 player_uin = 2 [json_name = "PlayerUin"];
+  int32 nick_len = 3 [json_name = "NickLen"];
+  bytes nick = 4 [json_name = "Nick"];
+}
+
+message TSimpleRankInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 rank = 2 [json_name = "Rank"];
+  int32 nick_len = 3 [json_name = "NickLen"];
+  bytes nick = 4 [json_name = "Nick"];
+  int32 head_url_len = 5 [json_name = "HeadUrlLen"];
+  bytes head_url = 6 [json_name = "HeadUrl"];
+  int32 match_score = 7 [json_name = "MatchScore"];
+}
+
+message TSingleGameInfo {
+  int32 first_wild = 1 [json_name = "FirstWild"];
+  bytes beneath = 2 [json_name = "Beneath"];
+  int32 second_wild = 3 [json_name = "SecondWild"];
+  uint32 finish_time_stamp = 4 [json_name = "FinishTimeStamp"];
+  repeated uint32 uin_list = 5 [json_name = "UinList"];
+  repeated int32 score_list = 6 [json_name = "ScoreList"];
+  int32 give_card_seq_num = 7 [json_name = "GiveCardSeqNum"];
+  bytes give_card_seq = 8 [json_name = "GiveCardSeq"];
+}
+
+message TSoPlayerInfo {
+  int32 player_info_len = 1 [json_name = "PlayerInfoLen"];
+  bytes player_info = 2 [json_name = "PlayerInfo"];
+}
+
+message TStartEndGameInfo {
+  int32 end_game_id = 1 [json_name = "EndGameId"];
+  int32 session_id_len = 2 [json_name = "SessionIDLen"];
+  bytes session_id = 3 [json_name = "SessionID"];
+  int32 level_name_len = 4 [json_name = "LevelNameLen"];
+  bytes level_name = 5 [json_name = "LevelName"];
+  int32 time_out = 6 [json_name = "TimeOut"];
+  int32 challenge_t_imes = 7 [json_name = "ChallengeTImes"];
+  int32 total_level_num = 8 [json_name = "TotalLevelNum"];
+  int32 total_pass_num = 9 [json_name = "TotalPassNum"];
+  int32 is_passed_before = 10 [json_name = "IsPassedBefore"];
+  int32 index = 11 [json_name = "Index"];
+  int32 total_num = 12 [json_name = "TotalNum"];
+  int32 season_id = 13 [json_name = "SeasonID"];
+}
+
+message TTDTMatchInfo {
+  uint32 match_start_time = 1 [json_name = "MatchStartTime"];
+  uint32 match_start_left_time = 2 [json_name = "MatchStartLeftTime"];
+  int32 series_id = 3 [json_name = "SeriesId"];
+  int32 game_id = 4 [json_name = "GameId"];
+}
+
+message TTLVUNIT {
+  int32 type = 1 [json_name = "Type"];
+  int32 len = 2 [json_name = "Len"];
+  bytes value = 3 [json_name = "Value"];
+}
+
+message TTableSimpleInfoHG {
+  int32 table_id = 1 [json_name = "TableID"];
+  int32 table_status = 2 [json_name = "TableStatus"];
+  int32 table_seat_num = 3 [json_name = "TableSeatNum"];
+  int32 cur_player_num = 4 [json_name = "CurPlayerNum"];
+  int32 cur_viewer_num = 5 [json_name = "CurViewerNum"];
+}
+
+message TTaoDouInfoTlv {
+  uint32 is_finished = 1 [json_name = "IsFinished"];
+  int32 cur_score = 2 [json_name = "CurScore"];
+  int32 end_time_stamp = 3 [json_name = "EndTimeStamp"];
+  int32 target_score = 4 [json_name = "TargetScore"];
+  int32 reward_num = 5 [json_name = "RewardNum"];
+  repeated .Native.HuanLeGameSvr.TTaoDouRewardInfo reward_list = 6 [json_name = "RewardList"];
+}
+
+message TTaoDouRewardInfo {
+  int32 item_id = 1 [json_name = "ItemID"];
+  int32 item_count = 2 [json_name = "ItemCount"];
+}
+
+message TTeamInfo {
+  int32 player_num = 1 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TTeamPlayerInfo team_player_info = 2 [json_name = "TeamPlayerInfo"];
+}
+
+message TTeamList {
+  int32 team_num = 1 [json_name = "TeamNum"];
+  repeated .Native.HuanLeGameSvr.TTeamInfo team_info = 2 [json_name = "TeamInfo"];
+}
+
+message TTeamMatchInfo {
+  uint64 match_id = 1 [json_name = "MatchID"];
+  uint32 start_time = 2 [json_name = "StartTime"];
+  uint32 end_time = 3 [json_name = "EndTime"];
+  uint32 game_style = 4 [json_name = "GameStyle"];
+  .Native.HuanLeGameSvr.TTeamList team_list = 5 [json_name = "TeamList"];
+  int32 trans_len = 6 [json_name = "TransLen"];
+  bytes trans_parent = 7 [json_name = "TransParent"];
+}
+
+message TTeamMatchRankInfo {
+  int32 team_player_num = 1 [json_name = "TeamPlayerNum"];
+  repeated .Native.HuanLeGameSvr.TTeamPlayerMatchRankInfo team_player_info_list = 2 [json_name = "TeamPlayerInfoList"];
+}
+
+message TTeamMatchRankInfoWithNick {
+  int32 team_player_num = 1 [json_name = "TeamPlayerNum"];
+  repeated .Native.HuanLeGameSvr.TTeamPlayerMatchRankInfoWithNick team_player_info_list = 2 [json_name = "TeamPlayerInfoList"];
+}
+
+message TTeamMatchShowPlayerInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 account_type = 2 [json_name = "AccountType"];
+  int32 client_type = 3 [json_name = "ClientType"];
+  int32 rank = 4 [json_name = "Rank"];
+  int32 round_status = 5 [json_name = "RoundStatus"];
+  int32 reserved1 = 6 [json_name = "Reserved1"];
+  int32 reserved2 = 7 [json_name = "Reserved2"];
+}
+
+message TTeamMatchShowTableTeam {
+  int32 num = 1 [json_name = "Num"];
+  repeated .Native.HuanLeGameSvr.TTeamMatchShowTableTeamItem show_info = 2 [json_name = "ShowInfo"];
+}
+
+message TTeamMatchShowTableTeamItem {
+  int32 cur_round = 1 [json_name = "CurRound"];
+  int32 total_round = 2 [json_name = "TotalRound"];
+  int32 team_num = 3 [json_name = "TeamNum"];
+  repeated .Native.HuanLeGameSvr.TTeamMatchShowTeamItem team_list = 4 [json_name = "TeamList"];
+}
+
+message TTeamMatchShowTeam {
+  int32 num = 1 [json_name = "Num"];
+  repeated .Native.HuanLeGameSvr.TTeamMatchShowTeamItem team_show_info = 2 [json_name = "TeamShowInfo"];
+}
+
+message TTeamMatchShowTeamItem {
+  int32 player_num = 1 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TTeamMatchShowPlayerInfo player_list = 2 [json_name = "PlayerList"];
+}
+
+message TTeamMatchSimpleRankInfo {
+  int32 player_num = 1 [json_name = "PlayerNum"];
+  repeated .Native.HuanLeGameSvr.TTeamMatchSimpleRankPlayerInfo player_list = 2 [json_name = "PlayerList"];
+}
+
+message TTeamMatchSimpleRankPlayerInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 rank = 2 [json_name = "Rank"];
+  int32 match_score = 3 [json_name = "MatchScore"];
+  int32 reserved1 = 4 [json_name = "Reserved1"];
+  int32 reserved2 = 5 [json_name = "Reserved2"];
+}
+
+message TTeamMatchTeamDetailInfo {
+  int32 team_player_num = 1 [json_name = "TeamPlayerNum"];
+  repeated .Native.HuanLeGameSvr.TTeamPlayerDetailInfo team_player_info_list = 2 [json_name = "TeamPlayerInfoList"];
+}
+
+message TTeamMateInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 bean = 2 [json_name = "Bean"];
+  int32 score = 3 [json_name = "Score"];
+  int32 nick_len = 4 [json_name = "NickLen"];
+  int32 profile_len = 5 [json_name = "ProfileLen"];
+  bytes nick = 6 [json_name = "Nick"];
+  bytes profile = 7 [json_name = "Profile"];
+  int32 reserve0 = 8 [json_name = "Reserve0"];
+  int32 reserve1 = 9 [json_name = "Reserve1"];
+  int32 reserve2 = 10 [json_name = "Reserve2"];
+  int32 reserve3 = 11 [json_name = "Reserve3"];
+}
+
+message TTeamPlayerDetailInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  string nick = 2 [json_name = "Nick"];
+  string head_url = 3 [json_name = "HeadUrl"];
+  int32 client_type = 4 [json_name = "ClientType"];
+  int32 accout_type = 5 [json_name = "AccoutType"];
+}
+
+message TTeamPlayerInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 team_leader = 2 [json_name = "TeamLeader"];
+  int32 seat_id = 3 [json_name = "SeatID"];
+}
+
+message TTeamPlayerMatchRankInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 rank = 2 [json_name = "Rank"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  int32 match_score = 4 [json_name = "MatchScore"];
+  int32 currency_type = 5 [json_name = "CurrencyType"];
+  int64 currency_value = 6 [json_name = "CurrencyValue"];
+}
+
+message TTeamPlayerMatchRankInfoWithNick {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 rank = 2 [json_name = "Rank"];
+  int32 player_status = 3 [json_name = "PlayerStatus"];
+  int32 match_score = 4 [json_name = "MatchScore"];
+  string nick = 5 [json_name = "Nick"];
+}
+
+message TTeamRoomInfo {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 jeton = 2 [json_name = "Jeton"];
+  int32 status = 3 [json_name = "Status"];
+  int32 expire_time = 4 [json_name = "ExpireTime"];
+  int32 server_id = 5 [json_name = "ServerID"];
+  int32 room_id = 6 [json_name = "RoomID"];
+  int32 token_len = 7 [json_name = "TokenLen"];
+  bytes token = 8 [json_name = "Token"];
+  int32 reserve0 = 9 [json_name = "Reserve0"];
+  int32 reserve1 = 10 [json_name = "Reserve1"];
+  int32 reserve2 = 11 [json_name = "Reserve2"];
+  int32 reserve3 = 12 [json_name = "Reserve3"];
+  int32 reserve4 = 13 [json_name = "Reserve4"];
+  int32 reserve5 = 14 [json_name = "Reserve5"];
+  int32 reserve6 = 15 [json_name = "Reserve6"];
+  int32 reserve7 = 16 [json_name = "Reserve7"];
+}
+
+message TTeamupChangeJetonReq {
+  int32 jeton = 1 [json_name = "Jeton"];
+  int32 reserve0 = 2 [json_name = "Reserve0"];
+  int32 reserve1 = 3 [json_name = "Reserve1"];
+  int32 reserve2 = 4 [json_name = "Reserve2"];
+  int32 reserve3 = 5 [json_name = "Reserve3"];
+}
+
+message TTeamupChangeJetonRsp {
+  int32 result = 1 [json_name = "Result"];
+  int32 jeton = 2 [json_name = "Jeton"];
+  int32 reserve0 = 3 [json_name = "Reserve0"];
+  int32 reserve1 = 4 [json_name = "Reserve1"];
+  int32 reserve2 = 5 [json_name = "Reserve2"];
+  int32 reserve3 = 6 [json_name = "Reserve3"];
+}
+
+message TTeamupCreateReq {
+  int32 jeton = 1 [json_name = "Jeton"];
+  int32 reserve0 = 2 [json_name = "Reserve0"];
+  int32 reserve1 = 3 [json_name = "Reserve1"];
+  int32 reserve2 = 4 [json_name = "Reserve2"];
+  int32 reserve3 = 5 [json_name = "Reserve3"];
+  int32 reserve4 = 6 [json_name = "Reserve4"];
+  int32 reserve5 = 7 [json_name = "Reserve5"];
+  int32 reserve6 = 8 [json_name = "Reserve6"];
+  int32 reserve7 = 9 [json_name = "Reserve7"];
+}
+
+message TTeamupCreateRsp {
+  int32 result = 1 [json_name = "Result"];
+  uint32 owner = 2 [json_name = "Owner"];
+  int32 jeton = 3 [json_name = "Jeton"];
+  int32 status = 4 [json_name = "Status"];
+  int32 expire_time = 5 [json_name = "ExpireTime"];
+  int32 server_id = 6 [json_name = "ServerID"];
+  int32 room_id = 7 [json_name = "RoomID"];
+  int32 token_len = 8 [json_name = "TokenLen"];
+  bytes token = 9 [json_name = "Token"];
+  int32 reserve0 = 10 [json_name = "Reserve0"];
+  int32 reserve1 = 11 [json_name = "Reserve1"];
+  int32 reserve2 = 12 [json_name = "Reserve2"];
+  int32 reserve3 = 13 [json_name = "Reserve3"];
+}
+
+message TTeamupGameDissmiss {
+  int32 reason = 1 [json_name = "Reason"];
+  int32 reserve0 = 2 [json_name = "Reserve0"];
+  int32 reserve1 = 3 [json_name = "Reserve1"];
+  int32 reserve2 = 4 [json_name = "Reserve2"];
+  int32 reserve3 = 5 [json_name = "Reserve3"];
+  int32 reserve4 = 6 [json_name = "Reserve4"];
+  int32 reserve5 = 7 [json_name = "Reserve5"];
+  int32 reserve6 = 8 [json_name = "Reserve6"];
+  int32 reserve7 = 9 [json_name = "Reserve7"];
+}
+
+message TTeamupJoinReq {
+  uint32 owner = 1 [json_name = "Owner"];
+  int32 server_id = 2 [json_name = "ServerID"];
+  int32 room_id = 3 [json_name = "RoomID"];
+  int32 token_len = 4 [json_name = "TokenLen"];
+  bytes token = 5 [json_name = "Token"];
+  int32 reserve0 = 6 [json_name = "Reserve0"];
+  int32 reserve1 = 7 [json_name = "Reserve1"];
+  int32 reserve2 = 8 [json_name = "Reserve2"];
+  int32 reserve3 = 9 [json_name = "Reserve3"];
+}
+
+message TTeamupJoinRsp {
+  int32 result = 1 [json_name = "Result"];
+  uint32 uin = 2 [json_name = "Uin"];
+  int32 jeton = 3 [json_name = "Jeton"];
+  int32 status = 4 [json_name = "Status"];
+  int32 reserve0 = 5 [json_name = "Reserve0"];
+  int32 reserve1 = 6 [json_name = "Reserve1"];
+  int32 reserve2 = 7 [json_name = "Reserve2"];
+  int32 reserve3 = 8 [json_name = "Reserve3"];
+}
+
+message TTeamupMateLeave {
+  uint32 uin = 1 [json_name = "Uin"];
+  int32 reserve0 = 2 [json_name = "Reserve0"];
+  int32 reserve1 = 3 [json_name = "Reserve1"];
+  int32 reserve2 = 4 [json_name = "Reserve2"];
+  int32 reserve3 = 5 [json_name = "Reserve3"];
+  int32 reserve4 = 6 [json_name = "Reserve4"];
+  int32 reserve5 = 7 [json_name = "Reserve5"];
+  int32 reserve6 = 8 [json_name = "Reserve6"];
+  int32 reserve7 = 9 [json_name = "Reserve7"];
+}
+
+message TTeamupStartArrange {
+  int32 reserve0 = 1 [json_name = "Reserve0"];
+  int32 reserve1 = 2 [json_name = "Reserve1"];
+  int32 reserve2 = 3 [json_name = "Reserve2"];
+  int32 reserve3 = 4 [json_name = "Reserve3"];
+  int32 reserve4 = 5 [json_name = "Reserve4"];
+  int32 reserve5 = 6 [json_name = "Reserve5"];
+  int32 reserve6 = 7 [json_name = "Reserve6"];
+  int32 reserve7 = 8 [json_name = "Reserve7"];
+}
+
+message TTransparentInfo {
+  int32 transparent_info_len = 1 [json_name = "TransparentInfoLen"];
+  bytes transparent_info = 2 [json_name = "TransparentInfo"];
+}
+
+message TTreasueBoxReward {
+  int32 item_id = 1 [json_name = "ItemID"];
+  int32 item_count = 2 [json_name = "ItemCount"];
+  int64 cur_item_count = 3 [json_name = "CurItemCount"];
+  int32 desc_len = 4 [json_name = "DescLen"];
+  bytes desc = 5 [json_name = "Desc"];
+}
+
+message TUpgradeWaitingMsg {
+  int32 round_stage_info_len = 1 [json_name = "RoundStageInfoLen"];
+  bytes round_stage_info_name = 2 [json_name = "RoundStageInfoName"];
+  int32 upgrade_num_len = 3 [json_name = "UpgradeNumLen"];
+  bytes upgrade_num = 4 [json_name = "UpgradeNum"];
+  int32 upgrade_status_len = 5 [json_name = "UpgradeStatusLen"];
+  bytes upgrade_status = 6 [json_name = "UpgradeStatus"];
+  int32 round_type_name_len = 7 [json_name = "RoundTypeNameLen"];
+  bytes round_type_name = 8 [json_name = "RoundTypeName"];
+}
+
+message TUpgradeWaitingStatus {
+  int32 round_stage_idx = 1 [json_name = "RoundStageIdx"];
+  int32 round_type = 2 [json_name = "RoundType"];
+  int32 round_phase = 3 [json_name = "RoundPhase"];
+  int32 input_num = 4 [json_name = "InputNum"];
+  int32 output_num = 5 [json_name = "OutputNum"];
+}
+
+message TViewGameMsgInfo {
+  int32 seat_id = 1 [json_name = "SeatID"];
+  .Native.HuanLeGameSvr.TGameMsgInfo game_msg_info = 2 [json_name = "GameMsgInfo"];
+}
+
+message TVirtualMatchCfg {
+  int64 lower_bean = 1 [json_name = "LowerBean"];
+  int64 upper_bean = 2 [json_name = "UpperBean"];
+  int64 lower_score = 3 [json_name = "LowerScore"];
+  int64 upper_score = 4 [json_name = "UpperScore"];
+  int32 max_game_cnt = 5 [json_name = "MaxGameCnt"];
+  int32 rebuy_type = 6 [json_name = "RebuyType"];
+  int32 flag = 7 [json_name = "Flag"];
+  int32 allow_system_complment = 8 [json_name = "AllowSystemComplment"];
+  int32 per_game_ticket = 9 [json_name = "PerGameTicket"];
+}
+
+message TVirtualMatchGameItem {
+  int32 game_result = 1 [json_name = "GameResult"];
+  int64 game_score = 2 [json_name = "GameScore"];
+  int64 sys_re_fill_value = 3 [json_name = "SysReFillValue"];
+  int64 player_rebuy_value = 4 [json_name = "PlayerRebuyValue"];
+}
+
+message TVirtualMatchInfo {
+  int32 player_cnt = 1 [json_name = "PlayerCnt"];
+  int32 match_rank = 2 [json_name = "MatchRank"];
+  int64 match_score = 3 [json_name = "MatchScore"];
+  int32 game_cnt = 4 [json_name = "GameCnt"];
+  repeated .Native.HuanLeGameSvr.TVirtualMatchGameItem game_item = 5 [json_name = "GameItem"];
+  int32 is_match_finish = 6 [json_name = "IsMatchFinish"];
+  int32 prize_cnt = 7 [json_name = "PrizeCnt"];
+  repeated .Native.HuanLeGameSvr.TVirtualMatchPrizeItem prize_item = 8 [json_name = "PrizeItem"];
+  int64 carry_score = 9 [json_name = "CarryScore"];
+}
+
+message TVirtualMatchOtherPlayerInfo {
+  int32 seat_id = 1 [json_name = "SeatID"];
+  int64 carry_score = 2 [json_name = "CarryScore"];
+  int64 match_score = 3 [json_name = "MatchScore"];
+}
+
+message TVirtualMatchPlayerStatus {
+  .Native.HuanLeGameSvr.TVirtualMatchInfo match_info = 1 [json_name = "MatchInfo"];
+  int32 opn_cnt = 2 [json_name = "OpnCnt"];
+  repeated .Native.HuanLeGameSvr.TVirtualMatchOtherPlayerInfo opn_info = 3 [json_name = "OpnInfo"];
+}
+
+message TVirtualMatchPrizeItem {
+  int32 item_id = 1 [json_name = "ItemID"];
+  int32 item_count = 2 [json_name = "ItemCount"];
+}
+
+message TWQFriendGameInfo {
+  int32 black_seat_id = 1 [json_name = "BlackSeatID"];
+  float komi = 2 [json_name = "Komi"];
+  int32 basic_second = 3 [json_name = "BasicSecond"];
+  int32 byoyomi_second = 4 [json_name = "ByoyomiSecond"];
+  int32 handicap_num = 5 [json_name = "HandicapNum"];
+  int32 allow_over_times = 6 [json_name = "AllowOverTimes"];
+  int32 allow_take_back = 7 [json_name = "AllowTakeBack"];
+  int32 allow_draw = 8 [json_name = "AllowDraw"];
+  int32 allow_positional_judgement = 9 [json_name = "AllowPositionalJudgement"];
+  int32 board_size = 10 [json_name = "BoardSize"];
+  int32 rule = 11 [json_name = "Rule"];
+  int32 play_type = 12 [json_name = "PlayType"];
+  int32 allow_off_line_time = 13 [json_name = "AllowOffLineTime"];
+  int32 guidance_cost = 14 [json_name = "GuidanceCost"];
+  int32 invite_type = 15 [json_name = "InviteType"];
+}
+
+message TWxAppletInfo {
+  string wx_app_let_open_id = 1 [json_name = "WxAppLetOpenID"];
+  string wx_app_let_open_key = 2 [json_name = "WxAppLetOpenKey"];
+}
+
+message UGameSvrInfo {
+  bytes variant_1 = 1 [json_name = "Field1"];
+}
+
+message UGameTLVValue {
+  .Native.HuanLeGameSvr.T3DMJPlayInfo variant_1 = 1 [json_name = "Field3"];
+  .Native.HuanLeGameSvr.TDNPlayInfo variant_2 = 2 [json_name = "Field2"];
+  bytes variant_3 = 3 [json_name = "Field1"];
+  .Native.HuanLeGameSvr.T3DMJPlayInfo variant_4 = 4 [json_name = "Field4"];
+}
+
+message UMatchStatusUNIT {
+  .Native.HuanLeGameSvr.TEnrollInfo variant_1 = 1 [json_name = "Field3"];
+  .Native.HuanLeGameSvr.TFightTopMatchConfigInfo variant_2 = 2 [json_name = "Field4"];
+  .Native.HuanLeGameSvr.TFightTopMatchInfo variant_3 = 3 [json_name = "Field8"];
+  .Native.HuanLeGameSvr.TMatchFIXRoundPlayerCntInfo variant_4 = 4 [json_name = "Field6"];
+  .Native.HuanLeGameSvr.TMatchShowPlayerUin variant_5 = 5 [json_name = "Field10"];
+  .Native.HuanLeGameSvr.TMatchShowPlayerTable variant_6 = 6 [json_name = "Field5"];
+  .Native.HuanLeGameSvr.TMatchShowPlayerUin variant_7 = 7 [json_name = "Field9"];
+  .Native.HuanLeGameSvr.TMatchSimpleRankInfo variant_8 = 8 [json_name = "Field7"];
+  .Native.HuanLeGameSvr.TTeamMatchShowTeam variant_9 = 9 [json_name = "Field11"];
+  .Native.HuanLeGameSvr.TTeamMatchShowTableTeam variant_10 = 10 [json_name = "Field1"];
+  .Native.HuanLeGameSvr.TTeamMatchTeamDetailInfo variant_11 = 11 [json_name = "Field2"];
+}
+
+message UTLVValue {
+  .Native.HuanLeGameSvr.TAppointmentKey variant_1 = 1 [json_name = "Field25"];
+  .Native.HuanLeGameSvr.TCompeteBuffer variant_2 = 2 [json_name = "Field61"];
+  .Native.HuanLeGameSvr.TClientInfo variant_3 = 3 [json_name = "Field53"];
+  .Native.HuanLeGameSvr.TMatchTickKey variant_4 = 4 [json_name = "Field46"];
+  .Native.HuanLeGameSvr.TDeviceID variant_5 = 5 [json_name = "Field27"];
+  .Native.HuanLeGameSvr.TGameSvrIPPort variant_6 = 6 [json_name = "Field11"];
+  .Native.HuanLeGameSvr.TPrivateRoomConfigInfo variant_7 = 7 [json_name = "Field49"];
+  .Native.HuanLeGameSvr.TPrivateRoomConfigInfoV2 variant_8 = 8 [json_name = "Field57"];
+  .Native.HuanLeGameSvr.TPlayerDetailInfoHG variant_9 = 9 [json_name = "Field8"];
+  .Native.HuanLeGameSvr.TPlayerViewSeatInfo variant_10 = 10 [json_name = "Field64"];
+  .Native.HuanLeGameSvr.TPlayerKickOutInfo variant_11 = 11 [json_name = "Field44"];
+  .Native.HuanLeGameSvr.TPlayerMoneyChangeInfoHG variant_12 = 12 [json_name = "Field22"];
+  .Native.HuanLeGameSvr.TTableSimpleInfoHG variant_13 = 13 [json_name = "Field45"];
+  .Native.HuanLeGameSvr.TPlayerCountNormalItemChangeInfoHG variant_14 = 14 [json_name = "Field50"];
+  .Native.HuanLeGameSvr.TPlayerAvatarChangeInfoHG variant_15 = 15 [json_name = "Field2"];
+  .Native.HuanLeGameSvr.TGameMsgInfo variant_16 = 16 [json_name = "Field33"];
+  .Native.HuanLeGameSvr.TLockInfo variant_17 = 17 [json_name = "Field20"];
+  .Native.HuanLeGameSvr.TBaseGameCfgData variant_18 = 18 [json_name = "Field35"];
+  .Native.HuanLeGameSvr.TPlayerCapability variant_19 = 19 [json_name = "Field5"];
+  .Native.HuanLeGameSvr.TExitPlayerInfo variant_20 = 20 [json_name = "Field70"];
+  .Native.HuanLeGameSvr.TGameLogicMsgValue variant_21 = 21 [json_name = "Field65"];
+  .Native.HuanLeGameSvr.TGameScoreValue variant_22 = 22 [json_name = "Field15"];
+  .Native.HuanLeGameSvr.TTDTMatchInfo variant_23 = 23 [json_name = "Field40"];
+  .Native.HuanLeGameSvr.TPrivateTableInfo variant_24 = 24 [json_name = "Field18"];
+  .Native.HuanLeGameSvr.TReliefFundsInfo variant_25 = 25 [json_name = "Field3"];
+  .Native.HuanLeGameSvr.TDiamondInfo variant_26 = 26 [json_name = "Field43"];
+  .Native.HuanLeGameSvr.TOBViewInfo variant_27 = 27 [json_name = "Field48"];
+  .Native.HuanLeGameSvr.TViewGameMsgInfo variant_28 = 28 [json_name = "Field72"];
+  .Native.HuanLeGameSvr.TLogoutPlayerInfo variant_29 = 29 [json_name = "Field16"];
+  .Native.HuanLeGameSvr.TBackgroundInfo variant_30 = 30 [json_name = "Field52"];
+  .Native.HuanLeGameSvr.TOBMatchInfo variant_31 = 31 [json_name = "Field1"];
+  .Native.HuanLeGameSvr.TOBKeyInfo variant_32 = 32 [json_name = "Field58"];
+  .Native.HuanLeGameSvr.TOlympicSvrInfoTlv variant_33 = 33 [json_name = "Field9"];
+  .Native.HuanLeGameSvr.TNewGameSvrPrivateTableInfo variant_34 = 34 [json_name = "Field68"];
+  .Native.HuanLeGameSvr.TTransparentInfo variant_35 = 35 [json_name = "Field63"];
+  .Native.HuanLeGameSvr.TLocationInfo variant_36 = 36 [json_name = "Field4"];
+  .Native.HuanLeGameSvr.TPlayerGameID variant_37 = 37 [json_name = "Field37"];
+  .Native.HuanLeGameSvr.TVirtualMatchCfg variant_38 = 38 [json_name = "Field47"];
+  .Native.HuanLeGameSvr.TVirtualMatchPlayerStatus variant_39 = 39 [json_name = "Field21"];
+  .Native.HuanLeGameSvr.TTaoDouInfoTlv variant_40 = 40 [json_name = "Field42"];
+  .Native.HuanLeGameSvr.TMatchFIXRoundPlayerCntInfo variant_41 = 41 [json_name = "Field41"];
+  .Native.HuanLeGameSvr.TMatchTicket variant_42 = 42 [json_name = "Field67"];
+  .Native.HuanLeGameSvr.TMatchPersistVirtualFixRoundInfo variant_43 = 43 [json_name = "Field17"];
+  .Native.HuanLeGameSvr.TCancelViewInfo variant_44 = 44 [json_name = "Field56"];
+  .Native.HuanLeGameSvr.TEnterEndGameKey variant_45 = 45 [json_name = "Field62"];
+  .Native.HuanLeGameSvr.TEnterEndGameReplayKey variant_46 = 46 [json_name = "Field59"];
+  .Native.HuanLeGameSvr.TPlayerGameID variant_47 = 47 [json_name = "Field38"];
+  .Native.HuanLeGameSvr.TAppointmentKey variant_48 = 48 [json_name = "Field26"];
+  .Native.HuanLeGameSvr.TDeviceID variant_49 = 49 [json_name = "Field28"];
+  .Native.HuanLeGameSvr.TNewGameSvrPrivateTableInfo variant_50 = 50 [json_name = "Field69"];
+  .Native.HuanLeGameSvr.TDynaSceneInfo variant_51 = 51 [json_name = "Field30"];
+  .Native.HuanLeGameSvr.TPrivateTableInfo variant_52 = 52 [json_name = "Field19"];
+  .Native.HuanLeGameSvr.TExitPlayerInfo variant_53 = 53 [json_name = "Field71"];
+  .Native.HuanLeGameSvr.TPlayerCapability variant_54 = 54 [json_name = "Field6"];
+  .Native.HuanLeGameSvr.TInviteFriendKey variant_55 = 55 [json_name = "Field13"];
+  .Native.HuanLeGameSvr.TTeamupCreateReq variant_56 = 56 [json_name = "Field24"];
+  .Native.HuanLeGameSvr.TTeamupJoinReq variant_57 = 57 [json_name = "Field39"];
+  .Native.HuanLeGameSvr.TTeamupChangeJetonReq variant_58 = 58 [json_name = "Field34"];
+  .Native.HuanLeGameSvr.TTeamupCreateRsp variant_59 = 59 [json_name = "Field66"];
+  .Native.HuanLeGameSvr.TTeamupJoinRsp variant_60 = 60 [json_name = "Field55"];
+  .Native.HuanLeGameSvr.TTeamupChangeJetonRsp variant_61 = 61 [json_name = "Field51"];
+  .Native.HuanLeGameSvr.TTeamMateInfo variant_62 = 62 [json_name = "Field14"];
+  .Native.HuanLeGameSvr.TTeamRoomInfo variant_63 = 63 [json_name = "Field73"];
+  .Native.HuanLeGameSvr.TTeamupStartArrange variant_64 = 64 [json_name = "Field23"];
+  .Native.HuanLeGameSvr.TTeamupGameDissmiss variant_65 = 65 [json_name = "Field60"];
+  .Native.HuanLeGameSvr.TTeamupMateLeave variant_66 = 66 [json_name = "Field36"];
+  .Native.HuanLeGameSvr.TRtiEventScope variant_67 = 67 [json_name = "Field10"];
+  .Native.HuanLeGameSvr.TLudoReplaySoRoundInfo variant_68 = 68 [json_name = "Field32"];
+  .Native.HuanLeGameSvr.TLudoReplaySoPlayerInfo variant_69 = 69 [json_name = "Field7"];
+  .Native.HuanLeGameSvr.TInviteFriendKey variant_70 = 70 [json_name = "Field12"];
+  .Native.HuanLeGameSvr.TDelayMatchReward variant_71 = 71 [json_name = "Field54"];
+  .Native.HuanLeGameSvr.TDynaSceneInfo variant_72 = 72 [json_name = "Field29"];
+  .Native.HuanLeGameSvr.TLoginPbInfo variant_73 = 73 [json_name = "Field31"];
+}

@@ -1,0 +1,267 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.ChatSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.chatsvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_ChatSvrProto";
+
+enum CHATSVR_CHANNEL_TYPE {
+  CHATSVR_CHANNEL_TYPE_Tdr2PbDummyChatsvrChannelType = 0;
+  CHATSVR_CHANNEL_TYPE_EChatsvrChannelTypeP2P = 1;
+  CHATSVR_CHANNEL_TYPE_EChatsvrChannelTypeWorld = 2;
+  CHATSVR_CHANNEL_TYPE_EChatsvrChannelTypeAi = 3;
+  CHATSVR_CHANNEL_TYPE_EChatsvrChannelTypeTeammission = 4;
+  CHATSVR_CHANNEL_TYPE_EChatsvrChannelType2V2 = 5;
+  CHATSVR_CHANNEL_TYPE_EChatsvrChannelType3V3 = 6;
+  CHATSVR_CHANNEL_TYPE_EChatsvrChannelTypeSocialTeam = 7;
+}
+
+enum CHATSVR_MESSAGE_TYPE {
+  CHATSVR_MESSAGE_TYPE_Tdr2PbDummyChatsvrMessageType = 0;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeText = 1;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeEmoj = 2;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeVoice = 3;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeShortcutVoice = 4;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeUnsupport = 10001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeAskRobot = 20001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeStructure = 30001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeRichText = 40001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeNewFriendMsg = 50001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeAskRobotTips = 60001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeSystemTips = 70001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeAvatarPlayAction = 80001;
+  CHATSVR_MESSAGE_TYPE_EChatsvrMessageTypeAvatarChangeClothes = 90001;
+  CHATSVR_MESSAGE_TYPE_E_CHATSVR_MESSAGE_TYPE_COLLECTION_SYSTEM_SWAP_CARD = 100001;
+  CHATSVR_MESSAGE_TYPE_E_CHATSVR_MESSAGE_TYPE_INTIMACY_GIFT = 110001;
+  CHATSVR_MESSAGE_TYPE_E_CHATSVR_MESSAGE_TYPE_SEASONCOLLECT_SYSTEM_SWAP_CARD = 140001;
+}
+
+enum CHATSVR_MSG_SITUATION_TYPE {
+  CHATSVR_MSG_SITUATION_TYPE_Tdr2PbDummyChatsvrMsgSituationType = 0;
+  CHATSVR_MSG_SITUATION_TYPE_EChatsvrMsgSituationEntertainment2V2 = 1;
+  CHATSVR_MSG_SITUATION_TYPE_EChatsvrMsgSituationMatch2V2 = 2;
+}
+
+enum CHATSVR_TLV_TYPE {
+  CHATSVR_TLV_TYPE_Tdr2PbDummyChatsvrTlvType = 0;
+  CHATSVR_TLV_TYPE_EmChatsvrTlvTypeTeammissionInfo = 1;
+  CHATSVR_TLV_TYPE_EmChatsvrTlvTypeChatBubbleInfo = 2;
+  CHATSVR_TLV_TYPE_EmChatsvrTlvTypeSocailTeamInfo = 3;
+}
+
+enum MacroDefineForChatSvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForChatSvrMsgPara_Tdr2PbDummyMacroDefineForChatSvrMsgPara = 0;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrSendMsg = 35601;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrNotifyMsg = 35602;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrRecvMsg = 35603;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrNotifyClearMsg = 35604;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrQueryUserRight = 35605;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrSendOnlineMsg = 35606;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrNotityOnlineMsg = 35607;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrIdipBanUserRight = 35680;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrIdipClearMsgUserRight = 35681;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrInternalQueryOnlineStatusMsg = 35697;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrInternalReqAiRobotMsg = 35698;
+  MacroDefineForChatSvrMsgPara_MsgidChatsvrInternalDeleteMessageMsg = 35699;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxNickLenth = 64;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxHeadLenth = 256;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxOpenidLenth = 1024;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxOpenkeyStrLen = 1024;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxResultStrLen = 1024;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxMessageContentLength = 5120;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxMessagePrePkgLen = 20;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxIpLenth = 25;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxPunishStrLen = 512;
+  MacroDefineForChatSvrMsgPara_ChatsvrMaxSocialTeamPlayerNum = 20;
+  MacroDefineForChatSvrMsgPara_MaxChatsvrTlvNum = 32;
+  MacroDefineForChatSvrMsgPara_MaxChatsvrTransparentDataLen = 1024;
+}
+
+message CHATSVR_TLVUNIT {
+  int32 type = 1;
+  int32 len = 2;
+  CHATSVR_TLVValue value = 3;
+}
+
+message CHATSVR_TLVValue {
+  TTeamMissionInfo team_mission_info = 1;
+  TChatBubbleInfo chat_bubble_info = 2;
+  TSocialTeamInfo social_team_info = 3;
+}
+
+message CInternalDeleteChatMessage {
+  uint32 uin = 1;
+  uint32 src_uin = 2;
+  int32 store_type = 3;
+  uint64 seq = 4;
+  int32 is_long_message = 5;
+}
+
+message CInternalReqAiRobotMessage {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  string question = 3;
+}
+
+message CNotifyClearChatMessage {
+  uint32 uin = 1;
+  int32 time_stamp = 2;
+}
+
+message CNotifyNewChatMessage {
+  int32 server_timestamp = 1;
+}
+
+message CNotifyOnlineChatMessage {
+  TChatSvrMessageInfo message = 1;
+  int32 src_fight_head_frame_item_id = 2;
+  string src_nick = 3;
+  string src_head = 4;
+  int32 src_chat_bubble = 5;
+  int32 transparent_len = 6;
+  bytes transparent_data = 7;
+}
+
+message CReqChatBanUserRight {
+  TChatSvrUserInfo user_info = 1;
+  int32 ban_type = 2;
+  int32 punish_end_time = 3;
+  string punish_str = 4;
+}
+
+message CReqChatUserRight {
+  TChatSvrUserInfo user_info = 1;
+}
+
+message CReqClearUserMsg {
+  TChatSvrUserInfo user_info = 1;
+  int32 clear_time = 2;
+}
+
+message CReqRecvChatMessage {
+  TChatSvrUserInfo user_info = 1;
+  uint64 client_max_player_seq = 2;
+  uint64 client_world_channel_seq = 3;
+  int32 login_timestamp = 4;
+  int32 tlv_num = 5;
+  repeated CHATSVR_TLVUNIT tl_vs = 6;
+}
+
+message CReqSendChatMessage {
+  TChatSvrUserInfo user_info = 1;
+  TChatSvrMessageInfo message = 2;
+  int32 tlv_num = 3;
+  repeated CHATSVR_TLVUNIT tl_vs = 4;
+  int32 need_notify_sender = 5;
+}
+
+message CReqSendOnlineChatMessage {
+  TChatSvrUserInfo user_info = 1;
+  TChatSvrMessageInfo message = 2;
+  int32 tlv_num = 3;
+  repeated CHATSVR_TLVUNIT tl_vs = 4;
+  int32 transparent_len = 5;
+  bytes transparent_data = 6;
+}
+
+message CRspChatBanUserRight {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 is_not_allowed_taking = 3;
+  int32 punish_start_time = 4;
+  int32 punish_end_time = 5;
+}
+
+message CRspChatUserRight {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 is_not_allowed_taking = 3;
+  int32 punish_start_time = 4;
+  int32 punish_end_time = 5;
+  string punish_str = 6;
+}
+
+message CRspClearUserMsg {
+  int32 result_id = 1;
+  string result_str = 2;
+}
+
+message CRspRecvChatMessage {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 more_message = 3;
+  int32 message_list_len = 4;
+  repeated TChatSvrMessageInfo message_list = 5;
+  int32 user_info_list_len = 6;
+  repeated TChatSvrDisplayUserInfo user_info_list = 7;
+  repeated int32 user_chat_bubble_list = 8;
+  repeated uint32 user_privilege = 9;
+}
+
+message CRspSendChatMessage {
+  int32 result_id = 1;
+  string result_str = 2;
+  TChatSvrMessageInfo message = 3;
+}
+
+message CRspSendOnlineChatMessage {
+  int32 result_id = 1;
+  string result_str = 2;
+  TChatSvrMessageInfo message = 3;
+}
+
+message TChatBubbleInfo {
+  int32 chat_bubble_id = 1;
+}
+
+message TChatSvrDisplayUserInfo {
+  uint32 uin = 1;
+  int32 fight_head_frame_item_id = 2;
+  string nick = 3;
+  string head = 4;
+}
+
+message TChatSvrMessageInfo {
+  uint32 src_uin = 1;
+  uint32 dst_uin = 2;
+  uint64 seq = 3;
+  uint32 time_stamp = 4;
+  int32 channel_type = 5;
+  int32 message_type = 6;
+  string message_content = 7;
+}
+
+message TChatSvrUserInfo {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 title = 5;
+  int32 fight_duan_id = 6;
+  int32 fight_head_frame_item_id = 7;
+  string nick = 8;
+  string head = 9;
+  string open_id = 10;
+  string open_key = 11;
+}
+
+message TOnlineChatTransparentInfoForClient {
+  int32 gender = 1;
+  int32 situation = 2;
+  int32 model_gender = 3;
+  int32 dialect_item_id = 4;
+}
+
+message TSocialTeamInfo {
+  int64 team_id = 1;
+  int32 team_mate_num = 2;
+  repeated uint32 team_mate_list = 3;
+}
+
+message TTeamMissionInfo {
+  uint32 uin = 1;
+  int32 team_time = 2;
+}

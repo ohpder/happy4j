@@ -1,0 +1,29 @@
+{
+  "name": "happy4j-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "test": "vitest run",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run lint && npm run test"
+  },
+  "dependencies": {
+    "onnxruntime-web": "^1.23.2",
+    "vue": "3.5.42"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@vitejs/plugin-vue": "6.0.8",
+    "eslint": "10.9.1",
+    "eslint-plugin-vue": "10.10.0",
+    "globals": "17.11.0",
+    "prettier": "3.9.6",
+    "vite": "8.2.2",
+    "vitest": "4.1.11"
+  }
+}

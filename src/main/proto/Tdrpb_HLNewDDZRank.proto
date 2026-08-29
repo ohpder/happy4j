@@ -1,0 +1,286 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLNewDDZRank;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlnewddzrank";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLNewDDZRankProto";
+
+enum APOLLO_SUB_RANK_DETAIL_INFO {
+  APOLLO_SUB_RANK_DETAIL_INFO_EmApolloSubRankDetailRankType = 0;
+  APOLLO_SUB_RANK_DETAIL_INFO_EmApolloSubRankDetailRankTs = 1;
+  APOLLO_SUB_RANK_DETAIL_INFO_EmApolloSubRankDetailRankSeasonId = 2;
+  APOLLO_SUB_RANK_DETAIL_INFO_EmApolloSubRankDetailRankMax = 3;
+}
+
+enum APP_CANJU_RANK_DETAIL_INFO {
+  APP_CANJU_RANK_DETAIL_INFO_First = 0;
+  APP_CANJU_RANK_DETAIL_INFO_Second = 1;
+  APP_CANJU_RANK_DETAIL_INFO_HeadframeId = 2;
+}
+
+enum DUANWEI_RANK_DETAIL_INFO {
+  DUANWEI_RANK_DETAIL_INFO_EmDuanweiRankDetailPlayerLevel = 0;
+  DUANWEI_RANK_DETAIL_INFO_EmDuanweiRankDetailHeadframeId = 1;
+  DUANWEI_RANK_DETAIL_INFO_EmDuanweiRankDetailSeasonId = 2;
+  DUANWEI_RANK_DETAIL_INFO_EmDuanweiRankDetailDuanwei = 3;
+  DUANWEI_RANK_DETAIL_INFO_EmDuanweiRankDetailStar = 4;
+}
+
+enum EnApolloSubRankType {
+  EnApolloSubRankType_EmApolloSubRankUnknown = 0;
+  EnApolloSubRankType_EmApolloSubRankNation = 1;
+  EnApolloSubRankType_EmApolloSubRankProvince = 2;
+  EnApolloSubRankType_EmApolloSubRankCity = 3;
+  EnApolloSubRankType_EmApolloSubRankDistrict = 4;
+  EnApolloSubRankType_EmApolloSubRankGlobal = 100;
+}
+
+enum MacroDefineForHLDDZRankPara {
+  option allow_alias = true;
+  MacroDefineForHLDDZRankPara_Tdr2PbDummyMacroDefineForHlddzrankPara = 0;
+  MacroDefineForHLDDZRankPara_MaxDdzrankTransLen = 256;
+  MacroDefineForHLDDZRankPara_MaxDdzrankOpenidLenth = 40;
+  MacroDefineForHLDDZRankPara_MaxDdzrankAccesstokenLenth = 256;
+  MacroDefineForHLDDZRankPara_MaxDdzrankIdentLength = 22;
+  MacroDefineForHLDDZRankPara_MaxDdzrankReservedLen = 64;
+  MacroDefineForHLDDZRankPara_NewMaxDdzrankOpenidLenth = 64;
+  MacroDefineForHLDDZRankPara_MaxRankAlbumUrlLen = 251;
+  MacroDefineForHLDDZRankPara_MaxRankNickLen = 232;
+  MacroDefineForHLDDZRankPara_MaxRankIdentLen = 22;
+  MacroDefineForHLDDZRankPara_MaxRankFetchNum = 60;
+  MacroDefineForHLDDZRankPara_MaxRankRewardNum = 8;
+  MacroDefineForHLDDZRankPara_MaxRankDetailNum = 32;
+  MacroDefineForHLDDZRankPara_MaxPfkeyStrLen = 128;
+  MacroDefineForHLDDZRankPara_MaxPfStrLen = 128;
+  MacroDefineForHLDDZRankPara_MaxPaytokenStrLen = 256;
+  MacroDefineForHLDDZRankPara_MinRankScore = -2147483648;
+}
+
+enum PEAK_RANK_DETAIL_INFO {
+  PEAK_RANK_DETAIL_INFO_EmPeakRankDetailPlayerLevel = 0;
+  PEAK_RANK_DETAIL_INFO_EmPeakRankDetailHeadframeId = 1;
+  PEAK_RANK_DETAIL_INFO_EmPeakRankDetailPeakId = 2;
+  PEAK_RANK_DETAIL_INFO_EmPeakRankDetailScore = 3;
+  PEAK_RANK_DETAIL_INFO_EmPeakRankDetailMax = 4;
+}
+
+enum RANK_DETAIL_INFO {
+  RANK_DETAIL_INFO_EmRankDetailPlayerLevel = 0;
+  RANK_DETAIL_INFO_EmRankDetailAvatarId = 1;
+  RANK_DETAIL_INFO_EmRankDetailAvatarLevel = 2;
+}
+
+enum TITLE_RANK_DETAIL_INFO {
+  TITLE_RANK_DETAIL_INFO_EmTitleRankDetailPlayerLevel = 0;
+  TITLE_RANK_DETAIL_INFO_EmTitleRankDetailHeadframeId = 1;
+  TITLE_RANK_DETAIL_INFO_EmTitleRankDetailSeasonId = 2;
+  TITLE_RANK_DETAIL_INFO_EmTitleRankDetailTitle = 3;
+  TITLE_RANK_DETAIL_INFO_EmTitleRankDetailMedal = 4;
+}
+
+enum enHLDDZRankCMD {
+  enHLDDZRankCMD_Tdr2PbDummyEnHlddzrankCmd = 0;
+  enHLDDZRankCMD_ERankFetchNormal = 1;
+  enHLDDZRankCMD_ERankRewardNormal = 2;
+  enHLDDZRankCMD_ERankFetchPlay = 3;
+  enHLDDZRankCMD_ERankRewardPlay = 4;
+  enHLDDZRankCMD_ERankDashiRank = 5;
+  enHLDDZRankCMD_ERankFetchFriendDuanwei = 6;
+  enHLDDZRankCMD_ERankFetchGlobalDuanwei = 7;
+  enHLDDZRankCMD_ERankFetchGenericBestrank = 8;
+  enHLDDZRankCMD_ERankFetchFriendCanju = 9;
+  enHLDDZRankCMD_ERankFetchGlobalPlay = 10;
+  enHLDDZRankCMD_ERankFetchLbsPlay = 11;
+  enHLDDZRankCMD_ERankFetchLbsDuanwei = 12;
+  enHLDDZRankCMD_ERankFetchFriendTitle = 13;
+  enHLDDZRankCMD_ERankFetchGlobalTitle = 14;
+  enHLDDZRankCMD_ERankFetchLbsTitle = 15;
+  enHLDDZRankCMD_ERankFetchFriendCanjuNormal = 16;
+  enHLDDZRankCMD_ERankFetchFriendCanjuMaster = 17;
+  enHLDDZRankCMD_ERankFetchFriendCanjuExpert = 18;
+  enHLDDZRankCMD_ERankFetchFriendAppCanju = 19;
+  enHLDDZRankCMD_ERankFetchGlobalAppCanju = 20;
+  enHLDDZRankCMD_ERankFetchLbsAppCanju = 21;
+  enHLDDZRankCMD_ERankFetchApolloTopnextRank = 22;
+  enHLDDZRankCMD_ERankFetchApolloSubTop = 30;
+  enHLDDZRankCMD_ERankFetchFriendPeak = 31;
+  enHLDDZRankCMD_ERankFetchGlobalPeak = 32;
+  enHLDDZRankCMD_ERankFetchLbsPeak = 33;
+  enHLDDZRankCMD_ERankFetchCostumeGirlFriend = 34;
+  enHLDDZRankCMD_ERankFetchCostumeBoyFriend = 35;
+  enHLDDZRankCMD_ERankFetchCostumeGirlGlobal = 36;
+  enHLDDZRankCMD_ERankFetchCostumeBoyGlobal = 37;
+  enHLDDZRankCMD_ERankFetchCostumeGirlLbs = 38;
+  enHLDDZRankCMD_ERankFetchCostumeBoyLbs = 39;
+  enHLDDZRankCMD_ERankClearApolloTopnextRank = 40;
+  enHLDDZRankCMD_ERankFetchFriendCollect = 41;
+  enHLDDZRankCMD_ERankFetchGlobalCollect = 42;
+  enHLDDZRankCMD_ERankFetchLbsCollect = 43;
+  enHLDDZRankCMD_EFetchGenericRank = 45;
+}
+
+enum enumFetchRankAbility {
+  enumFetchRankAbility_Tdr2PbDummyEnumFetchRankAbility = 0;
+  enumFetchRankAbility_EnFetchRankUsePlatNickHeadurl = 1;
+}
+
+message CRequestFetchRankInfo {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  int32 m_sh_open_id_len = 3;
+  bytes m_ab_open_id = 4;
+  int32 m_sh_access_len = 5;
+  bytes m_ab_access_token = 6;
+  uint32 m_ui_uin = 7;
+  int32 m_sh_skey_len = 8;
+  bytes m_ab_skey = 9;
+  int32 mi_account_type = 10;
+  int32 mi_client_type = 11;
+  int32 mi_game_id = 12;
+  int32 mi_rank_id = 13;
+  int32 mi_start_index = 14;
+  int32 mi_show_num = 15;
+  int32 mi_cmd_id = 16;
+  int32 mi_reserver = 17;
+  int32 mi_lbs_nation_number = 18;
+  int32 mi_lbs_province_number = 19;
+  int32 mi_lbs_city_number = 20;
+  int32 mi_lbs_district_number = 21;
+  int32 mi_global_rank_id = 22;
+  int32 mi_use_image_data = 23;
+  uint32 m_ui_client_version = 24;
+  int32 mi_ability_bits = 25;
+  int32 m_sh_new_open_id_len = 26;
+  bytes m_ab_new_open_id = 27;
+  int32 has_paiwei_combat_req = 28;
+  repeated TPaiweiCombatReq paiwei_combat_req = 29;
+}
+
+message CRequestRewardRankInfo {
+  int32 m_sh_transparent_len = 1;
+  bytes m_uc_transparent = 2;
+  int32 m_sh_open_id_len = 3;
+  bytes m_ab_open_id = 4;
+  int32 m_sh_access_len = 5;
+  bytes m_ab_access_token = 6;
+  uint32 m_ui_uin = 7;
+  int32 m_sh_skey_len = 8;
+  bytes m_ab_skey = 9;
+  int32 mi_account_type = 10;
+  int32 mi_client_type = 11;
+  int32 mi_game_id = 12;
+  int32 mi_cmd_id = 13;
+  int32 mi_reserver = 14;
+  int32 m_sh_pf_key_len = 15;
+  bytes m_ab_pf_key = 16;
+  int32 m_sh_pf_len = 17;
+  bytes m_ab_pf = 18;
+  int32 m_sh_pay_token_len = 19;
+  bytes m_ab_pay_token = 20;
+  int32 m_sh_new_open_id_len = 21;
+  bytes m_ab_new_open_id = 22;
+}
+
+message CResponseFetchRankInfo {
+  int32 m_sh_result_id = 1;
+  int32 m_sh_transparent_len = 2;
+  bytes m_uc_transparent = 3;
+  uint32 m_ui_uin = 4;
+  int32 mi_account_type = 5;
+  int32 mi_game_id = 6;
+  int32 mi_rank_id = 7;
+  int32 mi_my_rank = 8;
+  int32 mi_all_friends_count = 9;
+  int32 mi_ranking_start = 10;
+  int32 mi_ranking_end = 11;
+  int32 mi_node_num = 12;
+  repeated TDDZRankInfo m_ast_rank_info = 13;
+  int32 m_sh_reserved_len = 14;
+  bytes m_ab_reserved = 15;
+  int32 mi_lbs_nation_number = 16;
+  int32 mi_lbs_province_number = 17;
+  int32 mi_lbs_city_number = 18;
+  int32 mi_lbs_district_number = 19;
+  int32 mi_show_number = 20;
+  repeated int32 m_ai_account_type = 21;
+  int32 mi_rank_reward_timestamp = 22;
+  int32 has_paiwei_combat_rsp = 23;
+  repeated TPaiweiCombatRsp paiwei_combat_rsp = 24;
+}
+
+message CResponseRewardRankInfo {
+  int32 m_sh_result_id = 1;
+  int32 m_sh_transparent_len = 2;
+  bytes m_uc_transparent = 3;
+  uint32 m_ui_uin = 4;
+  int32 mi_account_type = 5;
+  int32 mi_game_id = 6;
+  int32 mi_rank_id = 7;
+  int32 mi_my_rank = 8;
+  int32 mi_all_friends_count = 9;
+  uint32 mi_reward_flag = 10;
+  int32 mi_node_num = 11;
+  repeated TDDZRankInfo m_ast_rank_info = 12;
+  int32 mi_reward_num = 13;
+  repeated TDDZRewardInfo m_ast_reward = 14;
+  int32 m_sh_reserved_len = 15;
+  bytes m_ab_reserved = 16;
+}
+
+message RankLimitSetting {
+  int32 combat_point_category = 1;
+  int32 min_combat_point = 2;
+}
+
+message TDDZNewRankDetail {
+  int32 mi_rank_index = 1;
+  uint32 m_ui_uin = 2;
+  int32 mi_value = 3;
+  int32 m_sh_open_id_len = 4;
+  bytes m_ab_open_id = 5;
+  TDDZRankPlayerExData m_st_ex_data = 6;
+}
+
+message TDDZRankDetail {
+  int32 mi_rank_index = 1;
+  uint32 m_ui_uin = 2;
+  int32 mi_value = 3;
+  int32 m_sh_open_id_len = 4;
+  bytes m_ab_open_id = 5;
+  TDDZRankPlayerExData m_st_ex_data = 6;
+}
+
+message TDDZRankInfo {
+  TDDZRankDetail m_st_rank_detail = 1;
+  TDDZRankPlugDetail m_st_plug_detail = 2;
+}
+
+message TDDZRankPlayerExData {
+  bytes m_ab_ident = 1;
+  int32 m_sh_nick_len = 2;
+  bytes m_ab_nick = 3;
+  int32 m_sh_album_url_len = 4;
+  bytes m_ab_album_url = 5;
+}
+
+message TDDZRankPlugDetail {
+  int32 m_sh_detail_num = 1;
+  repeated int32 m_ai_detail = 2;
+}
+
+message TDDZRewardInfo {
+  int32 miid = 1;
+  int32 mi_count = 2;
+}
+
+message TPaiweiCombatReq {
+  int32 avatar_id = 1;
+}
+
+message TPaiweiCombatRsp {
+  int32 avatar_id = 1;
+  int32 per_avatar_rank_count = 2;
+  repeated RankLimitSetting rank_limit_settings = 3;
+}

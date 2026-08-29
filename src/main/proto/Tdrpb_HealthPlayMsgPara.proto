@@ -1,0 +1,213 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HealthPlayMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.healthplaymsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HealthPlayMsgParaProto";
+
+enum MacroDefineForHealthplaySvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForHealthplaySvrMsgPara_Tdr2PbDummyMacroDefineForHealthplaySvrMsgPara = 0;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SNotifyTipsInfo = 35401;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SFetchWxReadBooklist = 35402;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SGetWxReadBook = 35403;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SFetchRealage = 35405;
+  MacroDefineForHealthplaySvrMsgPara_MsgidInternalSendWxReadUnlimitedCard = 35499;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SMjNotifyTipsInfo = 37001;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SMjFetchWxReadBooklist = 37002;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SMjGetWxReadBook = 37003;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SMjSetHealthPlayInfo = 37004;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SMjFetchHealthInfo = 37005;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SHlNotifyTipsInfo = 40201;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SHlFetchWxReadBooklist = 40202;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SHlGetWxReadBook = 40203;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SHlSetHealthPlayInfo = 40204;
+  MacroDefineForHealthplaySvrMsgPara_MsgidC2SHlFetchHealthInfo = 40205;
+  MacroDefineForHealthplaySvrMsgPara_MsgidS2SHlClearPlayerCache = 40206;
+  MacroDefineForHealthplaySvrMsgPara_HealthplayMaxOpenidLen = 1024;
+  MacroDefineForHealthplaySvrMsgPara_HealthplayMaxAccesstokenLen = 1024;
+}
+
+message CHLNotifyClearPlayerCache {
+  int32 src_svr_fe = 1;
+  int32 src_svr_id = 2;
+  uint32 uin = 3;
+  int32 gameid = 4;
+  int32 account_type = 5;
+  int32 client_type = 6;
+}
+
+message CInternalSendWechatReadUnlimitedCard {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  string open_id = 5;
+}
+
+message CNotifyHLPopupTipsInfo {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+  int32 tip_type = 5;
+}
+
+message CNotifyPopupTipsInfo {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+  int32 tip_type = 5;
+}
+
+message CReqFetchHealthInfo {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+  string access_token = 5;
+}
+
+message CReqFetchWechatReadBookList {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+}
+
+message CReqGetWechatReadBook {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+  string book_id = 5;
+  int32 type = 6;
+}
+
+message CReqHLFetchHealthInfo {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+  string access_token = 5;
+}
+
+message CReqHLFetchWechatReadBookList {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+}
+
+message CReqHLGetWechatReadBook {
+  int32 gameid = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string open_id = 4;
+  string book_id = 5;
+  int32 type = 6;
+}
+
+message CReqHLSetHealthPlayInfo {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  string open_id = 5;
+  int32 max_play_time_per_single_login = 6;
+  int32 max_play_time_per_day = 7;
+  int32 entry_type = 8;
+  int32 xiaojin_start_time = 9;
+  int32 xiaojin_end_time = 10;
+}
+
+message CReqMJSetHealthPlayInfo {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 max_play_time_per_single_login = 7;
+  int32 max_play_time_per_day = 8;
+  int32 entry_type = 9;
+}
+
+message CRspFetchHealthInfo {
+  int32 result = 1;
+  int32 real_age = 2;
+  int32 reward_count = 3;
+  int32 cfg_max_time_per_single_login = 4;
+  int32 cfg_max_time_per_day = 5;
+  int32 last_set_config_timestamp = 6;
+}
+
+message CRspFetchWechatReadBookList {
+  int32 result = 1;
+  int32 book_list_num = 2;
+  repeated TWechatReadBookInfo book_list = 3;
+}
+
+message CRspGetWechatReadBook {
+  int32 result = 1;
+  string book_id = 2;
+  string book_get_dplink_url = 3;
+  string book_get_openlink_url = 4;
+  string book_mini_game_get_url = 5;
+  string book_title = 6;
+  string book_pic_url = 7;
+}
+
+message CRspHLFetchHealthInfo {
+  int32 result = 1;
+  int32 real_age = 2;
+  int32 reward_count = 3;
+  int32 max_play_time_per_single_login = 4;
+  int32 max_play_time_per_day = 5;
+  int32 last_set_config_timestamp = 6;
+  int32 xiaojin_start_time = 7;
+  int32 xiaojin_end_time = 8;
+  int32 cur_single_login_time = 9;
+  int32 max_single_login_time = 10;
+  int32 max_day_play_time = 11;
+  int32 last_get_wx_book_time = 12;
+}
+
+message CRspHLFetchWechatReadBookList {
+  int32 result = 1;
+  int32 book_list_num = 2;
+  repeated TWechatReadBookInfo book_list = 3;
+}
+
+message CRspHLGetWechatReadBook {
+  int32 result = 1;
+  string book_id = 2;
+  string book_get_dplink_url = 3;
+  string book_get_openlink_url = 4;
+  string book_mini_game_get_url = 5;
+  string book_title = 6;
+  string book_pic_url = 7;
+}
+
+message CRspHLSetHealthPlayInfo {
+  int32 result = 1;
+  int32 max_play_time_per_single_login = 2;
+  int32 max_play_time_per_day = 3;
+  int32 xiaojin_start_time = 4;
+  int32 xiaojin_end_time = 5;
+}
+
+message CRspMJSetHealthPlayInfo {
+  int32 result = 1;
+  int32 max_play_time_per_single_login = 2;
+  int32 max_play_time_per_day = 3;
+}
+
+message TWechatReadBookInfo {
+  string book_id = 1;
+  string book_title = 2;
+  string book_pic_url = 3;
+}

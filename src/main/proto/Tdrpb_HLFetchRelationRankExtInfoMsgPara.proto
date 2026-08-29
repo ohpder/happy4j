@@ -1,0 +1,69 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLFetchRelationRankExtInfoMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlfetchrelationrankextinfomsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLFetchRelationRankExtInfoMsgParaProto";
+
+enum EM_QUERY_FLAG {
+  EM_QUERY_FLAG_Tdr2PbDummyEmQueryFlag = 0;
+  EM_QUERY_FLAG_EmqfGamecentrePrivilege = 1;
+}
+
+enum MacroDefineForHLFetchRelationRankExtInfoMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLFetchRelationRankExtInfoMsgPara_Tdr2PbDummyMacroDefineForHlfetchRelationRankExtInfoMsgPara = 0;
+  MacroDefineForHLFetchRelationRankExtInfoMsgPara_MsgidC2SFetchRelationrankExtInfo = 17026;
+  MacroDefineForHLFetchRelationRankExtInfoMsgPara_HlfrMaxTransparentLen = 32;
+  MacroDefineForHLFetchRelationRankExtInfoMsgPara_HlfrMaxUinNum = 100;
+  MacroDefineForHLFetchRelationRankExtInfoMsgPara_HlfrMaxOpenidLenth = 128;
+  MacroDefineForHLFetchRelationRankExtInfoMsgPara_HlfrMaxAccesstokenLenth = 1024;
+  MacroDefineForHLFetchRelationRankExtInfoMsgPara_HlfrMaxRankExtDataLen = 128;
+}
+
+enum PRIVILEGE_STATUS {
+  PRIVILEGE_STATUS_Tdr2PbDummyPrivilegeStatus = 0;
+  PRIVILEGE_STATUS_EmpcNone = 1;
+  PRIVILEGE_STATUS_EmpcTodayOff = 2;
+  PRIVILEGE_STATUS_EmpcTodayOn = 3;
+}
+
+message CReqFetchRelationRankExtInfoPara {
+  uint32 game_id = 1;
+  int64 query_flag = 2;
+  int32 user_num = 3;
+  repeated TUserInfo user_info = 4;
+}
+
+message CRspFetchRelationRankExtInfoPara {
+  int32 result_id = 1;
+  uint32 game_id = 2;
+  int64 query_flag = 3;
+  int32 user_num = 4;
+  repeated TRankExtInfo rank_ext_info = 5;
+}
+
+message TRankExtElement {
+  int32 element = 1;
+}
+
+message TRankExtInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 data_len = 4;
+  bytes data = 5;
+}
+
+message TUserInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 open_id_len = 4;
+  bytes open_id = 5;
+  int32 access_token_len = 6;
+  bytes access_token = 7;
+  int32 resver = 8;
+}

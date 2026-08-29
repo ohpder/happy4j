@@ -1,0 +1,128 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLCustomProfileMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlcustomprofilemsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLCustomProfileMsgParaProto";
+
+enum ErrorCodeDefine {
+  ErrorCodeDefine_EcOk = 0;
+  ErrorCodeDefine_EcFetchCustomInfoFetchTypeInvalid = 100;
+  ErrorCodeDefine_EcFetchCustomInfoInnerError = 101;
+  ErrorCodeDefine_EcModifyCustomNickNickNameIsEmpty = 200;
+  ErrorCodeDefine_EcModifyCustomNickNickNameIsAlreadyUsed = 201;
+  ErrorCodeDefine_EcModifyCustomNickNickNameIsDirty = 202;
+  ErrorCodeDefine_EcModifyCustomNickContainsSpecialChar = 203;
+  ErrorCodeDefine_EcModifyCustomNickChargeItemNotEnough = 204;
+  ErrorCodeDefine_EcModifyCustomNickInnerError = 205;
+  ErrorCodeDefine_EcModifyCustomNickNotOpen = 206;
+  ErrorCodeDefine_EcModifyCustomNickPaytokenInvalid = 207;
+  ErrorCodeDefine_EcModifyCustomHeadNotOpen = 208;
+  ErrorCodeDefine_EcModifyCustomHeadInnerError = 209;
+}
+
+enum FetchTypeDefine {
+  FetchTypeDefine_Tdr2PbDummyFetchTypeDefine = 0;
+  FetchTypeDefine_EModifyCustomNickNeedInfo = 1;
+}
+
+enum MacroDefineForHLCustomProfileMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLCustomProfileMsgPara_Tdr2PbDummyMacroDefineForHlcustomProfileMsgPara = 0;
+  MacroDefineForHLCustomProfileMsgPara_MsgidC2SModifyCustomHead = 19707;
+  MacroDefineForHLCustomProfileMsgPara_MaxOpenidStrLen = 1024;
+  MacroDefineForHLCustomProfileMsgPara_MaxOpenkeyStrLen = 1024;
+  MacroDefineForHLCustomProfileMsgPara_MaxPfkeyStrLen = 1024;
+  MacroDefineForHLCustomProfileMsgPara_MaxPfStrLen = 1024;
+  MacroDefineForHLCustomProfileMsgPara_MaxPaytokenStrLen = 1024;
+  MacroDefineForHLCustomProfileMsgPara_MaxNickNameLen = 64;
+  MacroDefineForHLCustomProfileMsgPara_MaxResultStrLen = 512;
+  MacroDefineForHLCustomProfileMsgPara_MaxCustomHeadIdLen = 256;
+}
+
+message CCustomNickModifyInfo {
+  int32 nick_name_len = 1;
+  bytes nick_name = 2;
+  int32 is_open_modify_nick = 3;
+  int32 modify_nick_charge_item_id = 4;
+  int32 modify_nick_charge_item_num = 5;
+}
+
+message CCustomProfileInfoTLV {
+  int32 type = 1;
+  int32 len = 2;
+  CCustomProfileInfoTLVValue value = 3;
+}
+
+message CCustomProfileInfoTLVValue {
+  CCustomNickModifyInfo custom_nick_modify_info = 1;
+}
+
+message CReqFetchCustomProfileInfo {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 client_version = 5;
+  int32 open_id_len = 6;
+  bytes open_id = 7;
+  int32 open_key_len = 8;
+  bytes open_key = 9;
+  int32 pf_key_len = 10;
+  bytes pf_key = 11;
+  int32 pf_len = 12;
+  bytes pf = 13;
+  int32 pay_token_len = 14;
+  bytes pay_token = 15;
+  int32 fetch_type = 16;
+}
+
+message CReqModifyCustomHead {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 clear_custom_head = 5;
+  int32 custom_head_id_len = 6;
+  bytes custom_head_id = 7;
+}
+
+message CReqModifyCustomNickName {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 open_key_len = 7;
+  bytes open_key = 8;
+  int32 pf_key_len = 9;
+  bytes pf_key = 10;
+  int32 pf_len = 11;
+  bytes pf = 12;
+  int32 pay_token_len = 13;
+  bytes pay_token = 14;
+  int32 custom_nick_name_len = 15;
+  bytes custom_nick_name = 16;
+}
+
+message CRsqFetchCustomProfileInfo {
+  int32 result_id = 1;
+  CCustomProfileInfoTLV custom_profile = 2;
+}
+
+message CRsqModifyCustomHead {
+  int32 result_id = 1;
+  int32 custom_head_id_len = 2;
+  bytes custom_head_id = 3;
+}
+
+message CRsqModifyCustomNickName {
+  int32 result_id = 1;
+  int32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 custom_nick_name_len = 4;
+  bytes custom_nick_name = 5;
+}

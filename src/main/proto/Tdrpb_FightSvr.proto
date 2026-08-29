@@ -1,0 +1,623 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.FightSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.fightsvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_FightSvrProto";
+
+enum FightEventID {
+  FightEventID_Tdr2PbDummyFightEventId = 0;
+  FightEventID_EnterRoomFightEvent = 1;
+  FightEventID_LeaveRoomFightEvent = 2;
+  FightEventID_GameStartFightEvent = 3;
+  FightEventID_GameEndFightEvent = 4;
+  FightEventID_UseContinueWinItemFightEvent = 5;
+  FightEventID_UseReliveItemFightEvent = 6;
+  FightEventID_GameUseSkillfightEvent = 7;
+  FightEventID_GameFightScoreEvent = 8;
+  FightEventID_GameFightSynPlayerInfoEvent = 9;
+  FightEventID_GameEndFightEventV2 = 10;
+  FightEventID_GameEndFightEventV3 = 11;
+}
+
+enum MacroDefineForFightSvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForFightSvrMsgPara_Tdr2PbDummyMacroDefineForFightSvrMsgPara = 0;
+  MacroDefineForFightSvrMsgPara_FightsvrMaxTransparentLen = 32;
+  MacroDefineForFightSvrMsgPara_FightsvrMaxEventCount = 32;
+  MacroDefineForFightSvrMsgPara_FightsvrMaxOpenidLenth = 128;
+  MacroDefineForFightSvrMsgPara_FightDiamondOpMaxOpenkeyStrLen = 256;
+  MacroDefineForFightSvrMsgPara_FightDiamondOpMaxPfkeyStrLen = 256;
+  MacroDefineForFightSvrMsgPara_FightDiamondOpMaxPfStrLen = 256;
+  MacroDefineForFightSvrMsgPara_FightDiamondOpMaxPaytokenStrLen = 256;
+  MacroDefineForFightSvrMsgPara_FightDetailPbMaxBufLen = 4096;
+  MacroDefineForFightSvrMsgPara_NtfEventPbMaxBufLen = 8192;
+}
+
+enum enumEndFightReason {
+  enumEndFightReason_EnEndFightDefault = 0;
+  enumEndFightReason_EnEndFightTimeout = 1;
+  enumEndFightReason_EnEndFightEnoughscore2Addstar = 2;
+  enumEndFightReason_EnEndFightPlayerGiveup = 3;
+  enumEndFightReason_EnEndFightEnterRoomNoHeart = 4;
+}
+
+enum enumFightAbility {
+  enumFightAbility_Tdr2PbDummyEnumFightAbility = 0;
+  enumFightAbility_EnFightAbilityFightSeason = 1;
+  enumFightAbility_EnFightAbilityMorePowerEnroll = 2;
+  enumFightAbility_EnFightAbilityActAddStar = 4;
+  enumFightAbility_EnFightAbilityNotCheckSeasonForApp = 8;
+  enumFightAbility_EnFightAbilityCheckSeasonForSvr = 16;
+  enumFightAbility_EnFightAbilityResultUseHp = 32;
+  enumFightAbility_EnFightAbilityNotCheckSeason = 64;
+}
+
+enum enumFightEnrollType {
+  enumFightEnrollType_EnFightEnrollTypeNotInGame = 0;
+  enumFightEnrollType_EnFightEnrollTypeIsInGame = 1;
+}
+
+enum enumFightExtraAddStarActType {
+  enumFightExtraAddStarActType_Tdr2PbDummyEnumFightExtraAddStarActType = 0;
+  enumFightExtraAddStarActType_EnFightExtraAddStarActBless = 1;
+}
+
+enum enumFightExtraAddStarProbType {
+  enumFightExtraAddStarProbType_Tdr2PbDummyEnumFightExtraAddStarProbType = 0;
+  enumFightExtraAddStarProbType_EnFightExtraAddStarProbCert = 1;
+  enumFightExtraAddStarProbType_EnFightExtraAddStarProbRand = 2;
+}
+
+enum enumFightSafeModifyType {
+  enumFightSafeModifyType_Tdr2PbDummyEnumFightSafeModifyType = 0;
+  enumFightSafeModifyType_EnFightSafeModifyInit = 1;
+  enumFightSafeModifyType_EnFightSafeModifyBronze3 = 2;
+}
+
+enum enumFightStarChangeReason {
+  enumFightStarChangeReason_Tdr2PbDummyEnumFightStarChangeReason = 0;
+  enumFightStarChangeReason_EnFightStarChangeFightScoreLow = 1;
+  enumFightStarChangeReason_EnFightStarChangeFightScoreHigh = 2;
+  enumFightStarChangeReason_EnFightStarChangeFightPointEnough = 3;
+  enumFightStarChangeReason_EnFightStarChangeFightDuanProtect = 4;
+  enumFightStarChangeReason_EnFightStarChangeFightActAdd = 5;
+}
+
+enum enumReliveReason {
+  enumReliveReason_Tdr2PbDummyEnumReliveReason = 0;
+  enumReliveReason_EnBpFreeRelive = 1;
+}
+
+message CNotifyFightEvent {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 scene_id = 7;
+  int32 server_id = 8;
+  int32 room_id = 9;
+  int32 table_id = 10;
+  int32 play_type = 11;
+  TFightEvent fight_event = 12;
+  int32 player_lvl = 13;
+  int32 avatar_id = 14;
+  int32 avatar_lvl = 15;
+  int32 pet_id = 16;
+  int32 pet_lvl = 17;
+  int32 open_id_len = 18;
+  bytes open_id = 19;
+  int32 pb_ex_len = 20;
+  bytes pb_ex_buf = 21;
+}
+
+message CReqAddHeart {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 add_heart_count = 7;
+}
+
+message CReqEndFight {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 scene_id = 7;
+  int32 force_end = 8;
+  int32 open_id_len = 9;
+  bytes open_id = 10;
+  int32 ability_bits = 11;
+  int32 end_reason = 12;
+}
+
+message CReqEnrollFight {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 scene_id = 7;
+  int32 open_id_len = 8;
+  bytes open_id = 9;
+  int32 ability_bits = 10;
+  int32 enroll_type = 11;
+}
+
+message CReqFetchFightDetail {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 open_id_len = 7;
+  bytes open_id = 8;
+  int32 ability_bits = 9;
+  int32 open_key_len = 10;
+  bytes open_key = 11;
+  int32 pf_key_len = 12;
+  bytes pf_key = 13;
+  int32 pf_len = 14;
+  bytes pf = 15;
+  int32 pay_token_len = 16;
+  bytes pay_token = 17;
+  int32 is_main_page_fetch = 18;
+}
+
+message CReqFetchFightDuanRecord {
+  int32 app_id = 1;
+  int32 client_type = 2;
+  int32 account_type = 3;
+  int32 open_id_len = 4;
+  bytes open_id = 5;
+}
+
+message CReqFetchFightRank {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+}
+
+message CReqModifyFightInfo {
+  uint32 uin = 1;
+  int32 app_id = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  int32 field_num = 5;
+  repeated TFightInfoField fight_info_field = 6;
+  int32 safe_modify_type = 7;
+}
+
+message CReqRelive {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 ability_bits = 7;
+  int32 free_relive_reason = 8;
+}
+
+message CReqRescueFightScore {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+}
+
+message CReqResumeFight {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 scene_id = 7;
+  int32 open_id_len = 8;
+  bytes open_id = 9;
+}
+
+message CReqUpdateFightHeadFrame {
+  int32 app_id = 1;
+  int32 client_type = 2;
+  int32 account_type = 3;
+  int32 open_id_len = 4;
+  bytes open_id = 5;
+  int32 fight_head_frame_item_id = 6;
+}
+
+message CReqUpdateFightRank {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 last_reward_time = 7;
+  int32 rank_id = 8;
+  int32 rank_count = 9;
+}
+
+message CRspAddHeart {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  TFightInfo fight_info = 5;
+  int32 plus_heart_count = 6;
+}
+
+message CRspEndFight {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  TFightInfo fight_info = 5;
+  TFightDuanInfo before_end_fight_duan_info = 6;
+  TFightDuanInfo after_end_fight_duan_info = 7;
+  int32 fight_star_change_info_num = 8;
+  repeated TFightStarChangeInfo fight_star_change_info = 9;
+  int32 fight_point_chg = 10;
+  int32 end_reason = 11;
+  int32 refund_power_num = 12;
+  int32 cur_power_num = 13;
+  int32 is_need_change_season = 14;
+  int32 extra_add_star_act_type = 15;
+  int32 extra_add_star_cnt = 16;
+  int32 err_msg_len = 17;
+  bytes err_msg = 18;
+  string fight_star_change_title = 19;
+  string fight_star_change_desc = 20;
+}
+
+message CRspEnrollFight {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 scene_id = 5;
+  int32 cur_pet_id = 6;
+  int32 cur_avatar_id = 7;
+  int32 delta_power = 8;
+  int32 cur_power = 9;
+  int32 cur_heart = 10;
+  int32 max_rescue_count = 11;
+  int32 max_relive_count = 12;
+  TFightInfo fight_info = 13;
+  int32 enroll_type = 14;
+  int32 last_round_left_heart = 15;
+  int32 err_msg_len = 16;
+  bytes err_msg = 17;
+  TFreeReliveInfo free_relive_info = 18;
+}
+
+message CRspFetchFightDetail {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  TFightInfo fight_info = 5;
+  int32 total_game_cnt = 6;
+  int32 is_need2_end_fight = 7;
+  TFightDuanInfo fight_duan_info = 8;
+  int32 is_new_fight_season = 9;
+  TFightDuanInfo last_fight_duan_info = 10;
+  int32 fight_season_reward_str_len = 11;
+  bytes fight_season_reward_str = 12;
+  uint32 fight_season_end_time = 13;
+  int32 extra_add_star_act_type = 14;
+  uint32 extra_add_star_begin_time = 15;
+  uint32 extra_add_star_end_time = 16;
+  int32 extra_add_star_prob_type = 17;
+  int32 extra_add_star_cnt = 18;
+  int32 new_fight_season_top_reward_str_len = 19;
+  bytes new_fight_season_top_reward_str = 20;
+  int32 system_cur_fight_season_id = 21;
+  int32 pb_ex_info_len = 22;
+  bytes pb_ex_buf = 23;
+  uint32 fight_season_begin_time = 24;
+  int32 err_msg_len = 25;
+  bytes err_msg = 26;
+  int32 season_top_duan_id = 27;
+  int64 season_begin_duan_rank_score = 28;
+  TFreeReliveInfo free_relive_info = 29;
+}
+
+message CRspFetchFightDuanRecord {
+  int32 result = 1;
+  int32 fight_info_record_num = 2;
+  repeated TFightInfoRecord fight_info_record = 3;
+}
+
+message CRspFetchFightRank {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 last_reward_time = 5;
+}
+
+message CRspModifyFightInfo {
+  int32 result = 1;
+  uint32 uin = 2;
+}
+
+message CRspRelive {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  TFightInfo fight_info = 5;
+  int32 plus_fight_score = 6;
+  int32 plus_heart_count = 7;
+  TFreeReliveInfo free_relive_info = 8;
+}
+
+message CRspRescueFightScore {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  TFightInfo fight_info = 5;
+  int32 plus_fight_score = 6;
+}
+
+message CRspResumeFight {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 scene_id = 5;
+  int32 cur_pet_id = 6;
+  int32 cur_avatar_id = 7;
+  int32 cur_heart = 8;
+  int32 max_relive_count = 9;
+}
+
+message CRspUpdateFightHeadFrame {
+  int32 result = 1;
+  int32 fight_head_frame_item_id = 2;
+}
+
+message CRspUpdateFightRank {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+}
+
+message TEnterRoomFightEvent {
+  int32 result = 1;
+}
+
+message TFightDuanInfo {
+  int32 fight_season_id = 1;
+  int32 fight_duan_id = 2;
+  int32 fight_star = 3;
+  int32 fight_point = 4;
+  int32 best_fight_duan_id = 5;
+  int32 fight_point2_add_star = 6;
+  int32 fight_score2_add_star = 7;
+}
+
+message TFightEvent {
+  int32 id = 1;
+  TFightEventUnion event_union = 2;
+}
+
+message TFightEventUnion {
+  TEnterRoomFightEvent enter_room = 1;
+  TLeaveRoomFightEvent leave_room = 2;
+  TGameStartFightEvent game_start = 3;
+  TGameEndFightEvent game_end = 4;
+  TUseContinueWinItemFightEvent use_continue_win_item = 5;
+  TUseReliveItemFightEvent use_relive_item = 6;
+  TGameUseSkillFightEvent game_use_skill = 7;
+  TGameFightScoreEvent game_fight_score = 8;
+  TGameFightSynPlayerInfoEvent syn_player_info = 9;
+  TGameEndFightEventV2 game_end_v2 = 10;
+  TGameEndFightEventV3 game_end_v3 = 11;
+}
+
+message TFightInfo {
+  int32 in_fight = 1;
+  int32 start_time = 2;
+  int32 scene_id = 3;
+  int32 cur_heart = 4;
+  int32 relive_count = 5;
+  int32 max_relive_count = 6;
+  int32 finish_game_count = 7;
+  int32 cur_score = 8;
+  int32 max_week_score = 9;
+  int32 cur_continue_win = 10;
+  int32 max_continue_win = 11;
+  int32 sprint_count = 12;
+  int32 anti_sprint_count = 13;
+  int32 win_bean_count = 14;
+  int32 max_multiple = 15;
+  int32 rank_state = 16;
+  int32 rescue_count = 17;
+  int32 max_rescue_count = 18;
+  int32 max_heart_cout = 19;
+  int32 player_lvl = 20;
+  int32 player_lvl_plus = 21;
+  int32 avatar_id = 22;
+  int32 avatar_lvl = 23;
+  int32 avatar_lvl_plus = 24;
+  int32 pet_id = 25;
+  int32 pet_lvl = 26;
+  int32 pet_lvl_plus = 27;
+  int32 history_max_fight_score = 28;
+  int32 history_max_fight_score_plus = 29;
+  int32 history_max_continue_win_cnt = 30;
+  int32 history_max_continue_win_cnt_plus = 31;
+  int32 max_last_week_fight_score = 32;
+  int32 gold_prize_num = 33;
+  int32 silver_prize_num = 34;
+  int32 copper_prize_num = 35;
+  int32 fight_score_before_lvl_plus = 36;
+  int32 total_relive_cnt = 37;
+  int32 total_rescue_cnt = 38;
+  int32 round_end_left_time = 39;
+}
+
+message TFightInfoField {
+  int32 field_idx = 1;
+  int32 field_val = 2;
+}
+
+message TFightInfoRecord {
+  int32 fight_season_id = 1;
+  int32 fight_end_time = 2;
+  int32 fight_score = 3;
+  int32 win_game_cnt = 4;
+  int32 fight_point = 5;
+  int32 fight_star = 6;
+}
+
+message TFightInfoRecordBlob {
+  int32 fight_info_record_num = 1;
+  repeated TFightInfoRecord fight_info_record = 2;
+  int32 update_time = 3;
+  int32 cur_fight_season_id = 4;
+  int32 cur_fight_duan_id = 5;
+  int32 cur_fight_star = 6;
+  TFightInfoStat cur_season_fight_info_stat = 7;
+  TFightInfoStat last_season_fight_info_stat = 8;
+  TFightInfoStat cur_week_fight_info_stat = 9;
+  TFightInfoStat last_week_fight_info_stat = 10;
+}
+
+message TFightInfoStat {
+  int32 update_time = 1;
+  int32 season_id = 2;
+  int32 tot_game_num = 3;
+  int32 win_game_num = 4;
+  int32 add_star_num = 5;
+  int32 dec_star_num = 6;
+  int32 best_duan_id = 7;
+  int32 round_num = 8;
+  int32 use_heart_num = 9;
+}
+
+message TFightStarChangeInfo {
+  int32 fight_star_change_reason = 1;
+  int32 fight_duan_id_after_star_change = 2;
+  int32 fight_star_after_star_change = 3;
+}
+
+message TFreeReliveInfo {
+  int32 left_free_relive_cnt = 1;
+  int32 free_relive_reason = 2;
+  string free_relive_desc = 3;
+}
+
+message TGameEndFightEvent {
+  int32 cur_win = 1;
+  int32 cur_continue_win_count = 2;
+  int32 max_multiple = 3;
+  int32 cur_score = 4;
+  int32 sprint_count = 5;
+  int32 anti_sprint_count = 6;
+  int32 win_bean_count = 7;
+}
+
+message TGameEndFightEventV2 {
+  int32 cur_win = 1;
+  int32 cur_continue_win_count = 2;
+  int32 max_multiple = 3;
+  int32 cur_score = 4;
+  int32 sprint_count = 5;
+  int32 anti_sprint_count = 6;
+  int32 win_bean_count = 7;
+  int32 cont_win_up = 8;
+  int32 scene_up = 9;
+  int32 skill_up = 10;
+  int32 item_up = 11;
+  int32 level_up = 12;
+  int32 rob_flag = 13;
+  int32 multi_flag = 14;
+  int32 super_multi_flag = 15;
+  int32 shared_flag = 16;
+  int32 use_super_multi = 17;
+  int32 use_score_up = 18;
+  int32 use_remember_round = 19;
+  int32 use_remember_day = 20;
+}
+
+message TGameEndFightEventV3 {
+  int32 cur_win = 1;
+  int32 cur_continue_win_count = 2;
+  int32 max_multiple = 3;
+  int32 cur_score = 4;
+  int32 sprint_count = 5;
+  int32 anti_sprint_count = 6;
+  int32 win_bean_count = 7;
+  int32 cont_win_up = 8;
+  int32 scene_up = 9;
+  int32 skill_up = 10;
+  int32 item_up = 11;
+  int32 level_up = 12;
+  int32 rob_flag = 13;
+  int32 multi_flag = 14;
+  int32 super_multi_flag = 15;
+  int32 shared_flag = 16;
+  int32 use_super_multi = 17;
+  int32 use_score_up = 18;
+  int32 use_remember_round = 19;
+  int32 use_remember_day = 20;
+  int32 rescue_score = 21;
+  int32 pay_hp = 22;
+  int32 reserved2 = 23;
+}
+
+message TGameFightScoreEvent {
+  int32 this_week_score = 1;
+  int32 this_week_time = 2;
+  int32 last_week_score = 3;
+  int32 last_week_time = 4;
+  int32 combo_win_count = 5;
+}
+
+message TGameFightSynPlayerInfoEvent {
+  int32 continue_win_cnt = 1;
+}
+
+message TGameStartFightEvent {
+  int32 result = 1;
+}
+
+message TGameUseSkillFightEvent {
+  int32 skill_id = 1;
+  int32 skill_type = 2;
+  int32 heart_num = 3;
+}
+
+message TLeaveRoomFightEvent {
+  int32 result = 1;
+}
+
+message TUseContinueWinItemFightEvent {
+  int32 result = 1;
+}
+
+message TUseReliveItemFightEvent {
+  int32 result = 1;
+}

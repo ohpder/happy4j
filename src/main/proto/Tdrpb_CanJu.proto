@@ -1,0 +1,410 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.CanJu;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.canju";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_CanJuProto";
+
+enum CANJU_ENCRYPT_TYPE {
+  CANJU_ENCRYPT_TYPE_Tdr2PbDummyCanjuEncryptType = 0;
+  CANJU_ENCRYPT_TYPE_Solution = 1;
+  CANJU_ENCRYPT_TYPE_AskHelp = 2;
+  CANJU_ENCRYPT_TYPE_ShowOff = 3;
+}
+
+enum CANJU_LEVEL_LOCK_CONDITION_TYPE {
+  CANJU_LEVEL_LOCK_CONDITION_TYPE_Tdr2PbDummyCanjuLevelLockConditionType = 0;
+  CANJU_LEVEL_LOCK_CONDITION_TYPE_Share = 1;
+  CANJU_LEVEL_LOCK_CONDITION_TYPE_Play = 2;
+  CANJU_LEVEL_LOCK_CONDITION_TYPE_Diamond = 3;
+  CANJU_LEVEL_LOCK_CONDITION_TYPE_SelfShare = 4;
+}
+
+enum CANJU_LEVEL_LOCK_OP_TYPE {
+  CANJU_LEVEL_LOCK_OP_TYPE_Query = 0;
+  CANJU_LEVEL_LOCK_OP_TYPE_Unlock = 1;
+}
+
+enum CANJU_LEVEL_LOCK_RSP_FLAG_TYPE {
+  CANJU_LEVEL_LOCK_RSP_FLAG_TYPE_Locked = 0;
+  CANJU_LEVEL_LOCK_RSP_FLAG_TYPE_Unlocked = 1;
+}
+
+enum CANJU_MODE_TYPE {
+  CANJU_MODE_TYPE_Putong = 0;
+  CANJU_MODE_TYPE_Gaoji = 1;
+  CANJU_MODE_TYPE_Zhuangjia = 2;
+}
+
+enum CANJU_PLAYERINFO_BITFLAG {
+  CANJU_PLAYERINFO_BITFLAG_Tdr2PbDummyCanjuPlayerinfoBitflag = 0;
+  CANJU_PLAYERINFO_BITFLAG_CanjuBitFlagIsPass = 1;
+  CANJU_PLAYERINFO_BITFLAG_CanjuBitFlagIsPassByOther = 2;
+  CANJU_PLAYERINFO_BITFLAG_CanjuBitFlagIsRecvMission = 4;
+  CANJU_PLAYERINFO_BITFLAG_CanjuBitFlagIsUnlock = 8;
+  CANJU_PLAYERINFO_BITFLAG_CanjuBitFlagIsPlay = 16;
+}
+
+enum END_GAME_EVENT {
+  END_GAME_EVENT_CuanGuan = 0;
+  END_GAME_EVENT_TryPlay = 1;
+  END_GAME_EVENT_HelpPlay = 2;
+  END_GAME_EVENT_HelpedPass = 3;
+}
+
+enum END_GAME_EVENT_REPORT_FLAG {
+  END_GAME_EVENT_REPORT_FLAG_Tdr2PbDummyEndGameEventReportFlag = 0;
+  END_GAME_EVENT_REPORT_FLAG_IsPass = 1;
+  END_GAME_EVENT_REPORT_FLAG_FirstPass = 2;
+  END_GAME_EVENT_REPORT_FLAG_FirstPlay = 4;
+}
+
+enum MAX_CANJU_MSG_ID {
+  MAX_CANJU_MSG_ID_Tdr2PbDummyMaxCanjuMsgId = 0;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuFetchSummaryInfo = 34701;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuQuerySceneidByLevelInfo = 34702;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuRecvPrize = 34703;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuFetchSimpleSolution = 34704;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuFetchRecord = 34705;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuFetchEncryptStr = 34706;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuNotifyGameEndEvent = 34707;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuReqLevelInfo = 34708;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuReqLevelLockInfo = 34709;
+  MAX_CANJU_MSG_ID_MsgidC2SCanjuNtfHelpedPass = 34710;
+}
+
+enum MacroDefineForCanJuMsgPara {
+  option allow_alias = true;
+  MacroDefineForCanJuMsgPara_Tdr2PbDummyMacroDefineForCanJuMsgPara = 0;
+  MacroDefineForCanJuMsgPara_MaxCanjuMsgDescLength = 128;
+  MacroDefineForCanJuMsgPara_MaxCanjuMaxReservedNum = 6;
+  MacroDefineForCanJuMsgPara_MaxCanjuMaxModeNum = 3;
+  MacroDefineForCanJuMsgPara_DailyCanjuModeId = 100;
+  MacroDefineForCanJuMsgPara_MaxCanjuMaxUnrecvPrizeLevelCount = 1000;
+  MacroDefineForCanJuMsgPara_MaxCanjuEncyptDataLen = 256;
+  MacroDefineForCanJuMsgPara_MaxCanjuSolutionSeqLen = 128;
+  MacroDefineForCanJuMsgPara_MaxCanjuPlayerNum = 3;
+  MacroDefineForCanJuMsgPara_MaxCanjuGiveCardNum = 20;
+  MacroDefineForCanJuMsgPara_MaxCanjuPlayerRecordCount = 200;
+  MacroDefineForCanJuMsgPara_MaxCanjuLevelNameLen = 64;
+  MacroDefineForCanJuMsgPara_MaxCanjuOneRecordNum = 30;
+  MacroDefineForCanJuMsgPara_MaxCanjuNickLenHg = 64;
+  MacroDefineForCanJuMsgPara_MaxCanjuHeadUrlLenHg = 256;
+  MacroDefineForCanJuMsgPara_MaxCanjuPrizeNumInOneMode = 150;
+  MacroDefineForCanJuMsgPara_MaxCanjuPrizeNumInOneLevel = 3;
+  MacroDefineForCanJuMsgPara_MaxCanjuLockLevelNumPerFetch = 50;
+  MacroDefineForCanJuMsgPara_MaxCanjuLockConditionNum = 5;
+  MacroDefineForCanJuMsgPara_MaxReqEndGameLevelCount = 100;
+}
+
+enum UEndGameLevelInfoType {
+  UEndGameLevelInfoType_EndGameLevelUnionInfoTypePlayer = 0;
+  UEndGameLevelInfoType_EndGameLevelUnionInfoTypeTotal = 1;
+}
+
+message CReqFetchCanJuSimpleSolution {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 mode_id = 5;
+  int32 level = 6;
+  string encypt_data = 7;
+  uint64 uniq_id = 8;
+}
+
+message CReqFetchCanjuSummaryInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 start_level = 5;
+  int32 fetch_num = 6;
+}
+
+message CReqFetchEncryptStr {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 encrypt_type = 5;
+  int32 mode_id = 6;
+  int32 level = 7;
+}
+
+message CReqFetchPlayerCanJuRecord {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 mode_id = 5;
+  int32 start_level = 6;
+  int32 fetch_num = 7;
+}
+
+message CReqLevelLockInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 mode_id = 5;
+  int32 level = 6;
+  int32 op = 7;
+}
+
+message CReqQuerySceneIDByLevel {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 mode_id = 5;
+  int32 level = 6;
+}
+
+message CReqRecvPrize {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 mode_id = 5;
+  int32 level = 6;
+}
+
+message CRspFetchCanJuSimpleSolution {
+  int32 result_id = 1;
+  string desc = 2;
+  int32 mode_id = 3;
+  int32 level = 4;
+  int32 total_level_num = 5;
+  int32 solution_seq_len = 6;
+  bytes solution_seq = 7;
+  int32 hand_cards_len = 8;
+  repeated TCanJuBaseDeal hand_cards = 9;
+  int32 player_chair = 10;
+}
+
+message CRspFetchCanjuSummaryInfo {
+  int32 result_id = 1;
+  string desc = 2;
+  repeated TCanJuSingleModeSummaryInfo can_ju_single_mode_info = 3;
+}
+
+message CRspFetchEncryptStr {
+  int32 result_id = 1;
+  string desc = 2;
+  string encypt_data = 3;
+}
+
+message CRspFetchPlayerCanJuRecord {
+  int32 result_id = 1;
+  string desc = 2;
+  TSingleModePlayerRecord record_info = 3;
+}
+
+message CRspLevelLockInfo {
+  int32 result_id = 1;
+  string desc = 2;
+  TLevelLockDetailInfo level_lock_detail_info = 3;
+}
+
+message CRspQuerySceneIDByLevel {
+  int32 result_id = 1;
+  string desc = 2;
+  TLevelSceneIDPair level_scene_id_info = 3;
+}
+
+message CRspRecvPrize {
+  int32 result_id = 1;
+  string desc = 2;
+  TCanJuPrize prize_info = 3;
+}
+
+message EndGameEvent {
+  EndGameEventCuanGuan cuan_guan_game_end = 1;
+  EndGameEventTryPlay try_play_game_end = 2;
+  EndGameEventHelpPlay help_play_game_end = 3;
+  EndGameEventHelpedPass helped_pass_event = 4;
+}
+
+message EndGameEventCuanGuan {
+  int32 mode = 1;
+  int32 level_id = 2;
+  uint64 uniq_id = 3;
+  int32 use_time = 4;
+  int32 time_stamp = 5;
+  int32 report_flag = 6;
+  int32 total_pass_count = 7;
+  int32 use_tips_count = 8;
+  int32 use_power_item_count = 9;
+}
+
+message EndGameEventHelpPlay {
+  uint32 target_uin = 1;
+  int32 target_account_type = 2;
+  int32 target_client_type = 3;
+  int32 target_game_id = 4;
+  int32 mode = 5;
+  int32 level_id = 6;
+  uint64 uniq_id = 7;
+  int32 use_time = 8;
+  int32 time_stamp = 9;
+  int32 report_flag = 10;
+  string helper_nick_name = 11;
+  int32 use_tips_count = 12;
+  int32 use_power_item_count = 13;
+}
+
+message EndGameEventHelpedPass {
+  uint32 helper_uin = 1;
+  int32 helper_account_type = 2;
+  int32 helper_client_type = 3;
+  int32 helper_game_id = 4;
+  int32 mode = 5;
+  int32 level_id = 6;
+  uint64 uniq_id = 7;
+  int32 pass_time_stamp = 8;
+  string helper_nick_name = 9;
+}
+
+message EndGameEventTryPlay {
+  int32 mode = 1;
+  int32 level_id = 2;
+  uint64 uniq_id = 3;
+  int32 enter_src = 4;
+  int32 report_flag = 5;
+  int32 use_tips_count = 6;
+  int32 use_power_item_count = 7;
+}
+
+message NotifyEndGameEvent {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  string open_id = 5;
+  string access_token = 6;
+  int32 event_type = 7;
+  EndGameEvent event = 8;
+}
+
+message PlayerEndGameLevelInfo {
+  uint64 uniq_id = 1;
+  uint32 pass_time = 2;
+  uint32 play_times = 3;
+  uint32 help_uin = 4;
+  uint32 flag = 5;
+  int32 level_id = 6;
+}
+
+message ReqEndGameLevelInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 mode = 5;
+  uint32 target_uin_key = 6;
+  int32 level_count = 7;
+  repeated int32 levels = 8;
+}
+
+message RspEndGameLevelInfo {
+  int32 result_id = 1;
+  int32 mode = 2;
+  uint32 target_uin_key = 3;
+  int32 level_count = 4;
+  repeated TUEndGameLevelInfo levels = 5;
+}
+
+message TCanJuBaseDeal {
+  int32 len = 1;
+  bytes cards = 2;
+}
+
+message TCanJuPrize {
+  int32 prize_type = 1;
+  int32 prize_id = 2;
+  int32 prize_num = 3;
+  int32 prize_level = 4;
+}
+
+message TCanJuPrizeForClient {
+  int32 prize_id = 1;
+  int32 prize_count = 2;
+}
+
+message TCanJuSingleModeSummaryInfo {
+  int32 mode_id = 1;
+  int32 total_level_num = 2;
+  int32 max_level = 3;
+  TLevelSceneIDPair level_scene_id_info = 4;
+  int32 prize_num = 5;
+  repeated TPrizeLevelInfo prize_level_infos = 6;
+  int32 lock_num = 7;
+  repeated TLockLevelInfo lock_level_infos = 8;
+  TPrizeLevelInfo pass_prize_level_infos = 9;
+}
+
+message TLevelLockDetailInfo {
+  int32 mode_id = 1;
+  int32 level = 2;
+  int32 unlocked = 3;
+  int32 condition_num = 4;
+  repeated TLockCondtion condition = 5;
+}
+
+message TLevelSceneIDPair {
+  int32 level = 1;
+  int32 scene_id = 2;
+}
+
+message TLockCondtion {
+  int32 type = 1;
+  int32 progress = 2;
+  int32 target = 3;
+}
+
+message TLockLevelInfo {
+  int32 level = 1;
+  int32 flag = 2;
+}
+
+message TPrizeLevelInfo {
+  int32 level = 1;
+  int32 prize_num = 2;
+  repeated TCanJuPrizeForClient prizes = 3;
+}
+
+message TSingleModePlayerRecord {
+  int32 mode_id = 1;
+  int32 total_pass_num = 2;
+  int32 total_play_times = 3;
+  int32 record_num = 4;
+  repeated TSinglePlayerRecord tdr2_pbt_single_player_record = 5;
+}
+
+message TSinglePlayerRecord {
+  int32 level = 1;
+  int32 first_pass_time = 2;
+  int32 play_times = 3;
+  int32 flag = 4;
+  int32 level_name_len = 5;
+  bytes level_name = 6;
+}
+
+message TUEndGameLevelInfo {
+  int32 type = 1;
+  UEndGameLevelInfo data = 2;
+}
+
+message TotalPlayerEndGameLevelInfo {
+  uint32 total_play_num = 1;
+  uint32 total_pass_num = 2;
+  int32 level_id = 3;
+}
+
+message UEndGameLevelInfo {
+  PlayerEndGameLevelInfo player_info = 1;
+  TotalPlayerEndGameLevelInfo total_info = 2;
+}

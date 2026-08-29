@@ -1,0 +1,144 @@
+{
+  "name": "DouZero For HLDDZ FullAuto ResNet",
+  "objective": "ADP",
+  "featureSchema": "douzero-fullauto-resnet-v1",
+  "sourceRepository": "https://github.com/Vincentzyx/DouZero_For_HLDDZ_FullAuto",
+  "sourceCommit": "6d20491da216c989d23cf2883498758fb78e9f8d",
+  "models": [
+    {
+      "file": "landlord.onnx",
+      "name": "landlord",
+      "checkpointSha256": "b025086cbe0df8b14c4eade9bae5e135b48d9da8568e049c173da08f8c047050",
+      "onnxSha256": "d271685df127307addb06b14ca75f8a78469777b5f9483e88ebccb566ab7301e",
+      "size": 14142407,
+      "inputs": {
+        "z": [
+          "batch",
+          40,
+          54
+        ],
+        "x": [
+          "batch",
+          15
+        ]
+      },
+      "output": {
+        "values": [
+          "batch",
+          1
+        ]
+      },
+      "maxAbsError": 5.960464477539062e-07
+    },
+    {
+      "file": "landlord_up.onnx",
+      "name": "landlord_up",
+      "checkpointSha256": "2d577f0915d5f9988675e1318789d9f6321c990a84f0aca4a74176bcc79cf87b",
+      "onnxSha256": "4a6697270c7725e76b51a18e32421bc6e93074e70eb81d920ddd6f5301b1d0a0",
+      "size": 14142410,
+      "inputs": {
+        "z": [
+          "batch",
+          40,
+          54
+        ],
+        "x": [
+          "batch",
+          15
+        ]
+      },
+      "output": {
+        "values": [
+          "batch",
+          1
+        ]
+      },
+      "maxAbsError": 7.152557373046875e-07
+    },
+    {
+      "file": "landlord_down.onnx",
+      "name": "landlord_down",
+      "checkpointSha256": "9de5bbff31849d26508da8972d430782cbff942db258bb20ca8286af82571c40",
+      "onnxSha256": "7b4f15d07fa722556c33219078ae77226a4d5d0d9df1396da4b8c8f026cb271e",
+      "size": 14142412,
+      "inputs": {
+        "z": [
+          "batch",
+          40,
+          54
+        ],
+        "x": [
+          "batch",
+          15
+        ]
+      },
+      "output": {
+        "values": [
+          "batch",
+          1
+        ]
+      },
+      "maxAbsError": 7.599592208862305e-07
+    },
+    {
+      "file": "bid.onnx",
+      "name": "bid",
+      "checkpointSha256": "320e9d96e3aa6f962e27f0b8f5f1d97c15af719bc5cb30ed5423b9c025bb4801",
+      "onnxSha256": "aad67ccbcca63151efdd99877c0afb6f924b293bcf4d606913ef6a7514956919",
+      "size": 6941294,
+      "inputs": {
+        "cards": [
+          "batch",
+          60
+        ]
+      },
+      "output": {
+        "score": [
+          "batch",
+          1
+        ]
+      },
+      "maxAbsError": 1.430511474609375e-06
+    },
+    {
+      "file": "farmer_up.onnx",
+      "name": "farmer_up",
+      "checkpointSha256": "3056422ffb4eeac2f63cfabe73bdfe2f4557982c66fa59c5b594c94e60297b61",
+      "onnxSha256": "806475df2b9d27587861890fb1db4a784e793ad8468fae99141af632ce03d48a",
+      "size": 6941300,
+      "inputs": {
+        "cards": [
+          "batch",
+          60
+        ]
+      },
+      "output": {
+        "score": [
+          "batch",
+          1
+        ]
+      },
+      "maxAbsError": 2.384185791015625e-06
+    },
+    {
+      "file": "farmer_down.onnx",
+      "name": "farmer_down",
+      "checkpointSha256": "eb381872d90e6cb8a1fcde15cafcf9b7421e467be90b2ebc1445832e84521a4d",
+      "onnxSha256": "06d1f4c9f24c196886ee8b9915aec1b18e5c38919cc50f8f05e97856a1fcb990",
+      "size": 6941302,
+      "inputs": {
+        "cards": [
+          "batch",
+          60
+        ]
+      },
+      "output": {
+        "score": [
+          "batch",
+          1
+        ]
+      },
+      "maxAbsError": 1.430511474609375e-06
+    }
+  ]
+}

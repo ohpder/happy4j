@@ -1,0 +1,26 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HuanLeGameSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.huanlegamesvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HuanLeGameSvrProto";
+
+message DDZSoPrize {
+  int32 cnt = 1;
+  repeated DDZSoPrizeItem item = 2;
+}
+
+message DDZSoPrizeItem {
+  int32 type = 1;
+  int32 id = 2;
+  int32 count = 3;
+}
+
+message TCS_CMD_NOTIFY_TITLE_LEVEL_UP_PRIZE {
+  int32 prev_max_title_id = 1;
+  int32 pre_title_id = 2;
+  int32 now_title_id = 3;
+  DDZSoPrize prize = 4;
+}

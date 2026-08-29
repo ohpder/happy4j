@@ -1,0 +1,25 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.FetchPunishInfoMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.fetchpunishinfomsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_FetchPunishInfoMsgParaProto";
+
+enum MacroDefineForFetchPunishInfoMsgPara {
+  MacroDefineForFetchPunishInfoMsgPara_Tdr2PbDummyMacroDefineForFetchPunishInfoMsgPara = 0;
+  MacroDefineForFetchPunishInfoMsgPara_MaxShowmsgLen = 256;
+}
+
+message CNotifyPunishInfoMsgPara {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 show_msg_len = 5;
+  int32 is_punish = 6;
+  bytes show_msg = 7;
+  int32 reserver = 8;
+  int32 punish_flag = 9;
+}

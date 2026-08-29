@@ -1,0 +1,157 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LogicSvcHLGetBeanByShareForDDZ;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.logicsvchlgetbeanbyshareforddz";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LogicSvcHLGetBeanByShareForDDZProto";
+
+enum HL_ID_C2S_HLDDZ_GET_BEAN_BY_SHARE_MSG_ID {
+  HL_ID_C2S_HLDDZ_GET_BEAN_BY_SHARE_MSG_ID_Tdr2PbDummyHlIdC2SHlddzGetBeanByShareMsgId = 0;
+  HL_ID_C2S_HLDDZ_GET_BEAN_BY_SHARE_MSG_ID_HlIdC2SHlddzGetBeanByShareHelpFriend = 18173;
+  HL_ID_C2S_HLDDZ_GET_BEAN_BY_SHARE_MSG_ID_HlIdC2SHlddzGetBeanByShareFetchData = 18174;
+  HL_ID_C2S_HLDDZ_GET_BEAN_BY_SHARE_MSG_ID_HlIdC2SHlddzGetBeanByShareFetchAward = 18175;
+}
+
+enum HL_SHARE_HELP_SHARER_COMMAND {
+  HL_SHARE_HELP_SHARER_COMMAND_HelpOther = 0;
+  HL_SHARE_HELP_SHARER_COMMAND_ReportSelf = 1;
+}
+
+enum MacroDefineForHLGetBeanByShareForDDZMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_Tdr2PbDummyMacroDefineForHlgetBeanByShareForDdzmsgPara = 0;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxNickLenth = 256;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxAlbumUrlLenth = 256;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxResultStrLenth = 256;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxRewardNum = 3;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxPitNum = 10;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxRewardNumIncludeAllPit = 30;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxHelpNum = 10;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxOpenidStrLen = 128;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxLimitedGiftNum = 6;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxIconUrlStrLenth = 256;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxResetTimeStrLenth = 64;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxSessionKeyStrLength = 128;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxEncryptIvStrLength = 64;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlShareMaxEncryptDataStrLength = 1024;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlWxShareDataKvMaxCount = 64;
+  MacroDefineForHLGetBeanByShareForDDZMsgPara_HlSharePlayerInfoSpecialUnknownUin = 101;
+}
+
+message CRequestHelpSharerDDZ {
+  uint32 uin = 1;
+  uint32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  uint32 sharer_uin = 5;
+  uint32 command = 6;
+  string session_key = 7;
+  string encrypt_iv = 8;
+  string encrypt_data = 9;
+}
+
+message CRequestReceiveAwardDDZ {
+  uint32 uin = 1;
+  uint32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  string open_id = 5;
+  int32 pit_id = 6;
+  int32 receive_all_awards = 7;
+  int32 limited_gift_id = 8;
+}
+
+message CRequestShareDataDDZ {
+  uint32 uin = 1;
+  uint32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+}
+
+message CResponseHelpSharerDDZ {
+  int32 result_id = 1;
+  string result_str = 2;
+  TPlayerDetailInfo sharer_detail_info = 3;
+  int32 sharer_reward_num = 4;
+  repeated TRewardInfo sharer_reward = 5;
+  int32 total_times_to_help = 6;
+  int32 used_times_to_help = 7;
+}
+
+message CResponseReceiveAwardDDZ {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 rewards_num = 3;
+  repeated TRewardInfo rewards_info = 4;
+}
+
+message CResponseShareDataDDZ {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 pit_num = 3;
+  repeated TPitInfo pit_info = 4;
+  int32 limited_gift_num = 5;
+  repeated TLimitedGiftInfo limited_gift_info = 6;
+  string reset_time_per_day = 7;
+}
+
+message TLimitedGiftInfo {
+  int32 limited_gift_id = 1;
+  int32 start_time = 2;
+  int32 end_time = 3;
+  int32 rewards_num = 4;
+  repeated TRewardInfo rewards_info = 5;
+  string icon_url = 6;
+  int32 left_count = 7;
+  int32 has_get = 8;
+  int32 limit_id = 9;
+}
+
+message TPitInfo {
+  int32 pit_id = 1;
+  TPlayerDetailInfo player_detail_info = 2;
+  int32 has_top_prize = 3;
+  int32 rewards_num = 4;
+  repeated TRewardInfo rewards_info = 5;
+  int32 has_receive_reward_already = 6;
+}
+
+message TPlayerDetailInfo {
+  uint32 uin = 1;
+  string nick_name = 2;
+  string head_url = 3;
+}
+
+message TRewardInfo {
+  int32 id = 1;
+  int32 num = 2;
+}
+
+message TShareData {
+  uint32 last_update_time_stamp = 1;
+  int32 pit_num = 2;
+  repeated TSimplePitInfo simple_pit_info = 3;
+  int32 help_num = 4;
+  repeated uint32 uin = 5;
+  int32 get_limited_gift_id_cur_day = 6;
+  int64 last_report_other_help_count = 7;
+  TWxShareState last_wx_share_state = 8;
+}
+
+message TSimplePitInfo {
+  uint32 uin = 1;
+  int32 rewards_num = 2;
+  repeated TRewardInfo rewards_info = 3;
+}
+
+message TWxShareState {
+  int32 kv_count = 1;
+  repeated TWxShareStateKv kv_list = 2;
+}
+
+message TWxShareStateKv {
+  int32 key = 1;
+  int64 value = 2;
+}

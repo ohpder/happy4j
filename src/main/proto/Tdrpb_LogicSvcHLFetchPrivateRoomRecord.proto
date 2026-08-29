@@ -1,0 +1,122 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LogicSvcHLFetchPrivateRoomRecord;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.logicsvchlfetchprivateroomrecord";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LogicSvcHLFetchPrivateRoomRecordProto";
+
+enum MacroDefineForHLFetchPrivateRoomRecordMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_Tdr2PbDummyMacroDefineForHlfetchPrivateRoomRecordMsgPara = 0;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MsgidC2SHlfetchPrivateroomRecordsinfo = 17092;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MsgidC2SHlfetchSingleroundDetailinfo = 17093;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_PrivateRoomMaxNickLenth = 256;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_PrivateRoomMaxAlbumUrlLenth = 256;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_PrivateRoomMaxResultStrLenth = 256;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_PrivateRoomMaxTopPlayersNum = 4;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MaxPrivateRoomRoundInfoListNum = 10;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MaxPrivateRoomRoundNumPerOnetable = 15;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MaxGiveCardSeqSize = 110;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_PlayerNumPerOnetable = 3;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_BeneathNum = 3;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MaxPrivatePlayerNumInOneDate = 16;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MaxNickLenHg = 64;
+  MacroDefineForHLFetchPrivateRoomRecordMsgPara_MaxHeadUrlLenHg = 256;
+}
+
+message CRequestPrivateRoomRecordsInfo {
+  uint32 uin = 1;
+  uint32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  uint32 start_idx = 5;
+  uint32 req_num = 6;
+}
+
+message CRequestSingleRoundDetailInfo {
+  uint32 uin = 1;
+  uint32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 round_finish_time = 5;
+}
+
+message CResponsePrivateRoomRecordsInfo {
+  int32 resultid = 1;
+  uint32 result_str_len = 2;
+  bytes result_str = 3;
+  uint32 round_num = 4;
+  repeated TSingleRoundSummaryInfo single_round_summary_info = 5;
+}
+
+message CResponseSingleRoundDetailInfo {
+  int32 resultid = 1;
+  uint32 result_str_len = 2;
+  bytes result_str = 3;
+  int32 player_num = 4;
+  repeated TGameSvrPrivatePlayerInfo player_info_list = 5;
+  TPrivateRoomSingleRoundInfo single_round_info = 6;
+}
+
+message TGameSvrPrivatePlayerInfo {
+  uint32 uin = 1;
+  int64 score = 2;
+  int32 round_num = 3;
+  int32 win_round_num = 4;
+  int32 nick_len = 5;
+  bytes nick_name = 6;
+  int32 head_url_len = 7;
+  bytes head_url = 8;
+}
+
+message TPrivateRoomConfigInfoV2 {
+  int32 support_ob = 1;
+  uint32 max_round_num = 2;
+  uint32 lord_max_score = 3;
+  int32 order_play_mode = 4;
+  int32 forbid_share = 5;
+  int32 forbid_multi = 6;
+  int32 can_use_remember_card = 7;
+  uint32 version = 8;
+  uint32 max_give_card_time = 9;
+  uint32 left_card_display = 10;
+  uint32 must_order_when_double_king_four2 = 11;
+  uint32 pdk_first_give_mode = 12;
+  uint32 pdk_not_lose_when_left_single_card = 13;
+  uint32 pdk_deal_mode = 14;
+  bytes reserve_param = 15;
+}
+
+message TPrivateRoomRoundInfoList {
+  int32 round_num = 1;
+  repeated TPrivateRoomSingleRoundInfo round_info_list = 2;
+}
+
+message TPrivateRoomSingleRoundInfo {
+  uint32 scene_id = 1;
+  uint32 finish_time_stamp = 2;
+  TPrivateRoomConfigInfoV2 room_cfg = 3;
+  int32 games_num = 4;
+  repeated TSingleGameInfo single_game_info = 5;
+}
+
+message TSingleGameInfo {
+  int32 first_wild = 1;
+  bytes beneath = 2;
+  int32 second_wild = 3;
+  uint32 finish_time_stamp = 4;
+  repeated uint32 uin_list = 5;
+  repeated int32 score_list = 6;
+  int32 give_card_seq_num = 7;
+  bytes give_card_seq = 8;
+}
+
+message TSingleRoundSummaryInfo {
+  uint32 player_num = 1;
+  repeated TGameSvrPrivatePlayerInfo top_players_info = 2;
+  uint32 finish_time_stamp = 3;
+  int32 my_total_score = 4;
+  uint32 scene_id = 5;
+}

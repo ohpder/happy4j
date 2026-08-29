@@ -1,0 +1,126 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLDDZSignInLottery;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlddzsigninlottery";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLDDZSignInLotteryProto";
+
+enum ClientAbilityFlags {
+  ClientAbilityFlags_Tdr2PbDummyClientAbilityFlags = 0;
+  ClientAbilityFlags_KCaflagSupportGetAllPrize = 1;
+}
+
+enum LoginPlatform {
+  LoginPlatform_Tdr2PbDummyLoginPlatform = 0;
+  LoginPlatform_KGameCenter = 1;
+  LoginPlatform_KQqgame = 2;
+  LoginPlatform_KQzone = 4;
+  LoginPlatform_KQq = 8;
+}
+
+enum LotteryMode {
+  LotteryMode_KModeNormal = 0;
+  LotteryMode_KModeHongFu = 1;
+}
+
+enum LotteryState {
+  LotteryState_KStateDisable = 0;
+  LotteryState_KStateNotDraw = 1;
+  LotteryState_KStateHasDraw = 2;
+  LotteryState_KStateHasWatchAd = 3;
+  LotteryState_KStateHasShare = 4;
+  LotteryState_KStateHasChoosePrizeByWatchAd = 5;
+  LotteryState_KStateHasChoosePrizeByShare = 6;
+  LotteryState_KStateNewCanGet = 11;
+  LotteryState_KStateNewHasGotBase = 12;
+  LotteryState_KStateNewHasGotAllByWatchAd = 13;
+  LotteryState_KStateNewHasGotAllByShare = 14;
+}
+
+enum MacroDefineForHLDDZSignInLottery {
+  MacroDefineForHLDDZSignInLottery_Tdr2PbDummyMacroDefineForHlddzsignInLottery = 0;
+  MacroDefineForHLDDZSignInLottery_IdC2SHlddzAppletSignInLottery = 18291;
+  MacroDefineForHLDDZSignInLottery_MaxOpenIdLength = 128;
+  MacroDefineForHLDDZSignInLottery_MaxResponseMessageLength = 256;
+  MacroDefineForHLDDZSignInLottery_MaxPrizeInfoCount = 5;
+}
+
+enum PrizeState {
+  PrizeState_KStateNotGet = 0;
+  PrizeState_KStateHasGot = 1;
+}
+
+enum PrizeType {
+  PrizeType_KTypeBase = 0;
+  PrizeType_KTypeExtra = 1;
+}
+
+enum RequestCommand {
+  RequestCommand_KCmdUndefined = 0;
+  RequestCommand_KCmdQueryState = 1;
+  RequestCommand_KCmdRefreshState = 2;
+  RequestCommand_KCmdDrawPrize = 3;
+  RequestCommand_KCmdReportWatchAd = 4;
+  RequestCommand_KCmdReportShare = 5;
+  RequestCommand_KCmdChoosePrize = 6;
+  RequestCommand_KCmdGetBasePrize = 13;
+  RequestCommand_KCmdGetAllPrizeByWatchAd = 14;
+  RequestCommand_KCmdGetAllPrizeByShare = 15;
+}
+
+message Item {
+  int32 item_id = 1;
+  int32 item_count = 2;
+}
+
+message PrizeInfo {
+  int32 state = 1;
+  int32 prize_type = 2;
+  int32 item_id = 3;
+  int32 item_count = 4;
+}
+
+message SignInLotteryRequest {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string openid = 4;
+  int32 command = 5;
+  int32 choose_prize_index = 6;
+  uint32 ability_flags = 7;
+  uint32 login_platform = 8;
+  int32 is_has_gdt_extra_prize = 9;
+  int32 watch_adv_extra_prize_cnt = 10;
+}
+
+message SignInLotteryResponse {
+  int32 code = 1;
+  int32 mode = 2;
+  int32 state = 3;
+  int32 total_sign_in_day_count = 4;
+  int32 current_sign_in_day_count = 5;
+  int32 remain_sign_in_day_count = 6;
+  int32 get_prize_index = 7;
+  int32 prize_info_count = 8;
+  repeated PrizeInfo prize_infos = 9;
+  string message = 10;
+  int32 get_item_count = 11;
+  repeated Item get_items = 12;
+  int32 base_prize_multi = 13;
+  int32 game_center_plus_percent = 14;
+  int32 qq_vip_plus_percent = 15;
+  int32 command = 16;
+  string posid = 17;
+  string appid = 18;
+  int32 disable_adv = 19;
+  int32 ab_test_term = 20;
+  int32 ab_test_group = 21;
+  int32 ab_test_prize_id = 22;
+  int32 ab_test_uiid = 23;
+  int32 gdt_extra_prize_prize_item_count = 24;
+  repeated Item gdt_extra_prize_prize_item = 25;
+  int32 watch_adv_extra_prize_item_count = 26;
+  repeated Item watch_adv_extra_prize_item = 27;
+}

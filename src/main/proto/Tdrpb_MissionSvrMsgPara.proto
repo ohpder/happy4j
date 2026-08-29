@@ -1,0 +1,244 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.MissionSvrMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.missionsvrmsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_MissionSvrMsgParaProto";
+
+enum MacroDefineForMissionSvrMsgPara {
+  MacroDefineForMissionSvrMsgPara_Tdr2PbDummyMacroDefineForMissionSvrMsgPara = 0;
+  MacroDefineForMissionSvrMsgPara_MsgidC2SReqMissionLogin = 7301;
+  MacroDefineForMissionSvrMsgPara_MsgidC2SReqMissionLogout = 7302;
+  MacroDefineForMissionSvrMsgPara_MsgidS2CNotifyMissionProgress = 7320;
+  MacroDefineForMissionSvrMsgPara_MsgidS2SReportSingleMissionEvent = 7308;
+  MacroDefineForMissionSvrMsgPara_MaxMissionPerPlayerInOnePackage = 400;
+  MacroDefineForMissionSvrMsgPara_MaxConditionNumPerMission = 4;
+  MacroDefineForMissionSvrMsgPara_MaxLineBufLength = 1024;
+  MacroDefineForMissionSvrMsgPara_MaxMissionRuleNameLength = 32;
+  MacroDefineForMissionSvrMsgPara_MaxMissionRuleValueLength = 64;
+  MacroDefineForMissionSvrMsgPara_MaxMissionRuleValueCount = 8;
+}
+
+message CNotifyClientMissionProgress {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 mission_id = 3;
+  int32 mission_status = 4;
+  int32 period_finish_count = 5;
+  int32 condition_id = 6;
+  int32 condition_idx = 7;
+  int64 condition_value = 8;
+  int32 total_finish_count = 9;
+  int32 client_type = 10;
+  int32 account_type = 11;
+}
+
+message CNotifyMissionComplete {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 mission_id = 3;
+  int32 is_achievement = 4;
+  uint32 finish_time = 5;
+  int32 mission_status = 6;
+}
+
+message CNotifySingleMissionEvent {
+  TMissionEvent misson_event = 1;
+  int32 need_rsp = 2;
+  int32 rsp_mission_status = 3;
+  int32 valid_mission_id_num = 4;
+  repeated int32 valid_mission_id = 5;
+  MissionRules rules = 6;
+}
+
+message CReqAcceptMission {
+  uint32 uin = 1;
+  int32 transparent = 2;
+  int32 game_id = 3;
+  int32 mission_id = 4;
+  uint32 flag = 5;
+}
+
+message CReqDelCacheMsgPara {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  uint32 transparent_len = 3;
+  bytes transparent = 4;
+}
+
+message CReqEnableMissionFinish {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 mission_id = 3;
+  uint32 flag = 4;
+  int32 award_value = 5;
+  int32 server_id = 6;
+  int32 room_id = 7;
+}
+
+message CReqFetchMissionStatus {
+  uint32 uin = 1;
+  int32 transparent = 2;
+  int32 game_id = 3;
+  uint32 scene_id = 4;
+  int32 mission_client_type = 5;
+  uint32 flag = 6;
+  int32 begin_mission_id = 7;
+  int32 end_mission_id = 8;
+  uint32 ext_flag = 9;
+  uint32 mission_id_num = 10;
+  repeated uint32 mission_id = 11;
+  int32 group_id = 12;
+  MissionRules rules = 13;
+}
+
+message CReqMissionLogin {
+  uint32 uin = 1;
+  int32 transparent = 2;
+  int32 mission_clinet_type = 3;
+  int32 version_number = 4;
+  uint32 flag = 5;
+  uint32 ability_set = 6;
+}
+
+message CReqMissionLogout {
+  uint32 uin = 1;
+  int32 transparent = 2;
+  uint32 flag = 3;
+}
+
+message CReqModifyMissionCondition {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 mission_id = 3;
+  int32 condition_index = 4;
+  int64 condition_vaule = 5;
+}
+
+message CReqSubmitMission {
+  uint32 uin = 1;
+  int32 transparent = 2;
+  int32 game_id = 3;
+  int32 mission_id = 4;
+  int32 addition_award_value = 5;
+  uint32 flag = 6;
+}
+
+message CRspAcceptMission {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 transparent = 3;
+  int32 game_id = 4;
+  int32 mission_id = 5;
+}
+
+message CRspDelCacheMsgPara {
+  int32 result = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  uint32 transparent_len = 4;
+  bytes transparent = 5;
+}
+
+message CRspEnableMissionFinish {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  int32 mission_id = 4;
+}
+
+message CRspFetchMissionStatus {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 transparent = 3;
+  int32 game_id = 4;
+  uint32 scene_id = 5;
+  int32 mission_client_type = 6;
+  uint32 mission_num = 7;
+  repeated TMissionStatus mission_status = 8;
+  repeated TMissionStatusEx mission_status_ex = 9;
+}
+
+message CRspMissionLogin {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 transparent = 3;
+}
+
+message CRspMissionLogout {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 transparent = 3;
+}
+
+message CRspModifyMissionCondition {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  int32 mission_id = 4;
+  int32 condition_index = 5;
+  int64 condition_vaule = 6;
+}
+
+message CRspNotifySingleMissionEvent {
+  uint32 uin = 1;
+  int32 result_id = 2;
+  int32 event_id = 3;
+  int32 rsp_mission_id = 4;
+}
+
+message CRspSubmitMission {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 transparent = 3;
+  int32 game_id = 4;
+  int32 mission_id = 5;
+}
+
+message MissionRuleInfo {
+  string name = 1;
+  string values = 2;
+}
+
+message MissionRules {
+  int32 rule_count = 1;
+  repeated MissionRuleInfo rules = 2;
+}
+
+message TAcceptMission {
+  int32 game_id = 1;
+  int32 mission_id = 2;
+}
+
+message TMissionEvent {
+  uint32 flag = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  int32 scene_id = 4;
+  int32 event_id = 5;
+  int32 client_type = 6;
+  int32 server_id = 7;
+  int32 room_id = 8;
+  int32 count = 9;
+  int32 addition_value_num = 10;
+  repeated int32 addition_value = 11;
+  int32 award_value = 12;
+  int32 event_buffer_len = 13;
+  bytes event_buffer = 14;
+  int32 account_type = 15;
+}
+
+message TMissionStatus {
+  int32 game_id = 1;
+  int32 mission_id = 2;
+  int32 mission_status = 3;
+  uint32 count_value_num = 4;
+  repeated int64 count_value = 5;
+}
+
+message TMissionStatusEx {
+  int32 period_finish_count = 1;
+  bytes reserved = 2;
+}

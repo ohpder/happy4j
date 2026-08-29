@@ -1,0 +1,70 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LogicServiceIdentityOperation;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.logicserviceidentityoperation";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LogicServiceIdentityOperationProto";
+
+enum E_IDENTITY_OPERATION_CMD_TYPE_ENUM {
+  E_IDENTITY_OPERATION_CMD_TYPE_ENUM_EIdentityOperationCmdTypeQuery = 0;
+  E_IDENTITY_OPERATION_CMD_TYPE_ENUM_EIdentityOperationCmdTypeBind = 1;
+  E_IDENTITY_OPERATION_CMD_TYPE_ENUM_EIdentityOperationCmdTypeDel = 2;
+  E_IDENTITY_OPERATION_CMD_TYPE_ENUM_EIdentityOperationCmdTypeUpdateExtraInfo = 3;
+}
+
+enum MacroDefineForHLIdentityOperationMsgPara {
+  MacroDefineForHLIdentityOperationMsgPara_Tdr2PbDummyMacroDefineForHlidentityOperationMsgPara = 0;
+  MacroDefineForHLIdentityOperationMsgPara_IdC2SReqIdentityOperation = 17052;
+  MacroDefineForHLIdentityOperationMsgPara_OpenidLen = 1024;
+}
+
+message CReqIdentityOperation {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 cmd = 3;
+  uint32 uin = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 game_id = 7;
+  int32 account_type = 8;
+  int32 client_type = 9;
+  TPlayerIdentityInfo id_info = 10;
+}
+
+message CRspIdentityOperation {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  int32 result_str_len = 4;
+  bytes result_str = 5;
+  uint32 cmd = 6;
+  TPlayerIdentityInfo id_info = 7;
+}
+
+message TId2UinDataInfo {
+  uint32 uin = 1;
+}
+
+message TPlayerIdentityInfo {
+  int32 name_len = 1;
+  bytes name = 2;
+  int32 ident_len = 3;
+  bytes ident = 4;
+  int32 reserv_param1 = 5;
+  int32 reserv_param2 = 6;
+  int32 reserv_param3 = 7;
+  int32 reserv_param4 = 8;
+  int32 reserv_param5 = 9;
+  int32 reserv_str1_len = 10;
+  bytes reserv_str1 = 11;
+  int32 reserv_str2_len = 12;
+  bytes reserv_str2 = 13;
+  int32 reserv_str3_len = 14;
+  bytes reserv_str3 = 15;
+  int32 reserv_str4_len = 16;
+  bytes reserv_str4 = 17;
+  int32 reserv_str5_len = 18;
+  bytes reserv_str5 = 19;
+}

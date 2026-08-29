@@ -1,0 +1,322 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.FuliMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.fulimsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_FuliMsgParaProto";
+
+enum FuliClientRequestBitFlag {
+  FuliClientRequestBitFlag_EFuliClientFetchAllFuliList = 0;
+  FuliClientRequestBitFlag_EFuliClientFetchBookFuliList = 1;
+  FuliClientRequestBitFlag_EFuliClientDynRewardInfo = 2;
+  FuliClientRequestBitFlag_EFuliClientLimitClientVersion = 4;
+}
+
+enum FuliError {
+  FuliError_ESuccess = 0;
+  FuliError_EConfigErr = 1;
+  FuliError_EGetListErr = 2;
+  FuliError_EGetSpecErr = 3;
+  FuliError_EGetDataErr = 4;
+  FuliError_EBookSpecErr = 5;
+  FuliError_ELocationErr = 6;
+  FuliError_ESetStatusErr = 7;
+}
+
+enum FuliMethodType {
+  FuliMethodType_ETaskTypeNone = 0;
+  FuliMethodType_ETaskTypeTdtmatch = 1;
+  FuliMethodType_ETaskTypeSeriesmatch = 2;
+  FuliMethodType_ETaskTypeGamevs = 3;
+  FuliMethodType_ETaskTypeShare = 4;
+  FuliMethodType_ETaskTypeOtherNoReward = 5;
+  FuliMethodType_ETaskTypeOtherHasReward = 6;
+}
+
+enum FuliSpecialStatus {
+  FuliSpecialStatus_EFuliSpecialNormal = 0;
+  FuliSpecialStatus_EFuliSpecialBook = 1;
+  FuliSpecialStatus_EFuliSpecialJoin = 2;
+}
+
+enum MacroDefineForFuliMsgPara {
+  option allow_alias = true;
+  MacroDefineForFuliMsgPara_Tdr2PbDummyMacroDefineForFuliMsgPara = 0;
+  MacroDefineForFuliMsgPara_FlMaxTitleLenth = 32;
+  MacroDefineForFuliMsgPara_FlMaxSloganLenth = 64;
+  MacroDefineForFuliMsgPara_FlMaxSpecialNum = 32;
+  MacroDefineForFuliMsgPara_FlMaxIconLen = 128;
+  MacroDefineForFuliMsgPara_FlMaxBgpathLen = 128;
+  MacroDefineForFuliMsgPara_FlMaxReserve3Len = 128;
+  MacroDefineForFuliMsgPara_FlMaxDuobaoNumEachSpecial = 16;
+  MacroDefineForFuliMsgPara_FlMaxExchangeNumEachSpecial = 16;
+}
+
+message CRequestBookSpecial {
+  TUserInfo user_info = 1;
+  int32 special_id = 2;
+}
+
+message CRequestFetchFuliDynamicData {
+  TUserInfo user_info = 1;
+  int32 special_id = 2;
+  int32 client_bit_flag = 3;
+}
+
+message CRequestFetchFuliList {
+  TUserInfo user_info = 1;
+  int32 client_bit_flag = 2;
+  int32 address_num = 3;
+  repeated TAddress address = 4;
+  int32 login_channel_len = 5;
+  bytes login_channel = 6;
+}
+
+message CRequestFetchFuliSpecial {
+  TUserInfo user_info = 1;
+  int32 special_id = 2;
+  int32 address_num = 3;
+  repeated TAddress address = 4;
+  int32 login_channel_len = 5;
+  bytes login_channel = 6;
+}
+
+message CResponseBookSpecial {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 special_id = 6;
+}
+
+message CResponseFetchFuliDynamicData {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 special_id = 6;
+  int32 dynamic_data_num = 7;
+  repeated TFuliDynamicData dynamic_data = 8;
+}
+
+message CResponseFetchFuliList {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 refresh_intv = 6;
+  int32 corner_book_len = 7;
+  bytes corner_book_url = 8;
+  int32 corner_go_len = 9;
+  bytes corner_go_url = 10;
+  int32 corner_over_len = 11;
+  bytes corner_over_url = 12;
+  int32 share_url_len = 13;
+  bytes share_url = 14;
+  int32 special_num = 15;
+  repeated TFuliSpecial fuli_special = 16;
+  int32 specal_ext_num = 17;
+  repeated TFuliSpecialExt fuli_special_ext = 18;
+}
+
+message CResponseFetchFuliSpecial {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 special_id = 6;
+  int32 icon_len = 7;
+  bytes icon_url = 8;
+  int32 background_len = 9;
+  bytes background_url = 10;
+  int32 title_len = 11;
+  bytes title = 12;
+  int32 share_title_len = 13;
+  bytes share_title = 14;
+  uint32 prepare_time = 15;
+  uint32 start_time = 16;
+  uint32 end_time = 17;
+  uint32 offline_time = 18;
+  uint32 status = 19;
+  int32 task_num = 20;
+  repeated TRewardTask reward_task = 21;
+  int32 duo_bao_list_len = 22;
+  repeated TDuoBaoBriefData duo_bao_list = 23;
+  int32 exchange_list_len = 24;
+  repeated TExchangeBriefData exchange_list = 25;
+  int32 background_v2_len = 26;
+  bytes background_url_v2 = 27;
+  int32 location_len = 28;
+  bytes location = 29;
+  int32 logo_len = 30;
+  bytes logo_url = 31;
+}
+
+message TAddress {
+  int32 lat = 1;
+  int32 lng = 2;
+  int32 province_len = 3;
+  bytes province = 4;
+  int32 city_len = 5;
+  bytes city = 6;
+}
+
+message TDuoBaoBriefData {
+  int32 duo_bao_id = 1;
+  int32 reserve1 = 2;
+  int32 reserve2 = 3;
+  int32 reserve3_len = 4;
+}
+
+message TDynamicTaskData {
+  uint32 id = 1;
+  uint32 reward_id = 2;
+  int32 remain = 3;
+  int32 own_item = 4;
+}
+
+message TExchangeBriefData {
+  int32 exchange_id = 1;
+  int32 reserve1 = 2;
+  int32 reserve2 = 3;
+  int32 reserve3_len = 4;
+}
+
+message TFuliDynamicData {
+  int32 special_id = 1;
+  int32 status = 2;
+  int32 join_num = 3;
+  int32 task_num = 4;
+  repeated TDynamicTaskData dyn_task_data = 5;
+}
+
+message TFuliPersonalData {
+  int32 special_id = 1;
+  int32 join_status = 2;
+  int32 reserve1 = 3;
+  int32 reserve2 = 4;
+}
+
+message TFuliPersonalDataList {
+  int32 data_num = 1;
+  repeated TFuliPersonalData personal_data = 2;
+}
+
+message TFuliSpecial {
+  int32 special_id = 1;
+  uint32 bg_color = 2;
+  int32 corner_len = 3;
+  bytes corner_url = 4;
+  int32 icon_len = 5;
+  bytes icon_url = 6;
+  int32 title_len = 7;
+  bytes title = 8;
+  uint32 prepare_time = 9;
+  uint32 start_time = 10;
+  uint32 end_time = 11;
+  uint32 offline_time = 12;
+  int32 reward_num = 13;
+  repeated TRewardSimple reward_simple = 14;
+  int32 status = 15;
+  int32 join_num = 16;
+}
+
+message TFuliSpecialExt {
+  int32 special_id = 1;
+  int32 bg_path_len = 2;
+  bytes bg_path = 3;
+  int32 reserve1 = 4;
+  int32 reserve2 = 5;
+  int32 location_len = 6;
+  bytes location = 7;
+}
+
+message TFuliSpecialInfo {
+  int32 special_id = 1;
+  uint32 join_num = 2;
+  int32 remain_num = 3;
+  repeated TRewardRemain reward_remain = 4;
+}
+
+message TGameVS {
+  uint32 mission_id = 1;
+}
+
+message TOther {
+  int32 command_len = 1;
+  bytes command = 2;
+}
+
+message TReserve {
+  repeated uint32 reserve = 1;
+}
+
+message TRewardRemain {
+  int32 reward_id = 1;
+  uint32 remain = 2;
+}
+
+message TRewardSimple {
+  int32 icon_len = 1;
+  bytes icon = 2;
+  int32 name_len = 3;
+  bytes name = 4;
+  int32 reward_id = 5;
+}
+
+message TRewardTask {
+  uint32 id = 1;
+  uint32 reward_id = 2;
+  int32 icon_len = 3;
+  bytes icon = 4;
+  int32 reward_name_len = 5;
+  bytes reward_name = 6;
+  int32 task_name_len = 7;
+  bytes task_name = 8;
+  int32 task_desc_len = 9;
+  bytes task_desc = 10;
+  int32 remain = 11;
+  int32 own_item = 12;
+  uint32 method_type = 13;
+  UGetMethod get_method = 14;
+}
+
+message TSeriesMatch {
+  uint32 match_id = 1;
+  uint32 series_id = 2;
+}
+
+message TShare {
+  uint32 share_id = 1;
+}
+
+message TTDTMatch {
+  uint32 match_id = 1;
+}
+
+message TUserInfo {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 client_version = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 trans_len = 7;
+  bytes transparent = 8;
+}
+
+message UGetMethod {
+  TReserve reserve = 1;
+  TTDTMatch tdt_match = 2;
+  TSeriesMatch series_match = 3;
+  TGameVS game_vs = 4;
+  TShare share = 5;
+  TOther other_no_reward = 6;
+  TOther other_has_reward = 7;
+}

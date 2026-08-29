@@ -1,0 +1,84 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLHighPayLimit;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlhighpaylimit";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLHighPayLimitProto";
+
+enum MacroDefineForHLHighPayLimitMsgPara {
+  MacroDefineForHLHighPayLimitMsgPara_Tdr2PbDummyMacroDefineForHlhighPayLimitMsgPara = 0;
+  MacroDefineForHLHighPayLimitMsgPara_MaxTipsLen = 512;
+  MacroDefineForHLHighPayLimitMsgPara_MaxOpenidLen = 128;
+  MacroDefineForHLHighPayLimitMsgPara_MaxQueryPayAmNum = 8;
+}
+
+enum PlayerPayRMBType {
+  PlayerPayRMBType_EPlayerPayRmbDefault = 0;
+  PlayerPayRMBType_EPlayerPayRmbApplet = 1;
+  PlayerPayRMBType_EPlayerPayRmbApp = 2;
+  PlayerPayRMBType_EPlayerPayRmbPc = 3;
+  PlayerPayRMBType_EPlayerPayRmbAll = 4;
+}
+
+enum QueryPayLimitInfoResultID {
+  QueryPayLimitInfoResultID_ErrQueryPaylimitOk = 0;
+  QueryPayLimitInfoResultID_ErrQueryPaylimitClose = 1;
+  QueryPayLimitInfoResultID_ErrQueryPaylimitInnerError = 2;
+}
+
+enum QueryPayLimitScene {
+  QueryPayLimitScene_EQuerySceneLogin = 0;
+  QueryPayLimitScene_EQuerySceneAfterPay = 1;
+  QueryPayLimitScene_EQueryScenePayLimit = 2;
+}
+
+enum QueryPayLimitTipsType {
+  QueryPayLimitTipsType_ETipsTypeNoTips = 0;
+  QueryPayLimitTipsType_ETipsTypeOverMonthLimit = 1;
+}
+
+message CReqQueryPayRMBAmt {
+  uint32 m_ui_uin = 1;
+  int32 mi_account_type = 2;
+  int32 mi_client_type = 3;
+  int32 mi_game_id = 4;
+  int32 mi_player_type = 5;
+  string ms_open_id = 6;
+}
+
+message CRequestQueryPayLimitInfo {
+  uint32 m_ui_uin = 1;
+  int32 mi_account_type = 2;
+  int32 mi_client_type = 3;
+  int32 mi_game_id = 4;
+  int32 mi_query_scene = 5;
+}
+
+message CResponseQueryPayLimitInfo {
+  int32 mi_result_id = 1;
+  int32 mi_today_pay_limit = 2;
+  int32 mi_today_already_pay_num = 3;
+  int64 mi_svr_time_stamp = 4;
+  int32 mi_is_cloes_more_mount_pay_tab = 5;
+  int32 mi_tips_type = 6;
+  int32 m_sh_tips_len = 7;
+  bytes m_sz_tips = 8;
+}
+
+message CRspQueryPayRMBAmt {
+  int32 mi_result_id = 1;
+  int32 mi_has_data = 2;
+  int32 mi_last_pay_ts = 3;
+  int32 mi_last_pay_amt = 4;
+  int32 mi_label = 5;
+  int32 mi_all_pay_num = 6;
+  repeated TQueryPayRMBAmtItem m_st_all_pay = 7;
+}
+
+message TQueryPayRMBAmtItem {
+  int32 mi_last_pay_ts = 1;
+  int32 mi_last_pay_amt = 2;
+  int32 mi_label = 3;
+}

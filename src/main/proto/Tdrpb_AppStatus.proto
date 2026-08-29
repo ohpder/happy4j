@@ -1,0 +1,63 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.AppStatus;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.appstatus";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_AppStatusProto";
+
+enum MacroDefineForClientMsgPara {
+  option allow_alias = true;
+  MacroDefineForClientMsgPara_Tdr2PbDummyMacroDefineForClientMsgPara = 0;
+  MacroDefineForClientMsgPara_MaxCliOpenidLenth = 128;
+  MacroDefineForClientMsgPara_MaxCliTlvBufflen = 8192;
+  MacroDefineForClientMsgPara_MaxSnsFlowStrLen = 64;
+  MacroDefineForClientMsgPara_MaxSnsFlowStrNum = 10;
+  MacroDefineForClientMsgPara_MaxSnsNewStrLen = 128;
+  MacroDefineForClientMsgPara_MaxSnsReseredNum = 16;
+  MacroDefineForClientMsgPara_MaxSnsFlowNum = 100;
+}
+
+message CBatchReportSnsClientInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 client_version = 7;
+  int32 tsnsf_low_spec_info_num = 8;
+  repeated TSNSFLowSpecInfo snsf_low_spec_info = 9;
+  int32 reserved_num = 10;
+  repeated int32 reserved = 11;
+}
+
+message CReportClientInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  uint32 tlv_type = 7;
+  int32 tlv_num = 8;
+  int32 tlv_buff_len = 9;
+  bytes tlv_buff = 10;
+  int32 snsf_low_report_str_num = 11;
+  repeated TSNSFLowReportStr snsf_low_report_str = 12;
+}
+
+message TSNSFLowReportStr {
+  int32 report_str_len = 1;
+  bytes report_str = 2;
+}
+
+message TSNSFLowSpecInfo {
+  int32 sns_type = 1;
+  int32 sns_sub_type = 2;
+  int32 snsf_low_report_int_num = 3;
+  repeated int32 snsf_low_report_int = 4;
+  int32 snsf_low_report_str_len = 5;
+  bytes snsf_low_report_str = 6;
+}

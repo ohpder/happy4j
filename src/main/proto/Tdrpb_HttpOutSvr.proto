@@ -1,0 +1,214 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HttpOutSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.httpoutsvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HttpOutSvrProto";
+
+enum HTTP_HL_CGI_ID {
+  HTTP_HL_CGI_ID_Tdr2PbDummyHttpHlCgiId = 0;
+  HTTP_HL_CGI_ID_QgCgiRspDimaond = 1001;
+  HTTP_HL_CGI_ID_QgCgiRspBuyStageProperty = 1002;
+  HTTP_HL_CGI_ID_QgCgiReliveRsp = 1003;
+  HTTP_HL_CGI_ID_QgCgiScoreRescueRsp = 1004;
+  HTTP_HL_CGI_ID_QgCgiRspBuyeStagePropertyWithBean = 1005;
+  HTTP_HL_CGI_ID_QgCgiRspProcessMailSystem = 1006;
+  HTTP_HL_CGI_ID_QgCgiRspSendFeedBack = 1007;
+  HTTP_HL_CGI_ID_QgCgiRspSendWetestBack = 1008;
+  HTTP_HL_CGI_ID_QgCgiRspProcessUpgradeavatar = 1009;
+  HTTP_HL_CGI_ID_QgCgiRspProcessUpgradeskill = 1010;
+  HTTP_HL_CGI_ID_QgCgiRspSendCommonShare = 1011;
+  HTTP_HL_CGI_ID_QgCgiRspContinueLogin = 1012;
+  HTTP_HL_CGI_ID_QgCgiRspCheckQualification = 1013;
+  HTTP_HL_CGI_ID_QgCgiRspQqVipOpenNotify = 1014;
+  HTTP_HL_CGI_ID_QgCgiRspDownloadOrder = 1015;
+  HTTP_HL_CGI_ID_QgCgiRspActivityRedPoint = 1016;
+  HTTP_HL_CGI_ID_QgCgiRspExchangeSavePerson = 1017;
+  HTTP_HL_CGI_ID_QgCgiRspMicroCommunityAwardStatus = 1018;
+  HTTP_HL_CGI_ID_QgCgiRspExchangeGetPerson = 1019;
+  HTTP_HL_CGI_ID_QgCgiRspCallFriendBackInfo = 1020;
+  HTTP_HL_CGI_ID_QgCgiRspCrossBusiness = 1021;
+  HTTP_HL_CGI_ID_QgCgiRspCheatReport = 1022;
+  HTTP_HL_CGI_ID_QgCgiRspUserBaseInfo = 1023;
+  HTTP_HL_CGI_ID_QgCgiRspRealName = 1024;
+  HTTP_HL_CGI_ID_QgCgiRspMpmatchPlatform = 1025;
+  HTTP_HL_CGI_ID_QgCgiRspMpmatchTcrank = 1026;
+  HTTP_HL_CGI_ID_QgCgiRspNewbieLoginGift = 1027;
+  HTTP_HL_CGI_ID_QgCgiRspMobileOpenqqFetchProfile = 1028;
+  HTTP_HL_CGI_ID_QgCgiRspWechatFetchProfile = 1029;
+  HTTP_HL_CGI_ID_QgCgiRspCommonFetchBestrank = 1030;
+  HTTP_HL_CGI_ID_QgCgiRspCommonActivityLottery = 1031;
+  HTTP_HL_CGI_ID_QgCgiRspCommonCustomizereddot = 1032;
+  HTTP_HL_CGI_ID_QgCgiRspCommonGetmsgbox = 1033;
+  HTTP_HL_CGI_ID_QgCgiRspCommonGivendonner = 1034;
+  HTTP_HL_CGI_ID_QgCgiRspCommonRevalldonner = 1035;
+  HTTP_HL_CGI_ID_QgCgiRspCommonRevdonner = 1036;
+  HTTP_HL_CGI_ID_QgCgiRspHldnVipbuyitembyrmb = 1037;
+  HTTP_HL_CGI_ID_QgCgiRspSenditemAdnUpdatemsg = 1038;
+  HTTP_HL_CGI_ID_QgCgiRspCommonWxApplethelper = 1039;
+  HTTP_HL_CGI_ID_QgCgiRspCommonActivityRna = 1040;
+  HTTP_HL_CGI_ID_QgCgiRspCommonCelebrationActivity = 1041;
+  HTTP_HL_CGI_ID_QgCgiRspCommonHongbaoFetchNewbileActivity = 1042;
+  HTTP_HL_CGI_ID_QgCgiRspCommonReportInfo = 1043;
+  HTTP_HL_CGI_ID_QgCgiRspDdzNewbieGift = 1044;
+  HTTP_HL_CGI_ID_QgCgiRspInnerFightTopShare = 1045;
+  HTTP_HL_CGI_ID_QgCgiRspCommonNewVersionActivity = 1046;
+  HTTP_HL_CGI_ID_QgCgiRspUseItem = 1048;
+  HTTP_HL_CGI_ID_QgCgiRspDdzAppletFirstPurchaseActivity = 1049;
+  HTTP_HL_CGI_ID_QgCgiTxddzRspProcessMailSystem = 1050;
+  HTTP_HL_CGI_ID_QgCgiRspDdzAnniversaryCelebrationForAppletActivity = 1071;
+  HTTP_HL_CGI_ID_QgCgiRspDirectBuyItemByRmb = 1072;
+  HTTP_HL_CGI_ID_QgCgiRspDdzPandoraFriendBack = 1073;
+  HTTP_HL_CGI_ID_QgCgiRspPlantTreeActivity = 1074;
+  HTTP_HL_CGI_ID_QgCgiRspDdzInputTraffic = 1075;
+  HTTP_HL_CGI_ID_QgCgiRspHlddzGetQqgameCallBackFormId = 1076;
+  HTTP_HL_CGI_ID_QgCgiRspStorageTankForAppletForApplet = 1080;
+  HTTP_HL_CGI_ID_QgCgiRspLotteryGetEntranceInfo = 1081;
+  HTTP_HL_CGI_ID_QgCgiRspLotteryGetMainInfo = 1082;
+  HTTP_HL_CGI_ID_QgCgiRspLotteryReward = 1083;
+  HTTP_HL_CGI_ID_QgCgiRspHlddzAnniversarySign = 1084;
+  HTTP_HL_CGI_ID_QgCgiRspDdzActivityRegisterinfo = 1085;
+  HTTP_HL_CGI_ID_QgCgiRspDdzTuringRecommendIconSeq = 1086;
+  HTTP_HL_CGI_ID_QgCgiRspDdzCommonHuanleActivity = 1087;
+  HTTP_HL_CGI_ID_QgCgiRspDdzFetchShopAbtestInfo = 1088;
+  HTTP_HL_CGI_ID_QgCgiUiVersionRenewAward = 20011;
+  HTTP_HL_CGI_ID_QgCgiRspCheatReportPc = 32784;
+  HTTP_HL_CGI_ID_QgCgiReliveRspPc = 32769;
+  HTTP_HL_CGI_ID_QgCgiRspDownloadGiftInfoPc = 32780;
+  HTTP_HL_CGI_ID_QgCgiRspDownloadGiftPrizePc = 32781;
+  HTTP_HL_CGI_ID_QgCgiRspNewbieGiftInfoPc = 32778;
+  HTTP_HL_CGI_ID_QgCgiRspNewbieGiftPrizePc = 32779;
+  HTTP_HL_CGI_ID_QgCgiRspProcessUpgradeskillPc = 32775;
+  HTTP_HL_CGI_ID_QgCgiRspProcessUpgradeavatarPc = 32774;
+  HTTP_HL_CGI_ID_QgCgiRspExchangeSavePersonPc = 32782;
+  HTTP_HL_CGI_ID_QgCgiRspExchangeGetPersonPc = 32783;
+  HTTP_HL_CGI_ID_QgCgiRspProcessMailSystemPc = 32772;
+  HTTP_HL_CGI_ID_QgCgiRspBuyeStagePropertyWithBeanPc = 32771;
+  HTTP_HL_CGI_ID_QgCgiRspBuyStagePropertyPc = 32768;
+  HTTP_HL_CGI_ID_QgCgiRspRefreshTokenPc = 32785;
+  HTTP_HL_CGI_ID_QgCgiMissionStatusRspPc = 32790;
+  HTTP_HL_CGI_ID_QgCgiMissionRewardRspPc = 32791;
+}
+
+enum HTTP_REQUEST_TLVID {
+  HTTP_REQUEST_TLVID_Tdr2PbDummyHttpRequestTlvid = 0;
+  HTTP_REQUEST_TLVID_TlvidHttpHeader = 1000;
+}
+
+enum MacroDefineForHttpOutMsgPara {
+  option allow_alias = true;
+  MacroDefineForHttpOutMsgPara_Tdr2PbDummyMacroDefineForHttpOutMsgPara = 0;
+  MacroDefineForHttpOutMsgPara_MaxUrlLen = 4096;
+  MacroDefineForHttpOutMsgPara_MaxDomainnameLen = 64;
+  MacroDefineForHttpOutMsgPara_MaxCgiPathLen = 256;
+  MacroDefineForHttpOutMsgPara_MaxCgiQueryParaLen = 1024;
+  MacroDefineForHttpOutMsgPara_MaxCgiPostParaLen = 10240;
+  MacroDefineForHttpOutMsgPara_MaxCookieLen = 10240;
+  MacroDefineForHttpOutMsgPara_MaxResponseContentLen = 20480;
+  MacroDefineForHttpOutMsgPara_HttpoutTransparentLen = 1024;
+  MacroDefineForHttpOutMsgPara_MsgidHttpRequestWithTimeout = 15503;
+  MacroDefineForHttpOutMsgPara_MsgidHttpRequestCs = 15504;
+  MacroDefineForHttpOutMsgPara_QgCgiCgiMin = 1001;
+}
+
+message CHttpRequestMsgPara {
+  uint32 uin = 1;
+  int32 is_no_need_rsp = 2;
+  int32 is_https = 3;
+  int32 domain_name_len = 4;
+  bytes domain_name = 5;
+  int32 cgi_path_name_len = 6;
+  bytes cgi_path_name = 7;
+  int32 cgi_query_para_len = 8;
+  bytes cgi_query_para = 9;
+  int32 cgi_post_para_len = 10;
+  bytes cgi_post_para = 11;
+  int32 cookie_len = 12;
+  bytes cookie = 13;
+}
+
+message CHttpRequestMsgParaCS {
+  int32 transparent_id = 1;
+  int32 cgi_id = 2;
+  int32 req_para_zip_flag = 3;
+  int32 rsp_para_zip_flag = 4;
+  uint32 uin = 5;
+  int32 is_no_need_rsp = 6;
+  int32 is_https = 7;
+  int32 url_len = 8;
+  bytes url = 9;
+  int32 cgi_get_para_len = 10;
+  bytes cgi_get_para = 11;
+  int32 cgi_post_para_len = 12;
+  bytes cgi_post_para = 13;
+  int32 cookie_len = 14;
+  bytes cookie = 15;
+  int32 game_id = 16;
+}
+
+message CHttpRequestWithTimeoutMsgPara {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  CHttpRequestMsgPara http_request_msg = 3;
+  int32 curl_timeout_second = 4;
+}
+
+message CHttpResponseMsgPara {
+  uint32 uin = 1;
+  int32 result_id = 2;
+  int32 response_content_len = 3;
+  bytes response_content = 4;
+  int32 total_pkg_num = 5;
+  int32 cur_pkg_no = 6;
+}
+
+message CHttpResponseMsgParaCS {
+  uint32 uin = 1;
+  int32 result_id = 2;
+  int32 response_content_len = 3;
+  bytes response_content = 4;
+  int32 total_pkg_num = 5;
+  int32 cur_pkg_no = 6;
+  int32 transparent_id = 7;
+  int32 cgi_id = 8;
+  int32 rsp_para_zip_flag = 9;
+}
+
+message CSimpleHttpRequestMsgPara {
+  uint32 uin = 1;
+  int32 is_no_need_rsp = 2;
+  int32 is_https = 3;
+  int32 url_len = 4;
+  bytes url = 5;
+  int32 cgi_post_para_len = 6;
+  bytes cgi_post_para = 7;
+  int32 cookie_len = 8;
+  bytes cookie = 9;
+  int32 transparent_id = 10;
+  int32 cgi_id = 11;
+  int32 cgi_get_para_len = 12;
+  bytes cgi_get_para = 13;
+  int32 req_para_zip_flag = 14;
+  int32 rsp_para_zip_flag = 15;
+  THttpHeader header = 16;
+  int32 game_id = 17;
+}
+
+message CSimpleHttpResponseMsgPara {
+  uint32 uin = 1;
+  int32 result_id = 2;
+  int32 response_content_len = 3;
+  bytes response_content = 4;
+  int32 total_pkg_num = 5;
+  int32 cur_pkg_no = 6;
+  int32 transparent_id = 7;
+  int32 cgi_id = 8;
+  int32 rsp_para_zip_flag = 9;
+}
+
+message THttpHeader {
+  int32 header_num = 1;
+  repeated string header = 2;
+}

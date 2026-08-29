@@ -1,0 +1,82 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLDDZBuyBeanDisCount;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlddzbuybeandiscount";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLDDZBuyBeanDisCountProto";
+
+enum HLDDZ_BUYBEAN_DISCOUNT_CMD_TYPE {
+  HLDDZ_BUYBEAN_DISCOUNT_CMD_TYPE_Tdr2PbDummyHlddzBuybeanDiscountCmdType = 0;
+  HLDDZ_BUYBEAN_DISCOUNT_CMD_TYPE_ReqBuyBeanDiscount = 1;
+  HLDDZ_BUYBEAN_DISCOUNT_CMD_TYPE_ReportBuyBeanDiscountResult = 2;
+}
+
+enum MacroDefineForHlddzBuyBeanDisCountMsgPara {
+  option allow_alias = true;
+  MacroDefineForHlddzBuyBeanDisCountMsgPara_Tdr2PbDummyMacroDefineForHlddzBuyBeanDisCountMsgPara = 0;
+  MacroDefineForHlddzBuyBeanDisCountMsgPara_MsgidC2SHlddzBuyBeanDiscountQuery = 18436;
+  MacroDefineForHlddzBuyBeanDisCountMsgPara_MsgidC2SHlddzBuyBeanDiscountOp = 18437;
+  MacroDefineForHlddzBuyBeanDisCountMsgPara_HlddzBuybeanDiscountMaxOpenidLenth = 1024;
+  MacroDefineForHlddzBuyBeanDisCountMsgPara_HlddzBuybeanDiscountMaxOpenkeyStrLen = 1024;
+  MacroDefineForHlddzBuyBeanDisCountMsgPara_HlddzBuybeanDiscountMaxResultStrLen = 1024;
+  MacroDefineForHlddzBuyBeanDisCountMsgPara_HlddzBuybeanDiscountMaxUsrTypeStrLen = 1024;
+}
+
+message CReqBuyBeanDisCountOp {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  string open_id = 5;
+  string open_key = 6;
+  int32 cmd = 7;
+  HLDDZ_BUYBEAN_DISCOUNT_CMD_INFO cmd_info = 8;
+}
+
+message CReqBuyBeanDisCountQuery {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  string open_id = 5;
+  string open_key = 6;
+  int32 need_update_turing_info = 7;
+}
+
+message CRspBuyBeanDisCountOp {
+  int32 result_id = 1;
+  string result_str = 2;
+  int32 cmd = 3;
+}
+
+message CRspBuyBeanDisCountQuery {
+  int32 result_id = 1;
+  string result_str = 2;
+  string turing_user_type = 3;
+  string huanle_user_type = 4;
+  int32 has_discount = 5;
+}
+
+message HLDDZ_BUYBEAN_DISCOUNT_CMD_INFO {
+  TReqBuyBeanDiscount req_buy_bean_discount = 1;
+  TBuyBeanDiscountExpressResult buy_bean_discount_express_result = 2;
+}
+
+message TBuyBeanDiscountExpressResult {
+  int32 express_result = 1;
+  int32 ori_diamond_num = 2;
+  int32 discount_diamond_num = 3;
+  int32 goods_seq = 4;
+  int32 goods_count = 5;
+  string dbassistbillno = 6;
+}
+
+message TReqBuyBeanDiscount {
+  int32 ori_diamond_num = 1;
+  int32 discount_diamond_num = 2;
+  int32 goods_seq = 3;
+  int32 goods_count = 4;
+  string dbassistbillno = 5;
+}

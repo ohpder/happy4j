@@ -1,0 +1,51 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.SecuritySvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.securitysvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_SecuritySvrProto";
+
+enum MacroDefineForSecurityMsgPara {
+  option allow_alias = true;
+  MacroDefineForSecurityMsgPara_Tdr2PbDummyMacroDefineForSecurityMsgPara = 0;
+  MacroDefineForSecurityMsgPara_MaxReserveLen = 1024;
+  MacroDefineForSecurityMsgPara_MaxTssdataLen = 10240;
+  MacroDefineForSecurityMsgPara_MaxRolenameLen = 256;
+  MacroDefineForSecurityMsgPara_MaxOpenidLen = 256;
+  MacroDefineForSecurityMsgPara_OpIdLogin = 1;
+  MacroDefineForSecurityMsgPara_OpIdLogout = 2;
+  MacroDefineForSecurityMsgPara_OpIdTssdata = 3;
+  MacroDefineForSecurityMsgPara_OpIdKeepalive = 4;
+}
+
+message CReqDispatchTssCmd {
+  int64 uin = 1;
+  int32 tss_data_len = 2;
+  bytes tss_data_buffer = 3;
+}
+
+message CReqReportTssData {
+  int64 uin = 1;
+  int32 open_id_len = 2;
+  bytes open_id = 3;
+  int64 client_ver = 4;
+  uint32 client_ip = 5;
+  int32 role_name_len = 6;
+  bytes role_name_buffer = 7;
+  int32 account_type = 8;
+  int32 client_type = 9;
+  int32 app_id = 10;
+  int32 game_id = 11;
+  int32 operation_id = 12;
+  int32 reserve_len = 13;
+  bytes reserve_buffer = 14;
+  int32 tss_data_len = 15;
+  bytes tss_data_buffer = 16;
+}
+
+message CReqReportTssDataByGame {
+  int32 game_id = 1;
+  CReqReportTssData report_tss_data = 2;
+}

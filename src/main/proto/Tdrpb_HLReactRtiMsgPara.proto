@@ -1,0 +1,1235 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLReactRtiMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlreactrtimsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLReactRtiMsgParaProto";
+
+enum ELIMIT_TIPS_TYPE {
+  ELIMIT_TIPS_TYPE_ElimitTipsNone = 0;
+  ELIMIT_TIPS_TYPE_ElimitTipsLordWinSceneLimit = 1;
+  ELIMIT_TIPS_TYPE_ElimitTipsLordLossSceneLimit = 2;
+  ELIMIT_TIPS_TYPE_ElimitTipsLordWinSelfLimit = 3;
+  ELIMIT_TIPS_TYPE_ElimitTipsFarmerWinSelfLimit = 4;
+  ELIMIT_TIPS_TYPE_ElimitTipsLordBankrupt = 5;
+  ELIMIT_TIPS_TYPE_ElimitTipsFarmerBankrupt = 6;
+}
+
+enum ESHARE_PLATFORM_TYPE {
+  ESHARE_PLATFORM_TYPE_Tdr2PbDummyEsharePlatformType = 0;
+}
+
+enum E_RANK_BLACK_LIST_REQ_CMD {
+  E_RANK_BLACK_LIST_REQ_CMD_EnCmdQueryBlackList = 0;
+  E_RANK_BLACK_LIST_REQ_CMD_EnCmdAddBlackList = 1;
+  E_RANK_BLACK_LIST_REQ_CMD_EnCmdCheckBlackList = 2;
+  E_RANK_BLACK_LIST_REQ_CMD_EnCmdDelBlackList = 3;
+}
+
+enum MacroDefineForHLReactRtiMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLReactRtiMsgPara_Tdr2PbDummyMacroDefineForHlreactRtiMsgPara = 0;
+  MacroDefineForHLReactRtiMsgPara_SsMaxCommandLen = 128;
+  MacroDefineForHLReactRtiMsgPara_MsgidC2SNotifyShareResult = 31901;
+  MacroDefineForHLReactRtiMsgPara_MsgidS2CNotifyShareInfo = 31902;
+  MacroDefineForHLReactRtiMsgPara_MsgidS2CUpdatePlayerHistoryRecord = 31903;
+  MacroDefineForHLReactRtiMsgPara_MsgidC2SSetHealthPlayInfo = 31904;
+  MacroDefineForHLReactRtiMsgPara_MsgidS2SLoginAndLogoutRti = 31905;
+  MacroDefineForHLReactRtiMsgPara_MsgidC2SAsynFightGetInfo = 31906;
+  MacroDefineForHLReactRtiMsgPara_MsgidC2SAsynFightGetRank = 31907;
+  MacroDefineForHLReactRtiMsgPara_MsgidC2SAsynFightChallenge = 31908;
+  MacroDefineForHLReactRtiMsgPara_MsgidS2CUpdatePlayerHistoryRecord2V2 = 31916;
+  MacroDefineForHLReactRtiMsgPara_MsgidInternalReportScore = 31909;
+  MacroDefineForHLReactRtiMsgPara_MsgidS2CStorageTankAdd = 31917;
+  MacroDefineForHLReactRtiMsgPara_MsgidInternalStorageTankAdd = 31918;
+  MacroDefineForHLReactRtiMsgPara_MsgidInternalTrueskillPush = 31919;
+  MacroDefineForHLReactRtiMsgPara_MsgidInternalUpdateRoundHistory3V3 = 31920;
+  MacroDefineForHLReactRtiMsgPara_MsgidInternalUpdateRoundHistory4P = 31921;
+  MacroDefineForHLReactRtiMsgPara_MsgidInternalUpdateRoundHistoryGdy = 31923;
+  MacroDefineForHLReactRtiMsgPara_MsgidS2CAsynFightNotifySuc = 11018;
+  MacroDefineForHLReactRtiMsgPara_MsgidS2CAsynFightNotifyShare = 11019;
+  MacroDefineForHLReactRtiMsgPara_AsynfightMaxRankNum = 32;
+  MacroDefineForHLReactRtiMsgPara_AsynfightMaxChallengeNum = 300;
+  MacroDefineForHLReactRtiMsgPara_MaxAddBlackPlayerNum = 10;
+  MacroDefineForHLReactRtiMsgPara_MaxBlackPlayerNum = 5000;
+  MacroDefineForHLReactRtiMsgPara_MaxPrivateRoomRoundInfoListNum = 10;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxNickLen = 64;
+  MacroDefineForHLReactRtiMsgPara_RcrOpenkeyStrLen = 256;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxPfkeyStrLen = 128;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxPfStrLen = 128;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxPaytokenStrLen = 128;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxSceneidNum = 256;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxShareToMsdkTitleLen = 96;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxShareToMsdkTextLen = 192;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxClientDisplayTextLen = 192;
+  MacroDefineForHLReactRtiMsgPara_RcrMaxClientDisplayNum = 20;
+  MacroDefineForHLReactRtiMsgPara_RcrShareTransparentNum = 20;
+  MacroDefineForHLReactRtiMsgPara_MaxPlayerScoreInfo = 4;
+}
+
+enum MacroDefineForRTIMsgParaBase {
+  option allow_alias = true;
+  MacroDefineForRTIMsgParaBase_Tdr2PbDummyMacroDefineForRtimsgParaBase = 0;
+  MacroDefineForRTIMsgParaBase_MaxRtiPlayerBehaviorBuffLen = 4096;
+  MacroDefineForRTIMsgParaBase_MaxSoReportCommonDataNum = 32;
+  MacroDefineForRTIMsgParaBase_MaxSoReportCommonSubtypeDataNum = 16;
+  MacroDefineForRTIMsgParaBase_MaxBillnoLength = 65;
+  MacroDefineForRTIMsgParaBase_MaxGamemetaLenght = 128;
+  MacroDefineForRTIMsgParaBase_MaxPbrAvatarNumber = 64;
+  MacroDefineForRTIMsgParaBase_MaxPbrReservedNumber = 16;
+  MacroDefineForRTIMsgParaBase_MaxExtbuffLen = 1024;
+  MacroDefineForRTIMsgParaBase_MaxPlayerrecordNumberInMemory = 20;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerNum = 3;
+  MacroDefineForRTIMsgParaBase_RcrMaxCardNum = 55;
+  MacroDefineForRTIMsgParaBase_RcrMaxGiveCount = 165;
+  MacroDefineForRTIMsgParaBase_RcrMaxGametagLen = 64;
+  MacroDefineForRTIMsgParaBase_RcrMaxBeneathLen = 8;
+  MacroDefineForRTIMsgParaBase_RcrMaxGiveCardSeqSize = 110;
+  MacroDefineForRTIMsgParaBase_RcrMaxGameParaLen = 32;
+  MacroDefineForRTIMsgParaBase_RcrMaxOpenidLen = 128;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerNickLen = 64;
+  MacroDefineForRTIMsgParaBase_AsynfightMaxIdLen = 64;
+  MacroDefineForRTIMsgParaBase_RtiMaxExpressItemCount = 8;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerHeadurlLen = 128;
+  MacroDefineForRTIMsgParaBase_RcrMaxMatchTitleLen = 64;
+  MacroDefineForRTIMsgParaBase_RcrMaxBonusListLen = 32;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerNum2V2 = 4;
+  MacroDefineForRTIMsgParaBase_RcrMaxGiveCardSeqSize2V2 = 300;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerNum3V3 = 6;
+  MacroDefineForRTIMsgParaBase_RcrMaxGiveCardSeqSize3V3 = 512;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerNumMjp = 4;
+  MacroDefineForRTIMsgParaBase_RcrMaxGiveCardSeqSizeMjp = 300;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerNumGdy = 4;
+  MacroDefineForRTIMsgParaBase_RcrMaxGiveCardSeqSizeGdy = 300;
+  MacroDefineForRTIMsgParaBase_RcrMaxPlayerNum4P = 4;
+  MacroDefineForRTIMsgParaBase_RcrMaxBeneathLen4P = 8;
+  MacroDefineForRTIMsgParaBase_RcrMaxGiveCardSeqSize4P = 300;
+}
+
+enum RTI_BEHAVIOR_TYPE {
+  RTI_BEHAVIOR_TYPE_Tdr2PbDummyRtiBehaviorType = 0;
+  RTI_BEHAVIOR_TYPE_EpbEnteringRoom = 11;
+  RTI_BEHAVIOR_TYPE_EpbLeavingRoom = 12;
+  RTI_BEHAVIOR_TYPE_EpbUsingItem = 13;
+  RTI_BEHAVIOR_TYPE_EpbSittingDown = 21;
+  RTI_BEHAVIOR_TYPE_EpbStandingUp = 22;
+  RTI_BEHAVIOR_TYPE_EpbViewingStarted = 23;
+  RTI_BEHAVIOR_TYPE_EpbViewingCanceled = 24;
+  RTI_BEHAVIOR_TYPE_EpbGameReady = 26;
+  RTI_BEHAVIOR_TYPE_EpbBeingOffline = 27;
+  RTI_BEHAVIOR_TYPE_EpbReplayingGame = 28;
+  RTI_BEHAVIOR_TYPE_EpbKickingAnother = 29;
+  RTI_BEHAVIOR_TYPE_EpbGameBegin = 31;
+  RTI_BEHAVIOR_TYPE_EpbGameEnd = 32;
+  RTI_BEHAVIOR_TYPE_EpbScoreChanged = 33;
+  RTI_BEHAVIOR_TYPE_EpbUsingAvatar = 41;
+  RTI_BEHAVIOR_TYPE_EpbScoreEffect = 42;
+  RTI_BEHAVIOR_TYPE_EpbCreateAvatar = 101;
+  RTI_BEHAVIOR_TYPE_EpbSoReportRole = 102;
+  RTI_BEHAVIOR_TYPE_EpbSoReportHlddzTimes = 103;
+  RTI_BEHAVIOR_TYPE_EpbChallengeReward = 104;
+  RTI_BEHAVIOR_TYPE_EpbSoReportHlddzWinningpoints = 105;
+  RTI_BEHAVIOR_TYPE_EpbSoReportHlddzWinningstreak = 106;
+  RTI_BEHAVIOR_TYPE_EpbSoReportDdzWeekpoints = 107;
+  RTI_BEHAVIOR_TYPE_EpbSoReportCommonData = 109;
+  RTI_BEHAVIOR_TYPE_EpbSoReportGiveSeq = 110;
+  RTI_BEHAVIOR_TYPE_EpbDbassistReportExpressitemInfo = 111;
+  RTI_BEHAVIOR_TYPE_EpbSittingDownFailed = 112;
+  RTI_BEHAVIOR_TYPE_EpbPrivateRoomRoundEnd = 113;
+  RTI_BEHAVIOR_TYPE_EpbPrivateRoomOwnerChange = 114;
+  RTI_BEHAVIOR_TYPE_EpbDbassistReportMoneyInfo = 115;
+  RTI_BEHAVIOR_TYPE_EpbSoReportFullBankruptcyData = 116;
+  RTI_BEHAVIOR_TYPE_EpbReportMatchResult = 117;
+  RTI_BEHAVIOR_TYPE_EpbReportPrivateRoomRoundData = 118;
+  RTI_BEHAVIOR_TYPE_EpbLogin = 119;
+  RTI_BEHAVIOR_TYPE_EpbLogout = 120;
+  RTI_BEHAVIOR_TYPE_EpbReportBasePlayRecord = 121;
+  RTI_BEHAVIOR_TYPE_EpbLoginHello = 122;
+  RTI_BEHAVIOR_TYPE_EpbSoReportGiveSeq2V2 = 123;
+  RTI_BEHAVIOR_TYPE_EpbSoReportGiveSeq4P = 124;
+  RTI_BEHAVIOR_TYPE_EpbSoReportGiveSeq3V3 = 125;
+  RTI_BEHAVIOR_TYPE_EpbSoReportGiveSeqMjp = 126;
+  RTI_BEHAVIOR_TYPE_EpbSoReportGiveSeqGdy = 127;
+  RTI_BEHAVIOR_TYPE_EpbItemChange = 200;
+  RTI_BEHAVIOR_TYPE_EpbItemLimited = 201;
+  RTI_BEHAVIOR_TYPE_EpbSoReportGoldRecharge = 202;
+  RTI_BEHAVIOR_TYPE_EpbSoReportHupaiData = 203;
+  RTI_BEHAVIOR_TYPE_EpbSoReportRmbRecharge = 204;
+  RTI_BEHAVIOR_TYPE_EpbSoReportBuyItem = 205;
+  RTI_BEHAVIOR_TYPE_EpbReportRankScore = 300;
+  RTI_BEHAVIOR_TYPE_EpbMissionSvrReport = 305;
+  RTI_BEHAVIOR_TYPE_EpbMjMsgReportTeamBalance = 306;
+  RTI_BEHAVIOR_TYPE_EpbMissioneventForHlteammission = 307;
+  RTI_BEHAVIOR_TYPE_EpbItemTimeoutAutoRemove = 308;
+  RTI_BEHAVIOR_TYPE_EpbMjMsgReportScoreInfo = 309;
+  RTI_BEHAVIOR_TYPE_EpbFish3DKillInfo = 310;
+  RTI_BEHAVIOR_TYPE_EpbSoReliefFund = 311;
+  RTI_BEHAVIOR_TYPE_EpbFish3DFireEvent = 312;
+  RTI_BEHAVIOR_TYPE_EpbFish3DWinNumberDropEvent = 313;
+  RTI_BEHAVIOR_TYPE_EpbFish3DWinNumberAddRewardPoolEvent = 314;
+  RTI_BEHAVIOR_TYPE_EpbFish3DLoginForShareEvent = 315;
+  RTI_BEHAVIOR_TYPE_EpbSoReportPayData = 401;
+  RTI_BEHAVIOR_TYPE_EpbSoReportPlayerGameEnd = 402;
+  RTI_BEHAVIOR_TYPE_EpbMax = 403;
+}
+
+enum SHARE_EXINFO_TLV_TYPE {
+  SHARE_EXINFO_TLV_TYPE_Tdr2PbDummyShareExinfoTlvType = 0;
+  SHARE_EXINFO_TLV_TYPE_EnShareExinfoTlvTypeMatchResult = 1;
+}
+
+enum enAsynFightErrCode {
+  enAsynFightErrCode_EAsynFightSucc = 0;
+  enAsynFightErrCode_EAsynFightRetFightVaild = 1001;
+}
+
+enum enAsynFightStatus {
+  enAsynFightStatus_EAsynFightStatusNone = 0;
+  enAsynFightStatus_EAsynFightStatusAccepted = 1;
+  enAsynFightStatus_EAsynFightStatusLost = 3;
+  enAsynFightStatus_EAsynFightStatusWon = 2;
+}
+
+enum enAsynFightType {
+  enAsynFightType_EAsynFightTypeNone = 0;
+  enAsynFightType_EAsynFightTypeMulti = 1;
+  enAsynFightType_EAsynFightTypeContwin = 2;
+  enAsynFightType_EAsynFightTypeHighmulti = 3;
+  enAsynFightType_EAsynFightTypeBomb = 4;
+  enAsynFightType_EAsynFightTypeBean = 5;
+}
+
+message CGiveCardsInfo {
+  TRoomInfo room_info = 1;
+  int32 give_count = 2;
+  bytes give_type = 3;
+  bytes give_level = 4;
+  bytes give_len = 5;
+  bytes give_trust = 6;
+  int32 drop_cards_len = 7;
+  int32 card_seq_len = 8;
+  bytes card_sequence = 9;
+  int32 first_wild = 10;
+  int32 second_wild = 11;
+  int32 is_spring = 12;
+  int32 win_index = 13;
+  repeated TPlayerInfo player_info = 14;
+  repeated int32 continue_win = 15;
+  int32 game_tag_len = 16;
+  bytes game_tag = 17;
+  int32 ticket = 18;
+  int32 beneath_len = 19;
+  bytes beneath = 20;
+  repeated int32 limit_tips_type = 21;
+  repeated int32 avatar_id = 22;
+  repeated int32 avatar_lvl = 23;
+  repeated int32 score_change = 24;
+  repeated int32 multi_count = 25;
+  repeated int32 give_time = 26;
+  repeated int32 suppress_count = 27;
+  int32 give_card_seq_num = 28;
+  bytes give_card_seq = 29;
+  repeated TAsynFightInfo asyn_fight_info = 30;
+  bytes discard_num = 31;
+  repeated int32 player_win_this_week = 32;
+  repeated int32 title_rank_score = 33;
+  repeated int32 player_total_game_cnt = 34;
+  int32 first_order = 35;
+  bytes order_status = 36;
+  repeated int64 player_ability = 37;
+  repeated int32 player_client_ver = 38;
+  repeated int32 rescue_score = 39;
+  repeated int32 base_card_strength = 40;
+  int32 lord_card_strength = 41;
+  int32 play_mode = 42;
+  repeated int32 avatar_skin_id = 43;
+  repeated int32 base_score = 44;
+  repeated int32 full_card_strength = 45;
+  int32 bomb_card = 46;
+  bytes give_source_sequence = 47;
+}
+
+message CGiveCardsInfo_2v2 {
+  TRoomInfo room_info = 1;
+  int32 is_spring = 2;
+  int32 win_index = 3;
+  int32 game_tag_len = 4;
+  bytes game_tag = 5;
+  int32 ticket = 6;
+  int32 give_card_seq_num = 7;
+  bytes give_card_seq = 8;
+  repeated TPlayerInfo player_info = 9;
+  repeated int32 continue_win = 10;
+  repeated int32 limit_tips_type = 11;
+  repeated int32 avatar_id = 12;
+  repeated int32 avatar_lvl = 13;
+  repeated int32 score_change = 14;
+  repeated int32 give_time = 15;
+  repeated int64 player_ability = 16;
+  repeated int32 player_client_ver = 17;
+  repeated int32 avatar_skin_id = 18;
+}
+
+message CGiveCardsInfo_3v3 {
+  TRoomInfo room_info = 1;
+  int32 is_spring = 2;
+  int32 win_index = 3;
+  int32 game_tag_len = 4;
+  bytes game_tag = 5;
+  int32 ticket = 6;
+  int32 give_card_seq_num = 7;
+  bytes give_card_seq = 8;
+  repeated TPlayerInfo player_info = 9;
+  repeated int32 continue_win = 10;
+  repeated int32 limit_tips_type = 11;
+  repeated int32 avatar_id = 12;
+  repeated int32 avatar_lvl = 13;
+  repeated int32 score_change = 14;
+  repeated int32 give_time = 15;
+  repeated int64 player_ability = 16;
+  repeated int32 player_client_ver = 17;
+  repeated int32 avatar_skin_id = 18;
+}
+
+message CGiveCardsInfo_4p {
+  TRoomInfo room_info = 1;
+  int32 is_spring = 2;
+  int32 win_index = 3;
+  int32 game_tag_len = 4;
+  bytes game_tag = 5;
+  int32 ticket = 6;
+  int32 beneath_len = 7;
+  bytes beneath = 8;
+  int32 give_card_seq_num = 9;
+  bytes give_card_seq = 10;
+  repeated TPlayerInfo player_info = 11;
+  repeated int32 limit_tips_type = 12;
+  repeated int32 avatar_id = 13;
+  repeated int32 avatar_lvl = 14;
+  repeated int32 score_change = 15;
+  repeated int32 give_time = 16;
+  repeated int64 player_ability = 17;
+  repeated int32 player_client_ver = 18;
+  repeated int32 avatar_skin_id = 19;
+}
+
+message CGiveCardsInfo_Gdy {
+  TRoomInfo room_info = 1;
+  int32 win_index = 2;
+  int32 game_tag_len = 3;
+  bytes game_tag = 4;
+  int32 ticket = 5;
+  int32 give_card_seq_num = 6;
+  bytes give_card_seq = 7;
+  repeated TPlayerInfo player_info = 8;
+  repeated int32 avatar_id = 9;
+  repeated int32 avatar_lvl = 10;
+  repeated int32 score_change = 11;
+  repeated int32 give_time = 12;
+  repeated int32 avatar_skin_id = 13;
+}
+
+message CGiveCardsInfo_mjp {
+  TRoomInfo room_info = 1;
+  int32 win_index = 2;
+  int32 game_tag_len = 3;
+  bytes game_tag = 4;
+  int32 ticket = 5;
+  int32 give_card_seq_num = 6;
+  bytes give_card_seq = 7;
+  repeated TPlayerInfo player_info = 8;
+  repeated int32 continue_win = 9;
+  repeated int32 limit_tips_type = 10;
+  repeated int32 avatar_id = 11;
+  repeated int32 avatar_lvl = 12;
+  repeated int32 give_time = 13;
+  repeated int64 player_ability = 14;
+  repeated int32 player_client_ver = 15;
+  repeated int32 avatar_skin_id = 16;
+}
+
+message CInternalHandlePlayerDataRef {
+  uint32 uin = 1;
+  string round_id = 2;
+}
+
+message CInternalLoginAndLogoutRti {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 rti_behavior = 5;
+  TPlayerLoginOrLogoutInfo player_login_or_logout_info = 6;
+}
+
+message CInternalReportScore {
+  TPlayerScoreInfoList player_score_info_list = 1;
+}
+
+message CInternalUpdatePlayerHistoryRecord_2v2 {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  CGiveCardsInfo_2v2 give_cards_info = 5;
+}
+
+message CNotifyAsynFightShare {
+  string asyn_fight_id = 1;
+  int32 asyn_fight_type = 2;
+  int64 asyn_fight_data = 3;
+}
+
+message CNotifyAsynFightSuc {
+  int32 count = 1;
+  repeated TAsynFightChallengeSuc challenge_suc = 2;
+}
+
+message CNotifyReportShareResult {
+  TClientUserInfo user_info = 1;
+  int32 transparent_param_len = 2;
+  repeated int32 transparentparam_list = 3;
+  int32 need_reward = 4;
+  int32 share_platform = 5;
+}
+
+message CNotifyShareInfo {
+  int32 transparent_param_len = 1;
+  repeated int32 transparentparam_list = 2;
+  int32 template_id = 3;
+  int32 can_reward = 4;
+  int32 share_to_msdk_title_len = 5;
+  bytes share_to_msdk_title = 6;
+  int32 share_to_msdk_info_text_len = 7;
+  bytes share_to_msdk_info_text = 8;
+  int32 reward_desc_text_len = 9;
+  bytes reward_desc_text = 10;
+  int32 card_set_len = 11;
+  bytes card_set = 12;
+  int32 client_display_meta_len = 13;
+  repeated TClientDisplayMeta client_display_meta_list = 14;
+  TShareExInfoTLV share_ex_info_tlv = 15;
+}
+
+message CNotifySuggestScene {
+  int32 command_len = 1;
+  bytes command = 2;
+}
+
+message CNotifyUpdatePlayerHistoryRecord {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  CGiveCardsInfo give_cards_info = 5;
+}
+
+message CPlayerStorageTankInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 bean_change = 4;
+  int32 scene_type = 5;
+  int32 is_win = 6;
+}
+
+message CPlayerStorageTankInfoEx {
+  int64 after_bean = 1;
+  int64 reserve = 2;
+}
+
+message CRankBlackListReq {
+  uint32 uin = 1;
+  int32 cmd = 2;
+  int32 account_type = 3;
+  int32 game_id = 4;
+  int32 black_player_num = 5;
+  repeated uint32 black_player_uin = 6;
+}
+
+message CRankBlackListRsp {
+  int32 result = 1;
+  string result_desc = 2;
+  int32 cmd = 3;
+  int32 black_player_num = 4;
+  repeated uint32 black_player_uin = 5;
+}
+
+message CReqAsynFightChallenge {
+  string asyn_fight_id = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+}
+
+message CReqAsynFightInfo {
+  string asyn_fight_id = 1;
+  uint32 uin = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 game_id = 5;
+}
+
+message CReqAsynFightRank {
+  string asyn_fight_id = 1;
+  uint32 uin = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 game_id = 5;
+  int32 from = 6;
+  int32 count = 7;
+}
+
+message CReqSetHealthPlayInfo {
+  uint32 uin = 1;
+  int32 gameid = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 max_play_time_per_single_login = 7;
+  int32 max_play_time_per_day = 8;
+  int32 entry_type = 9;
+  int32 xiaojin_start_time = 10;
+  int32 xiaojin_end_time = 11;
+}
+
+message CRspAsynFightChallenge {
+  int32 result = 1;
+  string result_desc = 2;
+  string asyn_fight_id = 3;
+}
+
+message CRspAsynFightInfo {
+  int32 result = 1;
+  string result_desc = 2;
+  string asyn_fight_id = 3;
+  uint32 host_uin = 4;
+  int32 account_type = 5;
+  int32 client_type = 6;
+  string nick_name = 7;
+  string head = 8;
+  int32 asyn_fight_type = 9;
+  int64 asyn_fight_data = 10;
+  uint32 asyn_fight_valid_time = 11;
+  int32 asyn_fight_is_challenger = 12;
+  int32 asyn_fight_challenger_status = 13;
+  int64 asyn_fight_challenger_data = 14;
+  int32 is_asyn_fight_end = 15;
+}
+
+message CRspAsynFightRank {
+  int32 result = 1;
+  string result_desc = 2;
+  string asyn_fight_id = 3;
+  int32 asyn_fight_type = 4;
+  int32 total = 5;
+  int32 from = 6;
+  int32 count = 7;
+  repeated TAsynFightPlayerInfo player_rank = 8;
+}
+
+message CRspSetHealthPlayInfo {
+  int32 result = 1;
+  int32 max_play_time_per_single_login = 2;
+  int32 max_play_time_per_day = 3;
+  int32 xiaojin_start_time = 4;
+  int32 xiaojin_end_time = 5;
+}
+
+message CStorageTankAdd {
+  int32 add_number = 1;
+  int32 is_full = 2;
+  uint32 discount_time = 3;
+  int32 level = 4;
+  int32 recommond_sence_id = 5;
+  int32 bean_low = 6;
+}
+
+message CTablePlayerStorageTankInfo {
+  repeated CPlayerStorageTankInfo table_player_storage_tank_info = 1;
+  repeated CPlayerStorageTankInfoEx table_player_storage_tank_info_ex = 2;
+}
+
+message TAsynFightChallengeRecord {
+  uint32 host_uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 asyn_fight_create_time = 4;
+  int32 asyn_fight_type = 5;
+  int64 asyn_fight_data = 6;
+  int32 asyn_fight_status = 7;
+  int64 my_challenge_data = 8;
+  uint32 asyn_fight_accept_time = 9;
+}
+
+message TAsynFightChallengeSuc {
+  string asyn_fight_id = 1;
+  uint32 host_uin = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  string nick_name = 5;
+  string head = 6;
+  int32 asyn_fight_type = 7;
+  int64 asyn_fight_data = 8;
+  uint32 asyn_fight_valid_time = 9;
+  int64 my_challenge_data = 10;
+}
+
+message TAsynFightID {
+  uint32 host_uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 asyn_fight_create_time = 4;
+  int32 asyn_fight_type = 5;
+  int64 asyn_fight_data = 6;
+}
+
+message TAsynFightInfo {
+  string asyn_fight_id = 1;
+}
+
+message TAsynFightPlayerInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string nick_name = 4;
+  string head = 5;
+  int32 asyn_fight_rank = 6;
+  int64 asyn_fight_data = 7;
+}
+
+message TAsynFightRankInfoHead {
+  uint32 host_uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  string nick_name = 4;
+  string head = 5;
+  uint32 asyn_fight_create_time = 6;
+  int32 asyn_fight_type = 7;
+  int64 asyn_fight_data = 8;
+  int32 total = 9;
+}
+
+message TAtomicData {
+  int32 data_type = 1;
+  int32 data = 2;
+}
+
+message TAtomicData64 {
+  int32 data_type = 1;
+  int64 data64 = 2;
+}
+
+message TAutoRemoveItem {
+  int32 item_id = 1;
+  int32 item_type = 2;
+  int32 item_count = 3;
+  int32 item_attr = 4;
+  int32 get_item_time = 5;
+  int32 out_dated_time = 6;
+}
+
+message TAvatarForRti {
+  int32 id = 1;
+  int32 seq_id = 2;
+  int32 buy_time = 3;
+  int32 valid_time = 4;
+  int32 exp = 5;
+  int32 lvl = 6;
+  int32 skill_id_count = 7;
+  repeated int32 skill_id = 8;
+  int32 reserved_len = 9;
+  bytes reserved = 10;
+}
+
+message TClientDisplayMeta {
+  int32 position = 1;
+  int32 display_text_len = 2;
+  bytes display_text = 3;
+}
+
+message TClientUserInfo {
+  int32 game_id = 1;
+  int32 nick_len = 2;
+  bytes nick = 3;
+  int32 client_type = 4;
+  int32 account_type = 5;
+  int32 open_id_len = 6;
+  bytes open_id = 7;
+  int32 open_key_len = 8;
+  bytes open_key = 9;
+  int32 pf_key_len = 10;
+  bytes pf_key = 11;
+  int32 pf_len = 12;
+  bytes pf = 13;
+  int32 pay_token_len = 14;
+  bytes pay_token = 15;
+}
+
+message TCommonData {
+  int32 type = 1;
+  int32 data_num = 2;
+  repeated TAtomicData data = 3;
+  uint32 game_time = 4;
+  uint32 game_id = 5;
+  int32 account_type = 6;
+  uint32 time = 7;
+  int32 svr_id = 8;
+  int32 room_id = 9;
+  int32 table_id = 10;
+  int32 seat_id = 11;
+  int32 reserver = 12;
+  int32 data64_num = 13;
+  repeated TAtomicData64 data64 = 14;
+}
+
+message TCpPayData {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 plat_type = 3;
+  uint32 pay_time = 4;
+  int32 game_id = 5;
+  int32 item_id = 6;
+  int32 price = 7;
+  int32 bill_no_len = 8;
+  bytes bill_no = 9;
+  int32 game_meta_len = 10;
+  bytes game_meta = 11;
+  int32 reserver = 12;
+}
+
+message TDDzBasePlayBackKeyData {
+  uint32 lord_uin = 1;
+  string round_id = 2;
+}
+
+message TDDzBasePlayBackUserInfo {
+  uint32 uin = 1;
+  string user_name = 2;
+}
+
+message TDDzBasePlayRecord {
+  int32 olympic_series_id = 1;
+  int32 olympic_series_game_id = 2;
+  TDDzBasePlayBackKeyData play_back_key_data = 3;
+  repeated TDDzBasePlayBackUserInfo player_info_list = 4;
+}
+
+message TDiamondRecharge {
+  int32 num = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+}
+
+message TExpressAvatarResultExForRti {
+  int32 result = 1;
+  TAvatarForRti avatar_info = 2;
+}
+
+message TExpressAvatarResultForRti {
+  int32 result = 1;
+  int32 id = 2;
+  int32 seq_id = 3;
+  int32 lvl = 4;
+  int32 buy_time = 5;
+  int32 valid_time = 6;
+}
+
+message TExpressEcSysItemResultForRti {
+  int32 result = 1;
+  int32 id = 2;
+  int64 final_count = 3;
+}
+
+message TExpressRTIForRti {
+  uint32 src_uin = 1;
+  uint32 dst_uin = 2;
+  int32 app_id = 3;
+  int32 client_type = 4;
+  int32 account_type = 5;
+  int32 service_tag = 6;
+  int32 tlog_reason = 7;
+  int32 tlog_sub_reason = 8;
+  int32 item_count = 9;
+  repeated TExpressResultForRti item = 10;
+  int32 is_multiple_sub_reason = 11;
+  uint32 reason_count = 12;
+  repeated int32 t_log_reason_list = 13;
+  repeated int32 t_log_sub_reason_list = 14;
+}
+
+message TExpressResultForRti {
+  int32 item_type = 1;
+  TExpressResultUnionForRti item_data = 2;
+}
+
+message TExpressResultUnionForRti {
+  TExpressAvatarResultForRti avatar_result = 1;
+  TExpressEcSysItemResultForRti ec_sys_item_result = 2;
+  TExpressAvatarResultExForRti avatar_result_ex = 3;
+}
+
+message TFish3DLoginForShare {
+  uint32 src_uin = 1;
+  int32 activity_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 type = 5;
+}
+
+message TFish3DWinNumberAddRewardPool {
+  int64 lottery_timestamp = 1;
+  int64 add_reward_pool_num = 2;
+}
+
+message TFish3DWinNumberDrop {
+  int64 lottery_timestamp = 1;
+  int32 drop_num = 2;
+  repeated int32 drop_win_number = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+}
+
+message TFishFireCannon {
+  int32 fire_count = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int64 gold_num = 4;
+}
+
+message TFullBankruptPlayerInfo {
+  uint32 uin = 1;
+  int32 account = 2;
+  int32 client = 3;
+  int32 game_id = 4;
+  int32 scene_id = 5;
+  int64 beans = 6;
+  int32 level = 7;
+  uint32 client_version = 8;
+  int32 open_id_len = 9;
+  bytes open_id = 10;
+  int32 nick_len = 11;
+  bytes nick = 12;
+  int32 head_url_len = 13;
+  bytes head_url = 14;
+}
+
+message TGameMaxWin {
+  int32 max_win = 1;
+  uint32 time = 2;
+  int32 svr_id = 3;
+  int32 room_id = 4;
+  int32 table_id = 5;
+  int32 seat_id = 6;
+  int32 reserver = 7;
+}
+
+message TGoldRecharge {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 num = 5;
+}
+
+message TItemInfo {
+  int32 item_id = 1;
+  int32 item_count = 2;
+}
+
+message TItemLimited {
+  uint32 item_id = 1;
+  int32 appid = 2;
+  int32 result = 3;
+  int64 real_cnt = 4;
+  int64 left_cnt = 5;
+}
+
+message TItemTimeOutAutoRemove {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 item_cnt = 5;
+  repeated TAutoRemoveItem item = 6;
+}
+
+message TMatchResultPlayerInfo {
+  uint32 uin = 1;
+  int32 account = 2;
+  int32 client = 3;
+  int32 game_id = 4;
+  int32 scene_id = 5;
+  int32 series_id = 6;
+  int32 nick_len = 7;
+  bytes nick = 8;
+  int32 head_url_len = 9;
+  bytes head_url = 10;
+  int32 match_name_len = 11;
+  bytes match_name = 12;
+  int32 rank = 13;
+  int32 bonus_list_len = 14;
+  repeated TRtiBonusInfo bonus_list = 15;
+}
+
+message TMissionSvrReportInfo {
+  uint32 rti_uin = 1;
+  uint32 time = 2;
+  int32 game_id = 3;
+  int32 mission_id = 4;
+  int32 status = 5;
+  int32 period_finish_count = 6;
+  int32 condition_id = 7;
+  int32 condition_idx = 8;
+  int64 condition_value = 9;
+  int32 total_finish_count = 10;
+  int32 client_type = 11;
+  int32 account_type = 12;
+  int32 mission_finish = 13;
+}
+
+message TPlayerBasicGameInfo {
+  int32 total_game_times = 1;
+  int32 win_times = 2;
+  int32 share_win_times = 3;
+  int32 max_continue_win_times = 4;
+  int32 lord_win_times = 5;
+  int32 farmer_win_times = 6;
+  int64 win_bean_count = 7;
+  int64 lose_bean_count = 8;
+  int32 spring_count = 9;
+  int32 anti_spring_count = 10;
+  int32 bomb_count = 11;
+  int32 rocket_count = 12;
+}
+
+message TPlayerBehavior {
+  uint32 uin = 1;
+  int32 behavior = 2;
+  int32 ext_buff_len = 3;
+  UExtBehavoir ext_buff = 4;
+}
+
+message TPlayerBehaviorForRtiSvr {
+  uint32 uin = 1;
+  int32 behavior = 2;
+  int32 ext_buff_len = 3;
+  bytes ext_buff = 4;
+}
+
+message TPlayerHistoryGameInfoList {
+  int32 version = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 create_timestamp = 5;
+  int32 last_update_timestamp = 6;
+  TPlayerBasicGameInfo history_game_info = 7;
+  TPlayerBasicGameInfo last_week_game_info = 8;
+  TPlayerBasicGameInfo cur_week_game_info = 9;
+  TPlayerBasicGameInfo yesto_day_game_info = 10;
+  TPlayerBasicGameInfo cur_day_game_info = 11;
+  int32 highest_multi = 12;
+  TStatForSceneID cur_day_stat_for_scene_id = 13;
+}
+
+message TPlayerInfo {
+  uint32 uin = 1;
+  int32 account = 2;
+  int32 client = 3;
+  int32 open_id_len = 4;
+  bytes open_id = 5;
+  int32 shared = 6;
+  int32 multi = 7;
+  int64 before_bean = 8;
+  int64 after_bean = 9;
+}
+
+message TPlayerLoginOrLogoutInfo {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account = 3;
+  int32 client = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 login_time = 7;
+  int32 age_type = 8;
+  int32 age = 9;
+  string client_version = 10;
+  string minigame_open_id = 11;
+  string access_token = 12;
+  int32 online_time = 13;
+}
+
+message TPlayerRecord {
+  int32 pr_length = 1;
+  int32 behavior = 2;
+  uint32 player_uin = 3;
+  int32 server_id = 4;
+  int32 game_id = 5;
+  int32 room_id = 6;
+  int32 table_id = 7;
+  int32 seat_id = 8;
+  int32 money = 9;
+  int32 donner = 10;
+  uint32 service = 11;
+  uint32 ip = 12;
+  int32 guild_id = 13;
+  int32 position = 14;
+  int32 scene_id = 15;
+  uint32 win = 16;
+  uint32 loss = 17;
+  uint32 equal = 18;
+  uint32 escape = 19;
+  uint32 avatar_number = 20;
+  repeated int32 avatar_id = 21;
+  uint32 reserved_number = 22;
+  repeated int32 reserved_value = 23;
+  int32 mapped_game_id = 24;
+  int32 ext_buff_len = 25;
+  bytes ext_buff = 26;
+}
+
+message TPlayerRoundResult {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 result = 4;
+  int32 is_lord = 5;
+}
+
+message TPlayerScoreInfo {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 score_type = 3;
+  int32 score_cnt = 4;
+  repeated int32 score = 5;
+}
+
+message TPlayerScoreInfoList {
+  int32 game_id = 1;
+  uint32 player_num = 2;
+  repeated TPlayerScoreInfo player_score_info_list = 3;
+}
+
+message TPrivateRoomConfigInfoV2ForRti {
+  int32 support_ob = 1;
+  uint32 max_round_num = 2;
+  uint32 lord_max_score = 3;
+  int32 order_play_mode = 4;
+  int32 forbid_share = 5;
+  int32 forbid_multi = 6;
+  int32 reserve_param3 = 7;
+  int32 reserve_param4 = 8;
+  int32 reserve_param5 = 9;
+  int32 reserve_param6 = 10;
+}
+
+message TPrivateRoomRoundInfoList {
+  int32 round_num = 1;
+  repeated TPrivateRoomSingleRoundInfoForRti round_info_list = 2;
+}
+
+message TPrivateRoomSingleRoundInfoForRti {
+  uint32 scene_id = 1;
+  uint32 finish_time_stamp = 2;
+  TPrivateRoomConfigInfoV2ForRti room_cfg = 3;
+  int32 games_num = 4;
+  repeated TSingleGameInfoForRti single_game_info = 5;
+}
+
+message TRelietFunc {
+  int64 gold_num = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+}
+
+message TReportBuyItem {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 cost_item_num = 5;
+  repeated TItemInfo cost_item_list = 6;
+  int32 buy_item_num = 7;
+  repeated TItemInfo buy_item_list = 8;
+  int32 buy_pkg_item_id = 9;
+  int32 buy_pkg_item_num = 10;
+}
+
+message TRoomInfo {
+  int32 svr_id = 1;
+  int32 scene_id = 2;
+  int32 game_id = 3;
+  int32 game_para_len = 4;
+  bytes game_para = 5;
+}
+
+message TRoundResult {
+  int32 game_id = 1;
+  int32 play_mode = 2;
+  string game_para = 3;
+  int32 player_num = 4;
+  repeated TPlayerRoundResult player_round_result_list = 5;
+  int32 win_index = 6;
+}
+
+message TRtiBonusInfo {
+  uint32 id = 1;
+  uint32 count = 2;
+}
+
+message TRtiChgSectionScoreInfo {
+  uint32 uin = 1;
+  int32 seat_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 game_id = 5;
+  int32 scene_id = 6;
+  int32 enter_section_score = 7;
+  int32 current_section_score = 8;
+  int32 chg_section_score = 9;
+}
+
+message TShareExInfoTLV {
+  int32 type = 1;
+  int32 len = 2;
+  UShareTLVValue value = 3;
+}
+
+message TSingleGameInfoForRti {
+  int32 first_wild = 1;
+  bytes beneath = 2;
+  int32 second_wild = 3;
+  uint32 finish_time_stamp = 4;
+  repeated uint32 uin_list = 5;
+  repeated int32 score_list = 6;
+  int32 give_card_seq_num = 7;
+  bytes give_card_seq = 8;
+}
+
+message TStatForSceneID {
+  int32 num = 1;
+  repeated TStatForSceneIDItem stat_info_list = 2;
+}
+
+message TStatForSceneIDItem {
+  int32 scene_id = 1;
+  int32 total_game_times = 2;
+  int32 win_times = 3;
+  int32 lord_win_times = 4;
+  int32 farmer_win_times = 5;
+  int32 spring_count = 6;
+  int32 anti_spring_count = 7;
+  int32 bomb_count = 8;
+  int32 rocket_count = 9;
+  int32 shunzi_count = 10;
+  int32 san_dai_count = 11;
+  int32 lian_dui_count = 12;
+  int32 feiji_count = 13;
+}
+
+message TSubTypeData {
+  int32 data = 1;
+  int32 sub_type = 2;
+}
+
+message TTeamMatchBalanceResult {
+  uint32 uin = 1;
+  int32 seat_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 game_id = 5;
+  int32 scene_id = 6;
+  int32 game_style = 7;
+  int32 team_base_bet = 8;
+  int32 team_score = 9;
+  int64 chg_money = 10;
+  TTeamPlayerResult my_team_other_player = 11;
+  TTeamResult t_other_team_result = 12;
+  int32 feng_ding_flag = 13;
+}
+
+message TTeamPlayerResult {
+  uint32 uin = 1;
+  int32 seat_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 team_score = 5;
+  int64 chg_money = 6;
+}
+
+message TTeamResult {
+  int32 num = 1;
+  repeated TTeamPlayerResult team_player_result = 2;
+}
+
+message TWinningPoints {
+  int32 points = 1;
+  uint32 game_id = 2;
+  int32 account_type = 3;
+  uint32 time = 4;
+  int32 svr_id = 5;
+  int32 room_id = 6;
+  int32 table_id = 7;
+  int32 seat_id = 8;
+  int32 reserver = 9;
+}
+
+message TWinningStreak {
+  int32 num = 1;
+  uint32 game_id = 2;
+  int32 account_type = 3;
+  uint32 time = 4;
+  int32 svr_id = 5;
+  int32 room_id = 6;
+  int32 table_id = 7;
+  int32 seat_id = 8;
+  int32 reserver = 9;
+}
+
+message UExtBehavoir {
+  TGameMaxWin game_max_win = 1;
+  TWinningPoints winning_points = 2;
+  TWinningStreak winning_streak = 3;
+  TWinningPoints weekpoints = 4;
+  TCommonData common_data = 5;
+  TCommonData report_rank_score = 6;
+  TDDzBasePlayRecord ddz_base_play_record = 7;
+  CGiveCardsInfo give_cards_info = 8;
+  CGiveCardsInfo_2v2 give_cards_info2_v2 = 9;
+  CGiveCardsInfo_3v3 give_cards_info3_v3 = 10;
+  TPlayerLoginOrLogoutInfo player_login_or_logout_info = 11;
+  TPlayerLoginOrLogoutInfo player_hello_info = 12;
+  TExpressRTIForRti express_rti = 13;
+  TExpressRTIForRti express_money_rti = 14;
+  TMatchResultPlayerInfo match_result_player_info = 15;
+  TItemLimited item_limited = 16;
+  TMissionSvrReportInfo mission_svr_report_info = 17;
+  TPrivateRoomSingleRoundInfoForRti private_room_single_round_info = 18;
+  TCpPayData cp_pay_data = 19;
+  TGoldRecharge gold_recharge = 20;
+  TGoldRecharge rmb_recharge = 21;
+  TCommonData mj_hu_common_data = 22;
+  TTeamMatchBalanceResult team_match_balance_result = 23;
+  TReportBuyItem report_buy_item = 24;
+  TItemTimeOutAutoRemove tdr2_pbt_item_time_out_auto_remove = 25;
+  TRtiChgSectionScoreInfo rti_chg_section_score_info = 26;
+  TFishFireCannon fish_fire_cannon = 27;
+  TRelietFunc reliet_func = 28;
+  TFish3DWinNumberDrop fish3_d_win_number_drop = 29;
+  TFish3DWinNumberAddRewardPool fish3_d_win_number_add_reward_pool = 30;
+  CGiveCardsInfo_4p tdr2_pbc_give_cards_info4_p = 31;
+  TFish3DLoginForShare fish3_d_login_for_share = 32;
+  CGiveCardsInfo_mjp give_cards_info_mjp = 33;
+  CGiveCardsInfo_Gdy give_cards_info_gdy = 34;
+}
+
+message UShareTLVValue {
+  TMatchResultPlayerInfo match_result_info = 1;
+}

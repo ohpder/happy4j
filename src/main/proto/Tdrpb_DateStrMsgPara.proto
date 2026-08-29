@@ -1,0 +1,189 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.DateStrMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.datestrmsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_DateStrMsgParaProto";
+
+enum EDATESTR_APPLY_DATESTR_TYPE {
+  EDATESTR_APPLY_DATESTR_TYPE_DateSvr = 0;
+  EDATESTR_APPLY_DATESTR_TYPE_GameSvr = 1;
+}
+
+enum EDATESTR_ERRCODE {
+  EDATESTR_ERRCODE_ErrEdsSucc = 0;
+  EDATESTR_ERRCODE_ErrEdsInputUin = 16100;
+  EDATESTR_ERRCODE_ErrEdsInputGameid = 16101;
+  EDATESTR_ERRCODE_ErrEdsInputDatestr = 16102;
+  EDATESTR_ERRCODE_ErrEdsNotFoundTdateid = 16103;
+  EDATESTR_ERRCODE_ErrEdsPaxosBuffFull = 16104;
+  EDATESTR_ERRCODE_ErrEdsPaxosDoFailed = 16105;
+  EDATESTR_ERRCODE_ErrEdsSystem = 16106;
+}
+
+enum MacroDefineForDateStrMsgPara {
+  option allow_alias = true;
+  MacroDefineForDateStrMsgPara_Tdr2PbDummyMacroDefineForDateStrMsgPara = 0;
+  MacroDefineForDateStrMsgPara_DatestrMaxDatestrLen = 16;
+  MacroDefineForDateStrMsgPara_DatestrMaxErrdescLen = 128;
+  MacroDefineForDateStrMsgPara_DatestrMaxPlayerNum = 32;
+  MacroDefineForDateStrMsgPara_DatestrMaxNickLen = 64;
+  MacroDefineForDateStrMsgPara_DatestrMaxDateReserveLen = 32;
+  MacroDefineForDateStrMsgPara_MaxRulesLen = 1024;
+}
+
+message CNotifyDateStr {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 create_uin = 4;
+  uint32 create_time = 5;
+  int32 oper_type = 6;
+  int32 date_str_len = 7;
+  bytes date_str = 8;
+}
+
+message CNotifyGenDateStr {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 create_uin = 4;
+  uint32 create_time = 5;
+  int32 date_str_len = 6;
+  bytes date_str = 7;
+  int32 date_str_type = 8;
+  int32 scene_id = 9;
+  int32 server_id = 10;
+  int32 room_id = 11;
+  int32 table_id = 12;
+}
+
+message CReqGenDateStr {
+  uint32 create_uin = 1;
+  uint32 create_time = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+}
+
+message CReqGenDateStrForGameSvr {
+  uint32 create_uin = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 game_id = 4;
+  int32 scene_id = 5;
+  int32 server_id = 6;
+  int32 room_id = 7;
+  int32 table_id = 8;
+}
+
+message CReqGetTDateID {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 date_str_len = 5;
+  bytes date_str = 6;
+}
+
+message CReqGetTableInfoByRoomNumber {
+  int32 game_id = 1;
+  int32 scene_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  int32 date_str_len = 5;
+  bytes date_str = 6;
+}
+
+message CReqOperationDatestrForGameSvr {
+  int32 game_id = 1;
+  uint32 create_uin = 2;
+  int32 scene_id = 3;
+  int32 server_id = 4;
+  int32 room_id = 5;
+  int32 table_id = 6;
+  int32 oper_type = 7;
+  int32 date_str_len = 8;
+  bytes date_str = 9;
+}
+
+message CRspGenDateStr {
+  int32 result_id = 1;
+  uint32 create_uin = 2;
+  uint32 create_time = 3;
+  int32 game_id = 4;
+  int32 date_str_len = 5;
+  bytes date_str = 6;
+}
+
+message CRspGenDateStrForGameSvr {
+  int32 result_id = 1;
+  uint32 create_uin = 2;
+  int32 game_id = 3;
+  int32 scene_id = 4;
+  int32 server_id = 5;
+  int32 room_id = 6;
+  int32 table_id = 7;
+  int32 date_str_len = 8;
+  bytes date_str = 9;
+}
+
+message CRspGetTDateID {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  uint32 create_uin = 4;
+  uint32 create_time = 5;
+}
+
+message CRspGetTableInfoByRoomNumber {
+  int32 result_id = 1;
+  uint32 create_uin = 2;
+  int32 scene_id = 3;
+  int32 server_id = 4;
+  int32 room_id = 5;
+  int32 table_id = 6;
+}
+
+message CRspOperationDatestrForGameSvr {
+  int32 result_id = 1;
+  uint32 uin = 2;
+  int32 game_id = 3;
+  uint32 create_uin = 4;
+  int32 scene_id = 5;
+  int32 server_id = 6;
+  int32 room_id = 7;
+  int32 table_id = 8;
+  int32 oper_type = 9;
+  int32 date_str_len = 10;
+  bytes date_str = 11;
+}
+
+message TDateExtInfo {
+  int32 need_passwd = 1;
+  int32 req_round_num = 2;
+  uint32 owner_uin = 3;
+  int32 max_bei_num = 4;
+  int32 date_type = 5;
+  string creater_nick = 6;
+  bytes reserved = 7;
+  int32 rule_type = 8;
+}
+
+message TDatePlayerInfo {
+  uint32 player_num = 1;
+  repeated TDatePlayerStatus player_list = 2;
+}
+
+message TDatePlayerStatus {
+  uint32 uin = 1;
+  uint32 status = 2;
+}
+
+message TDateSvrInfo {
+  uint32 svr_id = 1;
+  uint32 room_id = 2;
+  uint32 scene_id = 3;
+}

@@ -1,0 +1,144 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.NotifyClientExeCmd;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.notifyclientexecmd";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_NotifyClientExeCmdProto";
+
+enum EM_CONTENT_FORMAT {
+  EM_CONTENT_FORMAT_Tdr2PbDummyEmContentFormat = 0;
+  EM_CONTENT_FORMAT_EOrdinaryText = 1;
+  EM_CONTENT_FORMAT_ERichText = 2;
+}
+
+enum EM_PRIVILEGE {
+  EM_PRIVILEGE_EPrivilegeCancel = 0;
+  EM_PRIVILEGE_EPrivilegeGold = 1;
+  EM_PRIVILEGE_EPrivilegeSilver = 2;
+}
+
+enum EM_PRIVILEGE_TYPE {
+  EM_PRIVILEGE_TYPE_Tdr2PbDummyEmPrivilegeType = 0;
+  EM_PRIVILEGE_TYPE_EPrivilegePop = 100;
+  EM_PRIVILEGE_TYPE_EPrivilegeNoPop = 200;
+}
+
+enum E_POPUP_TYPE {
+  E_POPUP_TYPE_Tdr2PbDummyEPopupType = 0;
+  E_POPUP_TYPE_EJumpFakeurl = 100;
+  E_POPUP_TYPE_EMisionReward = 101;
+  E_POPUP_TYPE_EJumpTaodouScene = 102;
+  E_POPUP_TYPE_EShareReward = 103;
+  E_POPUP_TYPE_EWxAppletUpgrade = 104;
+  E_POPUP_TYPE_EEndgameShareEnterNotify = 105;
+  E_POPUP_TYPE_EDdzGenericMissionShare = 106;
+}
+
+enum MacroDefineForNotifyClientExeCommondMsgPara {
+  option allow_alias = true;
+  MacroDefineForNotifyClientExeCommondMsgPara_Tdr2PbDummyMacroDefineForNotifyClientExeCommondMsgPara = 0;
+  MacroDefineForNotifyClientExeCommondMsgPara_MaxSpecinfoLen = 4096;
+  MacroDefineForNotifyClientExeCommondMsgPara_MaxErrMsgLen = 1024;
+  MacroDefineForNotifyClientExeCommondMsgPara_MaxTitleLen = 256;
+  MacroDefineForNotifyClientExeCommondMsgPara_MaxContentLen = 1024;
+  MacroDefineForNotifyClientExeCommondMsgPara_MaxFakeUrlLen = 1024;
+  MacroDefineForNotifyClientExeCommondMsgPara_MaxReserveLen = 1024;
+  MacroDefineForNotifyClientExeCommondMsgPara_MaxTraceidLen = 128;
+}
+
+enum NECMSG_FORMAT {
+  NECMSG_FORMAT_Tdr2PbDummyNecmsgFormat = 0;
+  NECMSG_FORMAT_ENecmsgFormatUtf8 = 1;
+  NECMSG_FORMAT_ENecmsgFormatGbk = 2;
+}
+
+enum NEC_FIRST_CMD_ID {
+  NEC_FIRST_CMD_ID_Tdr2PbDummyNecFirstCmdId = 0;
+  NEC_FIRST_CMD_ID_ENecflcRelogin = 100;
+  NEC_FIRST_CMD_ID_ENecflcLogout = 101;
+  NEC_FIRST_CMD_ID_ENecflcShowTips = 102;
+  NEC_FIRST_CMD_ID_ENecflcHealthPlayShowTips = 103;
+  NEC_FIRST_CMD_ID_ENecflcSysInfo = 200;
+  NEC_FIRST_CMD_ID_ENecflcPopUp = 201;
+  NEC_FIRST_CMD_ID_ENecflcForcedVerifyShowTips = 202;
+  NEC_FIRST_CMD_ID_EMerchantPrivilegePopupInfo = 203;
+}
+
+enum NEC_SECOND_CMD_ID {
+  NEC_SECOND_CMD_ID_ENecslcReloginDefault = 0;
+  NEC_SECOND_CMD_ID_ENecslcLogoutHealthplay = 1;
+}
+
+enum TReLoginSpecInfoExtraBitFlag {
+  TReLoginSpecInfoExtraBitFlag_Tdr2PbDummyTreLoginSpecInfoExtraBitFlag = 0;
+  TReLoginSpecInfoExtraBitFlag_SoftPunish = 1;
+  TReLoginSpecInfoExtraBitFlag_MirePunish = 2;
+}
+
+message CNotifyClientExeCommond {
+  int32 first_lvl_cmd = 1;
+  int32 sec_lvl_cmd = 2;
+  int32 value_len = 3;
+  MsgTVValue value = 4;
+}
+
+message MsgTVValue {
+  TReLoginSpecInfo re_login_spec_info = 1;
+  TSysTimeInfo sys_time_info = 2;
+  THealthPlayInfo health_play_info = 3;
+  TPopUpInfo pop_up_info = 4;
+  TReLoginSpecInfo force_verify_info = 5;
+  TMerchantPrivilegePopupInfo merchant_privilege_popup_info = 6;
+}
+
+message THealthPlayInfo {
+  int32 first_err_code = 1;
+  int32 sec_err_code = 2;
+  uint32 err_msg_code_format = 3;
+  int32 err_msg_len = 4;
+  bytes err_msg = 5;
+  int32 cur_system_timestamp = 6;
+  int32 expire_timestamp = 7;
+  int32 final_expire_timestamp = 8;
+  int32 cur_day_tot_time = 9;
+}
+
+message TMerchantPrivilegePopupInfo {
+  int32 rids = 1;
+  uint32 expire_time = 2;
+  string url = 3;
+  int32 pop = 4;
+}
+
+message TPopUpInfo {
+  int32 type = 1;
+  int32 title_len = 2;
+  bytes title = 3;
+  int32 content_len = 4;
+  bytes content = 5;
+  int32 fake_url_len = 6;
+  bytes fake_url = 7;
+  uint32 encode_format = 8;
+  int32 reserve_len = 9;
+  bytes reserve = 10;
+  uint32 content_format = 11;
+}
+
+message TReLoginSpecInfo {
+  int32 first_err_code = 1;
+  int32 sec_err_code = 2;
+  uint32 err_msg_code_format = 3;
+  int32 err_msg_len = 4;
+  bytes err_msg = 5;
+  uint32 trace_code_format = 6;
+  int32 trace_len = 7;
+  bytes trace_id = 8;
+  int32 punish_end_timestamp = 9;
+  int32 extra_bit_flag = 10;
+}
+
+message TSysTimeInfo {
+  int32 i_sys_time = 1;
+}

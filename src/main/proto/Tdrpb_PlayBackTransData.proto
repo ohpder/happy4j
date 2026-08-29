@@ -1,0 +1,23 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.PlayBackTransData;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.playbacktransdata";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_PlayBackTransDataProto";
+
+enum MacroDefineForCompetitionPlaybackTransData {
+  MacroDefineForCompetitionPlaybackTransData_Tdr2PbDummyMacroDefineForCompetitionPlaybackTransData = 0;
+  MacroDefineForCompetitionPlaybackTransData_EMaxPlayerNum = 3;
+}
+
+message CompetitionPlaybackTransData {
+  int32 max_heart_count = 1;
+  int32 cur_heart = 2;
+  int32 cur_continue_win = 3;
+  int32 cur_score = 4;
+  int32 fight_score2_add_star = 5;
+  repeated int32 fight_duan_id = 6;
+  bytes fight_duan_star = 7;
+}

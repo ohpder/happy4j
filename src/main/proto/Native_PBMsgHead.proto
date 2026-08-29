@@ -1,0 +1,62 @@
+// Recovered from libTSDK4CSharp-il2cpp.so native protobuf symbols.
+syntax = "proto3";
+
+package Native.HLServer;
+
+import "Native_HLBase.proto";
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.nativehlserver";
+option java_multiple_files = true;
+option java_outer_classname = "NativePBMsgHeadProto";
+
+message ControlHeaderReq {
+  Native.HLBase.PlayerInfo playerinfo = 1;
+  uint32 seq = 2;
+  string routekey = 3;
+}
+
+message ControlHeaderRsp {
+  Native.HLBase.Result result = 1;
+  uint32 seq = 2;
+}
+
+message GrpcCallReqMeta {
+  string routekey = 1;
+  bool isuindebug = 2;
+  bool isgeneric = 3;
+  int32 msg_from = 4;
+  ControlHeaderReq control = 5;
+}
+
+message GrpcCallRspMeta {
+  ControlHeaderRsp control = 1;
+}
+
+message GenericGrpcReq {
+  ControlHeaderReq control = 1;
+  string full_method_name = 2;
+  bytes body = 3;
+  string group_name = 4;
+}
+
+message GenericGrpcRsp {
+  ControlHeaderRsp control = 1;
+  string full_method_name = 2;
+  bytes body = 3;
+}
+
+message RspMultiMsgWrapper {
+  uint32 multiseq = 1;
+  int32 msgtype = 2;
+  uint32 msgid = 3;
+  uint32 msgseq = 4;
+  int32 srcfe = 5;
+  int32 dstfe = 6;
+  int32 srcid = 7;
+  int32 dstid = 8;
+  uint32 totallen = 9;
+  uint32 totalpkgnum = 10;
+  uint32 curpkgno = 11;
+  uint32 curpkglen = 12;
+  bytes curpkgbuf = 13;
+}

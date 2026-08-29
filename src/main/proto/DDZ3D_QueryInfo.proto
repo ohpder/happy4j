@@ -1,0 +1,73 @@
+// Recovered from the current ModuleJSAppRoot protobufjs encoders.
+syntax = "proto3";
+
+package DDZ3DQueryInfo;
+
+import "Native_HLBase.proto";
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.ddzquery";
+option java_multiple_files = true;
+option java_outer_classname = "DdzQueryInfoProto";
+
+message EmptyRequest {}
+
+message CReqQueryInfoByBitflag {
+  uint32 TargetUin = 1;
+  int32 TargetAccountType = 2;
+  int32 TargetClientType = 3;
+  Native.HLBase.MidasInfo midasInfo = 4;
+  int64 QueryFlag = 17;
+  int64 ClientAbility = 18;
+  uint32 ClientVersion = 19;
+  string TargetOpenID = 30;
+  EmptyRequest getGoldCoin = 62;
+}
+
+message TLVRSPQueryBean {
+  int64 BeanAmt = 2;
+  int32 monthDec = 3;
+  int32 dayInc = 4;
+  int32 dayDec = 5;
+  int32 lastChangeTime = 6;
+  int32 lastPresentBeanTime = 7;
+  int32 createTime = 8;
+  int32 unusedRewardTime = 9;
+  int32 rewardCount = 10;
+  int32 lastUpdateTime = 11;
+  int32 historyCurrency = 12;
+  int32 presentBeanCount = 13;
+  int32 presentCountPerDay = 14;
+  int32 triggerPresentPoint = 15;
+  int32 presentBeanAmount = 16;
+  int32 monthInc = 22;
+}
+
+message TLVRSPQueryDiamond {
+  int32 FirstSave = 2;
+  int32 Diamond = 3;
+  int32 GenDiamond = 4;
+  int32 SaveAmt = 5;
+  int32 GenExpire = 6;
+}
+
+message TLVRSPQueryGold {
+  int64 BeanAmt = 2;
+  int32 presentBeanCount = 13;
+  int32 presentCountPerDay = 14;
+  int32 triggerPresentPoint = 15;
+  int32 presentBeanAmount = 16;
+  int32 additionalTimes = 19;
+  int32 additionalBeans = 20;
+}
+
+message QueryRspData {
+  TLVRSPQueryBean QueryBean = 1;
+  TLVRSPQueryDiamond QueryDiamond = 2;
+  TLVRSPQueryGold QueryGoldCoin = 22;
+}
+
+message CRspQueryInfoByBitflag {
+  int64 RspQueryFlag = 1;
+  QueryRspData RspData = 2;
+  int32 ObFlag = 3;
+}

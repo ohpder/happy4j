@@ -1,0 +1,481 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.DateSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.datesvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_DateSvrProto";
+
+enum DATESVR_CLIENT_ABILITY_BIT {
+  DATESVR_CLIENT_ABILITY_BIT_Tdr2PbDummyDatesvrClientAbilityBit = 0;
+  DATESVR_CLIENT_ABILITY_BIT_EDatesvrClientAbilityBitSupportOrderByScore = 1;
+}
+
+enum ENUM_DATE_MODE {
+  ENUM_DATE_MODE_Tdr2PbDummyEnumDateMode = 0;
+  ENUM_DATE_MODE_NewddzUse = 1;
+  ENUM_DATE_MODE_EnmPlayerAddNeedRoomidWithPasswd = 2;
+  ENUM_DATE_MODE_EnmPlayerAddNeedRoomidNoPasswd = 3;
+  ENUM_DATE_MODE_EnmPlayerAddNewPrivateRoom = 4;
+  ENUM_DATE_MODE_EnmCmshowPrivateRoom = 5;
+}
+
+enum MacroDefineForDateSvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForDateSvrMsgPara_Tdr2PbDummyMacroDefineForDateSvrMsgPara = 0;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxUinNum = 512;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxOpenidLenth = 46;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxAccesstokenLenth = 190;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxSkeyLenth = 62;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxDateidLen = 30;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxDatestrLen = 30;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxTlvBufflen = 254;
+  MacroDefineForDateSvrMsgPara_DatesvrIdentLength = 22;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxNicknameLenth = 232;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxAlbumyrlLenth = 254;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxInviteMsgparaLen = 4068;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxDateListNum = 32;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxTransLen = 30;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxPlaynumOneDate = 32;
+  MacroDefineForDateSvrMsgPara_DatesvrMaxRelationIdNum = 10;
+  MacroDefineForDateSvrMsgPara_DatesvrRoomPasswdLen = 33;
+  MacroDefineForDateSvrMsgPara_MaxFreeMsgLen = 128;
+  MacroDefineForDateSvrMsgPara_MaxFreeGameNum = 32;
+  MacroDefineForDateSvrMsgPara_MaxPlainTextPasswdLen = 7;
+  MacroDefineForDateSvrMsgPara_MaxPraviteTransLen = 32;
+  MacroDefineForDateSvrMsgPara_MaxErrDescLen = 512;
+  MacroDefineForDateSvrMsgPara_DatesvrAppointmentKeyMaxLenth = 128;
+}
+
+message CNotifyInviteDate {
+  TRouterKey route_key = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  int32 plat = 3;
+}
+
+message CReqFetchDateList {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 first_idx = 2;
+  int32 date_num = 3;
+  TAuthInfo auth_info = 4;
+}
+
+message CReqFetchDateListByUinList {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 is_need_filter_view_friend = 2;
+  int32 uin_num = 3;
+  repeated uint32 uin = 4;
+}
+
+message CReqFetchDateListExt {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 relation_id_num = 2;
+  repeated int32 relation_i_ds = 3;
+  int32 first_idx = 4;
+  int32 date_num = 5;
+  TAuthInfo auth_info = 6;
+}
+
+message CReqFreeDateInfo {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 reserved = 2;
+}
+
+message CReqGenerateDate {
+  TUsrBaseInfo usr_base_info = 1;
+  uint32 scene_id = 2;
+  int32 date_mode = 3;
+  int32 duration = 4;
+  int32 max_friends_num = 5;
+  bytes nick_name = 6;
+  int32 max_bei_num = 7;
+  int32 passwd_len = 8;
+  bytes room_passwd = 9;
+  int32 reserve_len = 10;
+  bytes reserve = 11;
+  int32 client_ability = 12;
+  int32 client_version = 13;
+  int32 matrix_id = 14;
+}
+
+message CReqInvite {
+  TRouterKey route_key = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  TInviteMsg invite_msg = 3;
+}
+
+message CReqOnlineList {
+  TUsrBaseInfo usr_base_info = 1;
+  TAuthInfo auth_info = 2;
+  int32 begin_idx = 3;
+  int32 max_friend_num = 4;
+}
+
+message CReqOnlineListExt {
+  TUsrBaseInfo usr_base_info = 1;
+  TAuthInfo auth_info = 2;
+  int32 relation_id_num = 3;
+  repeated int32 relation_i_ds = 4;
+  int32 begin_idx = 5;
+  int32 max_friend_num = 6;
+  int32 mi_reserver = 7;
+}
+
+message CReqPlayerVentureInfo {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 reserved = 2;
+  int32 game_style = 3;
+}
+
+message CReqQueryDate {
+  TRouterKey route_key = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  int32 client_ability = 3;
+  int32 client_version = 4;
+  int32 support_config_version = 5;
+}
+
+message CReqQueryDateByDateID {
+  int32 date_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  int32 client_ability = 3;
+  int32 client_version = 4;
+  int32 support_config_version = 5;
+}
+
+message CReqQueryDateByDateStr {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 date_str_len = 2;
+  bytes date_str = 3;
+  int32 support_config_version = 4;
+}
+
+message CReqReNewDate {
+  int32 appointmentkey_len = 1;
+  bytes appointmentkey = 2;
+  uint32 uin = 3;
+  int32 server_id = 4;
+  int32 room_id = 5;
+  int32 table_id = 6;
+}
+
+message CReqSetSJDateVisible {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 room_id = 2;
+  int32 is_visible = 3;
+  int32 reserve_len = 4;
+  bytes reserved = 5;
+}
+
+message CRspFetchDateList {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_info = 2;
+  int32 date_list_total_num = 3;
+  int32 date_list_num = 4;
+  repeated TDateInfoEx date_list = 5;
+  repeated TPrivateRoomDateInfo date_list_private_room_ex = 6;
+}
+
+message CRspFetchDateListByUinList {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_info = 2;
+  int32 date_list_total_num = 3;
+  int32 date_list_num = 4;
+  repeated TSimpleDateInfo date_list = 5;
+  repeated TPrivateRoomDateInfo date_list_private_room_ex = 6;
+}
+
+message CRspFetchDateListExt {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_info = 2;
+  int32 date_list_total_num = 3;
+  int32 date_list_num = 4;
+  repeated TDateExt date_list = 5;
+  repeated TDateOtherInfo date_other_info = 6;
+  int32 reserve_len = 7;
+  bytes reserve = 8;
+}
+
+message CRspFreeDateInfo {
+  TUsrBaseInfo usr_base_info = 1;
+  int32 ret = 2;
+  uint32 server_time = 3;
+  TTagMsg free_msg_info = 4;
+  TFreeGameList free_game_list = 5;
+  int64 reserved = 6;
+  int64 member_time = 7;
+}
+
+message CRspGenerateDate {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  TDateInfo date_info = 3;
+  TDateSvrInfo date_svr_info = 4;
+  int32 result_str_len = 5;
+  bytes result_str = 6;
+}
+
+message CRspInvite {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+}
+
+message CRspOnlineList {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  int32 online_total_num = 3;
+  int32 friend_num = 4;
+  repeated TDatePlayerInfo play_info = 5;
+}
+
+message CRspOnlineListExt {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  int32 online_total_num = 3;
+  int32 friend_num = 4;
+  repeated TPlayerInfoExt play_info = 5;
+}
+
+message CRspPlayerVentureInfo {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_info = 2;
+  int32 is_venture = 3;
+}
+
+message CRspQueryDate {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  TDateSvrInfo date_svr_info = 3;
+  int32 reserve_len = 4;
+  bytes reserve = 5;
+  int32 result_str_len = 6;
+  bytes result_str = 7;
+}
+
+message CRspQueryDateByDateID {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  TDateSvrInfo date_svr_info = 3;
+  TDateInfo date_id_info = 4;
+  int32 need_passwd = 5;
+  int32 req_round_num = 6;
+  uint32 create_uin = 7;
+  bytes creater_nick_name = 8;
+  int32 max_bei_num = 9;
+  int32 player_num = 10;
+  int32 passwd_len = 11;
+  bytes room_passwd = 12;
+  int32 reserve_len = 13;
+  bytes reserve = 14;
+  int32 result_str_len = 15;
+  bytes result_str = 16;
+}
+
+message CRspQueryDateByDateStr {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  TDateSvrInfo date_svr_info = 3;
+  TDateInfo date_id_info = 4;
+  int32 need_passwd = 5;
+  int32 req_round_num = 6;
+  uint32 create_uin = 7;
+  bytes creater_nick_name = 8;
+  int32 max_bei_num = 9;
+  int32 player_num = 10;
+  int32 passwd_len = 11;
+  bytes room_passwd = 12;
+  int32 reserve_len = 13;
+  bytes reserve = 14;
+  int32 result_str_len = 15;
+  bytes result_str = 16;
+}
+
+message CRspReNewDate {
+  int32 result_id = 1;
+  int32 appointmentkey_len = 2;
+  bytes appointmentkey = 3;
+  uint32 uin = 4;
+  int32 server_id = 5;
+  int32 room_id = 6;
+  int32 table_id = 7;
+}
+
+message CRspSetSJDateVisible {
+  int32 result_id = 1;
+  TUsrBaseInfo usr_base_info = 2;
+  int32 room_id = 3;
+  int32 reserve_len = 4;
+  bytes reserved = 5;
+}
+
+message TAuthInfo {
+  int32 access_token_len = 1;
+  bytes access_token = 2;
+  int32 skey_len = 3;
+  bytes skey = 4;
+}
+
+message TDateExt {
+  TDateInfo data_info = 1;
+  TDateSvrInfo date_svr_info = 2;
+  int32 play_num = 3;
+  int32 friend_num = 4;
+  repeated TPlayerDataExt friend_info = 5;
+}
+
+message TDateInfo {
+  int32 date_id_len = 1;
+  bytes date_id = 2;
+  int32 date_str_len = 3;
+  bytes date_str = 4;
+}
+
+message TDateInfoEx {
+  TDateInfo data_info = 1;
+  int32 play_num = 2;
+  int32 friend_num = 3;
+  repeated TPlayerExDataWithUin player_ex_data_with_uin = 4;
+}
+
+message TDateOtherInfo {
+  int32 open_by_friend = 1;
+  int32 is_use_passwd = 2;
+  int32 sencen_id = 3;
+  uint32 owner_uin = 4;
+  int32 passwd_len = 5;
+  bytes room_passwd = 6;
+  bytes config = 7;
+  int32 reserve_len = 8;
+  bytes reserve = 9;
+}
+
+message TDatePlayerInfo {
+  int32 rank_index = 1;
+  uint32 uin = 2;
+  int32 open_id_len = 3;
+  bytes open_id = 4;
+  uint32 online_status = 5;
+  TPlayerExData player_ex_data = 6;
+  TDateInfo date_info = 7;
+  int32 tlv_buff_len = 8;
+  bytes tlv_buff = 9;
+}
+
+message TDateSvrInfo {
+  uint32 svr_id = 1;
+  uint32 room_id = 2;
+  uint32 expire_time = 3;
+  uint32 scene_id = 4;
+}
+
+message TFreeGameInfo {
+  int32 game_type = 1;
+  uint32 free_start_time = 2;
+  uint32 free_end_time = 3;
+  int64 reserved = 4;
+}
+
+message TFreeGameList {
+  int32 free_game_num = 1;
+  repeated TFreeGameInfo free_game_info = 2;
+}
+
+message TFriendInfoInDate {
+  uint32 uin = 1;
+  int32 status = 2;
+}
+
+message TInviteMsg {
+  uint32 dst_uin = 1;
+  int32 show_type = 2;
+  int32 service_tag = 3;
+  int32 service_sub_tag = 4;
+  int32 para_num = 5;
+  int32 msg_para_len = 6;
+  bytes msg_para = 7;
+}
+
+message TPlayerDataExt {
+  uint32 uin = 1;
+  int32 account_type = 2;
+  int32 relation_id = 3;
+  bytes ident = 4;
+  int32 nick_len = 5;
+  bytes nick = 6;
+  int32 album_url_len = 7;
+  bytes album_url = 8;
+}
+
+message TPlayerExData {
+  bytes ident = 1;
+  int32 nick_len = 2;
+  bytes nick = 3;
+  int32 album_url_len = 4;
+  bytes album_url = 5;
+}
+
+message TPlayerExDataWithUin {
+  uint32 uin = 1;
+  bytes ident = 2;
+  int32 nick_len = 3;
+  bytes nick = 4;
+  int32 album_url_len = 5;
+  bytes album_url = 6;
+}
+
+message TPlayerInfoExt {
+  int32 rank_index = 1;
+  uint32 uin = 2;
+  int32 open_id_len = 3;
+  bytes open_id = 4;
+  int32 account_type = 5;
+  int32 relation_id = 6;
+  uint32 online_status = 7;
+  TPlayerExData player_ex_data = 8;
+  TDateInfo date_info = 9;
+  int32 tlv_buff_len = 10;
+  bytes tlv_buff = 11;
+}
+
+message TPrivateRoomDateInfo {
+  int32 open_by_friend = 1;
+  int32 is_use_passwd = 2;
+  int32 sencen_id = 3;
+  uint32 owner_uin = 4;
+  int32 max_bei_num = 5;
+  int32 passwd_len = 6;
+  bytes room_passwd = 7;
+}
+
+message TRouterKey {
+  int32 router_key_len = 1;
+  int32 key_num = 2;
+  int32 key_type = 3;
+  int32 key_len = 4;
+  int32 key_flag = 5;
+  TDateInfo date_info = 6;
+}
+
+message TSimpleDateInfo {
+  TDateInfo data_info = 1;
+  int32 play_num = 2;
+  int32 friend_num = 3;
+  repeated TFriendInfoInDate friend_info = 4;
+}
+
+message TTagMsg {
+  int32 free_msg_len = 1;
+  bytes free_msg = 2;
+  uint32 msg_start_time = 3;
+  uint32 msg_end_time = 4;
+}
+
+message TUsrBaseInfo {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 plat_id = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+}

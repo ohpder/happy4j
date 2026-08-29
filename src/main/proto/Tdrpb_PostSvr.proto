@@ -1,0 +1,70 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.PostSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.postsvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_PostSvrProto";
+
+enum MacroDefineForPostNotifyMsgPara {
+  MacroDefineForPostNotifyMsgPara_Tdr2PbDummyMacroDefineForPostNotifyMsgPara = 0;
+  MacroDefineForPostNotifyMsgPara_MaxMsgParalelen = 4096;
+  MacroDefineForPostNotifyMsgPara_MaxMsgNumInMsg = 30;
+}
+
+enum enDataChange {
+  enDataChange_EDiamondChange = 0;
+  enDataChange_EDonnerChange = 1;
+  enDataChange_EDonnerdiamondChange = 2;
+  enDataChange_ESystememailChange = 3;
+  enDataChange_EFriendemailChange = 4;
+  enDataChange_EItemChnage = 5;
+  enDataChange_EAvatarChnage = 7;
+  enDataChange_EPowerChnage = 8;
+  enDataChange_ECustomizeActivityChange = 9;
+  enDataChange_ECustomizeLoginChange = 10;
+  enDataChange_EXinyueChnage = 11;
+  enDataChange_EMicroCommunityReddot = 12;
+  enDataChange_ESectionScoreShareReward = 13;
+  enDataChange_EMinaPayDiamondChange = 14;
+  enDataChange_EMinaPayByOthersDiamondChange = 15;
+  enDataChange_EMinaMysterShop = 16;
+  enDataChange_E3DMysterShop = 17;
+  enDataChange_EDdz3DPayamtChange = 18;
+  enDataChange_EDdz3DGiftMailChange = 19;
+  enDataChange_EDdz3DFaceDataChange = 20;
+  enDataChange_EDdz3DCostumeExpressSucc = 21;
+  enDataChange_EDonnerV2Change = 22;
+  enDataChange_EDdz3DNewGoldCoin = 23;
+}
+
+message CNotifyMsgPara {
+  uint32 m_un_uin = 1;
+  uint32 m_ush_msg_num = 2;
+  repeated TMsg m_ast_msg = 3;
+  int32 mi_reserver = 4;
+}
+
+message CNtfMoneyChangeMsg {
+  int32 m_sh_money_type = 1;
+}
+
+message TMsg {
+  int32 mi_msg_lenth = 1;
+  int32 mi_msg_id = 2;
+  int32 mi_msg_display_index = 3;
+  int32 mi_msg_display_version = 4;
+  int32 mi_msg_src_type = 5;
+  uint32 m_ui_msg_src_id = 6;
+  int32 mi_msg_service_tag = 7;
+  int32 mi_msg_sub_service_type = 8;
+  int32 mi_show_type = 9;
+  uint32 m_ui_msg_stat = 10;
+  int32 mi_display_time = 11;
+  int32 mi_msg_duration = 12;
+  int32 m_sh_para_num = 13;
+  int32 mi_msg_para_len = 14;
+  bytes m_ac_msg_para = 15;
+  int32 i_reserver = 16;
+}

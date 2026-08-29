@@ -1,0 +1,629 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLDuoBaoSvrMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlduobaosvrmsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLDuoBaoSvrMsgParaProto";
+
+enum AwardStatus {
+  AwardStatus_EAwStatNotlot = 0;
+  AwardStatus_EAwStatDrawing = 1;
+  AwardStatus_EAwStatLosing = 2;
+  AwardStatus_EAwStatWining = 3;
+  AwardStatus_EAwStatReceived = 4;
+  AwardStatus_EAwStatCleared = 5;
+}
+
+enum ClientAbilityDef {
+  ClientAbilityDef_Tdr2PbDummyClientAbilityDef = 0;
+  ClientAbilityDef_EClientSupportBp = 1;
+}
+
+enum DuoBaoSceneType {
+  DuoBaoSceneType_EDuobaoSceneAll = 0;
+  DuoBaoSceneType_EDuobaoSceneInGame = 1;
+}
+
+enum DuoBaoState {
+  DuoBaoState_EDbStateUnknow = 0;
+  DuoBaoState_EDbStateNotstart = 1;
+  DuoBaoState_EDbStatePrepare = 2;
+  DuoBaoState_EDbStateBuying = 3;
+  DuoBaoState_EDbStateGongshi = 4;
+  DuoBaoState_EDbStateFinish = 5;
+}
+
+enum DuoBaoType {
+  DuoBaoType_Tdr2PbDummyDuoBaoType = 0;
+  DuoBaoType_EDuobaoTypeFull = 1;
+  DuoBaoType_EDuobaoTypeTime = 2;
+  DuoBaoType_EDuobaoTypeFullTime = 3;
+}
+
+enum MacroDefineForHLDuoBaoSvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLDuoBaoSvrMsgPara_Tdr2PbDummyMacroDefineForHlduoBaoSvrMsgPara = 0;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxNameLen = 128;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxPhoneNum = 20;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxIdcardNum = 20;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxDuobaoSpec = 100;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxLuckyPlayer = 10;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxLotteryCode = 100;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxPlayerRecord = 10;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxShowArea = 10;
+  MacroDefineForHLDuoBaoSvrMsgPara_EMaxShowBetPlayer = 16;
+}
+
+enum QueryRspType {
+  QueryRspType_EQlrtAll = 0;
+  QueryRspType_EQlrtSingle = 1;
+  QueryRspType_EQlrtDynamic = 2;
+  QueryRspType_EQlrtBatch = 3;
+}
+
+enum ShowAreaType {
+  ShowAreaType_Tdr2PbDummyShowAreaType = 0;
+  ShowAreaType_EShowTypeMatch = 1;
+  ShowAreaType_EShowTypeDuobao = 2;
+  ShowAreaType_EShowTypeExchange = 3;
+  ShowAreaType_EShowTypeAdv = 4;
+}
+
+enum WeeklyInfoCtrlFlag {
+  WeeklyInfoCtrlFlag_Tdr2PbDummyWeeklyInfoCtrlFlag = 0;
+  WeeklyInfoCtrlFlag_EWeeklyinfoBigname = 1;
+}
+
+message CNotifyExchangeWeekly {
+  TUserInfo user_info = 1;
+  TExchangePlayer exchange_player = 2;
+}
+
+message CReqAward {
+  TUserInfo user_info = 1;
+  TPersonalExchangeInfo user_exchange_info = 2;
+  int32 duobao_id = 3;
+  uint32 period = 4;
+  uint32 lucky_code = 5;
+  int32 desc_len = 6;
+  bytes desc = 7;
+}
+
+message CReqBuyRecord {
+  TUserInfo user_info = 1;
+  int32 from = 2;
+  int32 count = 3;
+}
+
+message CReqDuoBao {
+  TUserInfo user_info = 1;
+  int32 duobao_id = 2;
+  uint32 period = 3;
+  uint32 buy_num = 4;
+}
+
+message CReqFetchDuoBaoDetail {
+  TUserInfo user_info = 1;
+  int32 duobao_id = 2;
+  uint32 period = 3;
+  int32 req_type = 4;
+  int32 address_num = 5;
+  repeated TAddress address = 6;
+}
+
+message CReqFetchDuoBaoList {
+  TUserInfo user_info = 1;
+  uint32 duobao_version = 2;
+  int32 duobao_count = 3;
+  repeated int32 duobao_id = 4;
+  int32 address_num = 5;
+  repeated TAddress address = 6;
+  int32 scene_type = 7;
+  int32 ios_check = 8;
+  uint32 client_ability = 9;
+  int32 source_type = 10;
+}
+
+message CReqFetchLuckyPlayers {
+  TUserInfo user_info = 1;
+  int32 duobao_id = 2;
+  int32 from = 3;
+  int32 count = 4;
+}
+
+message CReqFetchShowArea {
+  TUserInfo user_info = 1;
+}
+
+message CReqFetchWeeklyReport {
+  TUserInfo user_info = 1;
+  int32 open_key_len = 2;
+  bytes open_key = 3;
+}
+
+message CReqFetchWeeklyReportInternal {
+  TUserInfo user_info = 1;
+  int32 open_key_len = 2;
+  bytes open_key = 3;
+  uint32 ctrl_flag = 4;
+  uint32 game_uin = 5;
+  int32 friend_uin_num = 6;
+  repeated uint32 friend_uin = 7;
+}
+
+message CReqLotteryCode {
+  TUserInfo user_info = 1;
+  int32 duobao_id = 2;
+  uint32 period = 3;
+  uint32 from = 4;
+}
+
+message CReqSetDuoBaoAwardData {
+  int32 game_id = 1;
+  int32 duobao_id = 2;
+  uint32 period = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  int32 new_award_status = 6;
+  int32 lucky_player_num = 7;
+  repeated TLuckyPlayer lucky_player = 8;
+}
+
+message CReqSetDuoBaoLuckyLoveData {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 lucky_love_value = 4;
+  uint32 player_first_buy_time = 5;
+  uint32 player_buy_amount_in_lucky_love = 6;
+  uint32 player_last_buy_time = 7;
+  uint32 player_lucky_value_last_drop_time = 8;
+  uint32 player_lucky_daily_award_cnt = 9;
+}
+
+message CReqSyncDuoBaoData {
+  int32 svr_id = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+}
+
+message CRspAward {
+  int32 result_id = 1;
+  int32 duobao_id = 2;
+  uint32 period = 3;
+  int32 trans_len = 4;
+  bytes transparent = 5;
+  int32 desc_len = 6;
+  bytes desc = 7;
+}
+
+message CRspBuyRecord {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 total_record = 6;
+  int32 from = 7;
+  int32 count = 8;
+  repeated TDuoBaoSpecial duo_bao_special = 9;
+  repeated TDuoBaoSpecDyn duo_bao_spec_dyn = 10;
+}
+
+message CRspDuoBao {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 duobao_id = 6;
+  uint32 period = 7;
+  uint32 req_buy_num = 8;
+  uint32 rsp_buy_num = 9;
+  uint32 consumed_item = 10;
+  uint32 my_total_buy_num = 11;
+  uint32 money_item_id = 12;
+  uint32 spec_total_buy_num = 13;
+  uint32 my_today_buy_num = 14;
+}
+
+message CRspFetchDuoBaoDetail {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  uint32 sys_timestamp = 6;
+  int32 refresh_intv = 7;
+  int32 req_type = 8;
+  TDuoBaoDetail duo_bao_detail = 9;
+  TDuoBaoSpecDyn duo_bao_spec_dyn = 10;
+  TDuoBaoSpecDyn2 duo_bao_spec_dyn2 = 11;
+  TLocation location = 12;
+}
+
+message CRspFetchDuoBaoList {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  uint32 sys_timestamp = 6;
+  uint32 duobao_version = 7;
+  int32 refresh_intv = 8;
+  int32 rsp_type = 9;
+  int32 special_num = 10;
+  repeated TDuoBaoSpecial duo_bao_special = 11;
+  int32 dynamic_num = 12;
+  repeated TDuoBaoSpecDyn duo_bao_spec_dyn = 13;
+  repeated TDuoBaoSpecDyn2 duo_bao_spec_dyn2 = 14;
+  repeated TLocation location = 15;
+  repeated TLatestBetPlayerInfoList latest_bet_players = 16;
+  bytes is_bp_only = 17;
+}
+
+message CRspFetchLuckyPlayers {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 duobao_id = 6;
+  int32 from = 7;
+  int32 total_period = 8;
+  int32 lucky_player_num = 9;
+  repeated TLuckyPlayer lucky_player = 10;
+}
+
+message CRspFetchShowArea {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 show_num = 6;
+  repeated TShow show_list = 7;
+}
+
+message CRspFetchWeeklyReport {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 date_len = 6;
+  bytes date = 7;
+  int32 my_info_num = 8;
+  repeated TDuoBaoMyInfo my_info = 9;
+  int32 friend_info_num = 10;
+  repeated TDuoBaoFriendInfo friend_info = 11;
+  int32 big_names_num = 12;
+  repeated TDuoBaoBigNames big_names = 13;
+}
+
+message CRspLotteryCode {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+  int32 duobao_id = 6;
+  uint32 period = 7;
+  uint32 total = 8;
+  uint32 lucky_code = 9;
+  uint32 from = 10;
+  int32 lottery_code_num = 11;
+  repeated uint32 lottery_code = 12;
+}
+
+message CRspSetDuoBaoAwardData {
+  int32 game_id = 1;
+  int32 result_id = 2;
+  int32 duobao_id = 3;
+  uint32 period = 4;
+  int32 account_type = 5;
+  int32 new_award_status = 6;
+  int32 lucky_player_num = 7;
+  repeated TLuckyPlayer lucky_player = 8;
+  int32 desc_len = 9;
+  bytes desc = 10;
+}
+
+message CRspSetDuoBaoLuckyLoveData {
+  int32 ret = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  uint32 lucky_love_value = 5;
+  uint32 player_first_buy_time = 6;
+  uint32 player_buy_amount_in_lucky_love = 7;
+  uint32 player_last_buy_time = 8;
+  uint32 player_lucky_value_last_drop_time = 9;
+  int32 award_item_num = 10;
+  repeated TLuckyLoveItemInfo award_items = 11;
+  uint32 player_lucky_daily_award_cnt = 12;
+}
+
+message CRspSyncDuoBaoData {
+  int32 result_id = 1;
+  int32 svr_id = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  uint32 create_time = 5;
+  uint32 update_time = 6;
+  uint32 next_lottery_time = 7;
+  int32 duo_bao_data_num = 8;
+  repeated TDuoBaoData duo_bao_data = 9;
+}
+
+message TAddress {
+  int32 lat = 1;
+  int32 lng = 2;
+  int32 province_len = 3;
+  bytes province = 4;
+  int32 city_len = 5;
+  bytes city = 6;
+}
+
+message TDuoBaoAward {
+  int32 award_times = 1;
+  int32 title_len = 2;
+  bytes title = 3;
+  int32 icon_len = 4;
+  bytes icon_url = 5;
+}
+
+message TDuoBaoBigNames {
+  int32 spec_person_num = 1;
+  repeated TSpecialPerson spec_person = 2;
+  int32 extra_len = 3;
+  bytes extra = 4;
+}
+
+message TDuoBaoData {
+  int32 duobao_id = 1;
+  uint32 cur_period = 2;
+  uint32 start_time = 3;
+  uint32 lottery_time = 4;
+  uint32 lottery_time_span = 5;
+  uint32 bought_num = 6;
+  uint32 duo_bao_state = 7;
+  uint32 person_per_page = 8;
+  uint32 total_pages = 9;
+  uint32 return_src_item_page = 10;
+  uint32 liu_pai_num = 11;
+  uint32 award_status = 12;
+  uint32 lucky_player_idx = 13;
+  int32 lucky_player_num = 14;
+  repeated TLuckyPlayer lucky_player = 15;
+  TLotteryCodePage last_code_page = 16;
+  uint32 ctrl_flag = 17;
+  int32 bet_player_count = 18;
+  repeated TLatestBetPlayerInfo bet_players = 19;
+}
+
+message TDuoBaoDetail {
+  int32 duobao_id = 1;
+  uint32 cur_period = 2;
+  int32 desc_len = 3;
+  bytes desc = 4;
+}
+
+message TDuoBaoFriendInfo {
+  int32 award_type = 1;
+  int32 big_award_num = 2;
+  repeated TEntireLucky big_award = 3;
+  int32 small_award_num = 4;
+  repeated TSimpleLucky small_award = 5;
+}
+
+message TDuoBaoLuckyPlayers {
+  int32 duobao_id = 1;
+  int32 lucky_player_num = 2;
+  repeated TLuckyPlayer lucky_player = 3;
+}
+
+message TDuoBaoMyInfo {
+  int32 fuka_incr = 1;
+  int32 award_num = 2;
+  repeated TDuoBaoAward my_award = 3;
+  uint32 join_num = 4;
+}
+
+message TDuoBaoShow {
+  int32 duobao_id = 1;
+  uint32 period = 2;
+}
+
+message TDuoBaoSpecDyn {
+  int32 duobao_id = 1;
+  uint32 cur_period = 2;
+  uint32 bought_num = 3;
+  uint32 my_bought_times = 4;
+  uint32 award_status = 5;
+}
+
+message TDuoBaoSpecDyn2 {
+  uint32 my_today_buy_num = 1;
+  uint32 reserve1 = 2;
+  uint32 reserve2 = 3;
+  uint32 reserve3 = 4;
+}
+
+message TDuoBaoSpecial {
+  int32 duobao_id = 1;
+  uint32 cur_period = 2;
+  uint32 total_period = 3;
+  int32 corner_type = 4;
+  int32 title_len = 5;
+  bytes title = 6;
+  int32 icon_len = 7;
+  bytes icon_url = 8;
+  int32 duo_bao_type = 9;
+  uint32 start_lottery_num = 10;
+  uint32 lowest_lottery_num = 11;
+  uint32 start_time = 12;
+  uint32 lottery_time = 13;
+  uint32 item_id = 14;
+  uint32 item_num = 15;
+  uint32 max_buy_num = 16;
+  uint32 daily_buy_limit = 17;
+  uint32 reserve2 = 18;
+  uint32 reserve3 = 19;
+  uint32 reserve4 = 20;
+  int32 duo_bao_state = 21;
+  int32 lucky_player_num = 22;
+  repeated TLuckyPlayer lucky_player = 23;
+  int32 award_item_type = 24;
+}
+
+message TEntireLucky {
+  uint32 game_uin = 1;
+  int32 head_len = 2;
+  bytes head = 3;
+  int32 title_len = 4;
+  bytes title = 5;
+  int32 desc_len = 6;
+  bytes desc = 7;
+}
+
+message TExchangePlayer {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 game_uin = 4;
+  int32 award_value = 5;
+  int32 exchange_times = 6;
+  int32 item_id = 7;
+  int32 icon_len = 8;
+  bytes icon_url = 9;
+  int32 item_name_len = 10;
+  bytes item_name = 11;
+}
+
+message TExchangeShow {
+  int32 exchange_id = 1;
+}
+
+message TLatestBetPlayerInfo {
+  int32 account_type = 1;
+  uint32 uin = 2;
+  int32 reserved1 = 3;
+  int32 reserved2 = 4;
+}
+
+message TLatestBetPlayerInfoList {
+  int32 bet_player_count = 1;
+  repeated TLatestBetPlayerInfo bet_players = 2;
+}
+
+message TLocation {
+  int32 location_len = 1;
+  bytes location = 2;
+}
+
+message TLotteryCodePage {
+  int32 lottery_code_num = 1;
+  repeated TLotteryUinCode lottery_code = 2;
+}
+
+message TLotteryUinCode {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  uint32 uin = 3;
+  uint32 code = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+}
+
+message TLuckyLoveItemInfo {
+  int32 item_type = 1;
+  int32 item_id = 2;
+  int32 item_hit_ratio = 3;
+  uint32 item_day_limit = 4;
+  uint32 item_day_left = 5;
+}
+
+message TLuckyPlayer {
+  uint32 cur_period = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 game_uin = 4;
+  int32 head_len = 5;
+  bytes head = 6;
+  int32 name_len = 7;
+  bytes name = 8;
+  uint32 lucky_code = 9;
+  uint32 bought_times = 10;
+  uint32 lottery_time = 11;
+  uint32 reserve1 = 12;
+  uint32 reserve2 = 13;
+  uint32 reserve3 = 14;
+  uint32 reserve4 = 15;
+}
+
+message TMatchShow {
+  int32 match_id = 1;
+  uint32 start_time = 2;
+  uint32 end_time = 3;
+}
+
+message TPersonalExchangeInfo {
+  int32 nick_name_len = 1;
+  bytes nick_name = 2;
+  int32 phone_num_len = 3;
+  bytes phone_num = 4;
+  int32 id_card_len = 5;
+  bytes id_card = 6;
+  uint32 qq_num = 7;
+}
+
+message TShow {
+  uint32 show_type = 1;
+  UShow show_elem = 2;
+  int32 jump_len = 3;
+  bytes jump_cmd = 4;
+  int32 icon_len = 5;
+  bytes icon_url = 6;
+  int32 title_len = 7;
+  bytes title = 8;
+  int32 sub_title_len = 9;
+  bytes sub_title = 10;
+}
+
+message TSimpleLucky {
+  uint32 game_uin = 1;
+  int32 head_len = 2;
+  bytes head = 3;
+}
+
+message TSpecialPerson {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  uint32 game_uin = 3;
+  int32 head_len = 4;
+  bytes head = 5;
+  int32 title_len = 6;
+  bytes title = 7;
+  int32 desc_len = 8;
+  bytes desc = 9;
+}
+
+message TUserInfo {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 client_version = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 trans_len = 7;
+  bytes transparent = 8;
+}
+
+message UShow {
+  TMatchShow match = 1;
+  TDuoBaoShow duo_bao = 2;
+  TExchangeShow exchange = 3;
+}

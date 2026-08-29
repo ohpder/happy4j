@@ -1,0 +1,142 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.1.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'cc.superbaby'
+version = '0.0.1-SNAPSHOT'
+description = 'happy4j'
+
+def protobufVersion = '4.36.0'
+def osName = System.getProperty('os.name').toLowerCase(Locale.ROOT)
+def osArch = System.getProperty('os.arch').toLowerCase(Locale.ROOT)
+def protocOs = osName.contains('mac') ? 'osx' : (osName.contains('win') ? 'windows' : 'linux')
+def protocArch = (osArch.contains('aarch64') || osArch.contains('arm64')) ? 'aarch_64' : 'x86_64'
+def protocClassifier = "${protocOs}-${protocArch}"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    protocCompiler
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-flyway'
+    implementation 'org.flywaydb:flyway-mysql'
+    implementation 'org.hibernate.orm:hibernate-community-dialects'
+    implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
+    implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+    runtimeOnly('com.mysql:mysql-connector-j') {
+        version {
+            strictly '8.0.33'
+        }
+    }
+    protocCompiler "com.google.protobuf:protoc:${protobufVersion}:${protocClassifier}@exe"
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'com.h2database:h2'
+    testCompileOnly 'org.projectlombok:lombok'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+def generatedProtoDir = layout.buildDirectory.dir('generated/source/proto/main/java')
+def generatedProtocolResourceDir = layout.buildDirectory.dir('generated/resources/main')
+def generatedDescriptorFile = generatedProtocolResourceDir.map { it.file('protocol/hlddz.desc') }
+def frontendDir = file('frontend')
+def generatedFrontendResourceDir = layout.buildDirectory.dir('generated/frontend')
+def frontendCheckMarker = layout.buildDirectory.file('reports/frontend/check.txt')
+
+sourceSets {
+    main {
+        java.srcDir(generatedProtoDir)
+        resources.srcDir(generatedProtocolResourceDir)
+        resources.srcDir(generatedFrontendResourceDir)
+    }
+}
+
+tasks.register('frontendInstall', Exec) {
+    workingDir frontendDir
+    inputs.files(file('frontend/package.json'), file('frontend/package-lock.json'))
+    outputs.dir(file('frontend/node_modules'))
+    commandLine 'npm', 'ci', '--no-audit', '--no-fund'
+}
+
+tasks.register('frontendCheck', Exec) {
+    dependsOn tasks.named('frontendInstall')
+    workingDir frontendDir
+    inputs.files(fileTree(frontendDir) {
+        exclude 'node_modules/**', 'dist/**'
+    })
+    outputs.file(frontendCheckMarker)
+    commandLine 'npm', 'run', 'check'
+    doLast {
+        frontendCheckMarker.get().asFile.with {
+            parentFile.mkdirs()
+            text = 'frontend check passed\n'
+        }
+    }
+}
+
+tasks.register('frontendBuild', Exec) {
+    dependsOn tasks.named('frontendCheck')
+    workingDir frontendDir
+    inputs.files(fileTree(frontendDir) {
+        exclude 'node_modules/**', 'dist/**'
+    })
+    outputs.dir(generatedFrontendResourceDir.map { it.dir('static') })
+    commandLine 'npm', 'run', 'build'
+}
+
+tasks.register('generateProto', Exec) {
+    def protoFiles = fileTree('src/main/proto') {
+        include '**/*.proto'
+    }
+    inputs.files(protoFiles)
+    outputs.dir(generatedProtoDir)
+    outputs.file(generatedDescriptorFile)
+    doFirst {
+        generatedProtoDir.get().asFile.mkdirs()
+        generatedDescriptorFile.get().asFile.parentFile.mkdirs()
+        configurations.protocCompiler.singleFile.setExecutable(true)
+        commandLine([configurations.protocCompiler.singleFile.absolutePath,
+                     "-I=${file('src/main/proto').absolutePath}",
+                     "--java_out=${generatedProtoDir.get().asFile.absolutePath}",
+                     "--descriptor_set_out=${generatedDescriptorFile.get().asFile.absolutePath}",
+                     '--include_imports'] +
+            protoFiles.files.sort { a, b -> a.name <=> b.name }*.absolutePath)
+    }
+}
+
+tasks.named('compileJava') {
+    dependsOn tasks.named('generateProto')
+}
+
+tasks.named('processResources') {
+    dependsOn tasks.named('generateProto'), tasks.named('frontendBuild')
+}
+
+tasks.named('test') {
+    dependsOn tasks.named('frontendCheck')
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += ['-Xlint:all,-processing', '-Werror']
+}

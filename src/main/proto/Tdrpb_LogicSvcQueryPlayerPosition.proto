@@ -1,0 +1,110 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LogicSvcQueryPlayerPosition;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.logicsvcqueryplayerposition";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LogicSvcQueryPlayerPositionProto";
+
+enum MacroDefineForQueryPlayerPositonMsgPara {
+  option allow_alias = true;
+  MacroDefineForQueryPlayerPositonMsgPara_Tdr2PbDummyMacroDefineForQueryPlayerPositonMsgPara = 0;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxOpenidLenth = 64;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxUinNumEx = 512;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxAccesstokenLenth = 190;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxNickLenth = 256;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxAlbumUrlLenth = 256;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxStatusLenth = 256;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxEnterRoomKeyLenth = 256;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxResultStrLenth = 256;
+  MacroDefineForQueryPlayerPositonMsgPara_PlayerposionMaxOnlineFriendsNum = 30;
+}
+
+enum PlayerOnlineStatusType {
+  PlayerOnlineStatusType_Tdr2PbDummyPlayerOnlineStatusType = 0;
+  PlayerOnlineStatusType_OnlineTypeMatchMode = 10001;
+  PlayerOnlineStatusType_OnlineTypeClassicMode = 10002;
+  PlayerOnlineStatusType_OnlineTypeCompetitionMode = 10003;
+  PlayerOnlineStatusType_OnlineTypePlayWithFriendsMode = 10004;
+  PlayerOnlineStatusType_OnlineTypeOnlineIdleMode = 10005;
+}
+
+message CRequestQueryOnlineFriendsPosition {
+  uint32 client_version = 1;
+  int32 game_id = 2;
+  int32 account_type = 3;
+  int32 client_type = 4;
+  uint32 open_id_len = 5;
+  bytes open_id = 6;
+  uint32 access_token_len = 7;
+  bytes access_token = 8;
+  uint32 begin_index = 9;
+  uint32 fetch_num = 10;
+}
+
+message CRequestQueryPlayerPosition {
+  uint32 uin = 1;
+  uint32 gameid = 2;
+}
+
+message CRequestViewInfo {
+  uint32 view_uin = 1;
+  uint32 client_version = 2;
+  int32 game_id = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  int32 match_series_id = 6;
+  int32 match_game_id = 7;
+  uint32 friend_auth_key_len = 8;
+  bytes friend_auth_key = 9;
+  int32 view_scene_id = 10;
+}
+
+message CResponseQueryOnlineFriendsPosition {
+  int32 result_id = 1;
+  uint32 result_str_len = 2;
+  bytes result_str = 3;
+  uint32 total_online_num = 4;
+  uint32 uin_num = 5;
+  repeated TUsrOnlineInfo uin_list = 6;
+}
+
+message CResponseQueryPlayerPosition {
+  int32 resultid = 1;
+  uint32 uin = 2;
+  uint32 gameid = 3;
+  int32 status = 4;
+  uint32 scene_id = 5;
+  uint32 svr_id = 6;
+  uint32 room_id = 7;
+}
+
+message CResponseViewInfo {
+  int32 resultid = 1;
+  uint32 result_str_len = 2;
+  bytes result_str = 3;
+  uint32 uin = 4;
+  uint32 gameid = 5;
+  uint32 scene_id = 6;
+  uint32 svr_id = 7;
+  uint32 room_id = 8;
+  uint32 enter_room_key_len = 9;
+  bytes enter_room_key = 10;
+}
+
+message TUsrOnlineInfo {
+  uint32 uin = 1;
+  uint32 open_id_len = 2;
+  bytes open_id = 3;
+  uint32 nick_len = 4;
+  bytes nick = 5;
+  uint32 album_url_len = 6;
+  bytes album_url = 7;
+  uint32 statuslen = 8;
+  bytes status = 9;
+  uint32 index = 10;
+  uint32 view_state = 11;
+  uint32 friend_auth_key_len = 12;
+  bytes friend_auth_key = 13;
+}

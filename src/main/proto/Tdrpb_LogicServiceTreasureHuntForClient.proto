@@ -1,0 +1,181 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LogicServiceTreasureHuntForClient;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.logicservicetreasurehuntforclient";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LogicServiceTreasureHuntForClientProto";
+
+enum MacroDefineForTreasureHuntForClientMsgPara {
+  option allow_alias = true;
+  MacroDefineForTreasureHuntForClientMsgPara_Tdr2PbDummyMacroDefineForTreasureHuntForClientMsgPara = 0;
+  MacroDefineForTreasureHuntForClientMsgPara_TreasureHuntMaxTransparentLen = 256;
+  MacroDefineForTreasureHuntForClientMsgPara_TreasureHuntMaxItemNum = 32;
+  MacroDefineForTreasureHuntForClientMsgPara_TreasureHuntMaxRetDescLen = 256;
+  MacroDefineForTreasureHuntForClientMsgPara_MaxOpenidStrLen = 256;
+  MacroDefineForTreasureHuntForClientMsgPara_MaxOpenkeyStrLen = 256;
+  MacroDefineForTreasureHuntForClientMsgPara_MaxPfkeyStrLen = 128;
+  MacroDefineForTreasureHuntForClientMsgPara_MaxPfStrLen = 128;
+  MacroDefineForTreasureHuntForClientMsgPara_MaxPaytokenStrLen = 128;
+  MacroDefineForTreasureHuntForClientMsgPara_MaxItemnameStrLen = 32;
+}
+
+enum TREASURE_GIFT_BUY_TYPE {
+  TREASURE_GIFT_BUY_TYPE_Tdr2PbDummyTreasureGiftBuyType = 0;
+  TREASURE_GIFT_BUY_TYPE_BuyNormalTreasure = 1;
+  TREASURE_GIFT_BUY_TYPE_BuyHighTreasure = 2;
+  TREASURE_GIFT_BUY_TYPE_BuyTopTreasure = 3;
+  TREASURE_GIFT_BUY_TYPE_TakeNormalTreasureFree = 4;
+  TREASURE_GIFT_BUY_TYPE_NewplayerGuideTakeNormalTreasureFree = 5;
+  TREASURE_GIFT_BUY_TYPE_TakeHighTreasureFree = 6;
+  TREASURE_GIFT_BUY_TYPE_TakeTopTreasureFree = 7;
+  TREASURE_GIFT_BUY_TYPE_TakeNormalTreasureFreeByAd = 8;
+  TREASURE_GIFT_BUY_TYPE_TakeHighTreasureFreeByAd = 9;
+  TREASURE_GIFT_BUY_TYPE_TakeTopTreasureFreeByAd = 10;
+}
+
+enum TREASURE_GIFT_PAY_TYPE {
+  TREASURE_GIFT_PAY_TYPE_Tdr2PbDummyTreasureGiftPayType = 0;
+  TREASURE_GIFT_PAY_TYPE_BuyTreasureByDiamond = 1;
+  TREASURE_GIFT_PAY_TYPE_BuyTreasureByBean = 2;
+}
+
+enum TREASURE_HUNT_ABILITY_FLAG {
+  TREASURE_HUNT_ABILITY_FLAG_Tdr2PbDummyTreasureHuntAbilityFlag = 0;
+  TREASURE_HUNT_ABILITY_FLAG_TreasureHuntAbilityHighAndTopFree = 1;
+  TREASURE_HUNT_ABILITY_FLAG_TreasureHuntAbilityNewTimeRule = 2;
+}
+
+enum TREASURE_HUNT_AD_TYPE {
+  TREASURE_HUNT_AD_TYPE_TreasureHuntNormalGiftAd = 0;
+  TREASURE_HUNT_AD_TYPE_TreasureHuntHighGiftAd = 1;
+  TREASURE_HUNT_AD_TYPE_TreasureHuntTopGiftAd = 2;
+}
+
+enum TREASURE_HUNT_ECONOMY_CHANGED_FLAG {
+  TREASURE_HUNT_ECONOMY_CHANGED_FLAG_Tdr2PbDummyTreasureHuntEconomyChangedFlag = 0;
+  TREASURE_HUNT_ECONOMY_CHANGED_FLAG_DiamondCountChangedFlag = 1;
+  TREASURE_HUNT_ECONOMY_CHANGED_FLAG_BeanCountChangedFlag = 2;
+}
+
+message CReqTreasureBuy {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 acc_type = 4;
+  int32 client_type = 5;
+  int32 game_id = 6;
+  int32 open_id_len = 7;
+  bytes open_id = 8;
+  int32 open_key_len = 9;
+  bytes open_key = 10;
+  int32 pf_key_len = 11;
+  bytes pf_key = 12;
+  int32 pf_len = 13;
+  bytes pf = 14;
+  int32 pay_token_len = 15;
+  bytes pay_token = 16;
+  int32 buy_gift_type = 17;
+  int32 client_version = 18;
+  int32 buy_type = 19;
+  int32 buy_value = 20;
+  int32 is_present_item = 21;
+  uint32 ability_set = 22;
+}
+
+message CReqTreasurePage {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 acc_type = 4;
+  int32 client_type = 5;
+  int32 game_id = 6;
+  uint32 ability_set = 7;
+}
+
+message CRspTreasureBuy {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 ret = 3;
+  int32 buy_gift_type = 4;
+  int32 seconds_to_take_normal_gift_for_free = 5;
+  int32 item_num = 6;
+  repeated int32 item_index = 7;
+  repeated int32 item_count = 8;
+  repeated int32 item_level = 9;
+  repeated int32 item_color = 10;
+  repeated int32 item_order = 11;
+  int32 economy_changed_flag = 12;
+  int32 left_diamond_count = 13;
+  int64 left_bean_count = 14;
+  int32 ret_desc_str_len = 15;
+  bytes ret_desc_str = 16;
+  int32 present_item_id = 17;
+  int32 present_count = 18;
+  int32 present_final_count = 19;
+  int32 present_item_vaild_time = 20;
+  int32 seconds_to_take_high_gift_for_free = 21;
+  int32 seconds_to_take_top_gift_for_free = 22;
+  repeated string item_name = 23;
+  int32 free_take_normal_gift_total_count_today = 24;
+  int32 free_take_normal_gift_left_count_today = 25;
+  int32 free_take_high_gift_total_count_today = 26;
+  int32 free_take_high_gift_left_count_today = 27;
+  int32 free_take_top_gift_total_count_today = 28;
+  int32 free_take_top_gift_left_count_today = 29;
+  uint32 show_normal_gift_advertise = 30;
+  string pos_id = 31;
+  string app_id = 32;
+  uint32 show_high_gift_advertise = 33;
+  string high_gift_ad_pos_id = 34;
+  string high_gift_ad_app_id = 35;
+  uint32 show_top_gift_advertise = 36;
+  string top_gift_ad_pos_id = 37;
+  string top_gift_ad_app_id = 38;
+}
+
+message CRspTreasurePage {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 ret = 3;
+  int32 normal_gift_buy_type = 4;
+  int32 normal_gift_buy_value = 5;
+  int32 high_gift_buy_type = 6;
+  int32 high_gift_buy_value = 7;
+  int32 top_gift_buy_type = 8;
+  int32 top_gift_buy_value = 9;
+  int32 seconds_to_take_normal_gift_for_free = 10;
+  int32 normal_gift_buy_discount = 11;
+  int32 normal_gift_discount_begin_time = 12;
+  int32 normal_gift_discount_end_time = 13;
+  int32 high_gift_buy_discount = 14;
+  int32 high_gift_discount_begin_time = 15;
+  int32 high_gift_discount_end_time = 16;
+  int32 top_gift_buy_discount = 17;
+  int32 top_gift_discount_begin_time = 18;
+  int32 top_gift_discount_end_time = 19;
+  int32 normal_gift_present_item_id = 20;
+  string normal_gift_desc_str = 21;
+  int32 high_gift_present_item_id = 22;
+  string high_gift_desc_str = 23;
+  int32 top_gift_present_item_id = 24;
+  string top_gift_desc_str = 25;
+  int32 seconds_to_take_high_gift_for_free = 26;
+  int32 seconds_to_take_top_gift_for_free = 27;
+  int32 free_take_normal_gift_total_count_today = 28;
+  int32 free_take_normal_gift_left_count_today = 29;
+  int32 free_take_high_gift_total_count_today = 30;
+  int32 free_take_high_gift_left_count_today = 31;
+  int32 free_take_top_gift_total_count_today = 32;
+  int32 free_take_top_gift_left_count_today = 33;
+  uint32 show_normal_gift_advertise = 34;
+  string pos_id = 35;
+  string app_id = 36;
+  uint32 show_high_gift_advertise = 37;
+  string high_gift_ad_pos_id = 38;
+  string high_gift_ad_app_id = 39;
+  uint32 show_top_gift_advertise = 40;
+  string top_gift_ad_pos_id = 41;
+  string top_gift_ad_app_id = 42;
+}

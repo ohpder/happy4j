@@ -1,0 +1,94 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLPrivateControl;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlprivatecontrol";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLPrivateControlProto";
+
+enum HLDDZPrivateBitDef {
+  HLDDZPrivateBitDef_ERankBit = 0;
+  HLDDZPrivateBitDef_ETeaminvateBit = 1;
+  HLDDZPrivateBitDef_EUserSearchBit = 2;
+  HLDDZPrivateBitDef_EOnlineBit = 3;
+  HLDDZPrivateBitDef_EWxcardBit = 4;
+  HLDDZPrivateBitDef_EGreetingBit = 5;
+  HLDDZPrivateBitDef_EChatBit = 6;
+  HLDDZPrivateBitDef_EFriendBit = 7;
+  HLDDZPrivateBitDef_EBoardBit = 8;
+  HLDDZPrivateBitDef_EGameBit = 9;
+  HLDDZPrivateBitDef_ETeammathBit = 10;
+  HLDDZPrivateBitDef_ERongyuBit = 11;
+  HLDDZPrivateBitDef_EPersonalBit = 12;
+  HLDDZPrivateBitDef_EPayamtLevelBit = 13;
+  HLDDZPrivateBitDef_ERoundCntBit = 14;
+  HLDDZPrivateBitDef_EGameCareerBit = 15;
+  HLDDZPrivateBitDef_ESuitBit = 16;
+  HLDDZPrivateBitDef_EAdvBit = 17;
+  HLDDZPrivateBitDef_ECardExchangeBit = 19;
+  HLDDZPrivateBitDef_EAchievementBit = 20;
+  HLDDZPrivateBitDef_EHeroCardBit = 21;
+}
+
+enum MacroDefineForHLPrivateControlMsgPara {
+  MacroDefineForHLPrivateControlMsgPara_Tdr2PbDummyMacroDefineForHlprivateControlMsgPara = 0;
+  MacroDefineForHLPrivateControlMsgPara_ClientMsgidC2SFetchPrivateInfo = 18544;
+  MacroDefineForHLPrivateControlMsgPara_ClientMsgidC2SSetPrivateBit = 18545;
+  MacroDefineForHLPrivateControlMsgPara_PrivateMaxTransLen = 100;
+  MacroDefineForHLPrivateControlMsgPara_PrivateMaxOpenidLenth = 128;
+  MacroDefineForHLPrivateControlMsgPara_ActivityTypeMaxLen = 32;
+}
+
+enum PrivateControlResultID {
+  PrivateControlResultID_Tdr2PbDummyPrivateControlResultId = 0;
+  PrivateControlResultID_ErrGameNotConfig = -1000;
+  PrivateControlResultID_ErrFetchMirrorFail = -1001;
+  PrivateControlResultID_ErrInvalidReq = -1002;
+  PrivateControlResultID_ErrUpdateMirrorFail = -1003;
+  PrivateControlResultID_ErrGameLogicFail = -1004;
+  PrivateControlResultID_ErrRepeatedOper = -1005;
+}
+
+message CRequestFetchPrivateInfo {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 client_version = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 trans_len = 7;
+  bytes transparent = 8;
+  int32 activity_type_len = 9;
+  repeated int32 activity_type = 10;
+}
+
+message CRequestSetPrivateBit {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 client_version = 4;
+  int32 open_id_len = 5;
+  bytes open_id = 6;
+  int32 trans_len = 7;
+  bytes transparent = 8;
+  uint32 private_bit = 9;
+  int32 function_enable = 10;
+  string wx_applet_open_id = 11;
+  string wx_open_key = 12;
+}
+
+message CResponseFetchPrivateInfo {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+  uint32 private = 4;
+  int32 activity_type_len = 5;
+  repeated int32 activity_need_recommend = 6;
+}
+
+message CResponseSetPrivateBit {
+  int32 result_id = 1;
+  int32 trans_len = 2;
+  bytes transparent = 3;
+}

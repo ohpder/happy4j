@@ -1,0 +1,80 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLReactRtiRecommendSceneMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlreactrtirecommendscenemsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLReactRtiRecommendSceneMsgParaProto";
+
+enum MacroDefineForHLReactRtiRecommondSceneMsgPara {
+  MacroDefineForHLReactRtiRecommondSceneMsgPara_Tdr2PbDummyMacroDefineForHlreactRtiRecommondSceneMsgPara = 0;
+  MacroDefineForHLReactRtiRecommondSceneMsgPara_MsgidCsNotifyRecommendSceneEvent = 31910;
+  MacroDefineForHLReactRtiRecommondSceneMsgPara_MsgidCsRecommendSceneAccept = 31922;
+}
+
+enum en3DRecommendSceneEventID {
+  en3DRecommendSceneEventID_Tdr2PbDummyEn3DrecommendSceneEventId = 0;
+  en3DRecommendSceneEventID_E3DRecmSceneEventIdHigherScene = 1;
+  en3DRecommendSceneEventID_E3DRecmSceneEventIdChangeScene = 2;
+  en3DRecommendSceneEventID_E3DRecmSceneEventIdHigherSceneReward = 3;
+  en3DRecommendSceneEventID_E3DRecmSceneEventIdChangeSceneReward = 4;
+}
+
+enum enRecommendSceneEventID {
+  enRecommendSceneEventID_Tdr2PbDummyEnRecommendSceneEventId = 0;
+  enRecommendSceneEventID_ERecmSceneEventTypeDrawerHigherSecne = 1;
+  enRecommendSceneEventID_ERecmSceneEventTypeDrawerChangeSceneBxp = 2;
+  enRecommendSceneEventID_ERecmSceneEventTypeDrawerChangeSceneTdlz = 3;
+  enRecommendSceneEventID_ERecmSceneEventTypeMysteryHigherSecne = 4;
+  enRecommendSceneEventID_ERecmSceneEventTypeMysteryChangeSceneBxp = 5;
+  enRecommendSceneEventID_ERecmSceneEventTypeMysteryChangeSceneTdlz = 6;
+  enRecommendSceneEventID_ERecmSceneEventTypeMysteryWin = 7;
+  enRecommendSceneEventID_ERecmSceneEventTypeMysteryLose = 8;
+  enRecommendSceneEventID_ERecmSceneEventTypeChangeScene = 9;
+  enRecommendSceneEventID_ERecmSceneEventTypeMysteryFixedPrize = 10;
+}
+
+enum enRecommendSceneEventType {
+  enRecommendSceneEventType_Tdr2PbDummyEnRecommendSceneEventType = 0;
+  enRecommendSceneEventType_ERecmSceneEventTypeDrawer = 1;
+  enRecommendSceneEventType_ERecmSceneEventTypeMysteryBegin = 2;
+  enRecommendSceneEventType_ERecmSceneEventTypeMysteryEnd = 3;
+  enRecommendSceneEventType_ERecmSceneEventTypeMinaUpgradeScene = 4;
+  enRecommendSceneEventType_ERecmSceneEventTypeMinaChangeMode = 5;
+  enRecommendSceneEventType_ERecmSceneEventTypeMinaRichTour = 6;
+}
+
+enum enRecommendSceneRewardFlag {
+  enRecommendSceneRewardFlag_ERecmSceneRewardFlagMinaUpgrade = 0;
+  enRecommendSceneRewardFlag_ERecmSceneRewardFlagMinaChangeMode = 1;
+}
+
+enum enRecommendSceneStoreKey {
+  enRecommendSceneStoreKey_ERecmStoreKeyApp = 0;
+  enRecommendSceneStoreKey_ERecmStoreKeyMina = 1;
+  enRecommendSceneStoreKey_ERecmStoreKey3D = 2;
+}
+
+message CNotifyRecommendSceneEvent {
+  int32 event_type = 1;
+  int32 event_id = 2;
+  int32 recommend_scene_id = 3;
+  int32 mystery_money = 4;
+  int32 is_reward_event = 5;
+}
+
+message CReqRecommendSceneAccept {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  string open_id = 3;
+  int32 recommend_type = 4;
+  int32 original_scene_id = 5;
+  int32 recommend_scene_id = 6;
+  int32 recommend_play_mode = 7;
+}
+
+message CRspRecommendSceneAccept {
+  int32 result = 1;
+  int32 reward_bean = 2;
+}

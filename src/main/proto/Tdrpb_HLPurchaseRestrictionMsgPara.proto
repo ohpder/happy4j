@@ -1,0 +1,68 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLPurchaseRestrictionMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlpurchaserestrictionmsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLPurchaseRestrictionMsgParaProto";
+
+enum MacroDefineForHLPurchaseRestrictionMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLPurchaseRestrictionMsgPara_Tdr2PbDummyMacroDefineForHlpurchaseRestrictionMsgPara = 0;
+  MacroDefineForHLPurchaseRestrictionMsgPara_MaxTransLen = 256;
+  MacroDefineForHLPurchaseRestrictionMsgPara_MaxDescLen = 128;
+  MacroDefineForHLPurchaseRestrictionMsgPara_MaxFakeurlLen = 256;
+  MacroDefineForHLPurchaseRestrictionMsgPara_MaxReserveLen = 256;
+  MacroDefineForHLPurchaseRestrictionMsgPara_MaxOpenidLen = 48;
+}
+
+message CRequestCheckPurchase {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  int32 game_id = 6;
+  int32 goods_id = 7;
+  int32 open_id_len = 8;
+  bytes open_id = 9;
+  uint32 version = 10;
+}
+
+message CRequestReportPurchaseInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 account_type = 4;
+  int32 client_type = 5;
+  int32 game_id = 6;
+  int32 goods_id = 7;
+  int32 open_id_len = 8;
+  bytes open_id = 9;
+  uint32 version = 10;
+}
+
+message CResponseCheckPurchase {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result_id = 3;
+  int32 goods_id = 4;
+  int32 fake_url_len = 5;
+  bytes fake_url = 6;
+  int32 desc_len = 7;
+  bytes desc = 8;
+  int32 reserve_len = 9;
+  bytes reserve = 10;
+}
+
+message CResponseReportPurchaseInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result_id = 3;
+  int32 goods_id = 4;
+  int32 desc_len = 5;
+  bytes desc = 6;
+  int32 reserve_len = 7;
+  bytes reserve = 8;
+}

@@ -1,0 +1,74 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLMissionTreasureRewardPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlmissiontreasurerewardpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLMissionTreasureRewardParaProto";
+
+enum HL_TREASURE_REWARD_EVENT_TYPE {
+  HL_TREASURE_REWARD_EVENT_TYPE_EmHlTreasureRewardEventDefault = 0;
+  HL_TREASURE_REWARD_EVENT_TYPE_EmHlTreasureRewardEventDropItem = 1;
+  HL_TREASURE_REWARD_EVENT_TYPE_EmHlTreasureRewardEventContinueWin = 2;
+}
+
+enum HL_TREASURE_REWARD_RETCODE {
+  HL_TREASURE_REWARD_RETCODE_EmHlTreasureRewardRetcodeOk = 0;
+  HL_TREASURE_REWARD_RETCODE_EmHlTreasureRewardRetcodeErrUnknow = 1;
+  HL_TREASURE_REWARD_RETCODE_EmHlTreasureRewardRetcodeSys = 2;
+  HL_TREASURE_REWARD_RETCODE_EmHlTreasureRewardRetcodeDelBoxFailed = 3;
+  HL_TREASURE_REWARD_RETCODE_EmHlTreasureRewardRetcodeBoxRewardFailed = 4;
+  HL_TREASURE_REWARD_RETCODE_EmHlTreasureRewardRetcodePlayerLimited = 5;
+  HL_TREASURE_REWARD_RETCODE_EmHlTreasureRewardRetcodeTotalLimited = 6;
+}
+
+enum MacroDefineForHLMissionTreasureRewardPara {
+  MacroDefineForHLMissionTreasureRewardPara_Tdr2PbDummyMacroDefineForHlmissionTreasureRewardPara = 0;
+  MacroDefineForHLMissionTreasureRewardPara_MsgidNtfHlGetMissionReward = 17017;
+  MacroDefineForHLMissionTreasureRewardPara_MsgidC2SHlOpenTreasureBox = 17018;
+  MacroDefineForHLMissionTreasureRewardPara_MaxTreasureRewardCount = 8;
+  MacroDefineForHLMissionTreasureRewardPara_MaxTreasureDescLen = 256;
+}
+
+message CNtfHLGetMissionRewardPara {
+  int32 reward_count = 1;
+  repeated TRewardInfo reward_info = 2;
+  int32 desc_len = 3;
+  bytes desc = 4;
+  int32 mission_id = 5;
+  int32 reward_event_type = 6;
+  int32 drop_max_num = 7;
+  int32 drop_cur_num = 8;
+}
+
+message CReqHLOpenTreasureBoxPara {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 open_id_len = 4;
+  bytes open_id = 5;
+  int32 open_key_len = 6;
+  bytes open_key = 7;
+  int32 pay_token_len = 8;
+  bytes pay_token = 9;
+  int32 pf_len = 10;
+  bytes pf = 11;
+  int32 pf_key_len = 12;
+  bytes pf_key = 13;
+  int32 item_id = 14;
+  int32 item_seq = 15;
+}
+
+message CRspHLOpenTreasureBoxPara {
+  int32 result_id = 1;
+  int32 reward_count = 2;
+  repeated TRewardInfo reward_info = 3;
+  int32 desc_len = 4;
+  bytes desc = 5;
+}
+
+message TRewardInfo {
+  int32 item_id = 1;
+  int32 item_count = 2;
+}

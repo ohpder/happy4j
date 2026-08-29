@@ -1,0 +1,48 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HuanLeDDZGameSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.huanleddzgamesvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HuanLeDDZGameSvrProto";
+
+enum MacroDefineForHLDDZGameSvrMsgParaPlugin {
+  MacroDefineForHLDDZGameSvrMsgParaPlugin_Tdr2PbDummyMacroDefineForHlddzgameSvrMsgParaPlugin = 0;
+  MacroDefineForHLDDZGameSvrMsgParaPlugin_MaxNickLenHg = 64;
+  MacroDefineForHLDDZGameSvrMsgParaPlugin_MaxHeadUrlLenHg = 256;
+  MacroDefineForHLDDZGameSvrMsgParaPlugin_MsgidS2CHgNtfInvitePlayer = 15886;
+}
+
+enum RELATION_ROOM_INVITE_SRC {
+  RELATION_ROOM_INVITE_SRC_Default = 0;
+  RELATION_ROOM_INVITE_SRC_Activity = 1;
+  RELATION_ROOM_INVITE_SRC_ByRoomnumber = 2;
+  RELATION_ROOM_INVITE_SRC_SocialTeam = 3;
+}
+
+message CNtfInvitePlayer {
+  uint32 src_uin = 1;
+  uint32 dst_uin = 2;
+  TRelationRoomInviteInfo relation_room_invite_info = 3;
+}
+
+message TRelationRoomInviteInfo {
+  TRelationRoomKey relation_room_key = 1;
+  int32 scene_id = 2;
+  int32 invite_src = 3;
+  int32 nick_len = 4;
+  bytes nick = 5;
+  int32 head_url_len = 6;
+  bytes head_url = 7;
+  int32 room_number = 8;
+}
+
+message TRelationRoomKey {
+  uint32 create_uin = 1;
+  int32 server_id = 2;
+  int32 room_id = 3;
+  int32 table_id = 4;
+  uint32 create_ts = 5;
+  uint32 create_seq = 6;
+}

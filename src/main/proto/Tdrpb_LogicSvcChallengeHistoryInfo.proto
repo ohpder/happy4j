@@ -1,0 +1,53 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LogicSvcChallengeHistoryInfo;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.logicsvcchallengehistoryinfo";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LogicSvcChallengeHistoryInfoProto";
+
+enum ENMMATCHPLAYERINFOFIELDIDX {
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiMatchServiceType = 0;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiBestRank = 1;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiMatchTimes = 2;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiDieoutPlayerTimes = 3;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiWinTimes = 4;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiLossTimes = 5;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiGoldprizeTimes = 6;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiUpgradeFinalsTimes = 7;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiDoubleKillTimes = 8;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiSilverprizeTimes = 9;
+  ENMMATCHPLAYERINFOFIELDIDX_EmfiCopperprizeTimes = 10;
+  ENMMATCHPLAYERINFOFIELDIDX_MatchPlayerFieldNum = 20;
+}
+
+enum ENM_SERVICE_RETCODE {
+  ENM_SERVICE_RETCODE_ErrServiceRetcodeSuccess = 0;
+  ENM_SERVICE_RETCODE_ErrServiceRetcodeSystem = -1;
+  ENM_SERVICE_RETCODE_ErrServiceRetcodeFetchCube = -2;
+}
+
+enum MacroDefineForChallengeHistoryInfoMsgPara {
+  MacroDefineForChallengeHistoryInfoMsgPara_Tdr2PbDummyMacroDefineForChallengeHistoryInfoMsgPara = 0;
+  MacroDefineForChallengeHistoryInfoMsgPara_MsgidC2SChallengeHistoryInfo = 16015;
+  MacroDefineForChallengeHistoryInfoMsgPara_LgsvcChallengeHistoryInfoMaxTransparentLen = 128;
+}
+
+message CReqChallengeHistoryInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 game_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+}
+
+message CRspChallengeHistoryInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 info_count = 5;
+  repeated int32 info = 6;
+}

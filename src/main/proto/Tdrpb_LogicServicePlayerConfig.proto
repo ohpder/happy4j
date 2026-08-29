@@ -1,0 +1,115 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.LogicServicePlayerConfig;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.logicserviceplayerconfig";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_LogicServicePlayerConfigProto";
+
+enum MacroDefineForHLPlayerConfigMsgPara {
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemCommon = 0;
+  MacroDefineForHLPlayerConfigMsgPara_CmdManipulatePlayerConfQuery = 100;
+  MacroDefineForHLPlayerConfigMsgPara_CmdManipulatePlayerConfSet = 101;
+  MacroDefineForHLPlayerConfigMsgPara_MaxPlayerConfigDataLen = 4096;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemNewbieModual = 1;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemSettingModual = 2;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemGameNoticeModual = 3;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemBackgroundModual = 4;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemUnlockModual = 5;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore6 = 6;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore7 = 7;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore8 = 8;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore9 = 9;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore10 = 10;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore11 = 11;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore12 = 12;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore13 = 13;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore14 = 14;
+  MacroDefineForHLPlayerConfigMsgPara_TlvItemMore15 = 15;
+  MacroDefineForHLPlayerConfigMsgPara_MaxBatchQueryCnt = 24;
+}
+
+enum enumPlayerConfigAbility {
+  enumPlayerConfigAbility_Tdr2PbDummyEnumPlayerConfigAbility = 0;
+  enumPlayerConfigAbility_EnPlayerConfigAbilityIntKey = 1;
+}
+
+message CReqManipulatePlayerConfig {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 game_id = 4;
+  int32 account_type = 5;
+  int32 client_type = 6;
+  int32 cmd = 7;
+  int32 key_game_id = 8;
+  int32 key_account_type = 9;
+  int32 key_client_type = 10;
+  int32 data_type = 11;
+  int32 data_len = 12;
+  bytes data = 13;
+  int32 reserved1 = 14;
+  int32 reserved2 = 15;
+  int32 reserved3 = 16;
+  int32 reserved4 = 17;
+  int32 batch_config_data_type_cnt = 18;
+  repeated int32 batch_config_data_type = 19;
+}
+
+message CRspManipulatePlayerConfig {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 cmd = 3;
+  int32 data_type = 4;
+  int32 result = 5;
+  int32 data_len = 6;
+  bytes data = 7;
+  int32 reserved1 = 8;
+  int32 reserved2 = 9;
+  int32 reserved3 = 10;
+  int32 reserved4 = 11;
+  int32 batch_config_data_type_cnt = 12;
+  repeated ConfigData batch_config_data = 13;
+}
+
+message ConfigData {
+  int32 data_type = 1;
+  int32 data_len = 2;
+  bytes data = 3;
+}
+
+message NormalBuf {
+  int32 data_len = 1;
+  bytes data = 2;
+}
+
+message TTLVStruct {
+  int32 tlv_num = 1;
+  repeated TTLVUNIT tlv_info = 2;
+}
+
+message TTLVUNIT {
+  int32 type = 1;
+  int32 len = 2;
+  UTLVValue value = 3;
+}
+
+message UTLVValue {
+  NormalBuf new_bie_module = 2;
+  NormalBuf setting_module = 3;
+  NormalBuf game_notice_module = 4;
+  NormalBuf back_ground_module = 5;
+  NormalBuf unlock_module = 6;
+  NormalBuf more6 = 7;
+  NormalBuf more7 = 8;
+  NormalBuf more8 = 9;
+  NormalBuf more9 = 10;
+  NormalBuf more10 = 11;
+  NormalBuf more11 = 12;
+  NormalBuf more12 = 13;
+  NormalBuf more13 = 14;
+  NormalBuf more14 = 15;
+  NormalBuf more15 = 16;
+  NormalBuf normal_data = 127;
+}

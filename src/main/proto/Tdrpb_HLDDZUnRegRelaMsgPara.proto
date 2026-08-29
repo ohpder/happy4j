@@ -1,0 +1,412 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.HLDDZUnRegRelaMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.hlddzunregrelamsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_HLDDZUnRegRelaMsgParaProto";
+
+enum AvailableShareIDs {
+  AvailableShareIDs_Tdr2PbDummyAvailableShareIds = 0;
+  AvailableShareIDs_KShareIdmobileDiBaoFuDai = 100;
+  AvailableShareIDs_KShareIdappYinDouEvent = 101;
+  AvailableShareIDs_KShareIdappShuDouEvent = 102;
+  AvailableShareIDs_KShareIdappAddTitleEvent = 103;
+  AvailableShareIDs_KShareIdappKeepTitleOpEvent = 104;
+  AvailableShareIDs_KShareIdtaoDouEvent = 105;
+  AvailableShareIDs_KShareIdappDailyMission = 106;
+  AvailableShareIDs_KShareIdpuzzleCollect = 1001;
+  AvailableShareIDs_KShareIdpanduolaSignInHongbao = 1002;
+  AvailableShareIDs_KShareIdnewMobileDiBaoFuDai = 120;
+  AvailableShareIDs_KShareIdnewTaoDouEvent = 125;
+  AvailableShareIDs_KShareIdnewAppDailyMission = 126;
+  AvailableShareIDs_KShareId3DgetBeanShare = 25;
+}
+
+enum ClientAbilityFlags {
+  ClientAbilityFlags_Tdr2PbDummyClientAbilityFlags = 0;
+  ClientAbilityFlags_KAbilityReturnExtraFriendInfo = 1;
+  ClientAbilityFlags_KAbilitySupportRickText = 2;
+  ClientAbilityFlags_KAbilityUseFriendListSizeEx0 = 4;
+  ClientAbilityFlags_KAbilitySupportFetchOpenId = 8;
+  ClientAbilityFlags_KAbilitySupportFrontEndShare = 16;
+  ClientAbilityFlags_KAbilitySupportWatchAd = 32;
+  ClientAbilityFlags_KAbilityNewDiBaoSendBean = 64;
+}
+
+enum FriendOpenIDType {
+  FriendOpenIDType_KUnknown = 0;
+  FriendOpenIDType_KWxPromoteSopenId = 1;
+  FriendOpenIDType_KNormalOpenId = 2;
+}
+
+enum MacroDefineForHLDDZUnRegRelaMsgPara {
+  option allow_alias = true;
+  MacroDefineForHLDDZUnRegRelaMsgPara_Tdr2PbDummyMacroDefineForHlddzunRegRelaMsgPara = 0;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxFriendCount = 32;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxFriendCountEx0 = 64;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxOpenIdsize = 128;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxAccessTokenSize = 256;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxMessageSize = 128;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxPrizeItemCount = 8;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxNickNameSize = 128;
+  MacroDefineForHLDDZUnRegRelaMsgPara_KMaxHeadUrlsize = 128;
+}
+
+enum UinListCommand {
+  UinListCommand_KUinListCmdFetchFull = 0;
+  UinListCommand_KUinListCmdFetchSummary = 1;
+}
+
+enum UinShareCommand {
+  UinShareCommand_KUinShareCmdBackEndShare = 0;
+  UinShareCommand_KUinShareCmdGetRewardAfterFrontEndShare = 1;
+  UinShareCommand_KUinShareCmdGetRewardByWatchAd = 2;
+  UinShareCommand_KUinShareCmdGetRewardByShareAndWatchAd = 3;
+}
+
+enum UnRegErrors {
+  UnRegErrors_KUnRegErrNoError = 0;
+  UnRegErrors_KUnRegErrClientErrorDummyStart = 160103100;
+  UnRegErrors_KUnRegErrIllegalShareId = 160103101;
+  UnRegErrors_KUnRegErrIllegalAccountType = 160103102;
+  UnRegErrors_KUnRegErrIllegalShareFriendCount = 160103103;
+  UnRegErrors_KUnRegErrInvisibleAccountType = 160103104;
+  UnRegErrors_KUnRegErrInvisibleClientType = 160103105;
+  UnRegErrors_KUnRegErrShareEventOutOfDate = 160103106;
+  UnRegErrors_KUnRegErrIllegalIpaddress = 160103107;
+  UnRegErrors_KUnRegErrIllegalAccessSource = 160103108;
+  UnRegErrors_KUnRegErrIllegalShareFriendCountTooSmall = 160103109;
+  UnRegErrors_KUnRegErrNoMatchCustomizeConfig = 160103110;
+  UnRegErrors_KUnRegErrOverShareCountLimit = 160103111;
+  UnRegErrors_KUnRegErrOverShareFriendCountLimit = 160103112;
+  UnRegErrors_KUnRegErrFetchShareFetchDiBaoFriendNotMatchLimitGroup = 160103113;
+  UnRegErrors_KUnRegErrFetchShareReachTaodouShareLimit = 160103114;
+  UnRegErrors_KUnRegErrFetchShareReachDiBaoShareLimit = 160103115;
+  UnRegErrors_KUnRegErrGuestInvisible = 160103116;
+  UnRegErrors_KUnRegErrCantGetBackEndReward = 160103117;
+  UnRegErrors_KUnRegErrCantDoBackEndShare = 160103118;
+  UnRegErrors_KUnRegErrIllegalShareIdforWatchAd = 160103119;
+  UnRegErrors_KUnRegErrFetchShareReachDiBaoAdlimit = 160103120;
+  UnRegErrors_KUnRegErrClientErrorDummyEnd = 160103199;
+  UnRegErrors_KUnRegErrServerErrorDummyStart = 160103200;
+  UnRegErrors_KUnRegErrFetchWxfriendListFail = 160103201;
+  UnRegErrors_KUnRegErrShareToWxfriendsFail = 160103202;
+  UnRegErrors_KUnRegErrFetchQqfriendListFail = 160103203;
+  UnRegErrors_KUnRegErrShareToQqfriendsFail = 160103204;
+  UnRegErrors_KUnRegErrEmptyFriendListFromWx = 160103205;
+  UnRegErrors_KUnRegErrEmptyFriendListFromQq = 160103206;
+  UnRegErrors_KUnRegErrFailToGetConfig = 160103207;
+  UnRegErrors_KUnRegErrFailToGenerateShareKey = 160103208;
+  UnRegErrors_KUnRegErrFailToReportShareMission = 160103209;
+  UnRegErrors_KUnRegErrFailToDeliverPrize = 160103210;
+  UnRegErrors_KUnRegErrNullEventPtr = 160103211;
+  UnRegErrors_KUnRegErrIllegalEventType = 160103212;
+  UnRegErrors_KUnRegErrEmptyFriendListAfterFilter = 160103213;
+  UnRegErrors_KUnRegErrDecodeSecDataFail = 160103214;
+  UnRegErrors_KUnRegErrUinMismatch = 160103215;
+  UnRegErrors_KUnRegErrVaildTimePass = 160103216;
+  UnRegErrors_KUnRegErrYinDouBeanInVaild = 160103217;
+  UnRegErrors_KUnRegErrNotEnoughFriend = 160103218;
+  UnRegErrors_KUnRegErrEncodeTaoDouFail = 160103219;
+  UnRegErrors_KUnRegErrFailUpdateTitleLimit = 160103220;
+  UnRegErrors_KUnRegErrConfigErr = 160103221;
+  UnRegErrors_KUnRegErrYinDouLimitReach = 160103222;
+  UnRegErrors_KUnRegErrNotNeedShare = 160103223;
+  UnRegErrors_KUnRegErrFetchRelationFriendListFail = 160103224;
+  UnRegErrors_KUnRegErrFetchShareCountLimitFail = 160103225;
+  UnRegErrors_KUnRegErrFetchShareFriendCountLimitFail = 160103226;
+  UnRegErrors_KUnRegErrFetchPandoraFriendListFail = 160103227;
+  UnRegErrors_KUnRegErrResponseTlvItemsOverflow = 160103228;
+  UnRegErrors_KUnRegErrDibaoNoAvailableWorkType = 160103229;
+  UnRegErrors_KUnRegErrDibaoReportAdfail = 160103230;
+  UnRegErrors_KUnRegErrDibaoReportAdoutOfLimit = 160103231;
+  UnRegErrors_KUnRegErrDibaoBothAdAndShare = 160103232;
+  UnRegErrors_KUnRegErrDibaoShouldNotRequest = 160103233;
+  UnRegErrors_KUnRegErrDibaoRequestNewReliefFunds = 160103234;
+  UnRegErrors_KUnRegErrServerErrorDummyEnd = 160103299;
+}
+
+enum UnRegShareMethodType {
+  UnRegShareMethodType_KShareMethodTypeBackEndStartDummy = 0;
+  UnRegShareMethodType_KShareMethodTypeBackEndOpen = 1;
+  UnRegShareMethodType_KShareMethodTypeBackEndLink = 2;
+  UnRegShareMethodType_KShareMethodTypeBackEndEndDummy = 99;
+  UnRegShareMethodType_KShareMethodTypeFrontEndStartDummy = 100;
+  UnRegShareMethodType_KShareMethodTypeFrontEndOpen = 101;
+  UnRegShareMethodType_KShareMethodTypeFrontEndLink = 102;
+  UnRegShareMethodType_KShareMethodTypeFrontEndMiniApp = 103;
+  UnRegShareMethodType_KShareMethodTypeFrontEndEndDummy = 199;
+  UnRegShareMethodType_KShareMethodTypeFrontEndOldStartDummy = 200;
+  UnRegShareMethodType_KShareMethodTypeFrontEndOldOpen = 201;
+  UnRegShareMethodType_KShareMethodTypeFrontEndOldLink = 202;
+  UnRegShareMethodType_KShareMethodTypeFrontEndOldMiniApp = 203;
+  UnRegShareMethodType_KShareMethodTypeFrontEndOldEndDummy = 299;
+}
+
+enum UserWorkType {
+  UserWorkType_Tdr2PbDummyUserWorkType = 0;
+  UserWorkType_KUserWorkTypeShare = 1;
+  UserWorkType_KUserWorkTypeWatchAd = 2;
+}
+
+enum kFetchUinFlag {
+  kFetchUinFlag_Tdr2PbDummyKFetchUinFlag = 0;
+  kFetchUinFlag_CompressFriend = 1;
+}
+
+enum kUnRegFriendTlvType {
+  kUnRegFriendTlvType_Null = 0;
+  kUnRegFriendTlvType_Title = 1;
+  kUnRegFriendTlvType_NotChooseItem = 100;
+  kUnRegFriendTlvType_UserWorkPriority = 101;
+  kUnRegFriendTlvType_AppUserReactGroup = 102;
+}
+
+message CReqUnRegShare {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  string open_id = 3;
+  string access_token = 4;
+  string nick_name = 5;
+  int32 share_id = 6;
+  int32 model_id = 7;
+  uint32 friend_count = 8;
+  repeated ShareFriendInfo friend_infos = 9;
+  string check_data = 10;
+  uint32 ability_flags = 11;
+  uint32 extra_info_count = 12;
+  repeated ExtraFriendInfo extra_infos = 13;
+  uint32 command = 14;
+  string client_share_data = 15;
+  string client_share_title = 16;
+  string client_share_content = 17;
+}
+
+message CReqUnRegUinList {
+  int32 account_type = 1;
+  int32 client_type = 2;
+  string open_id = 3;
+  string access_token = 4;
+  int32 share_id = 5;
+  uint32 ability_flags = 6;
+  int32 command = 7;
+  uint32 start_index = 8;
+  uint32 page_index = 9;
+  uint32 max_count = 10;
+  int32 extra_attr_tlv_item_count = 11;
+  repeated TUnRegFriendTLVItem extra_attr_tlv_item = 12;
+}
+
+message CRspUnRegShare {
+  int32 result_id = 1;
+  string message = 2;
+  int32 share_id = 3;
+  int32 prize_count = 4;
+  repeated PriceItem prize_items = 5;
+  TUnRegFriendTLVItem extra_attr = 6;
+  int32 current_share_count = 7;
+  int32 max_share_count = 8;
+  uint32 command = 9;
+}
+
+message CRspUnRegUinList {
+  int32 result_id = 1;
+  string message = 2;
+  int32 share_id = 3;
+  int32 need_double_check = 4;
+  int32 model_id = 5;
+  int32 prize_per_share_count = 6;
+  repeated PriceItem prize_per_share = 7;
+  int32 default_choose_friends_count = 8;
+  int32 max_choose_friends_count = 9;
+  FriendList friend_info_list = 10;
+  int32 flag = 11;
+  int32 min_choose_friends_count = 12;
+  CompressFriendBuffer compress_buf = 13;
+  FriendExtraList friend_extra_info_list = 14;
+  int32 extra_attr_tlv_item_count = 15;
+  repeated TUnRegFriendTLVItem extra_attr_tlv_item = 16;
+  int32 current_share_count = 17;
+  int32 max_share_count = 18;
+  uint32 share_method_type = 19;
+  int32 reserved_int0 = 20;
+  int32 command = 21;
+  FriendOpenIDList friend_open_id_info_list = 22;
+  uint32 page_index = 23;
+  uint32 page_total_count = 24;
+  uint32 friend_count_per_page = 25;
+  uint32 friend_total_count = 26;
+  int32 di_bao_ab_test_label = 27;
+}
+
+message CompressFriendBuffer {
+  int32 buf_len = 1;
+  bytes buf = 2;
+}
+
+message ExtraFriendInfo {
+  int32 open_id_type = 1;
+  uint32 reserved0 = 2;
+  uint32 reserved1 = 3;
+}
+
+message FetchFriendInfo {
+  string nick_name = 1;
+  string head_img_url = 2;
+  string s_open_id = 3;
+  uint32 fake_uin = 4;
+}
+
+message FriendExtraList {
+  uint32 extra_info_count = 1;
+  repeated ExtraFriendInfo extra_infos = 2;
+}
+
+message FriendList {
+  uint32 friend_count = 1;
+  repeated FetchFriendInfo friend_infos = 2;
+}
+
+message FriendOpenID {
+  string open_id = 1;
+}
+
+message FriendOpenIDList {
+  uint32 friend_count = 1;
+  repeated FriendOpenID friend_infos = 2;
+}
+
+message PriceItem {
+  int32 item_id = 1;
+  int32 item_count = 2;
+  int32 item_type = 3;
+  int32 item_attribute = 4;
+}
+
+message ShareFriendInfo {
+  string s_open_id = 1;
+}
+
+message TNotChooseItem {
+  string title = 1;
+  string content = 2;
+}
+
+message TRspUnRegUinListForTaoDouItem {
+  int32 share_id = 1;
+  int32 model_id = 2;
+  string title = 3;
+  string content = 4;
+  int32 need_double_check = 5;
+  int32 min_choose_friends_count = 6;
+  int32 default_choose_friends_count = 7;
+  CompressFriendBuffer compress_buf = 8;
+  FriendExtraList friend_extra_info_list = 9;
+  int32 extra_attr_tlv_item_count = 10;
+  repeated TUnRegFriendTLVItem extra_attr_tlv_item = 11;
+  int32 max_choose_friends_count = 12;
+  int32 current_share_count = 13;
+  int32 max_share_count = 14;
+  uint32 share_method_type = 15;
+}
+
+message TRspUnRegUinListForTouXianItem {
+  int32 share_id = 1;
+  int32 model_id = 2;
+  string title = 3;
+  string content = 4;
+  int32 need_double_check = 5;
+  int32 min_choose_friends_count = 6;
+  int32 default_choose_friends_count = 7;
+  int32 title_op_type = 8;
+  int32 title_op_value = 9;
+  CompressFriendBuffer compress_buf = 10;
+  FriendExtraList friend_extra_info_list = 11;
+  int32 extra_attr_tlv_item_count = 12;
+  repeated TUnRegFriendTLVItem extra_attr_tlv_item = 13;
+  int32 max_choose_friends_count = 14;
+  int32 current_share_count = 15;
+  int32 max_share_count = 16;
+  uint32 share_method_type = 17;
+}
+
+message TRspUnRegUinListForYinDouItem {
+  int32 share_id = 1;
+  int32 model_id = 2;
+  string title = 3;
+  string content = 4;
+  int32 need_double_check = 5;
+  int32 min_choose_friends_count = 6;
+  int32 default_choose_friends_count = 7;
+  int32 reward_bean_num = 8;
+  CompressFriendBuffer compress_buf = 9;
+  FriendExtraList friend_extra_info_list = 10;
+  int32 extra_attr_tlv_item_count = 11;
+  repeated TUnRegFriendTLVItem extra_attr_tlv_item = 12;
+  int32 max_choose_friends_count = 13;
+  int32 current_share_count = 14;
+  int32 max_share_count = 15;
+  uint32 share_method_type = 16;
+}
+
+message TTitleOpAttr {
+  int32 after_title = 1;
+  int32 after_medal = 2;
+}
+
+message TUnRegChooseItem {
+  int32 is_enable = 1;
+  string title = 2;
+  string content = 3;
+}
+
+message TUnRegEventReact {
+  int32 event_type = 1;
+  int32 cont_refuse_share_times = 2;
+  int32 cont_refuse_adv_times = 3;
+  int32 last_refuse_type = 4;
+  int32 reserved1 = 5;
+  int32 reserved2 = 6;
+  int32 reserved3 = 7;
+}
+
+message TUnRegEventReactGroup {
+  int32 event_react_cnt = 1;
+  repeated TUnRegEventReact event_react = 2;
+}
+
+message TUnRegFriendTLVItem {
+  int32 type = 1;
+  int32 len = 2;
+  UUnRegFriendTLVItem value = 3;
+}
+
+message TUserWorkAndPrize {
+  int32 work_type = 1;
+  int32 prize_count = 2;
+  repeated PriceItem prize = 3;
+  string title = 4;
+  string content = 5;
+  TUnRegChooseItem double_check_item = 6;
+  TUnRegChooseItem not_choose_item = 7;
+  string addition_info0 = 8;
+  string addition_info1 = 9;
+  uint32 reserved0 = 10;
+  uint32 reserved1 = 11;
+  uint32 reserved2 = 12;
+}
+
+message TUserWorkPriority {
+  int32 user_work_and_prize_count = 1;
+  repeated TUserWorkAndPrize user_work_and_prize_list = 2;
+}
+
+message UUnRegFriendTLVItem {
+  int32 reserved = 1;
+  TTitleOpAttr tdr2_pbt_title_op_attr = 2;
+  TNotChooseItem tdr2_pbt_not_choose_item = 3;
+  TUserWorkPriority tdr2_pbt_user_work_priority = 4;
+  TUnRegEventReactGroup tdr2_pbt_un_reg_event_react_group = 5;
+}

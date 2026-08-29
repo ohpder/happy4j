@@ -1,0 +1,1521 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.DBAssistSvr;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.dbassistsvr";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_DBAssistSvrProto";
+
+enum BlobDataType {
+  BlobDataType_Tdr2PbDummyBlobDataType = 0;
+  BlobDataType_BlobAvatar = 1;
+  BlobDataType_BlobPet = 2;
+  BlobDataType_BlobItem = 3;
+  BlobDataType_BlobEcsys = 4;
+}
+
+enum BuyType {
+  BuyType_Tdr2PbDummyBuyType = 0;
+  BuyType_Common = 1;
+  BuyType_Continuebuy = 2;
+}
+
+enum DBAssistClientAbility {
+  DBAssistClientAbility_Tdr2PbDummyDbassistClientAbility = 0;
+  DBAssistClientAbility_SupportTrialAvatar = 1;
+  DBAssistClientAbility_SupportMaxAvatar128 = 2;
+}
+
+enum DiamondOperationType {
+  DiamondOperationType_Tdr2PbDummyDiamondOperationType = 0;
+  DiamondOperationType_DiamondQueryType = 1;
+  DiamondOperationType_DiamondPayType = 2;
+  DiamondOperationType_DiamondCancelType = 3;
+  DiamondOperationType_DiamondPresentType = 4;
+}
+
+enum EAvatarType {
+  EAvatarType_Normal = 0;
+  EAvatarType_ByTime = 1;
+  EAvatarType_ByCount = 2;
+  EAvatarType_Deadline = 99;
+}
+
+enum EGoodsLimitType {
+  EGoodsLimitType_ELimitTypeNone = 0;
+  EGoodsLimitType_ELimitTypeDayly = 1;
+  EGoodsLimitType_ELimitTypeActivityPeriod = 2;
+}
+
+enum EGoodsStatus {
+  EGoodsStatus_Normal = 0;
+  EGoodsStatus_ExcessDayLimit = 1;
+}
+
+enum EM_GET_ITEM_ITFO_BIT_FLAG {
+  EM_GET_ITEM_ITFO_BIT_FLAG_Tdr2PbDummyEmGetItemItfoBitFlag = 0;
+  EM_GET_ITEM_ITFO_BIT_FLAG_DoNotMergeHlddzFuka = 1;
+  EM_GET_ITEM_ITFO_BIT_FLAG_SupportMax512Item = 2;
+  EM_GET_ITEM_ITFO_BIT_FLAG_SupportMax1024Item = 4;
+}
+
+enum EMysteryStatus {
+  EMysteryStatus_Normal = 0;
+  EMysteryStatus_ExcessDayLimit = 1;
+  EMysteryStatus_AllBuy = 2;
+}
+
+enum ExpressFlagMask {
+  ExpressFlagMask_Tdr2PbDummyExpressFlagMask = 0;
+  ExpressFlagMask_ExpressFlagAllowPartlySucess = 1;
+  ExpressFlagMask_ExpressFlagDontGotoGamesvr = 2;
+  ExpressFlagMask_ExpressFlagBtwChangeAvatar = 4;
+  ExpressFlagMask_ExpressFlagIgnoreTimeLimitError = 8;
+  ExpressFlagMask_ExpressFlagIgnoreAutoDress = 16;
+  ExpressFlagMask_ExpressFlagClearCount = 32;
+  ExpressFlagMask_ExpressFlagByDdz3DApi = 1024;
+  ExpressFlagMask_ExpressFlagIgnoreColdTime = 2048;
+  ExpressFlagMask_ExpressFlagFromOldDbassist = 4096;
+}
+
+enum ExpressType {
+  ExpressType_Tdr2PbDummyExpressType = 0;
+  ExpressType_ExpressAvatarType = 1;
+  ExpressType_ExpressPetType = 2;
+  ExpressType_ExpressItemType = 3;
+  ExpressType_ExpressEcsysType = 4;
+  ExpressType_ExpressAvatarUpgradeExpType = 5;
+  ExpressType_ExpressAvatarUpgradeSkillType = 6;
+  ExpressType_ExpressGroupGoods = 7;
+  ExpressType_ExpressAvatarExType = 8;
+  ExpressType_ExpressAvatarExType2 = 9;
+  ExpressType_ExpressHlddz3DRoleItem = 10;
+  ExpressType_ExpressAmsGoods = 100;
+  ExpressType_ExpressByGameso = 101;
+  ExpressType_ExpressFightTop = 102;
+  ExpressType_ExpressCdkeyType = 103;
+}
+
+enum GET_RELIEF_REQ_BIT_FLAG {
+  GET_RELIEF_REQ_BIT_FLAG_Tdr2PbDummyGetReliefReqBitFlag = 0;
+  GET_RELIEF_REQ_BIT_FLAG_UseUtf8 = 1;
+  GET_RELIEF_REQ_BIT_FLAG_NewbieLishi = 2;
+  GET_RELIEF_REQ_BIT_FLAG_OnlyQuery = 4;
+}
+
+enum GET_RELIEF_RSP_REASON {
+  GET_RELIEF_RSP_REASON_Default = 0;
+  GET_RELIEF_RSP_REASON_ReqDbassist = 1;
+  GET_RELIEF_RSP_REASON_GamesvrInitui = 2;
+  GET_RELIEF_RSP_REASON_GamesvrGameend = 3;
+  GET_RELIEF_RSP_REASON_GamesvrLogin = 4;
+  GET_RELIEF_RSP_REASON_GamesvrMoneyChg = 5;
+  GET_RELIEF_RSP_REASON_DelayTrigger = 6;
+}
+
+enum GET_RELIEF_RSP_TRIGGERTYPE {
+  GET_RELIEF_RSP_TRIGGERTYPE_Dibao = 0;
+  GET_RELIEF_RSP_TRIGGERTYPE_Newbie = 1;
+  GET_RELIEF_RSP_TRIGGERTYPE_Playcard = 2;
+  GET_RELIEF_RSP_TRIGGERTYPE_AppPlaycardLess = 3;
+  GET_RELIEF_RSP_TRIGGERTYPE_AppPlaycardLessBu = 4;
+  GET_RELIEF_RSP_TRIGGERTYPE_AppPlaycardLimit = 5;
+  GET_RELIEF_RSP_TRIGGERTYPE_AppPlaycardMore = 6;
+  GET_RELIEF_RSP_TRIGGERTYPE_AppPlaycardMoreBu = 7;
+}
+
+enum ItemExtendFlag {
+  ItemExtendFlag_Tdr2PbDummyItemExtendFlag = 0;
+  ItemExtendFlag_ItemExtflagDress = 1;
+  ItemExtendFlag_ItemExtflagInvalid = 2;
+  ItemExtendFlag_ItemExtflagLock = 4;
+}
+
+enum MacroDefineForDBAssistSvrMsgPara {
+  option allow_alias = true;
+  MacroDefineForDBAssistSvrMsgPara_Tdr2PbDummyMacroDefineForDbassistSvrMsgPara = 0;
+  MacroDefineForDBAssistSvrMsgPara_MaxTransparentLen = 32;
+  MacroDefineForDBAssistSvrMsgPara_MaxPetCount = 32;
+  MacroDefineForDBAssistSvrMsgPara_MaxSkillCount = 8;
+  MacroDefineForDBAssistSvrMsgPara_MaxDescLen = 256;
+  MacroDefineForDBAssistSvrMsgPara_MaxExpressItemCount = 8;
+  MacroDefineForDBAssistSvrMsgPara_MaxSaleItemCount = 8;
+  MacroDefineForDBAssistSvrMsgPara_MaxQueryCount = 512;
+  MacroDefineForDBAssistSvrMsgPara_MaxItemCount = 1024;
+  MacroDefineForDBAssistSvrMsgPara_MaxDbItemCount = 620;
+  MacroDefineForDBAssistSvrMsgPara_InvalidIndex = -1;
+  MacroDefineForDBAssistSvrMsgPara_MaxAvatarQueryCount = 128;
+  MacroDefineForDBAssistSvrMsgPara_MaxAvatarCount = 128;
+  MacroDefineForDBAssistSvrMsgPara_MaxMsgLen = 30000;
+  MacroDefineForDBAssistSvrMsgPara_MaxUpdateAvatarOpCount = 8;
+  MacroDefineForDBAssistSvrMsgPara_MaxTlogReservedNum = 16;
+  MacroDefineForDBAssistSvrMsgPara_MaxPunishReasonLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxTransparentLen = 32;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxOpenidStrLen = 1024;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxOpenkeyStrLen = 1024;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxPfkeyStrLen = 1024;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxPfStrLen = 1024;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxPaytokenStrLen = 1024;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxGoodnameStrLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxDiamondacctypeStrLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxDiscountidStrLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxGiftidStrLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxBillnoStrLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_DiamondOpMaxMsgStrLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_MaxPresentBeanResultStrLen = 1024;
+  MacroDefineForDBAssistSvrMsgPara_MaxPresentBeanReservedLenth = 64;
+  MacroDefineForDBAssistSvrMsgPara_MaxDbassistOperatorBillNoLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_MaxBanLoginMsgLen = 1024;
+  MacroDefineForDBAssistSvrMsgPara_MaxTraceIdLen = 128;
+  MacroDefineForDBAssistSvrMsgPara_MaxTxnIdLength = 64;
+  MacroDefineForDBAssistSvrMsgPara_MaxTxnIdsCount = 100;
+  MacroDefineForDBAssistSvrMsgPara_MaxTxnIdItemTypeCount = 8;
+  MacroDefineForDBAssistSvrMsgPara_MaxAvatarSkinId = 7;
+  MacroDefineForDBAssistSvrMsgPara_MaxItemExtendLen = 8;
+  MacroDefineForDBAssistSvrMsgPara_MaxGoodsItemCount = 8;
+  MacroDefineForDBAssistSvrMsgPara_MaxPackageItemCount = 256;
+  MacroDefineForDBAssistSvrMsgPara_MaxSaveAvatarCount = 32;
+  MacroDefineForDBAssistSvrMsgPara_MaxChestsItemCount = 16;
+}
+
+enum NewDDZMoneyType {
+  NewDDZMoneyType_Tdr2PbDummyNewDdzmoneyType = 0;
+  NewDDZMoneyType_NddzMtMoneyBean = 1;
+  NewDDZMoneyType_NddzMtMoneyDiamond = 2;
+  NewDDZMoneyType_NddzMtMoneyPower = 3;
+}
+
+enum PunishInfoType {
+  PunishInfoType_PunishPlayer = 0;
+  PunishInfoType_AqMark = 1;
+  PunishInfoType_SetNoPlay = 2;
+  PunishInfoType_BanLogin = 3;
+  PunishInfoType_HealthplayLogout = 4;
+  PunishInfoType_SpecificAqMark = 5;
+}
+
+enum SpecificAQMarkPlayType {
+  SpecificAQMarkPlayType_SpecificAqPlayeDefault = 0;
+  SpecificAQMarkPlayType_SpecificAqPlayePeak = 1;
+  SpecificAQMarkPlayType_SpecificAqPlayeMax = 2;
+}
+
+enum SpecificAQMarkPunishType {
+  SpecificAQMarkPunishType_SpecificAqPunishDefault = 0;
+  SpecificAQMarkPunishType_SpecificAqPunishArrange = 1;
+  SpecificAQMarkPunishType_SpecificAqPunishReward = 2;
+  SpecificAQMarkPunishType_SpecificAqPunishMax = 3;
+}
+
+enum TExpressAvatarEx2ReservedFieldInfo {
+  TExpressAvatarEx2ReservedFieldInfo_Skinid = 0;
+}
+
+enum UpdateAvatarType {
+  UpdateAvatarType_Tdr2PbDummyUpdateAvatarType = 0;
+  UpdateAvatarType_Exp = 1;
+  UpdateAvatarType_Skill = 2;
+}
+
+enum UpdatePunishType {
+  UpdatePunishType_NoPunish = 0;
+  UpdatePunishType_LockAccount = 1;
+  UpdatePunishType_ForbidEnterRoom = 3;
+  UpdatePunishType_ForbidGiveDonner = 4;
+  UpdatePunishType_ForbidChat = 5;
+  UpdatePunishType_FsbMark4 = 7;
+  UpdatePunishType_CreditScoreLv1 = 8;
+  UpdatePunishType_CreditScoreLv2 = 9;
+  UpdatePunishType_FsbMark3 = 11;
+  UpdatePunishType_FsbMark2 = 12;
+  UpdatePunishType_FsbMark1 = 13;
+  UpdatePunishType_HealthPlaySetNoPlay = 20;
+  UpdatePunishType_ForbidApplyFriend = 21;
+  UpdatePunishType_ForbidPlayerRank = 22;
+}
+
+enum kDDZDiamondOpFlag {
+  kDDZDiamondOpFlag_Tdr2PbDummyKDdzdiamondOpFlag = 0;
+  kDDZDiamondOpFlag_UseReqBillNo = 1;
+  kDDZDiamondOpFlag_UseReqBillNoDoNotAddUin = 2;
+}
+
+enum kDDZDiamondRspExtraFlag {
+  kDDZDiamondRspExtraFlag_Tdr2PbDummyKDdzdiamondRspExtraFlag = 0;
+  kDDZDiamondRspExtraFlag_TryOk = 1;
+}
+
+message CReqBuyGoods {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 src_uin = 3;
+  uint32 dst_uin = 4;
+  int32 app_id = 5;
+  int32 client_type = 6;
+  int32 account_type = 7;
+  int32 service_tag = 8;
+  TCommonDiamondReqInfo diamond_req_info = 9;
+  int32 goods_count = 10;
+  repeated TGoodsItem goods_item = 11;
+  bytes buy_type = 12;
+  int32 operator_bill_no_len = 13;
+  bytes operator_bill_no = 14;
+  int32 transparent_len = 15;
+  bytes transparent = 16;
+}
+
+message CReqCarryPet {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 pet_id = 8;
+  int32 pet_seq_id = 9;
+  int32 transparent_len = 10;
+  bytes transparent = 11;
+}
+
+message CReqChangeAvatar {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 avatar_id = 8;
+  int32 avatar_seq_id = 9;
+  int32 skin_id = 10;
+  int32 transparent_len = 11;
+  bytes transparent = 12;
+}
+
+message CReqChangeFace {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 face_id = 8;
+  int32 transparent_len = 9;
+  bytes transparent = 10;
+}
+
+message CReqClearFightInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 transparent_len = 8;
+  bytes transparent = 9;
+}
+
+message CReqDiamondOperation {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 acc_type = 4;
+  int32 client_type = 5;
+  int32 game_id = 6;
+  TCommonDiamondReqInfo req_info = 7;
+  TDiamondOperationReq req_oper = 8;
+  int32 tlog_reason = 9;
+  int32 tlog_sub_reason = 10;
+  int32 t_log_reserved_count = 11;
+  repeated int32 t_log_reserved = 12;
+  int32 operator_bill_no_len = 13;
+  bytes operator_bill_no = 14;
+  int32 transparent_len = 15;
+  bytes transparent = 16;
+  int32 txn_id_length = 17;
+  bytes txn_id = 18;
+  uint32 txn_id_type = 19;
+  int64 ddzt_log_client_version = 20;
+  uint64 op_flag = 21;
+}
+
+message CReqDiamondRetryOperation {
+  CReqDiamondOperation req_diamond_operation = 1;
+  int32 create_time = 2;
+  int32 update_time = 3;
+  int32 try_times = 4;
+  int32 retry_diamond_bill_no_len = 5;
+  bytes retry_diamond_bill_no = 6;
+}
+
+message CReqExpressCharm {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 express_charm = 8;
+  int32 is_reset_today_charm_before_express = 9;
+  int32 operator_bill_no_len = 10;
+  bytes operator_bill_no = 11;
+  int32 transparent_len = 12;
+  bytes transparent = 13;
+}
+
+message CReqExpressItem {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 src_uin = 3;
+  uint32 dst_uin = 4;
+  int32 app_id = 5;
+  int32 client_type = 6;
+  int32 account_type = 7;
+  int32 service_tag = 8;
+  int32 item_count = 9;
+  repeated TExpress item = 10;
+  int32 express_flag = 11;
+  int32 open_id_len = 12;
+  bytes open_id = 13;
+  int32 tlog_reason = 14;
+  int32 tlog_sub_reason = 15;
+  int32 t_log_reserved_count = 16;
+  repeated int32 t_log_reserved = 17;
+  repeated int32 item_seq = 18;
+  int32 operator_bill_no_len = 19;
+  bytes operator_bill_no = 20;
+  int32 no_write_tlog = 21;
+  int32 transparent_len = 22;
+  bytes transparent = 23;
+  int32 is_multiple_sub_reason = 24;
+  uint32 reason_count = 25;
+  repeated int32 t_log_reason_list = 26;
+  repeated int32 t_log_sub_reason_list = 27;
+  int32 txn_id_length = 28;
+  bytes txn_id = 29;
+  uint32 txn_id_type = 30;
+  int32 is_rollback = 31;
+}
+
+message CReqExpressItemForMatch {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 src_uin = 3;
+  uint32 dst_uin = 4;
+  int32 app_id = 5;
+  int32 client_type = 6;
+  int32 account_type = 7;
+  int32 service_tag = 8;
+  int32 item_count = 9;
+  repeated TExpress item = 10;
+  int32 express_flag = 11;
+  int32 open_id_len = 12;
+  bytes open_id = 13;
+  int32 tlog_reason = 14;
+  int32 tlog_sub_reason = 15;
+  int32 t_log_reserved_count = 16;
+  repeated int32 t_log_reserved = 17;
+  repeated int32 item_seq = 18;
+  int32 operator_bill_no_len = 19;
+  bytes operator_bill_no = 20;
+  int32 no_write_tlog = 21;
+  int32 series_id = 22;
+  int32 series_game_id = 23;
+  int32 is_air_drop_box = 24;
+  int32 transparent_len = 25;
+  bytes transparent = 26;
+}
+
+message CReqFundsCardAward {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 item_id = 7;
+  int32 is_award = 8;
+  int32 operator_bill_no_len = 9;
+  bytes operator_bill_no = 10;
+  int32 transparent_len = 11;
+  bytes transparent = 12;
+}
+
+message CReqGetAvatarInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 avatar_id_count = 7;
+  repeated int32 avatar_id = 8;
+  int64 client_ability = 9;
+  int32 transparent_len = 10;
+  bytes transparent = 11;
+}
+
+message CReqGetCharmInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 transparent_len = 7;
+  bytes transparent = 8;
+}
+
+message CReqGetEcSysInfoFromDBAssist {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 src_uin = 3;
+  uint32 dst_uin = 4;
+  int32 acc_type = 5;
+  int32 client_type = 6;
+  int32 game_id = 7;
+  int32 service_tag = 8;
+  int32 transparent_len = 9;
+  bytes transparent = 10;
+  int32 need_check_limit = 11;
+}
+
+message CReqGetItemInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 item_id_count = 7;
+  repeated int32 item_id = 8;
+  int32 req_bit_flag = 9;
+  int32 transparent_len = 10;
+  bytes transparent = 11;
+}
+
+message CReqGetItemInfoForMatch {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 item_id_count = 7;
+  repeated int32 item_id = 8;
+  int32 req_bit_flag = 9;
+  int32 series_id = 10;
+  int32 series_game_id = 11;
+  int32 transparent_len = 12;
+  bytes transparent = 13;
+}
+
+message CReqGetPetInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 pet_id_count = 7;
+  repeated int32 pet_id = 8;
+  int32 transparent_len = 9;
+  bytes transparent = 10;
+}
+
+message CReqGetPowerInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 transparent_len = 7;
+  bytes transparent = 8;
+}
+
+message CReqGetReliefFunds {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 open_id_len = 7;
+  bytes open_id = 8;
+  int32 req_bit_flag = 9;
+  int32 transparent_len = 10;
+  bytes transparent = 11;
+}
+
+message CReqGetUsingFace {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 game_id = 4;
+  int32 account_type = 5;
+  int32 client_type = 6;
+  int32 reserver = 7;
+  int32 transparent_len = 8;
+  bytes transparent = 9;
+}
+
+message CReqGiveGoods {
+  uint32 dst_uin = 1;
+  int32 app_id = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  int32 service_tag = 5;
+  int32 transparent_len = 6;
+  bytes transparent = 7;
+  TCommonDiamondReqInfo diamond_req_info = 8;
+  int32 goods_count = 9;
+  repeated TGoodsItem goods_item = 10;
+}
+
+message CReqLevelUpAvatar {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 avatar_id = 8;
+  int32 avatar_seq_id = 9;
+  int32 update_type = 10;
+  int32 op_num = 11;
+  repeated int32 op = 12;
+  int32 operator_bill_no_len = 13;
+  bytes operator_bill_no = 14;
+  int32 transparent_len = 15;
+  bytes transparent = 16;
+}
+
+message CReqLevelUpPet {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 pet_id = 8;
+  int32 pet_seq_id = 9;
+  int32 delta_lvl = 10;
+  int32 operator_bill_no_len = 11;
+  bytes operator_bill_no = 12;
+  int32 transparent_len = 13;
+  bytes transparent = 14;
+}
+
+message CReqOpenChest {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 item_id = 7;
+  int32 chest_count = 8;
+  int32 operator_bill_no_len = 9;
+  bytes operator_bill_no = 10;
+  int32 transparent_len = 11;
+  bytes transparent = 12;
+}
+
+message CReqQueryGoods {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  int32 goods_count = 5;
+  repeated int32 goods_id_list = 6;
+}
+
+message CReqQueryMysteryGoods {
+  uint32 uin = 1;
+  int32 game_id = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  int32 goods_id = 5;
+}
+
+message CReqQueryTxnId {
+  uint32 uin = 1;
+  int32 app_id = 2;
+  int32 client_type = 3;
+  int32 account_type = 4;
+  int32 txn_ids_count = 5;
+  repeated TxnIdData txn_ids = 6;
+}
+
+message CReqSaleItem {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 item_count = 8;
+  repeated TSaleItem sale_item = 9;
+  int32 transparent_len = 10;
+  bytes transparent = 11;
+}
+
+message CReqSaveAvatar {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 avatar_count = 7;
+  repeated int32 avatar_info = 8;
+  int32 transparent_len = 9;
+  bytes transparent = 10;
+}
+
+message CReqSetNoPlayInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 beg_time = 8;
+  int32 end_time = 9;
+  int32 transparent_len = 10;
+  bytes transparent = 11;
+}
+
+message CReqUpdatePunishInfo {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 app_id = 4;
+  int32 client_type = 5;
+  int32 account_type = 6;
+  int32 service_tag = 7;
+  int32 punish_flag = 8;
+  int32 punish_beg_time = 9;
+  int32 punish_end_time = 10;
+  int32 reason_len = 11;
+  bytes reason = 12;
+  int32 punish_info_type = 13;
+  PunishInfoData st_punish_info = 14;
+  int32 transparent_len = 15;
+  bytes transparent = 16;
+}
+
+message CReqUpdateUsingFace {
+  int32 old_transparent_len = 1;
+  bytes old_transparent = 2;
+  uint32 uin = 3;
+  int32 game_id = 4;
+  int32 account_type = 5;
+  int32 client_type = 6;
+  int32 try_using_face_item_id = 7;
+  int32 reserver = 8;
+  int32 transparent_len = 9;
+  bytes transparent = 10;
+}
+
+message CRspBuyGoods {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 src_uin = 4;
+  uint32 dst_uin = 5;
+  int32 goods_count = 6;
+  repeated TGoodsItemResult goods_item = 7;
+  int32 item_count = 8;
+  repeated TItem item_info = 9;
+  int32 left_diamond = 10;
+  int64 left_bean = 11;
+  repeated int32 goods_item_count = 12;
+  repeated TMysteryItemList mystery_goods_result = 13;
+}
+
+message CRspCarryPet {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 pet_id = 5;
+  int32 pet_seq_id = 6;
+}
+
+message CRspChangeAvatar {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 avatar_id = 5;
+  int32 avatar_seq_id = 6;
+  int32 buy_time = 7;
+  int32 valid_time = 8;
+  int32 exp = 9;
+  int32 lvl = 10;
+  int32 skill_id_count = 11;
+  repeated int32 skill_id = 12;
+  int32 reserved_len = 13;
+  bytes reserved = 14;
+}
+
+message CRspChangeFace {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 face_id = 5;
+}
+
+message CRspClearFightInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+}
+
+message CRspDiamondOperation {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 result = 4;
+  int32 msg_len = 5;
+  bytes msg = 6;
+  TDiamondOperationRsp oper_rsp = 7;
+  uint32 extra_flag = 8;
+  string ddz_midas_erro_code = 9;
+}
+
+message CRspExpressCharm {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 actual_express_charm = 5;
+  int32 charm_after_express = 6;
+  int32 history_max_charm_after_express = 7;
+  int32 today_charm_after_express = 8;
+  int32 today_can_add_charm_limit = 9;
+  int32 today_can_reduce_charm_limit = 10;
+}
+
+message CRspExpressItem {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 src_uin = 4;
+  uint32 dst_uin = 5;
+  int32 item_count = 6;
+  repeated TExpressResult item = 7;
+  int32 client_version = 8;
+}
+
+message CRspExpressItemForMatch {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 src_uin = 4;
+  uint32 dst_uin = 5;
+  int32 item_count = 6;
+  repeated TExpressResult item = 7;
+}
+
+message CRspFundsCardAward {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 item_id = 5;
+}
+
+message CRspGetAvatarInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 face = 5;
+  int32 current_avatar_index = 6;
+  int32 current_avatar_id = 7;
+  int32 current_avatar_seq_id = 8;
+  int32 avatar_count = 9;
+  repeated TAvatar avatar = 10;
+  int32 invalid_avatar_count = 11;
+  repeated TAvatar invalid_avatar = 12;
+  TAvatarRoundStatInfo avatar_round_stat_info = 13;
+}
+
+message CRspGetCharmInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 charm_value = 5;
+  int32 his_charm_value = 6;
+  int32 today_charm = 7;
+  int32 today_can_add_charm_limit = 8;
+  int32 today_can_reduce_charm_limit = 9;
+}
+
+message CRspGetEcSysInfoFromDBAssist {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 result = 4;
+  int64 currency = 5;
+  int64 month_inc = 6;
+  int64 month_dec = 7;
+  int64 day_inc = 8;
+  int64 day_dec = 9;
+  int32 last_change_time = 10;
+  int32 last_present_bean_time = 11;
+  int32 create_time = 12;
+  int32 unused_reward_time = 13;
+  int32 reward_count = 14;
+  int32 last_update_time = 15;
+  int64 history_currency = 16;
+  int32 present_bean_count = 17;
+  int32 present_count_per_day = 18;
+  int32 trigger_present_point = 19;
+  int32 present_bean_amount = 20;
+  int32 check_limit_result = 21;
+}
+
+message CRspGetItemInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 item_count = 5;
+  repeated TItem item = 6;
+  uint32 server_time = 7;
+}
+
+message CRspGetItemInfoForMatch {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 item_count = 5;
+  repeated TItem item = 6;
+  uint32 server_time = 7;
+}
+
+message CRspGetPetInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 current_pet_index = 5;
+  int32 current_pet_id = 6;
+  int32 current_pet_seq_id = 7;
+  int32 pet_count = 8;
+  repeated TPet pet = 9;
+}
+
+message CRspGetPowerInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 power = 5;
+  int32 need_time = 6;
+}
+
+message CRspGetReliefFunds {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 app_id = 5;
+  int64 currency = 6;
+  int32 last_present_bean_time = 7;
+  int32 present_bean_count = 8;
+  int32 present_count_per_day = 9;
+  int32 trigger_present_point = 10;
+  int32 present_bean_amount = 11;
+  int32 present_bean_result_strlen = 12;
+  bytes present_bean_result_str = 13;
+  int32 reserved_len = 14;
+  bytes reserved = 15;
+  int32 reason = 16;
+  int32 trigger_type = 17;
+  int64 month_inc = 18;
+  int64 month_dec = 19;
+  int64 day_inc = 20;
+  int64 day_dec = 21;
+  int32 last_change_time = 22;
+  int32 create_time = 23;
+  int32 unused_reward_time = 24;
+  int32 reward_count = 25;
+  int32 last_update_time = 26;
+  int64 history_currency = 27;
+  int32 privilege_user_group = 28;
+  int32 additional_times = 29;
+  int32 additional_beans = 30;
+}
+
+message CRspGiveGoods {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 dst_uin = 4;
+  int32 goods_count = 5;
+  repeated TGoodsItemResult goods_item = 6;
+  int32 item_count = 7;
+  repeated TItem item_info = 8;
+  int32 left_diamond = 9;
+  int64 left_bean = 10;
+}
+
+message CRspLevelUpAvatar {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 avatar_id = 5;
+  int32 avatar_seq_id = 6;
+  int32 update_type = 7;
+  int32 ret_val_num = 8;
+  repeated int32 ret_val = 9;
+}
+
+message CRspLevelUpPet {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 pet_id = 5;
+  int32 pet_seq_id = 6;
+  int32 lvl = 7;
+}
+
+message CRspOpenChest {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 result = 4;
+  int32 item_id = 5;
+  int32 chest_count = 6;
+  int32 chest_item_count = 7;
+  repeated TChestInfo chest_item_info = 8;
+  int32 item_count = 9;
+  repeated TItem item_info = 10;
+}
+
+message CRspQueryGoods {
+  int32 result = 1;
+  int32 goods_count = 2;
+  repeated TGoodsItemInfo goods_info_list = 3;
+  uint32 uin = 4;
+}
+
+message CRspQueryMysteryGoods {
+  int32 result = 1;
+  int32 goods_id = 2;
+  int32 status = 3;
+  uint32 uin = 4;
+  int32 consume_time = 5;
+  int32 max_time = 6;
+  uint32 last_consume_time = 7;
+  int32 itemc_ount = 8;
+  repeated TMysteryItemInfo mystery_item = 9;
+  string rule_desc = 10;
+}
+
+message CRspQueryTxnId {
+  int32 result = 1;
+  uint32 uin = 2;
+  int32 txn_ids_count = 3;
+  repeated TxnIdData txn_ids = 4;
+}
+
+message CRspSaleItem {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+}
+
+message CRspSaveAvatar {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 result = 4;
+  int32 avatar_count = 5;
+  repeated int32 avatar_info = 6;
+}
+
+message CRspSetNoPlayInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+}
+
+message CRspUpdatePunishInfo {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  int32 result = 3;
+  uint32 uin = 4;
+  int32 direct_update_db = 5;
+}
+
+message CRsqGetUsingFace {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 result = 4;
+  int32 using_face_item_id = 5;
+}
+
+message CRsqUpdateUsingFace {
+  int32 transparent_len = 1;
+  bytes transparent = 2;
+  uint32 uin = 3;
+  int32 result = 4;
+  int32 using_face_item_id = 5;
+}
+
+message PunishInfoData {
+  TPunishInfoAQMark st_punish_info_aq_mark = 2;
+  TPunishInfoBanLogin st_ban_login_info = 3;
+  TPunishInfoSpecificAQMark st_punish_info_specific_aq_mark = 4;
+  TPunishInfoUpdatePlayer st_punish_info_update_player = 127;
+}
+
+message TAvatar {
+  int32 id = 1;
+  int32 seq_id = 2;
+  int32 buy_time = 3;
+  int32 valid_time = 4;
+  int32 exp = 5;
+  int32 lvl = 6;
+  int32 skill_id_count = 7;
+  repeated int32 skill_id = 8;
+  int32 reserved_len = 9;
+  bytes reserved = 10;
+}
+
+message TAvatarBlob {
+  TBlobHead head = 1;
+  int32 current_avatar_index = 2;
+  int32 face = 3;
+  int32 current_avatar_id = 4;
+  int32 current_avatar_seq_id = 5;
+  int32 current_avatar_exp = 6;
+  int32 current_avatar_lvl = 7;
+  int32 flag = 8;
+  int32 base_seq_id = 9;
+  int32 avatar_count = 10;
+  repeated TAvatar avatar = 11;
+}
+
+message TAvatarExpUpgradeItem {
+  int32 avatar_id = 1;
+  int32 avatar_seq_id = 2;
+  int32 exp = 3;
+}
+
+message TAvatarExpUpgradeItemResult {
+  int32 result = 1;
+  int32 avatar_id = 2;
+  int32 avatar_seq_id = 3;
+  int32 lvl = 4;
+  int32 exp = 5;
+}
+
+message TAvatarReserveInfo {
+  int32 avatar_type = 1;
+  int32 is_basic_edition_avatar = 2;
+  int32 cur_skin_id = 3;
+  int32 skin = 4;
+}
+
+message TAvatarRoundStatInfo {
+  int32 avatar_round_info_list_len = 1;
+  repeated TAvatarRoundStatItem avatar_round_info_list = 2;
+}
+
+message TAvatarRoundStatItem {
+  int32 avatar_id = 1;
+  int32 total_round_num = 2;
+  int32 win_round_num = 3;
+}
+
+message TAvatarSkillUpgradeItem {
+  int32 avatar_id = 1;
+  int32 avatar_seq_id = 2;
+  int32 old_skill_id = 3;
+  int32 new_skill_id = 4;
+}
+
+message TAvatarSkillUpgradeItemResult {
+  int32 result = 1;
+  int32 avatar_id = 2;
+  int32 avatar_seq_id = 3;
+  int32 old_skill_id = 4;
+  int32 new_skill_id = 5;
+}
+
+message TBlobHead {
+  int32 data_type = 1;
+  uint32 uin = 2;
+}
+
+message TCancelDiamondOpReq {
+  int32 amt = 1;
+  int32 diamond_acc_type_len = 2;
+  bytes diamond_acc_type = 3;
+  int32 bill_no_len = 4;
+  bytes bill_no = 5;
+}
+
+message TCancelDiamondOpRsp {
+  int32 reserved = 1;
+}
+
+message TChestInfo {
+  int32 item_id = 1;
+  int32 count = 2;
+  int32 valid_time = 3;
+}
+
+message TCommonDiamondReqInfo {
+  int32 open_id_len = 1;
+  bytes open_id = 2;
+  int32 open_key_len = 3;
+  bytes open_key = 4;
+  int32 pf_key_len = 5;
+  bytes pf_key = 6;
+  int32 pf_len = 7;
+  bytes pf = 8;
+  int32 pay_token_len = 9;
+  bytes pay_token = 10;
+  int32 service_tag = 11;
+}
+
+message TDiamondOperationReq {
+  int32 oper_type = 1;
+  TDiamondOperationReqUnion data = 2;
+}
+
+message TDiamondOperationReqUnion {
+  TPayDiamondOpReq pay = 1;
+  TCancelDiamondOpReq cancel = 2;
+  TPresentDiamondOpReq present = 3;
+}
+
+message TDiamondOperationRsp {
+  int32 oper_type = 1;
+  TDiamondOperationRspUnion data = 2;
+}
+
+message TDiamondOperationRspUnion {
+  TQueryDiamondOpRsp query = 1;
+  TPayDiamondOpRsp pay = 2;
+  TPresentDiamondOpRsp present = 3;
+  TCancelDiamondOpRsp cancel = 4;
+}
+
+message TExpress {
+  int32 item_type = 1;
+  TExpressUnion item_data = 2;
+}
+
+message TExpressAvatar {
+  int32 id = 1;
+  int32 count = 2;
+  int32 lvl = 3;
+}
+
+message TExpressAvatarEx {
+  int32 id = 1;
+  int32 count = 2;
+  int32 lvl = 3;
+  int32 avatar_type = 4;
+  int32 valid_value = 5;
+}
+
+message TExpressAvatarEx2 {
+  int32 id = 1;
+  int32 count = 2;
+  int32 lvl = 3;
+  int32 avatar_type = 4;
+  int32 valid_value = 5;
+  int32 is_basic_edition_avatar = 6;
+  int32 reserved_len = 7;
+  repeated int32 reserved = 8;
+}
+
+message TExpressAvatarResult {
+  int32 result = 1;
+  int32 id = 2;
+  int32 seq_id = 3;
+  int32 lvl = 4;
+  int32 buy_time = 5;
+  int32 valid_time = 6;
+}
+
+message TExpressAvatarResultEx {
+  int32 result = 1;
+  TAvatar avatar_info = 2;
+}
+
+message TExpressEcSysItem {
+  int32 id = 1;
+  int64 count = 2;
+}
+
+message TExpressEcSysItemResult {
+  int32 result = 1;
+  int32 id = 2;
+  int64 final_count = 3;
+}
+
+message TExpressGroupGoods {
+  int32 id = 1;
+  int32 count = 2;
+}
+
+message TExpressItem {
+  int32 id = 1;
+  int32 count = 2;
+}
+
+message TExpressItemResult {
+  int32 result = 1;
+  int32 id = 2;
+  int32 final_count = 3;
+  int32 valid_time = 4;
+  int32 seq = 5;
+}
+
+message TExpressPet {
+  int32 id = 1;
+  int32 count = 2;
+  int32 lvl = 3;
+}
+
+message TExpressPetResult {
+  int32 result = 1;
+  int32 id = 2;
+  int32 seq_id = 3;
+  int32 lvl = 4;
+  int32 buy_time = 5;
+  int32 valid_time = 6;
+}
+
+message TExpressRTI {
+  uint32 src_uin = 1;
+  uint32 dst_uin = 2;
+  int32 app_id = 3;
+  int32 client_type = 4;
+  int32 account_type = 5;
+  int32 service_tag = 6;
+  int32 tlog_reason = 7;
+  int32 tlog_sub_reason = 8;
+  int32 item_count = 9;
+  repeated TExpressResult item = 10;
+}
+
+message TExpressResult {
+  int32 item_type = 1;
+  TExpressResultUnion item_data = 2;
+}
+
+message TExpressResultUnion {
+  TExpressItemResult item_result = 1;
+  TExpressPetResult pet_result = 2;
+  TExpressAvatarResult avatar_result = 3;
+  TExpressEcSysItemResult ec_sys_item_result = 4;
+  TAvatarExpUpgradeItemResult avatar_exp_upgrade_item_result = 5;
+  TAvatarSkillUpgradeItemResult avatar_skill_upgrade_item_result = 6;
+  TExpressAvatarResultEx avatar_result_ex = 7;
+  TExpressAvatarResultEx avatar_result_ex2 = 8;
+}
+
+message TExpressUnion {
+  TExpressItem item = 1;
+  TExpressPet pet = 2;
+  TExpressAvatar avatar = 3;
+  TExpressEcSysItem ec_sys_item = 4;
+  TAvatarExpUpgradeItem avatar_exp_upgrade_item = 5;
+  TAvatarSkillUpgradeItem avatar_skill_upgrade_item = 6;
+  TExpressGroupGoods group_goods = 7;
+  TExpressAvatarEx avatar_ex = 8;
+  TExpressAvatarEx2 avatar_ex2 = 9;
+}
+
+message TFightBlob {
+  TBlobHead head = 1;
+  int32 win_count = 2;
+  int32 last_win = 3;
+  int32 last_game_time = 4;
+  int32 heart_skill_value = 5;
+  int32 finish_game_count = 6;
+  int32 last_win_count = 7;
+  int32 is_use_skill_in_this_continue_win = 8;
+  int32 last_is_use_skill_in_this_continue_win = 9;
+}
+
+message TGoodsItem {
+  int32 goods_id = 1;
+  int32 money_type = 2;
+  int32 count = 3;
+}
+
+message TGoodsItemInfo {
+  int32 goods_id = 1;
+  int32 limit_type = 2;
+  int32 status = 3;
+  int32 consume_time = 4;
+  int32 total_time = 5;
+}
+
+message TGoodsItemResult {
+  int32 result = 1;
+  int32 money_type = 2;
+  int32 goods_id = 3;
+}
+
+message TItem {
+  int32 seq = 1;
+  int32 id = 2;
+  int32 count = 3;
+  int32 buy_time = 4;
+  int32 start_time = 5;
+  int32 valid_time = 6;
+  int32 reserved_len = 7;
+  bytes reserved = 8;
+}
+
+message TItemBlob {
+  TBlobHead head = 1;
+  int32 base_seq_id = 2;
+  int32 item_count = 3;
+  repeated TItem item = 4;
+}
+
+message TMysteryItemInfo {
+  int32 id = 1;
+  int32 type = 2;
+  int32 count = 3;
+  int32 status = 4;
+}
+
+message TMysteryItemList {
+  int32 goodsid = 1;
+  int32 itemc_ount = 2;
+  repeated TMysteryItemInfo mystery_item = 3;
+}
+
+message TPayDiamondOpReq {
+  int32 amt = 1;
+  int32 diamond_acc_type_len = 2;
+  bytes diamond_acc_type = 3;
+  int32 good_name_len = 4;
+  bytes good_name = 5;
+}
+
+message TPayDiamondOpRsp {
+  int32 left_diamond = 1;
+  int32 bill_no_len = 2;
+  bytes bill_no = 3;
+}
+
+message TPet {
+  int32 id = 1;
+  int32 seq_id = 2;
+  int32 exp = 3;
+  int32 buy_time = 4;
+  int32 valid_time = 5;
+  int32 lvl = 6;
+  int32 skill_id_count = 7;
+  repeated int32 skill_id = 8;
+  int32 reserved_len = 9;
+  bytes reserved = 10;
+}
+
+message TPetBlob {
+  TBlobHead head = 1;
+  int32 current_pet_index = 2;
+  int32 current_pet_id = 3;
+  int32 current_pet_seq_id = 4;
+  int32 current_pet_lvl = 5;
+  int32 flag = 6;
+  int32 base_seq_id = 7;
+  int32 pet_count = 8;
+  repeated TPet pet = 9;
+}
+
+message TPresentDiamondOpReq {
+  int32 present_times = 1;
+  int32 discount_id_len = 2;
+  bytes discount_id = 3;
+  int32 gift_id_len = 4;
+  bytes gift_id = 5;
+}
+
+message TPresentDiamondOpRsp {
+  int32 left_diamond = 1;
+}
+
+message TPunishInfoAQMark {
+  int32 aq_mark_id = 1;
+  int32 reserved1 = 2;
+}
+
+message TPunishInfoBanLogin {
+  int32 msg_len = 1;
+  bytes msg = 2;
+  int32 trace_len = 3;
+  bytes trace_id = 4;
+  int32 reason = 5;
+}
+
+message TPunishInfoSpecificAQMark {
+  int32 aq_play_type = 1;
+  int32 aq_punish_type = 2;
+  int32 aq_punish_sub_type = 3;
+  int32 aq_punish_end_ts = 4;
+  int32 season_id = 5;
+  int32 reserved1 = 6;
+  int32 reserved2 = 7;
+  string aq_punish_desc = 8;
+}
+
+message TPunishInfoUpdatePlayer {
+  int32 data = 1;
+}
+
+message TQueryDiamondOpRsp {
+  int32 first_save = 1;
+  int32 diamond = 2;
+  int32 gen_diamond = 3;
+  int32 save_amt = 4;
+  int32 gen_expire = 5;
+}
+
+message TSaleItem {
+  int32 id = 1;
+  int32 count = 2;
+  int32 seq_id = 3;
+}
+
+message TxnIdData {
+  int32 txn_id_length = 1;
+  bytes txn_id = 2;
+  int32 item_type_count = 3;
+  repeated int32 item_type = 4;
+}

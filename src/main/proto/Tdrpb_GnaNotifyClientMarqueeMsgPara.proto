@@ -1,0 +1,114 @@
+// Recovered from hlddz.apk IL2CPP metadata
+syntax = "proto3";
+
+package Tdrpb.GnaNotifyClientMarqueeMsgPara;
+
+option java_package = "cc.superbaby.happy4j.protocol.generated.tdrpb.gnanotifyclientmarqueemsgpara";
+option java_multiple_files = true;
+option java_outer_classname = "Tdrpb_GnaNotifyClientMarqueeMsgParaProto";
+
+enum ENGnaEventType {
+  ENGnaEventType_EnGnaDefaultNil = 0;
+  ENGnaEventType_EnUpdateTransformConfig = 1;
+  ENGnaEventType_EnUpdateCustomizeConfig = 2;
+  ENGnaEventType_EnUpdateCustomizeGroup = 3;
+}
+
+enum GnaClientEventsDef {
+  GnaClientEventsDef_Tdr2PbDummyGnaClientEventsDef = 0;
+  GnaClientEventsDef_MaxGnaClientEventNum = 32;
+}
+
+enum MacroDefineForGnaNotifyClientMarqueeMsgPara {
+  MacroDefineForGnaNotifyClientMarqueeMsgPara_Tdr2PbDummyMacroDefineForGnaNotifyClientMarqueeMsgPara = 0;
+  MacroDefineForGnaNotifyClientMarqueeMsgPara_MaxMarqeeNum = 16;
+  MacroDefineForGnaNotifyClientMarqueeMsgPara_MaxMsgLenNum = 1024;
+  MacroDefineForGnaNotifyClientMarqueeMsgPara_MsgidS2CGnaNotifyMarqee = 1007;
+  MacroDefineForGnaNotifyClientMarqueeMsgPara_MsgidC2SGetMarqeeInfo = 1008;
+  MacroDefineForGnaNotifyClientMarqueeMsgPara_MsgidS2CNotifyGnaEvent = 1009;
+  MacroDefineForGnaNotifyClientMarqueeMsgPara_MsgidS2SReqAddGnaEvent = 1010;
+}
+
+enum MarqueeSceneType {
+  MarqueeSceneType_MarqueeSceneNull = 0;
+  MarqueeSceneType_MarqueeSceneDdzHall = 10000;
+  MarqueeSceneType_MarqueeSceneDdzFuli = 10001;
+  MarqueeSceneType_MarqueeSceneDdzIngameLeisure = 10002;
+  MarqueeSceneType_MarqueeSceneDdzIngameCompetitive = 10003;
+  MarqueeSceneType_MarqueeSceneDdzIngameOlympicmatch = 10004;
+  MarqueeSceneType_MarqueeSceneHlsjLuckyWheel = 24300;
+}
+
+message CNotifyGnaClientEvents {
+  int32 event_num = 1;
+  repeated TGnaClientEvent client_events = 2;
+}
+
+message CReqAddGnaEvents {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  int32 event_source = 4;
+  int32 event_num = 5;
+  repeated TGnaClientEvent events = 6;
+}
+
+message CRspAddGnaEvents {
+  int32 result_id = 1;
+}
+
+message GnaClientGetMarqueeReq {
+  int32 game_id = 1;
+  int32 account_type = 2;
+  int32 client_type = 3;
+  uint32 version = 4;
+  int32 marqee_scene_type = 5;
+  int32 region_id = 6;
+}
+
+message GnaNotifyClientMarqueeMsg {
+  int32 n_marqee_num = 1;
+  repeated string asz_marqee_buf = 2;
+  repeated int32 scene_flag = 3;
+}
+
+message TGnaClientEvent {
+  TGnaEventSeqInfo event_seq_info = 1;
+  int32 event_type = 2;
+  UEventContent event_content = 3;
+}
+
+message TGnaDefaultNil {
+  int32 nil = 1;
+}
+
+message TGnaEventSeqInfo {
+  uint32 event_time = 1;
+  uint32 seq_id = 2;
+}
+
+message TGnaReqEventSeqInfo {
+  TGnaEventSeqInfo seq_info = 1;
+  uint32 login_time = 2;
+}
+
+message TUpdateCustomizeConfig {
+  int32 customize_id = 1;
+  string file_name = 2;
+}
+
+message TUpdateCustomizeGroup {
+  int32 group_id = 1;
+}
+
+message TUpdateTransformConfig {
+  int32 stuff_id = 1;
+  string file_name = 2;
+}
+
+message UEventContent {
+  TGnaDefaultNil gna_default_nil = 1;
+  TUpdateTransformConfig transform_config = 2;
+  TUpdateCustomizeConfig customize_config = 3;
+  TUpdateCustomizeGroup customize_group = 4;
+}
