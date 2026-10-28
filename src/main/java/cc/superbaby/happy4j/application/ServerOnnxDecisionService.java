@@ -12,6 +12,7 @@ import cc.superbaby.happy4j.domain.TableSnapshot;
 
 import jakarta.annotation.PreDestroy;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * candidate tensors; otherwise a server-hosted game would silently use a different
  * policy from a browser-hosted game.</p>
  */
+@Slf4j
 @Service
 public final class ServerOnnxDecisionService implements AutoCloseable {
     private static final String MODEL_ROOT = "static/models/douzero_fullauto/";
@@ -189,7 +191,9 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
              OrtSession.SessionOptions options = new OrtSession.SessionOptions()) {
             options.setIntraOpNumThreads(1);
             options.setInterOpNumThreads(1);
-            return environment.createSession(input.readAllBytes(), options);
+            OrtSession session = environment.createSession(input.readAllBytes(), options);
+            log.info("Loaded {} for {}", file, role);
+            return session;
         } catch (IOException | OrtException failure) {
             throw new IllegalStateException("加载服务器 ONNX 模型失败: " + file, failure);
         }
