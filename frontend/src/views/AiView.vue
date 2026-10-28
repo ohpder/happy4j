@@ -44,7 +44,13 @@ function time(value) {
       <div class="ai-page-status" :class="{ active: runtime?.active }">
         <i></i
         ><span>{{
-          runtime?.active ? (serverHosting ? '服务器托管运行中' : '浏览器托管运行中') : '当前已停止'
+          runtime?.stopAfterRound
+            ? '本局结束后停止'
+            : runtime?.active
+              ? serverHosting
+                ? '服务器托管运行中'
+                : '浏览器托管运行中'
+              : '当前已停止'
         }}</span
         ><b>{{ runtime?.modelState || 'IDLE' }}</b>
       </div>

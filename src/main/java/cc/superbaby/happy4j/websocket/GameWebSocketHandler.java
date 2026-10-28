@@ -108,6 +108,16 @@ public class GameWebSocketHandler extends TextWebSocketHandler {
                     payload.path("enabled").asBoolean());
             return done(aiConfigurations.save(user.userId(), update));
         }
+        if (command == GameCommand.AI_STOP) {
+            String value = payload.path("mode").asString("IMMEDIATE").trim().toUpperCase(Locale.ROOT);
+            AiConfigurationService.StopMode mode;
+            try {
+                mode = AiConfigurationService.StopMode.valueOf(value);
+            } catch (IllegalArgumentException failure) {
+                throw new IllegalArgumentException("未知托管停止方式");
+            }
+            return done(aiConfigurations.requestStop(user.userId(), mode));
+        }
         if (command == GameCommand.AI_PROVIDER_TEST) return aiDecisions.test(user.userId());
         UUID sessionId = UUID.fromString(payload.path("sessionId").asString());
         ClientSession session = clients.ownedSession(user.userId(), sessionId);

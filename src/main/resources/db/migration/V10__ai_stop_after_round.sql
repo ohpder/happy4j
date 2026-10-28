@@ -1,0 +1,1 @@
+ALTER TABLE ai_configuration ADD COLUMN stop_after_round BOOLEAN NOT NULL DEFAULT FALSE;

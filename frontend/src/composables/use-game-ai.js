@@ -91,6 +91,7 @@ export function useGameAi(client) {
     passes: initialLogs.filter((entry) => entry.phase === 'INFERENCE' && entry.level === 'PASS').length,
     strategy: 'FullAuto ResNet 高胜率策略',
     hostingMode: 'BROWSER',
+    stopAfterRound: false,
     providerTesting: false,
     logs: initialLogs,
   })
@@ -165,6 +166,7 @@ export function useGameAi(client) {
     runtime.active = true
     runtime.state = 'RUNNING'
     runtime.hostingMode = saved.hostingMode || 'BROWSER'
+    runtime.stopAfterRound = false
     runtime.strategy =
       saved.hostingMode === 'SERVER'
         ? saved.inferenceEngine === 'OPENAI'
@@ -192,21 +194,54 @@ export function useGameAi(client) {
     return saved
   }
 
-  async function stop(reason = 'AI 已停止', persist = true) {
+  async function stop(modeOrReason = 'IMMEDIATE', reasonOrPersist = 'AI 已停止') {
+    const isMode = modeOrReason === 'IMMEDIATE' || modeOrReason === 'AFTER_ROUND'
+    const mode = isMode ? modeOrReason : 'IMMEDIATE'
+    const reason = isMode
+      ? typeof reasonOrPersist === 'string'
+        ? reasonOrPersist
+        : 'AI 已停止'
+      : modeOrReason
+    const persist = isMode ? reasonOrPersist !== false : reasonOrPersist !== false
+
+    if (mode === 'AFTER_ROUND' && config.value?.enabled) {
+      let saved
+      try {
+        saved = client.state.preview
+          ? { ...config.value, stopAfterRound: true }
+          : await client.command('AI_STOP', { mode })
+        client.state.aiConfig = saved
+      } catch (error) {
+        runtime.lastError = error.message
+        throw error
+      }
+      runtime.stopAfterRound = Boolean(saved.stopAfterRound)
+      if (saved.enabled && saved.stopAfterRound) {
+        runtime.status = '本局结束后停止托管'
+        runtime.decision = ''
+        log('INFO', 'CONTROL', '已请求本局结束后停止托管')
+        schedule(50)
+        return saved
+      }
+    }
+
     runtime.active = false
     runtime.busy = false
     runtime.state = 'STOPPED'
     runtime.status = reason
     runtime.decision = ''
+    runtime.stopAfterRound = false
     clearTimeout(timer)
     log('INFO', 'CONTROL', reason)
-    if (persist && config.value?.sceneId) {
+    if (persist && mode === 'IMMEDIATE' && config.value?.sceneId && !client.state.preview) {
       try {
-        await save({ ...config.value, enabled: false })
+        const saved = await client.command('AI_STOP', { mode })
+        client.state.aiConfig = saved
       } catch {
         // The local stop remains effective while the connection recovers.
       }
     }
+    return client.state.aiConfig
   }
 
   async function act(key, command, payload, status, wait = 650) {
@@ -422,6 +457,10 @@ export function useGameAi(client) {
       }
       if (await handleBeanLimits(session, selectedConfig, fingerprint)) return
 
+      if (selectedConfig.stopAfterRound && (!table || table.stage === 'IDLE' || !table.sceneId)) {
+        await stop('本局已结束，AI 已停止')
+        return
+      }
       if (!table || table.stage === 'IDLE' || !table.sceneId) {
         client.screen.value = 'lobby'
         await act(
@@ -438,6 +477,10 @@ export function useGameAi(client) {
       client.screen.value = 'room'
       const actions = new Set(table.availableActions || [])
       if (table.stage === 'TIMED_OUT') {
+        if (selectedConfig.stopAfterRound) {
+          await stop('本局已结束，AI 已停止')
+          return
+        }
         await act(`${fingerprint}:timeout-change`, 'CHANGE_TABLE', {}, '本桌等待超时，正在自动换桌', 500)
         return
       }
@@ -465,6 +508,10 @@ export function useGameAi(client) {
             },
           )
           await refreshWallet(`${fingerprint}:settlement`)
+          return
+        }
+        if (selectedConfig.stopAfterRound) {
+          await stop('本局已结束，AI 已停止')
           return
         }
         if (selectedConfig.autoChangeTable && actions.has('CHANGE_TABLE'))
@@ -596,10 +643,11 @@ export function useGameAi(client) {
   }
 
   watch(
-    () => config.value?.enabled,
-    (enabled) => {
+    () => [config.value?.enabled, config.value?.stopAfterRound],
+    ([enabled, stopAfterRound]) => {
       if (enabled && !runtime.active) {
         runtime.hostingMode = config.value?.hostingMode || 'BROWSER'
+        runtime.stopAfterRound = Boolean(stopAfterRound)
         runtime.strategy =
           config.value?.hostingMode === 'SERVER'
             ? openAiEnabled()
@@ -610,12 +658,16 @@ export function useGameAi(client) {
               : 'FullAuto ResNet 高胜率策略'
         runtime.active = true
         runtime.state = 'RUNNING'
-        runtime.status =
-          config.value?.hostingMode === 'SERVER'
+        runtime.status = stopAfterRound
+          ? '本局结束后停止托管'
+          : config.value?.hostingMode === 'SERVER'
             ? '服务器托管运行中，关闭浏览器仍会继续'
             : '正在恢复 AI 自动对局'
         log('INFO', 'CONTROL', '正在恢复上次的 AI 自动对局')
         if (config.value?.hostingMode !== 'SERVER') schedule(100)
+      } else if (enabled && runtime.active) {
+        runtime.stopAfterRound = Boolean(stopAfterRound)
+        if (stopAfterRound) runtime.status = '本局结束后停止托管'
       } else if (!enabled && runtime.active) stop('AI 已停止', false)
     },
   )

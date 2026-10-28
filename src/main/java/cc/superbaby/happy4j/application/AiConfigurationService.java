@@ -75,6 +75,15 @@ public class AiConfigurationService {
         return configurations.save(entity).toDomain();
     }
 
+    @Transactional
+    public AiConfiguration requestStop(UUID userId, StopMode mode) {
+        AiConfigurationEntity entity = configurations.findById(userId).orElse(null);
+        if (entity == null) return AiConfiguration.defaults();
+        if (mode == StopMode.AFTER_ROUND && entity.enabled()) entity.stopAfterRound(true);
+        else entity.enabled(false);
+        return configurations.save(entity).toDomain();
+    }
+
     @Transactional(readOnly = true)
     public ProviderConfiguration provider(UUID userId) {
         AiConfigurationEntity entity = configurations.findById(userId)
@@ -177,6 +186,11 @@ public class AiConfigurationService {
     }
 
     public record ProviderConfiguration(URI endpoint, String model, String apiKey) {
+    }
+
+    public enum StopMode {
+        IMMEDIATE,
+        AFTER_ROUND
     }
 
     public record ServerConfiguration(UUID userId, AiConfiguration configuration) {

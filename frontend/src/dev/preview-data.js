@@ -170,6 +170,7 @@ export function previewState(kind) {
       apiModel: kind === 'ai-config' ? 'gpt-5.4' : '',
       apiKeyConfigured: kind === 'ai-config',
       enabled: kind === 'ai-room',
+      stopAfterRound: false,
       updatedAt: new Date().toISOString(),
     },
     modes: [

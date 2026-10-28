@@ -105,7 +105,7 @@ export function useGameClient() {
       envelope.payload?.kind === 'AI_SERVER' &&
       envelope.payload.message?.includes('已停止')
     ) {
-      if (state.aiConfig) state.aiConfig = { ...state.aiConfig, enabled: false }
+      if (state.aiConfig) state.aiConfig = { ...state.aiConfig, enabled: false, stopAfterRound: false }
     }
     if (envelope.type === 'QR_STATUS') {
       qr.status = playerMessage(envelope.payload.message)
@@ -124,6 +124,7 @@ export function useGameClient() {
       'SESSION_RESUME',
       'AI_CONFIG_GET',
       'AI_CONFIG_SAVE',
+      'AI_STOP',
       'AI_PROVIDER_TEST',
     ])
     if (!state.activeSessionId && !userCommands.has(name)) {
@@ -133,7 +134,7 @@ export function useGameClient() {
       const payload = userCommands.has(name) ? extra : { sessionId: state.activeSessionId, ...extra }
       const result = await socket.command(name, payload)
       if (result?.id && result?.phase) updateSession(result)
-      if (name === 'AI_CONFIG_GET' || name === 'AI_CONFIG_SAVE') state.aiConfig = result
+      if (name === 'AI_CONFIG_GET' || name === 'AI_CONFIG_SAVE' || name === 'AI_STOP') state.aiConfig = result
       if (successMessage) push(successMessage)
       return result
     } catch (error) {

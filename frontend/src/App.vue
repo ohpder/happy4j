@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import AiLogDrawer from '@/components/AiLogDrawer.vue'
+import AiStopDialog from '@/components/AiStopDialog.vue'
 import AuthScreen from '@/components/AuthScreen.vue'
 import QrModal from '@/components/QrModal.vue'
 import ToastStack from '@/components/ToastStack.vue'
@@ -16,6 +17,8 @@ const client = useGameClient()
 const ai = useGameAi(client)
 const { push } = useToasts()
 const aiLogOpen = ref(false)
+const aiStopOpen = ref(false)
+const aiStopPending = ref(false)
 
 async function authenticate(path, values) {
   try {
@@ -51,9 +54,21 @@ async function startAi(values) {
   }
 }
 
-async function stopAi() {
-  await ai.stop()
-  push('AI 托管已停止')
+function openStopDialog() {
+  aiStopOpen.value = true
+}
+
+async function stopAi(mode) {
+  aiStopPending.value = true
+  try {
+    const result = await ai.stop(mode)
+    aiStopOpen.value = false
+    push(mode === 'AFTER_ROUND' && result?.enabled ? '已设置本局结束后停止托管' : 'AI 托管已停止')
+  } catch (error) {
+    push(playerMessage(error.message), 'error')
+  } finally {
+    aiStopPending.value = false
+  }
 }
 
 async function testAiProvider(values) {
@@ -98,7 +113,7 @@ onBeforeUnmount(() => document.removeEventListener('contextmenu', blockContextMe
     :ai-runtime="ai.runtime"
     :clear-ai-logs="ai.clearLogs"
     @lobby="client.screen.value = 'lobby'"
-    @ai-stop="stopAi"
+    @ai-stop="openStopDialog"
   />
   <LobbyView
     v-else
@@ -114,7 +129,7 @@ onBeforeUnmount(() => document.removeEventListener('contextmenu', blockContextMe
     @qr="client.openQr"
     @logout="logout"
     @ai-start="startAi"
-    @ai-stop="stopAi"
+    @ai-stop="openStopDialog"
     @ai-save="ai.save"
     @ai-logs="aiLogOpen = true"
     @ai-provider-test="testAiProvider"
@@ -128,6 +143,13 @@ onBeforeUnmount(() => document.removeEventListener('contextmenu', blockContextMe
   />
   <ToastStack />
   <AiLogDrawer :open="aiLogOpen" :runtime="ai.runtime" @close="aiLogOpen = false" @clear="ai.clearLogs" />
+  <AiStopDialog
+    :open="aiStopOpen"
+    :hosting-mode="client.state.aiConfig?.hostingMode || ai.runtime.hostingMode"
+    :pending="aiStopPending"
+    @close="aiStopOpen = false"
+    @stop="stopAi"
+  />
   <SessionEvictedModal
     :open="client.state.evicted"
     @close="client.state.evicted = false"

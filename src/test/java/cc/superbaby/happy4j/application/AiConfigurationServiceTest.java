@@ -79,6 +79,29 @@ class AiConfigurationServiceTest {
     }
 
     @Test
+    void supportsImmediateAndAfterRoundStopRequests() {
+        UUID userId = UUID.randomUUID();
+        when(repository.findById(userId)).thenReturn(Optional.empty());
+        when(repository.save(any(AiConfigurationEntity.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        service.save(userId,
+                new AiConfigurationService.Update(1260, "SERVER", true, true, 0, 0,
+                        "DOUZERO", "", "", "", false, true));
+
+        AiConfigurationEntity entity = new AiConfigurationEntity(userId);
+        entity.apply(1260, "SERVER", true, true, 0, 0,
+                "DOUZERO", "", "", true);
+        when(repository.findById(userId)).thenReturn(Optional.of(entity));
+
+        var pending = service.requestStop(userId, AiConfigurationService.StopMode.AFTER_ROUND);
+        assertThat(pending.enabled()).isTrue();
+        assertThat(pending.stopAfterRound()).isTrue();
+
+        var stopped = service.requestStop(userId, AiConfigurationService.StopMode.IMMEDIATE);
+        assertThat(stopped.enabled()).isFalse();
+        assertThat(stopped.stopAfterRound()).isFalse();
+    }
+
+    @Test
     void rejectsUnsupportedModeAndInvertedBeanLimits() {
         UUID userId = UUID.randomUUID();
         assertThatThrownBy(() -> service.save(userId,

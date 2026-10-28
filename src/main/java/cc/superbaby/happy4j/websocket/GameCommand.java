@@ -10,6 +10,7 @@ public enum GameCommand {
     SESSION_CLOSE,
     AI_CONFIG_GET,
     AI_CONFIG_SAVE,
+    AI_STOP,
     AI_PROVIDER_TEST,
     AI_DECIDE,
     SNAPSHOT_GET,

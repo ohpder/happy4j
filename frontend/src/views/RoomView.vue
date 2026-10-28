@@ -308,8 +308,14 @@ onBeforeUnmount(() => {
         </button>
         <button v-if="aiRuntime?.active" class="ai-room-control" type="button" @click="emit('ai-stop')">
           <span><i></i>{{ serverHosting ? '服务器托管 · 观战中' : 'AI 托管中' }}</span
-          ><small>{{ serverHosting ? '浏览器实时接收牌桌快照' : aiRuntime.status }}</small
-          ><b>停止</b>
+          ><small>{{
+            aiRuntime.stopAfterRound
+              ? '本局结束后停止托管'
+              : serverHosting
+                ? '浏览器实时接收牌桌快照'
+                : aiRuntime.status
+          }}</small
+          ><b>{{ aiRuntime.stopAfterRound ? '已排队' : '停止' }}</b>
         </button>
         <span class="multiplier-panel"
           ><small>底牌倍数</small><b>×{{ table.multiplier || 1 }}</b></span

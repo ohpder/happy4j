@@ -49,6 +49,8 @@ public class AiConfigurationEntity {
     private byte[] apiKeyIv;
     @Column(nullable = false)
     private boolean enabled;
+    @Column(name = "stop_after_round", nullable = false)
+    private boolean stopAfterRound;
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
     @Version
@@ -74,6 +76,7 @@ public class AiConfigurationEntity {
         this.apiBaseUrl = apiBaseUrl;
         this.apiModel = apiModel;
         this.enabled = enabled;
+        this.stopAfterRound = false;
     }
 
     public void apiKey(byte[] encrypted, byte[] iv) {
@@ -103,6 +106,19 @@ public class AiConfigurationEntity {
 
     public void enabled(boolean value) {
         enabled = value;
+        if (!value) stopAfterRound = false;
+    }
+
+    public void stopAfterRound(boolean value) {
+        stopAfterRound = enabled && value;
+    }
+
+    public boolean enabled() {
+        return enabled;
+    }
+
+    public boolean stopAfterRound() {
+        return stopAfterRound;
     }
 
     public String getApiBaseUrl() {
@@ -122,6 +138,6 @@ public class AiConfigurationEntity {
     public AiConfiguration toDomain() {
         return new AiConfiguration(sceneId, hostingMode, autoChangeTable, autoClaimBeans,
                 stopAtBeans, stopBelowBeans, inferenceEngine, apiBaseUrl, apiModel,
-                hasApiKey(), enabled, updatedAt);
+                hasApiKey(), enabled, stopAfterRound, updatedAt);
     }
 }

@@ -101,6 +101,7 @@ public final class ServerAiAutomationService {
                 return;
             }
             if (session.gameCredential() == null) return;
+            if (shouldStopAfterRound(configured.configuration(), session)) return;
             if (handleLimits(configured.configuration(), session)) return;
             TableSnapshot table = session.table();
             if (table == null || table.stage() == GameStage.IDLE) {
@@ -179,6 +180,19 @@ public final class ServerAiAutomationService {
         return false;
     }
 
+    private boolean shouldStopAfterRound(cc.superbaby.happy4j.domain.AiConfiguration configuration,
+                                         ClientSession session) {
+        if (!configuration.stopAfterRound()) return false;
+        TableSnapshot table = session.table();
+        if (table != null && table.stage() != GameStage.IDLE
+                && table.stage() != GameStage.SETTLED
+                && table.stage() != GameStage.TIMED_OUT) return false;
+        configurations.disable(session.ownerId());
+        publish(session.ownerId(), session, "本局已结束，服务器托管已停止",
+                Map.of("stopMode", "AFTER_ROUND"));
+        return true;
+    }
+
     private boolean shouldCheckSupport(UUID userId) {
         long now = System.currentTimeMillis();
         Long previous = lastSupportCheck.put(userId, now);
@@ -187,6 +201,12 @@ public final class ServerAiAutomationService {
 
     private void settle(cc.superbaby.happy4j.domain.AiConfiguration configuration,
                         ClientSession session, TableSnapshot table) {
+        if (configuration.stopAfterRound()) {
+            configurations.disable(session.ownerId());
+            publish(session.ownerId(), session, "本局已结束，服务器托管已停止",
+                    Map.of("stopMode", "AFTER_ROUND"));
+            return;
+        }
         if (configuration.autoChangeTable() && table.availableActions().contains(TableAction.CHANGE_TABLE))
             clients.changeTable(session.id()).join();
         else if (table.availableActions().contains(TableAction.READY)) clients.ready(session.id()).join();

@@ -984,6 +984,53 @@ button:disabled {
 .ai-stop {
   background: linear-gradient(145deg, #ff8b74, #df4e5d);
 }
+.ai-stop-modal {
+  width: min(520px, 100%);
+  padding: 34px 34px 27px;
+}
+.ai-stop-modal h2 {
+  margin: 8px 0 9px;
+  color: #173869;
+}
+.ai-stop-modal > p {
+  margin: 0 0 22px;
+  color: #7188a1;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.ai-stop-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.ai-stop-options .game-button {
+  min-height: 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 11px 14px;
+  text-align: left;
+}
+.ai-stop-options strong,
+.ai-stop-options small {
+  display: block;
+}
+.ai-stop-options strong {
+  font-size: 12px;
+}
+.ai-stop-options small {
+  margin-top: 5px;
+  color: inherit;
+  opacity: 0.68;
+  font-size: 9px;
+  font-weight: 700;
+}
+.ai-stop-cancel {
+  display: block;
+  margin: 16px auto 0;
+  font-size: 11px;
+}
 .ai-actions button span {
   margin-right: 5px;
   font-size: 9px;
