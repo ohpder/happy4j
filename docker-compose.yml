@@ -27,6 +27,12 @@ services:
       - HAPPY4J_DB_USERNAME=happy4j
       - HAPPY4J_DB_PASSWORD=happy4j
       - TZ=Asia/Shanghai
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
+      - JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    gpus: all
     depends_on:
       - happy4j-mysql
     volumes:

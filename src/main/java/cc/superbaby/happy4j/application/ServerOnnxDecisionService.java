@@ -12,6 +12,8 @@ import cc.superbaby.happy4j.domain.TableSnapshot;
 
 import jakarta.annotation.PreDestroy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public final class ServerOnnxDecisionService implements AutoCloseable {
+    private static final Logger LOG = LoggerFactory.getLogger(ServerOnnxDecisionService.class);
     private static final String MODEL_ROOT = "static/models/douzero_fullauto/";
     private static final int FEATURE_WIDTH = 54;
     private static final int FEATURE_ROWS = 40;
@@ -62,6 +65,7 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
     private final ServerAiDecisionService local;
     private final ConcurrentHashMap<String, OrtSession> playSessions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, OrtSession> preGameSessions = new ConcurrentHashMap<>();
+    private final Set<String> cpuFallbackRoles = ConcurrentHashMap.newKeySet();
 
     public ServerOnnxDecisionService(ServerAiDecisionService local) {
         environment = OrtEnvironment.getEnvironment();
@@ -115,7 +119,13 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
 
         String role = roleFor(table);
         OrtSession session = playSessions.computeIfAbsent(role, key -> loadPlaySession(key));
-        float[] scores = scoreCandidates(session, table, candidates, role);
+        float[] scores;
+        try {
+            scores = scoreCandidates(session, table, candidates, role);
+        } catch (IllegalStateException failure) {
+            session = switchToCpu(playSessions, role, PLAY_MODELS.get(role), failure);
+            scores = scoreCandidates(session, table, candidates, role);
+        }
         int best = bestIndex(scores);
         List<Integer> cards = List.copyOf(candidates.get(best));
         return new ServerAiDecisionService.PlayDecision(cards, cards.isEmpty(), candidates.size(),
@@ -151,7 +161,13 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
         if (candidates.isEmpty()) return 0;
         String role = "landlord";
         OrtSession session = playSessions.computeIfAbsent(role, key -> loadSession(role, PLAY_MODELS.get(role)));
-        float[] scores = scoreCandidates(session, table, candidates, role);
+        float[] scores;
+        try {
+            scores = scoreCandidates(session, table, candidates, role);
+        } catch (IllegalStateException failure) {
+            session = switchToCpu(playSessions, role, PLAY_MODELS.get(role), failure);
+            scores = scoreCandidates(session, table, candidates, role);
+        }
         float best = scores[0];
         for (float score : scores) best = Math.max(best, score);
         return best * 8d;
@@ -161,6 +177,15 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
         OrtSession session = preGameSessions.computeIfAbsent(model,
                 key -> loadSession(key, PRE_GAME_MODELS.get(key)));
         float[] input = cardsToScoreArray(hand);
+        try {
+            return scoreHand(session, input, model);
+        } catch (IllegalStateException failure) {
+            session = switchToCpu(preGameSessions, model, PRE_GAME_MODELS.get(model), failure);
+            return scoreHand(session, input, model);
+        }
+    }
+
+    private double scoreHand(OrtSession session, float[] input, String model) {
         try (OnnxTensor tensor = OnnxTensor.createTensor(environment, FloatBuffer.wrap(input), new long[]{1, 60});
              OrtSession.Result output = run(session, Map.of("cards", tensor))) {
             float[] values = flatten(output.get(0));
@@ -185,13 +210,59 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
     }
 
     private OrtSession loadSession(String role, String file) {
+        try {
+            return createSession(file, true);
+        } catch (OrtException gpuFailure) {
+            cpuFallbackRoles.add(role);
+            LOG.warn("服务器 ONNX CUDA 会话不可用，角色 {} 回退到 CPU: {}", role, gpuFailure.getMessage());
+            try {
+                return createSession(file, false);
+            } catch (IOException | OrtException cpuFailure) {
+                throw new IllegalStateException("加载服务器 ONNX 模型失败: " + file, cpuFailure);
+            }
+        } catch (IOException failure) {
+            throw new IllegalStateException("加载服务器 ONNX 模型失败: " + file, failure);
+        }
+    }
+
+    private OrtSession createSession(String file, boolean cuda) throws IOException, OrtException {
         try (InputStream input = new ClassPathResource(MODEL_ROOT + file).getInputStream();
              OrtSession.SessionOptions options = new OrtSession.SessionOptions()) {
             options.setIntraOpNumThreads(1);
             options.setInterOpNumThreads(1);
+            if (cuda) options.addCUDA();
             return environment.createSession(input.readAllBytes(), options);
-        } catch (IOException | OrtException failure) {
-            throw new IllegalStateException("加载服务器 ONNX 模型失败: " + file, failure);
+        }
+    }
+
+    private OrtSession switchToCpu(ConcurrentHashMap<String, OrtSession> sessions,
+                                   String role, String file, IllegalStateException gpuFailure) {
+        synchronized (sessions) {
+            if (cpuFallbackRoles.contains(role)) {
+                OrtSession current = sessions.get(role);
+                if (current != null) return current;
+                throw gpuFailure;
+            }
+            cpuFallbackRoles.add(role);
+            OrtSession previous = sessions.remove(role);
+            closeSession(previous);
+            try {
+                OrtSession cpu = createSession(file, false);
+                sessions.put(role, cpu);
+                LOG.warn("服务器 ONNX CUDA 推理失败，角色 {} 已切换到 CPU: {}", role, gpuFailure.getMessage());
+                return cpu;
+            } catch (IOException | OrtException cpuFailure) {
+                throw new IllegalStateException("服务器 ONNX GPU 和 CPU 推理均失败: " + file, cpuFailure);
+            }
+        }
+    }
+
+    private static void closeSession(OrtSession session) {
+        if (session == null) return;
+        try {
+            session.close();
+        } catch (OrtException ignored) {
+            // Releasing a failed provider session is best effort.
         }
     }
 
@@ -424,15 +495,10 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
     public void close() {
         List<OrtSession> sessions = new ArrayList<>(playSessions.values());
         sessions.addAll(preGameSessions.values());
-        sessions.forEach(session -> {
-            try {
-                session.close();
-            } catch (OrtException ignored) {
-                // Shutdown should remain best effort.
-            }
-        });
+        sessions.forEach(ServerOnnxDecisionService::closeSession);
         playSessions.clear();
         preGameSessions.clear();
+        cpuFallbackRoles.clear();
     }
 
     private record SharedFeatures(List<float[]> rows) {

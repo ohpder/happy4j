@@ -63,7 +63,7 @@ dependencies {
     implementation 'org.hibernate.orm:hibernate-community-dialects'
     implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
-    implementation 'com.microsoft.onnxruntime:onnxruntime:1.23.2'
+    implementation 'com.microsoft.onnxruntime:onnxruntime_gpu:1.23.2'
     runtimeOnly('com.mysql:mysql-connector-j') {
         version {
             strictly '8.0.33'

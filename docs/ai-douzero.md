@@ -4,7 +4,7 @@
 Java 后台持续读取牌桌快照并提交动作，关闭浏览器后仍会继续；浏览器保持打开时可实时观战并结束托管。
 浏览器中的“结束托管”支持立即停止，或在本局结算后停止；后者会持久化到服务端，断开浏览器也不会丢失。
 服务器托管选择 OpenAI 兼容引擎时由后台调用已加密保存的 API 配置；选择 DOUZERO 时由 Java
-后台使用 ONNX Runtime 加载同一组 FullAuto 模型，浏览器关闭后仍可完成叫抢、加倍和出牌。
+后台使用 ONNX Runtime GPU 加载同一组 FullAuto 模型并通过 CUDA 执行；CUDA 不可用或设备不支持模型时自动回退 CPU，浏览器关闭后仍可完成叫抢、加倍和出牌。
 服务器托管还会检查余额：实际停止线取配置的最低欢乐豆与所选场次最低准入豆数中的较高值，余额过少时自动禁用托管，
 并通过观战连接显示“欢乐豆过少，服务器托管已停止”。
 服务器托管运行期间可以从牌桌返回大厅，后台连接和自动出牌继续运行；大厅的“进入观战”会重新打开当前牌局。
@@ -16,7 +16,7 @@ Java 后台持续读取牌桌快照并提交动作，关闭浏览器后仍会继
 - 固定提交：`6d20491da216c989d23cf2883498758fb78e9f8d`
 - 出牌模型：`baselines/resnet/resnet_{landlord,landlord_up,landlord_down}.ckpt`
 - 局前模型：`bid_weights.pkl`、`landlord_up_weights.pkl`、`landlord_down_weights.pkl`
-- 浏览器推理运行时：`onnxruntime-web 1.23.2`，WASM 单线程，按阶段和角色懒加载；服务器推理运行时：`onnxruntime 1.23.2`。
+- 浏览器推理运行时：`onnxruntime-web 1.23.2`，WASM 单线程，按阶段和角色懒加载；服务器推理运行时：`onnxruntime_gpu 1.23.2` + CUDA（失败时回退 CPU）。
 - 浏览器模型：`frontend/public/models/douzero_fullauto/`
 - 转换器：`tools/douzero_fullauto/export_onnx.py`
 
