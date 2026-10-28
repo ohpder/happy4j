@@ -2,7 +2,7 @@ package cc.superbaby.happy4j.domain;
 
 import java.time.Instant;
 
-/** Per-site-user settings for the browser-side DouZero HappyDouDiZhu automation loop. */
+/** Per-site-user settings for browser or server AI automation. */
 public record AiConfiguration(
         int sceneId,
         String hostingMode,

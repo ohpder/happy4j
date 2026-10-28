@@ -127,6 +127,11 @@ protocol/generated/     Gradle 构建生成的强类型 Java
 核对）→ 出牌（枚举合法动作、批量取 ADP 评分，按立即出完/控牌路径/低分炸弹/模型最高分依次决策）。
 完整实现细节、特征工程和状态完整性校验见 [`docs/ai-douzero.md`](docs/ai-douzero.md)。
 
+AI 托管中心支持“浏览器托管”和“服务器托管”。浏览器托管使用页面内 ONNX 推理；服务器托管由
+Java 后台持续运行，浏览器关闭后仍会自动进入场次、叫抢、加倍、出牌和换桌；浏览器保持打开时会
+实时接收牌桌快照进入观战视图。服务器托管可使用
+OpenAI 兼容模型，也可使用后台内置的合法动作策略。
+
 除本地 DouZero 模型外，也可以在 AI 面板里切换为 **OpenAI 兼容大模型**决策
 （`OpenAiDecisionService`）：把当前候选动作和公开牌局信息发给任意 OpenAI 协议兼容的
 Chat Completions 接口，由大模型返回一个 `choice`；调用失败时自动回退到本地 DouZero 模型。

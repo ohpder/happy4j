@@ -179,7 +179,7 @@ public final class ServerAiDecisionService {
         return result;
     }
 
-    private static List<Integer> consecutiveRuns(List<Integer> ranks, int minimum) {
+    private static List<List<Integer>> consecutiveRuns(List<Integer> ranks, int minimum) {
         List<Integer> allowed = ranks.stream().filter(rank -> rank < 13).sorted().toList();
         List<List<Integer>> result = new ArrayList<>();
         for (int start = 0; start < allowed.size(); start++) {

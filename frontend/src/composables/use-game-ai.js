@@ -90,6 +90,7 @@ export function useGameAi(client) {
     plays: initialLogs.filter((entry) => entry.phase === 'INFERENCE' && entry.level === 'PLAY').length,
     passes: initialLogs.filter((entry) => entry.phase === 'INFERENCE' && entry.level === 'PASS').length,
     strategy: 'FullAuto ResNet 高胜率策略',
+    hostingMode: 'BROWSER',
     providerTesting: false,
     logs: initialLogs,
   })
@@ -129,7 +130,7 @@ export function useGameAi(client) {
 
   function schedule(wait = 260) {
     clearTimeout(timer)
-    if (!runtime.active || destroyed) return
+    if (!runtime.active || destroyed || config.value?.hostingMode === 'SERVER') return
     timer = setTimeout(run, wait)
   }
 
@@ -163,8 +164,17 @@ export function useGameAi(client) {
     const saved = await save({ ...values, enabled: true })
     runtime.active = true
     runtime.state = 'RUNNING'
-    runtime.strategy = saved.inferenceEngine === 'OPENAI' ? '大模型胜率优先' : 'FullAuto ResNet 高胜率策略'
-    runtime.status = 'AI 正在接管牌局'
+    runtime.hostingMode = saved.hostingMode || 'BROWSER'
+    runtime.strategy =
+      saved.hostingMode === 'SERVER'
+        ? saved.inferenceEngine === 'OPENAI'
+          ? '服务器大模型托管'
+          : '服务器规则托管'
+        : saved.inferenceEngine === 'OPENAI'
+          ? '大模型胜率优先'
+          : 'FullAuto ResNet 高胜率策略'
+    runtime.status =
+      saved.hostingMode === 'SERVER' ? '服务器托管运行中，关闭浏览器仍会继续' : 'AI 正在接管牌局'
     runtime.lastError = ''
     lastActionKey = ''
     settlementKey = ''
@@ -175,6 +185,7 @@ export function useGameAi(client) {
       autoClaimBeans: saved.autoClaimBeans,
       stopAtBeans: saved.stopAtBeans,
       stopBelowBeans: saved.stopBelowBeans,
+      hostingMode: saved.hostingMode,
     })
     client.screen.value = client.table.value?.sceneId ? 'room' : 'lobby'
     schedule(50)
@@ -374,6 +385,7 @@ export function useGameAi(client) {
   async function run() {
     if (!runtime.active || runtime.busy || destroyed) return
     const selectedConfig = config.value
+    if (selectedConfig?.hostingMode === 'SERVER') return
     const session = client.session.value
     if (!selectedConfig?.sceneId) {
       await stop('请选择 AI 要进入的游戏模式', false)
@@ -587,12 +599,23 @@ export function useGameAi(client) {
     () => config.value?.enabled,
     (enabled) => {
       if (enabled && !runtime.active) {
-        runtime.strategy = openAiEnabled() ? '大模型胜率优先' : 'FullAuto ResNet 高胜率策略'
+        runtime.hostingMode = config.value?.hostingMode || 'BROWSER'
+        runtime.strategy =
+          config.value?.hostingMode === 'SERVER'
+            ? openAiEnabled()
+              ? '服务器大模型托管'
+              : '服务器规则托管'
+            : openAiEnabled()
+              ? '大模型胜率优先'
+              : 'FullAuto ResNet 高胜率策略'
         runtime.active = true
         runtime.state = 'RUNNING'
-        runtime.status = '正在恢复 AI 自动对局'
+        runtime.status =
+          config.value?.hostingMode === 'SERVER'
+            ? '服务器托管运行中，关闭浏览器仍会继续'
+            : '正在恢复 AI 自动对局'
         log('INFO', 'CONTROL', '正在恢复上次的 AI 自动对局')
-        schedule(100)
+        if (config.value?.hostingMode !== 'SERVER') schedule(100)
       } else if (!enabled && runtime.active) stop('AI 已停止', false)
     },
   )

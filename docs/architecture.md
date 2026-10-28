@@ -11,6 +11,8 @@
 - `web`：注册、登录及兼容 REST；实时界面不依赖 REST 轮询或 SSE。
 - `frontend`：Vue 3 + Vite SPA；大厅和房间使用独立界面，牌局由 `TableSnapshot`
   驱动，包含倒计时、拖动选牌、智能提示、记牌器和结算弹窗。
+- `ServerAiAutomationService`：服务器托管后台任务；从数据库读取启用的服务器 AI 配置，
+  直接消费会话牌桌快照并提交动作，浏览器断开后仍可继续运行。
 
 ## 多用户模型
 

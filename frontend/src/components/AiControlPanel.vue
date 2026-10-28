@@ -12,6 +12,7 @@ const emit = defineEmits(['start', 'stop', 'save', 'logs', 'provider-test'])
 
 const draft = reactive({
   sceneId: 0,
+  hostingMode: 'BROWSER',
   autoChangeTable: true,
   autoClaimBeans: true,
   stopAtBeans: 0,
@@ -36,6 +37,7 @@ watch(
     if (!value) return
     Object.assign(draft, {
       sceneId: Number(value.sceneId || 0),
+      hostingMode: value.hostingMode || 'BROWSER',
       autoChangeTable: Boolean(value.autoChangeTable),
       autoClaimBeans: Boolean(value.autoClaimBeans),
       stopAtBeans: Number(value.stopAtBeans || 0),
@@ -68,6 +70,7 @@ watch(
 function payload() {
   return {
     sceneId: Number(draft.sceneId),
+    hostingMode: draft.hostingMode,
     autoChangeTable: draft.autoChangeTable,
     autoClaimBeans: draft.autoClaimBeans,
     stopAtBeans: Math.max(0, Number(draft.stopAtBeans || 0)),
@@ -116,8 +119,14 @@ function clearApiKey() {
       <span class="ai-orbit"><i></i></span>
       <div>
         <div class="ai-title-line">
-          <strong>{{ draft.inferenceEngine === 'OPENAI' ? 'OpenAI LLM' : 'DouZero FullAuto ResNet' }}</strong>
-          <small>{{ draft.inferenceEngine === 'OPENAI' ? '兼容 API' : '欢乐斗地主 ADP 端侧 ONNX' }}</small>
+          <strong>{{
+            draft.hostingMode === 'SERVER'
+              ? '服务器 AI 托管'
+              : draft.inferenceEngine === 'OPENAI'
+                ? 'OpenAI LLM'
+                : 'DouZero FullAuto ResNet'
+          }}</strong>
+          <small>{{ draft.hostingMode === 'SERVER' ? '关闭浏览器后仍继续运行' : '浏览器端本地推理' }}</small>
         </div>
         <p>{{ runtime?.status || '配置后点击开始' }}</p>
         <span v-if="runtime?.decision" class="ai-decision">{{ runtime.decision }}</span>
@@ -132,6 +141,19 @@ function clearApiKey() {
         </option>
       </select>
       <small v-if="selectedMode">准入 {{ Number(selectedMode.minBeans || 0).toLocaleString() }} 豆</small>
+    </label>
+
+    <label class="ai-field hosting-field">
+      <span>托管方式</span>
+      <select v-model="draft.hostingMode" :disabled="active">
+        <option value="BROWSER">浏览器托管</option>
+        <option value="SERVER">服务器托管</option>
+      </select>
+      <small>{{
+        draft.hostingMode === 'SERVER'
+          ? '后端持续执行，关闭浏览器不会停止'
+          : '依赖当前浏览器页面，使用端侧 ONNX 模型'
+      }}</small>
     </label>
 
     <div class="ai-switches">
@@ -182,7 +204,13 @@ function clearApiKey() {
           <option value="DOUZERO">本地DouZero FullAuto ResNet ADP</option>
         </select>
         <small>{{
-          draft.inferenceEngine === 'OPENAI' ? '服务端安全调用，不向浏览器返回密钥' : '浏览器端本地推理'
+          draft.hostingMode === 'SERVER'
+            ? draft.inferenceEngine === 'OPENAI'
+              ? '服务器调用兼容 API，不向浏览器返回密钥'
+              : '服务器使用内置合法动作策略，浏览器关闭后仍可运行'
+            : draft.inferenceEngine === 'OPENAI'
+              ? '服务端安全调用，不向浏览器返回密钥'
+              : '浏览器端本地推理'
         }}</small>
       </label>
       <template v-if="draft.inferenceEngine === 'OPENAI'">

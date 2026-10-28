@@ -160,6 +160,7 @@ export function previewState(kind) {
     session,
     aiConfig: {
       sceneId: 15260,
+      hostingMode: kind === 'ai-config' ? 'SERVER' : 'BROWSER',
       autoChangeTable: true,
       autoClaimBeans: true,
       stopAtBeans: 100000,

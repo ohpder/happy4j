@@ -100,6 +100,13 @@ export function useGameClient() {
       return
     }
     if (envelope.type === 'SNAPSHOT') updateSession(envelope.payload)
+    if (
+      envelope.type === 'EVENT' &&
+      envelope.payload?.kind === 'AI_SERVER' &&
+      envelope.payload.message?.includes('已停止')
+    ) {
+      if (state.aiConfig) state.aiConfig = { ...state.aiConfig, enabled: false }
+    }
     if (envelope.type === 'QR_STATUS') {
       qr.status = playerMessage(envelope.payload.message)
       if (envelope.payload.status === 'CONFIRMED') {

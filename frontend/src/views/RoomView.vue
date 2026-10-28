@@ -46,6 +46,7 @@ watch(
 )
 
 const table = computed(() => props.session.table)
+const serverHosting = computed(() => props.aiRuntime?.hostingMode === 'SERVER')
 const hand = computed(() => sortCards(table.value?.hand || []))
 const localPlayer = computed(
   () => table.value?.players?.find((player) => player.seatId === table.value.seatId) || null,
@@ -271,7 +272,7 @@ onBeforeUnmount(() => {
 <template>
   <main
     class="room-page"
-    :class="{ 'ai-controlled': aiRuntime?.active }"
+    :class="{ 'ai-controlled': aiRuntime?.active, 'server-spectator': serverHosting }"
     @contextmenu.stop.prevent="rightClickPlay"
   >
     <div class="table-texture"></div>
@@ -306,7 +307,8 @@ onBeforeUnmount(() => {
           日志 <b>{{ aiRuntime.logs?.length || 0 }}</b>
         </button>
         <button v-if="aiRuntime?.active" class="ai-room-control" type="button" @click="emit('ai-stop')">
-          <span><i></i>AI 托管中</span><small>{{ aiRuntime.status }}</small
+          <span><i></i>{{ serverHosting ? '服务器托管 · 观战中' : 'AI 托管中' }}</span
+          ><small>{{ serverHosting ? '浏览器实时接收牌桌快照' : aiRuntime.status }}</small
           ><b>停止</b>
         </button>
         <span class="multiplier-panel"
