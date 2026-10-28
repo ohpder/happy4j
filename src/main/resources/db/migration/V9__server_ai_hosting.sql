@@ -1,0 +1,1 @@
+ALTER TABLE ai_configuration ADD COLUMN hosting_mode VARCHAR(16) NOT NULL DEFAULT 'BROWSER';
