@@ -13,9 +13,12 @@ import cc.superbaby.happy4j.domain.TableSnapshot;
 import jakarta.annotation.PreDestroy;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.FloatBuffer;
@@ -40,7 +43,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Service
 public final class ServerOnnxDecisionService implements AutoCloseable {
-    private static final String MODEL_ROOT = "static/models/douzero_fullauto/";
+    @Value("${happy4j.model.root:frontend/public/models/douzero_fullauto/}")
+    private String MODEL_ROOT;
     private static final int FEATURE_WIDTH = 54;
     private static final int FEATURE_ROWS = 40;
     private static final int MAX_BATCH = 64;
@@ -189,7 +193,7 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
     }
 
     private OrtSession loadSession(String role, String file) {
-        try (InputStream input = new ClassPathResource(MODEL_ROOT + file).getInputStream();
+        try (InputStream input = new FileInputStream(MODEL_ROOT + file);
              OrtSession.SessionOptions options = new OrtSession.SessionOptions()) {
             options.setIntraOpNumThreads(1);
             options.setInterOpNumThreads(1);
