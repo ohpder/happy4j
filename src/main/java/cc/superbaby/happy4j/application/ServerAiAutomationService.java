@@ -101,16 +101,19 @@ public final class ServerAiAutomationService {
                 return;
             }
             if (session.gameCredential() == null) return;
+            if (!stillEnabled(userId)) return;
             if (shouldStopAfterRound(configured.configuration(), session)) return;
             if (handleLimits(configured.configuration(), session)) return;
             TableSnapshot table = session.table();
             if (table == null || table.stage() == GameStage.IDLE) {
+                if (!stillEnabled(userId)) return;
                 clients.enterMode(session.id(), configured.configuration().sceneId()).join();
                 publish(userId, session, "服务器托管正在进入选定场次", Map.of("sceneId",
                         configured.configuration().sceneId()));
                 return;
             }
             if (table.stage() == GameStage.TIMED_OUT) {
+                if (!stillEnabled(userId)) return;
                 if (table.availableActions().contains(TableAction.CHANGE_TABLE))
                     clients.changeTable(session.id()).join();
                 return;
@@ -201,6 +204,7 @@ public final class ServerAiAutomationService {
 
     private void settle(cc.superbaby.happy4j.domain.AiConfiguration configuration,
                         ClientSession session, TableSnapshot table) {
+        if (!stillEnabled(session.ownerId())) return;
         if (configuration.stopAfterRound()) {
             configurations.disable(session.ownerId());
             publish(session.ownerId(), session, "本局已结束，服务器托管已停止",
@@ -214,6 +218,7 @@ public final class ServerAiAutomationService {
 
     private void order(cc.superbaby.happy4j.domain.AiConfiguration configuration,
                        ClientSession session, TableSnapshot table) {
+        if (!stillEnabled(session.ownerId())) return;
         if (!table.availableActions().contains(TableAction.CALL_LANDLORD)
                 && !table.availableActions().contains(TableAction.PASS_LANDLORD)
                 && !table.availableActions().contains(TableAction.ROB_LANDLORD)
@@ -227,6 +232,7 @@ public final class ServerAiAutomationService {
                 LOG.debug("服务器 AI 叫抢模型失败，使用规则策略: {}", rootMessage(failure));
             }
         }
+        if (!stillEnabled(session.ownerId())) return;
         clients.order(session.id(), accept).join();
         publish(session.ownerId(), session, accept ? "服务器 AI 叫/抢地主" : "服务器 AI 不叫/不抢",
                 Map.of("phase", "ORDER", "accept", accept));
@@ -234,6 +240,7 @@ public final class ServerAiAutomationService {
 
     private void multiple(cc.superbaby.happy4j.domain.AiConfiguration configuration,
                           ClientSession session, TableSnapshot table) {
+        if (!stillEnabled(session.ownerId())) return;
         ServerAiDecisionService.DoubleDecision decision = local.chooseDouble(table,
                 session.itemCount(table.superDoubleItemId() > 0 ? table.superDoubleItemId() : SUPER_DOUBLE_ITEM_ID));
         if ("OPENAI".equals(configuration.inferenceEngine())) {
@@ -244,6 +251,7 @@ public final class ServerAiAutomationService {
                 LOG.debug("服务器 AI 加倍模型失败，使用规则策略: {}", rootMessage(failure));
             }
         }
+        if (!stillEnabled(session.ownerId())) return;
         switch (decision.action()) {
             case "SUPER_DOUBLE" -> clients.superMultiple(session.id()).join();
             case "DOUBLE" -> clients.multiple(session.id(), true).join();
@@ -255,6 +263,7 @@ public final class ServerAiAutomationService {
 
     private void play(cc.superbaby.happy4j.domain.AiConfiguration configuration,
                       ClientSession session, TableSnapshot table) {
+        if (!stillEnabled(session.ownerId())) return;
         if (table.trusted() && table.availableActions().contains(TableAction.CANCEL_TRUST)) {
             clients.trust(session.id(), false).join();
             return;
@@ -273,6 +282,7 @@ public final class ServerAiAutomationService {
                 LOG.debug("服务器 AI 出牌模型失败，使用规则策略: {}", rootMessage(failure));
             }
         }
+        if (!stillEnabled(session.ownerId())) return;
         clients.play(session.id(), decision.cards(), decision.pass(), null).join();
         publish(session.ownerId(), session, decision.pass() ? "服务器 AI 选择不出" : "服务器 AI 已出牌",
                 Map.of("phase", "PLAY", "cards", decision.cards(), "candidates", decision.candidates(),
@@ -297,6 +307,10 @@ public final class ServerAiAutomationService {
 
     private static void publish(UUID userId, ClientSession session, String message, Map<String, ?> detail) {
         if (session != null) session.publish("AI_SERVER", message, detail);
+    }
+
+    private boolean stillEnabled(UUID userId) {
+        return configurations.get(userId).enabled();
     }
 
     private static String rootMessage(Throwable failure) {

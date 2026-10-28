@@ -27,7 +27,7 @@ HTTP 拦截器和 WebSocket 命令处理器在执行前校验归属。
 浏览器连接 `/ws?token=...`，收到 `RESULT/BOOT` 后使用 `GameCommand`：
 
 `SESSION_CREATE`, `QR_START`, `MODE_ENTER`, `READY`, `ORDER`, `MULTIPLE`, `PLAY`,
-`TRUST`, `CHANGE_TABLE`, `LEAVE_ROOM`, `MISSIONS_REFRESH`, `MISSION_CLAIM` 等。
+`TRUST`, `CHANGE_TABLE`, `LEAVE_ROOM`, `AI_STOP`, `MISSIONS_REFRESH`, `MISSION_CLAIM` 等。
 
 服务端自行轮询扫码；聚合事件经 `EVENT` 和 `SNAPSHOT` 推送。浏览器断线后指数退避重连，
 没有固定频率快照轮询。
