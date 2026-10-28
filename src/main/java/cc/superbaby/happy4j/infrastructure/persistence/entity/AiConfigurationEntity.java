@@ -26,6 +26,8 @@ public class AiConfigurationEntity {
     private UUID userId;
     @Column(name = "scene_id", nullable = false)
     private int sceneId;
+    @Column(name = "hosting_mode", nullable = false, length = 16)
+    private String hostingMode = "BROWSER";
     @Column(name = "auto_change_table", nullable = false)
     private boolean autoChangeTable = true;
     @Column(name = "auto_claim_beans", nullable = false)
@@ -59,10 +61,11 @@ public class AiConfigurationEntity {
         this.userId = userId;
     }
 
-    public void apply(int sceneId, boolean autoChangeTable, boolean autoClaimBeans,
+    public void apply(int sceneId, String hostingMode, boolean autoChangeTable, boolean autoClaimBeans,
                       long stopAtBeans, long stopBelowBeans, String inferenceEngine,
                       String apiBaseUrl, String apiModel, boolean enabled) {
         this.sceneId = sceneId;
+        this.hostingMode = hostingMode;
         this.autoChangeTable = autoChangeTable;
         this.autoClaimBeans = autoClaimBeans;
         this.stopAtBeans = stopAtBeans;
@@ -94,6 +97,14 @@ public class AiConfigurationEntity {
         return inferenceEngine;
     }
 
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void enabled(boolean value) {
+        enabled = value;
+    }
+
     public String getApiBaseUrl() {
         return apiBaseUrl;
     }
@@ -109,7 +120,7 @@ public class AiConfigurationEntity {
     }
 
     public AiConfiguration toDomain() {
-        return new AiConfiguration(sceneId, autoChangeTable, autoClaimBeans,
+        return new AiConfiguration(sceneId, hostingMode, autoChangeTable, autoClaimBeans,
                 stopAtBeans, stopBelowBeans, inferenceEngine, apiBaseUrl, apiModel,
                 hasApiKey(), enabled, updatedAt);
     }

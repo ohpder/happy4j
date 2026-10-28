@@ -5,6 +5,7 @@ import java.time.Instant;
 /** Per-site-user settings for the browser-side DouZero HappyDouDiZhu automation loop. */
 public record AiConfiguration(
         int sceneId,
+        String hostingMode,
         boolean autoChangeTable,
         boolean autoClaimBeans,
         long stopAtBeans,
@@ -17,6 +18,7 @@ public record AiConfiguration(
         Instant updatedAt) {
     public AiConfiguration {
         sceneId = Math.max(0, sceneId);
+        hostingMode = hostingMode == null || hostingMode.isBlank() ? "BROWSER" : hostingMode;
         stopAtBeans = Math.max(0, stopAtBeans);
         stopBelowBeans = Math.max(0, stopBelowBeans);
         inferenceEngine = inferenceEngine == null || inferenceEngine.isBlank() ? "DOUZERO" : inferenceEngine;
@@ -25,8 +27,16 @@ public record AiConfiguration(
         updatedAt = updatedAt == null ? Instant.EPOCH : updatedAt;
     }
 
+    public AiConfiguration(int sceneId, boolean autoChangeTable, boolean autoClaimBeans,
+                           long stopAtBeans, long stopBelowBeans, String inferenceEngine,
+                           String apiBaseUrl, String apiModel, boolean apiKeyConfigured,
+                           boolean enabled, Instant updatedAt) {
+        this(sceneId, "BROWSER", autoChangeTable, autoClaimBeans, stopAtBeans, stopBelowBeans,
+                inferenceEngine, apiBaseUrl, apiModel, apiKeyConfigured, enabled, updatedAt);
+    }
+
     public static AiConfiguration defaults() {
-        return new AiConfiguration(0, true, true, 0, 0,
+        return new AiConfiguration(0, "BROWSER", true, true, 0, 0,
                 "DOUZERO", "", "", false, false, Instant.EPOCH);
     }
 }

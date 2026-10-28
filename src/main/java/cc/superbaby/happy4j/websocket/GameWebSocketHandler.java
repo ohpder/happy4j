@@ -95,6 +95,7 @@ public class GameWebSocketHandler extends TextWebSocketHandler {
         if (command == GameCommand.AI_CONFIG_SAVE) {
             var update = new AiConfigurationService.Update(
                     payload.path("sceneId").asInt(),
+                    payload.path("hostingMode").asString("BROWSER"),
                     payload.path("autoChangeTable").asBoolean(true),
                     payload.path("autoClaimBeans").asBoolean(true),
                     payload.path("stopAtBeans").asLong(),

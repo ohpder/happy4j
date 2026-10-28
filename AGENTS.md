@@ -2,14 +2,16 @@
 
 ## Project Structure & Module Organization
 
-- `src/main/java/cc/superbaby/happy4j/` contains the Java 17 Spring Boot application. Keep domain and use-case code in `domain/` and `application/`; adapters belong under `infrastructure/`, `web/`, or `websocket/`.
+- `src/main/java/cc/superbaby/happy4j/` contains the Java 25 Spring Boot application. Keep domain and use-case code in `domain/` and `application/`; adapters belong under `infrastructure/`, `web/`, or `websocket/`.
 - Protocol definitions are in `src/main/proto/` and protocol implementations in `protocol/`. Protobuf Java classes and frontend build output are generated under `build/`; do not edit generated files.
 - `src/test/java/` holds JUnit tests. The Vue 3 frontend is in `frontend/src/`, with assets and ONNX models under `frontend/public/`. Design and protocol notes are in `docs/`; helper model tools are in `tools/`.
 
 ## Build, Test, and Development Commands
 
-- `docker compose up -d mysql` starts the local MySQL dependency.
+- `docker compose up -d happy4j-mysql` starts the local MySQL dependency.
 - `./gradlew clean test bootJar --no-daemon` generates protobufs, checks/builds the frontend, runs all tests, and creates the executable JAR.
+- `./gradlew buildFrontend` rebuilds the frontend and recreates the `happy4j-frontend` Docker service.
+- `./gradlew buildBackend` rebuilds the backend JAR and recreates the `happy4j-backed` Docker service.
 - `./gradlew test` runs JUnit and the frontend check task.
 - `cd frontend && npm ci && npm run check` installs frontend dependencies and runs Prettier, ESLint, and Vitest.
 - `cd frontend && npm run dev` starts Vite with `/api` and `/ws` proxied to the backend.

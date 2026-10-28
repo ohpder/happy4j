@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -36,6 +37,7 @@ public class AiConfigurationService {
     @Transactional
     public AiConfiguration save(UUID userId, Update request) {
         int sceneId = validateScene(request.sceneId());
+        String hostingMode = normalizeHostingMode(request.hostingMode());
         long stopAt = validateLimit(request.stopAtBeans(), "目标欢乐豆");
         long stopBelow = validateLimit(request.stopBelowBeans(), "最低欢乐豆");
         if (stopAt > 0 && stopBelow > 0 && stopBelow >= stopAt)
@@ -53,8 +55,23 @@ public class AiConfigurationService {
             entity.apiKey(encrypted.encrypted(), encrypted.iv());
         }
         if (request.enabled() && "OPENAI".equals(engine)) validateProvider(baseUrl, model);
-        entity.apply(sceneId, request.autoChangeTable(), request.autoClaimBeans(),
+        entity.apply(sceneId, hostingMode, request.autoChangeTable(), request.autoClaimBeans(),
                 stopAt, stopBelow, engine, baseUrl, model, request.enabled());
+        return configurations.save(entity).toDomain();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ServerConfiguration> serverConfigurations() {
+        return configurations.findAllByEnabledTrueAndHostingMode("SERVER").stream()
+                .map(entity -> new ServerConfiguration(entity.getUserId(), entity.toDomain()))
+                .toList();
+    }
+
+    @Transactional
+    public AiConfiguration disable(UUID userId) {
+        AiConfigurationEntity entity = configurations.findById(userId).orElse(null);
+        if (entity == null) return AiConfiguration.defaults();
+        entity.enabled(false);
         return configurations.save(entity).toDomain();
     }
 
@@ -92,6 +109,13 @@ public class AiConfigurationService {
         if (!engine.equals("DOUZERO") && !engine.equals("OPENAI"))
             throw new IllegalArgumentException("未知AI推理引擎");
         return engine;
+    }
+
+    private static String normalizeHostingMode(String value) {
+        String mode = value == null ? "BROWSER" : value.trim().toUpperCase(Locale.ROOT);
+        if (!mode.equals("BROWSER") && !mode.equals("SERVER"))
+            throw new IllegalArgumentException("未知AI托管方式");
+        return mode;
     }
 
     private static String normalizeUrl(String value) {
@@ -139,12 +163,22 @@ public class AiConfigurationService {
         return result;
     }
 
-    public record Update(int sceneId, boolean autoChangeTable, boolean autoClaimBeans,
+    public record Update(int sceneId, String hostingMode, boolean autoChangeTable, boolean autoClaimBeans,
                          long stopAtBeans, long stopBelowBeans, String inferenceEngine,
                          String apiBaseUrl, String apiModel, String apiKey,
                          boolean clearApiKey, boolean enabled) {
+        public Update(int sceneId, boolean autoChangeTable, boolean autoClaimBeans,
+                      long stopAtBeans, long stopBelowBeans, String inferenceEngine,
+                      String apiBaseUrl, String apiModel, String apiKey,
+                      boolean clearApiKey, boolean enabled) {
+            this(sceneId, "BROWSER", autoChangeTable, autoClaimBeans, stopAtBeans, stopBelowBeans,
+                    inferenceEngine, apiBaseUrl, apiModel, apiKey, clearApiKey, enabled);
+        }
     }
 
     public record ProviderConfiguration(URI endpoint, String model, String apiKey) {
+    }
+
+    public record ServerConfiguration(UUID userId, AiConfiguration configuration) {
     }
 }

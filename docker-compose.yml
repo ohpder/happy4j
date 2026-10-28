@@ -1,5 +1,5 @@
 services:
-  mysql:
+  happy4j-mysql:
     image: mysql:8.4
     container_name: happy4j-mysql
     restart: unless-stopped
@@ -9,12 +9,41 @@ services:
       MYSQL_PASSWORD: happy4j
       MYSQL_ROOT_PASSWORD: happy4j-root
       TZ: Asia/Shanghai
-    ports: ["3306:3306"]
     volumes: ["happy4j_mysql:/var/lib/mysql"]
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uhappy4j", "-phappy4j"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "0.0.0.0", "-uhappy4j", "-phappy4j"]
       interval: 5s
       timeout: 3s
       retries: 20
+  happy4j-backed:
+    image: ubuntu/jre:25-26.04_stable
+    container_name: happy4j
+    restart: unless-stopped
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    environment:
+      - HAPPY4J_DB_URL=jdbc:mysql://happy4j-mysql:3306/happy4j?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+      - HAPPY4J_DB_USERNAME=happy4j
+      - HAPPY4J_DB_PASSWORD=happy4j
+      - TZ=Asia/Shanghai
+    depends_on:
+      - happy4j-mysql
+    volumes:
+      - ./build/libs/happy4j-0.0.1-SNAPSHOT.jar:/app/happy4j.jar
+    entrypoint: ["java", "-jar", "happy4j.jar"]
+  happy4j-frontend:
+    image: nginx:latest
+    container_name: happy4j-frontend
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./build/generated/frontend/static/:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - happy4j-backed
 volumes:
   happy4j_mysql:

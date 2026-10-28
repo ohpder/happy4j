@@ -5,6 +5,8 @@ import cc.superbaby.happy4j.infrastructure.persistence.entity.AiConfigurationEnt
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
+import java.util.List;
 
 public interface AiConfigurationRepository extends JpaRepository<AiConfigurationEntity, UUID> {
+    List<AiConfigurationEntity> findAllByEnabledTrueAndHostingMode(String hostingMode);
 }

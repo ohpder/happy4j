@@ -4,6 +4,29 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
+import org.gradle.api.DefaultTask
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.TaskAction
+import org.gradle.process.ExecOperations
+
+import javax.inject.Inject
+
+abstract class DockerRestartTask extends DefaultTask {
+    @Inject
+    abstract ExecOperations getExecOperations()
+
+    @Input
+    abstract Property<String> getServiceName()
+
+    @TaskAction
+    void restart() {
+        execOperations.exec {
+            commandLine 'docker', 'compose', 'up', '-d', '--force-recreate', '--no-deps', serviceName.get()
+        }
+    }
+}
+
 group = 'cc.superbaby'
 version = '0.0.1-SNAPSHOT'
 description = 'happy4j'
@@ -17,7 +40,7 @@ def protocClassifier = "${protocOs}-${protocArch}"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -101,7 +124,26 @@ tasks.register('frontendBuild', Exec) {
         exclude 'node_modules/**', 'dist/**'
     })
     outputs.dir(generatedFrontendResourceDir.map { it.dir('static') })
+    outputs.upToDateWhen { false }
     commandLine 'npm', 'run', 'build'
+}
+
+tasks.register('buildFrontend', DockerRestartTask) {
+    group = 'build'
+    description = 'Builds the frontend and restarts the frontend Docker container.'
+    dependsOn tasks.named('frontendBuild')
+    serviceName = 'happy4j-frontend'
+}
+
+tasks.register('buildBackend', DockerRestartTask) {
+    group = 'build'
+    description = 'Builds the backend JAR and restarts the backend Docker container.'
+    dependsOn tasks.named('bootJar')
+    serviceName = 'happy4j-backed'
+}
+
+tasks.named('bootJar') {
+    outputs.upToDateWhen { false }
 }
 
 tasks.register('generateProto', Exec) {
@@ -138,5 +180,7 @@ tasks.named('test') {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs += ['-Xlint:all,-processing', '-Werror']
+    options.fork = true
+    options.forkOptions.memoryMaximumSize = '2g'
+    options.compilerArgs += ['-Xlint:all,-processing,-this-escape,-dangling-doc-comments', '-Werror']
 }
