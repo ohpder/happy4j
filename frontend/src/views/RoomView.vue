@@ -195,6 +195,14 @@ function actionDisabled(action) {
   return false
 }
 
+function exitRoom() {
+  if (props.aiRuntime?.active) {
+    emit('lobby')
+    return
+  }
+  void act('LEAVE_ROOM')
+}
+
 async function act(action) {
   if (actionPending.value || props.aiRuntime?.active) return
   if (action === 'PLAY' && selected.value.size === 0) return
@@ -283,10 +291,10 @@ onBeforeUnmount(() => {
         <button
           class="room-back"
           type="button"
-          :disabled="!actionSet.has('LEAVE_ROOM')"
-          @click="act('LEAVE_ROOM')"
+          :disabled="!props.aiRuntime?.active && !actionSet.has('LEAVE_ROOM')"
+          @click="exitRoom"
         >
-          <span>‹</span>退出
+          <span>‹</span>{{ props.aiRuntime?.active ? '回到大厅' : '退出' }}
         </button>
         <div class="room-brand">
           <i>♠</i><span><b>欢乐牌局</b><small>PREMIUM TABLE</small></span>

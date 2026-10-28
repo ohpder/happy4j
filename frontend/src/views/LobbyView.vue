@@ -24,6 +24,7 @@ const emit = defineEmits([
   'ai-save',
   'ai-logs',
   'ai-provider-test',
+  'watch',
 ])
 const category = ref('ALL')
 const categories = [
@@ -65,9 +66,11 @@ const missionState = { 0: '未开始', 1: '待激活', 2: '进行中', 3: '可�
       :session="session"
       :connected="connected"
       :tab="tab"
+      :ai-runtime="aiRuntime"
       @tab="emit('tab', $event)"
       @qr="emit('qr')"
       @logout="emit('logout')"
+      @watch="emit('watch')"
     />
 
     <section v-if="tab === 'modes'" class="lobby-content mode-view">

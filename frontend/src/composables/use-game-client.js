@@ -15,10 +15,12 @@ const state = reactive({
   preview: false,
   evicted: false,
   aiConfig: null,
+  aiStopReason: '',
 })
 
 const screen = ref('lobby')
 const lobbyTab = ref('modes')
+const roomHidden = ref(false)
 const qr = reactive({ open: false, loading: false, image: '', status: '请选择登录方式' })
 let socket = null
 const { push } = useToasts()
@@ -33,12 +35,27 @@ export function useGameClient() {
     state.sessions[snapshot.id] = snapshot
     state.activeSessionId ||= snapshot.id
     const active = state.sessions[state.activeSessionId]
-    if (active?.table?.sceneId > 0 && active.table.stage !== 'IDLE') screen.value = 'room'
-    if (!active?.table?.sceneId || active.table.stage === 'IDLE') screen.value = 'lobby'
     if (active?.phase === 'EVICTED') {
+      roomHidden.value = false
       state.evicted = true
       screen.value = 'lobby'
+      return
     }
+    if (roomHidden.value) return
+    if (active?.table?.sceneId > 0 && active.table.stage !== 'IDLE') screen.value = 'room'
+    if (!active?.table?.sceneId || active.table.stage === 'IDLE') screen.value = 'lobby'
+  }
+
+  function hideRoom() {
+    roomHidden.value = true
+    screen.value = 'lobby'
+  }
+
+  function showRoom() {
+    roomHidden.value = false
+    const active = state.sessions[state.activeSessionId]
+    if (active?.table?.sceneId > 0 && active.table.stage !== 'IDLE') screen.value = 'room'
+    else screen.value = 'lobby'
   }
 
   async function initialize() {
@@ -54,6 +71,8 @@ export function useGameClient() {
       state.activeSessionId = data.session.id
       state.evicted = preview === 'evicted'
       state.aiConfig = data.aiConfig || null
+      state.aiStopReason = ''
+      roomHidden.value = false
       screen.value = ['lobby', 'evicted', 'ai-config'].includes(preview) ? 'lobby' : 'room'
       state.loading = false
       return
@@ -84,6 +103,7 @@ export function useGameClient() {
       state.user = data.user
       state.modes = data.modes || []
       state.aiConfig = data.aiConfig || null
+      state.aiStopReason = ''
       state.sessions = Object.fromEntries((data.sessions || []).map((item) => [item.id, item]))
       state.activeSessionId = data.sessions?.[0]?.id || null
       if (!state.activeSessionId) {
@@ -105,6 +125,7 @@ export function useGameClient() {
       envelope.payload?.kind === 'AI_SERVER' &&
       envelope.payload.message?.includes('已停止')
     ) {
+      state.aiStopReason = envelope.payload.message
       if (state.aiConfig) state.aiConfig = { ...state.aiConfig, enabled: false, stopAfterRound: false }
     }
     if (envelope.type === 'QR_STATUS') {
@@ -170,6 +191,8 @@ export function useGameClient() {
     state.sessions = {}
     state.activeSessionId = null
     state.aiConfig = null
+    state.aiStopReason = ''
+    roomHidden.value = false
     screen.value = 'lobby'
   }
 
@@ -177,6 +200,7 @@ export function useGameClient() {
     state,
     screen,
     lobbyTab,
+    roomHidden,
     qr,
     session,
     table,
@@ -187,6 +211,8 @@ export function useGameClient() {
     startQr,
     openQr,
     logout,
+    hideRoom,
+    showRoom,
     updateSession,
   }
 }

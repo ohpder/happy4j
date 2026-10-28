@@ -8,6 +8,7 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.LinkedHashMap;
@@ -780,8 +781,14 @@ public final class LotusPayloadCodec {
         result.put("ResultID", in.readUInt32());
         int length = in.readUInt16();
         result.put("ResultStrLen", length);
-        result.put("ResultStr", new String(in.readBytes(length), StandardCharsets.UTF_8));
+        result.put("ResultStr", decodeResultText(in.readBytes(length)));
         return result;
+    }
+
+    private static String decodeResultText(byte[] value) {
+        String utf8 = new String(value, StandardCharsets.UTF_8);
+        return utf8.indexOf('\ufffd') >= 0
+                ? new String(value, Charset.forName("GB18030")) : utf8;
     }
 
     private static Map<String, Object> decodeTlvList(TdrBufferReader in) {

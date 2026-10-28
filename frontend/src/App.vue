@@ -30,10 +30,11 @@ async function authenticate(path, values) {
 
 async function enterMode(mode) {
   try {
+    client.showRoom()
     await client.command('MODE_ENTER', { sceneId: Number(mode.sceneId) })
-    client.screen.value = 'room'
+    client.showRoom()
   } catch {
-    client.screen.value = 'lobby'
+    client.hideRoom()
   }
 }
 
@@ -112,7 +113,7 @@ onBeforeUnmount(() => document.removeEventListener('contextmenu', blockContextMe
     :execute="execute"
     :ai-runtime="ai.runtime"
     :clear-ai-logs="ai.clearLogs"
-    @lobby="client.screen.value = 'lobby'"
+    @lobby="client.hideRoom"
     @ai-stop="openStopDialog"
   />
   <LobbyView
@@ -133,6 +134,7 @@ onBeforeUnmount(() => document.removeEventListener('contextmenu', blockContextMe
     @ai-save="ai.save"
     @ai-logs="aiLogOpen = true"
     @ai-provider-test="testAiProvider"
+    @watch="client.showRoom"
   />
 
   <QrModal

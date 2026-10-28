@@ -39,7 +39,7 @@ function time(value) {
       <div>
         <span>DOUZERO AUTOPILOT</span>
         <h1>AI 托管中心</h1>
-        <p>配置自动对局策略、资金保护与场次循环，可选择浏览器托管或关闭页面后仍运行的服务器托管。</p>
+        <p>配置自动对局策略、资金保护与场次循环；回到大厅后托管仍在后台运行，可随时进入观战。</p>
       </div>
       <div class="ai-page-status" :class="{ active: runtime?.active }">
         <i></i

@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * Deterministic server-side fallback policy used when server hosting does not use an external model.
+ * Deterministic server-side fallback policy used when an ONNX or external model is unavailable.
  * It deliberately validates every generated move with the same protocol rules as the game client.
  */
 @Service
@@ -73,6 +73,11 @@ public final class ServerAiDecisionService {
         }
         all.sort(moveComparator());
         return all.size() > 200 ? List.copyOf(all.subList(0, 200)) : List.copyOf(all);
+    }
+
+    /** All native-valid moves, used for the FullAuto landlord pre-game score. */
+    public List<List<Integer>> allMoves(TableSnapshot table) {
+        return List.copyOf(enumerateAll(table.hand()));
     }
 
     private List<List<Integer>> enumerateAll(List<Card> hand) {

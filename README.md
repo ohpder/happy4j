@@ -112,8 +112,8 @@ protocol/generated/     Gradle 构建生成的强类型 Java
 ## AI 全自动出牌（DouZero）
 
 默认推理引擎是 **DouZero FullAuto ResNet**：叫抢地主、加倍、出牌三个阶段各自加载
-独立的 ONNX 模型，全部在浏览器内用 `onnxruntime-web` 本地推理，手牌不会上传到任何
-服务端或第三方。模型与转换脚本来自两个上游开源项目（均为 Apache-2.0，见
+独立的 ONNX 模型。浏览器托管使用 `onnxruntime-web`，服务器托管使用 Java
+`onnxruntime`；手牌不会上传到第三方模型服务。模型与转换脚本来自两个上游开源项目（均为 Apache-2.0，见
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)）：
 
 - [`DouZero_For_HappyDouDiZhu`](https://github.com/tianqiraf/DouZero_For_HappyDouDiZhu) —
@@ -130,8 +130,14 @@ protocol/generated/     Gradle 构建生成的强类型 Java
 AI 托管中心支持“浏览器托管”和“服务器托管”。浏览器托管使用页面内 ONNX 推理；服务器托管由
 Java 后台持续运行，浏览器关闭后仍会自动进入场次、叫抢、加倍、出牌和换桌；浏览器保持打开时会
 实时接收牌桌快照进入观战视图。服务器托管可使用
-OpenAI 兼容模型，也可使用后台内置的合法动作策略；浏览器支持观战和结束托管，结束时可选择立即停止，
+OpenAI 兼容模型，也可使用后台内置的 ONNX 模型；浏览器支持观战和结束托管，结束时可选择立即停止，
 或本局结算后停止。
+
+服务器托管会把用户设置的最低欢乐豆保护线与所选场次的最低准入豆数取较高值；即使保护线填写为 0，
+余额低于场次准入线时也会自动停止托管，并在观战页面同步显示停止原因。
+
+服务器托管进行中可以从牌桌“回到大厅”，这只隐藏当前牌桌视图，不会发送退出房间或停止托管命令；大厅保留实时牌局快照，
+可通过“进入观战”随时返回牌桌。浏览器在线时，服务器产生的牌桌事件、余额和托管状态会通过 WebSocket 自动同步。
 
 除本地 DouZero 模型外，也可以在 AI 面板里切换为 **OpenAI 兼容大模型**决策
 （`OpenAiDecisionService`）：把当前候选动作和公开牌局信息发给任意 OpenAI 协议兼容的

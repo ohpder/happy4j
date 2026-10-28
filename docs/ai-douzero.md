@@ -3,8 +3,12 @@
 牌局托管方式有两种：浏览器托管在当前页面运行 ONNX 推理，关闭页面后停止；服务器托管由
 Java 后台持续读取牌桌快照并提交动作，关闭浏览器后仍会继续；浏览器保持打开时可实时观战并结束托管。
 浏览器中的“结束托管”支持立即停止，或在本局结算后停止；后者会持久化到服务端，断开浏览器也不会丢失。
-服务器托管选择 OpenAI 兼容引擎时
-由后台调用已加密保存的 API 配置；选择 DOUZERO 时使用后台内置的合法牌型策略作为决策器。
+服务器托管选择 OpenAI 兼容引擎时由后台调用已加密保存的 API 配置；选择 DOUZERO 时由 Java
+后台使用 ONNX Runtime 加载同一组 FullAuto 模型，浏览器关闭后仍可完成叫抢、加倍和出牌。
+服务器托管还会检查余额：实际停止线取配置的最低欢乐豆与所选场次最低准入豆数中的较高值，余额过少时自动禁用托管，
+并通过观战连接显示“欢乐豆过少，服务器托管已停止”。
+服务器托管运行期间可以从牌桌返回大厅，后台连接和自动出牌继续运行；大厅的“进入观战”会重新打开当前牌局。
+浏览器在线时，服务器牌桌快照、事件和余额会通过 WebSocket 实时同步。
 
 ## 主模型来源
 
@@ -12,7 +16,7 @@ Java 后台持续读取牌桌快照并提交动作，关闭浏览器后仍会继
 - 固定提交：`6d20491da216c989d23cf2883498758fb78e9f8d`
 - 出牌模型：`baselines/resnet/resnet_{landlord,landlord_up,landlord_down}.ckpt`
 - 局前模型：`bid_weights.pkl`、`landlord_up_weights.pkl`、`landlord_down_weights.pkl`
-- 推理运行时：`onnxruntime-web 1.23.2`，WASM 单线程，按阶段和角色懒加载。
+- 浏览器推理运行时：`onnxruntime-web 1.23.2`，WASM 单线程，按阶段和角色懒加载；服务器推理运行时：`onnxruntime 1.23.2`。
 - 浏览器模型：`frontend/public/models/douzero_fullauto/`
 - 转换器：`tools/douzero_fullauto/export_onnx.py`
 
@@ -59,4 +63,5 @@ FullAuto 的主要差异如下：
 
 - FullAuto ResNet 仅用于经典斗地主。
 - 同一浏览器一次只提交一个 AI 动作，并以牌桌快照指纹去重。
-- 模型在浏览器本地推理，手牌不会提交到额外的 AI 服务。
+- 浏览器托管在本地推理，手牌不会提交到额外的 AI 服务；服务器托管只在本机 JVM 内运行 ONNX，
+  不会把牌局发送到第三方模型服务。

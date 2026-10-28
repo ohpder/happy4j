@@ -20,12 +20,18 @@ public class GameRealtimeGateway {
         this.clients = clients;
     }
 
-    public void watch(ClientSession session) {
-        if (!watched.add(session.id())) return;
+    public boolean watch(ClientSession session) {
+        if (!watched.add(session.id())) return false;
         session.subscribe(event -> {
             hub.send(session.ownerId(), WebSocketEnvelope.of("EVENT", null, event));
             hub.send(session.ownerId(), WebSocketEnvelope.of("SNAPSHOT", null, session.snapshot()));
         });
+        return true;
+    }
+
+    public void watchAndSync(ClientSession session) {
+        if (watch(session))
+            hub.send(session.ownerId(), WebSocketEnvelope.of("SNAPSHOT", null, session.snapshot()));
     }
 
     public void watchUser(UUID userId) {

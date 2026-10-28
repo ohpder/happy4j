@@ -1,10 +1,12 @@
 package cc.superbaby.happy4j.application;
 
 import cc.superbaby.happy4j.domain.ClientSession;
+import cc.superbaby.happy4j.domain.GameMode;
 import cc.superbaby.happy4j.domain.GameStage;
 import cc.superbaby.happy4j.domain.MissionTask;
 import cc.superbaby.happy4j.domain.TableAction;
 import cc.superbaby.happy4j.domain.TableSnapshot;
+import cc.superbaby.happy4j.websocket.GameRealtimeGateway;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -41,6 +43,8 @@ public final class ServerAiAutomationService {
     private final HappyDdzClientService clients;
     private final OpenAiDecisionService openAi;
     private final ServerAiDecisionService local;
+    private final ServerOnnxDecisionService onnx;
+    private final GameRealtimeGateway realtime;
     private final ObjectMapper json;
     private final ScheduledExecutorService ticker;
     private final ExecutorService workers;
@@ -49,11 +53,14 @@ public final class ServerAiAutomationService {
 
     public ServerAiAutomationService(AiConfigurationService configurations, HappyDdzClientService clients,
                                      OpenAiDecisionService openAi, ServerAiDecisionService local,
+                                     ServerOnnxDecisionService onnx, GameRealtimeGateway realtime,
                                      ObjectMapper json) {
         this.configurations = configurations;
         this.clients = clients;
         this.openAi = openAi;
         this.local = local;
+        this.onnx = onnx;
+        this.realtime = realtime;
         this.json = json;
         ThreadFactory threads = runnable -> {
             Thread thread = new Thread(runnable, "server-ai-worker");
@@ -93,7 +100,8 @@ public final class ServerAiAutomationService {
             ClientSession session = findSession(userId, configured.configuration().sceneId());
             if (session == null) {
                 try {
-                    clients.resumeSavedLogin(userId).join();
+                    ClientSession.Snapshot restored = clients.resumeSavedLogin(userId).join();
+                    realtime.watchAndSync(clients.ownedSession(userId, restored.id()));
                     publish(userId, null, "服务器托管已恢复游戏登录", Map.of());
                 } catch (RuntimeException failure) {
                     LOG.debug("服务器 AI 暂无可用游戏会话 user={}: {}", userId, rootMessage(failure));
@@ -101,6 +109,7 @@ public final class ServerAiAutomationService {
                 return;
             }
             if (session.gameCredential() == null) return;
+            realtime.watchAndSync(session);
             if (!stillEnabled(userId)) return;
             if (shouldStopAfterRound(configured.configuration(), session)) return;
             if (handleLimits(configured.configuration(), session)) return;
@@ -174,13 +183,29 @@ public final class ServerAiAutomationService {
                     Map.of("beans", beans, "limit", configuration.stopAtBeans()));
             return true;
         }
-        if (configuration.stopBelowBeans() > 0 && beans < configuration.stopBelowBeans()) {
+        long sceneMinimum = minimumEntryBeans(configuration.sceneId());
+        long effectiveStopBelow = effectiveStopBelowBeans(configuration.stopBelowBeans(), sceneMinimum);
+        if (effectiveStopBelow > 0 && beans < effectiveStopBelow) {
             configurations.disable(session.ownerId());
-            publish(session.ownerId(), session, "欢乐豆低于保护线，服务器托管已停止",
-                    Map.of("beans", beans, "limit", configuration.stopBelowBeans()));
+            publish(session.ownerId(), session, "欢乐豆过少，服务器托管已停止",
+                    Map.of("beans", beans, "limit", effectiveStopBelow,
+                            "configuredLimit", configuration.stopBelowBeans(),
+                            "sceneMinBeans", sceneMinimum));
             return true;
         }
         return false;
+    }
+
+    private long minimumEntryBeans(int sceneId) {
+        return clients.gameModes().stream()
+                .filter(mode -> mode.enabled() && mode.sceneId() == sceneId)
+                .mapToLong(GameMode::minBeans)
+                .max()
+                .orElse(0L);
+    }
+
+    static long effectiveStopBelowBeans(long configuredLimit, long sceneMinimum) {
+        return Math.max(0L, Math.max(configuredLimit, sceneMinimum));
     }
 
     private boolean shouldStopAfterRound(cc.superbaby.happy4j.domain.AiConfiguration configuration,
@@ -224,7 +249,13 @@ public final class ServerAiAutomationService {
                 && !table.availableActions().contains(TableAction.ROB_LANDLORD)
                 && !table.availableActions().contains(TableAction.PASS_ROB)) return;
         boolean accept = local.chooseLandlord(table);
-        if ("OPENAI".equals(configuration.inferenceEngine())) {
+        if ("DOUZERO".equals(configuration.inferenceEngine())) {
+            try {
+                accept = onnx.chooseLandlord(table);
+            } catch (RuntimeException failure) {
+                LOG.debug("服务器 ONNX 叫抢模型失败，使用规则策略: {}", rootMessage(failure));
+            }
+        } else if ("OPENAI".equals(configuration.inferenceEngine())) {
             try {
                 accept = openAi.decide(session.ownerId(), session, phase("ORDER")).join()
                         .action().equals("ACCEPT");
@@ -243,7 +274,14 @@ public final class ServerAiAutomationService {
         if (!stillEnabled(session.ownerId())) return;
         ServerAiDecisionService.DoubleDecision decision = local.chooseDouble(table,
                 session.itemCount(table.superDoubleItemId() > 0 ? table.superDoubleItemId() : SUPER_DOUBLE_ITEM_ID));
-        if ("OPENAI".equals(configuration.inferenceEngine())) {
+        if ("DOUZERO".equals(configuration.inferenceEngine())) {
+            try {
+                decision = onnx.chooseDouble(table,
+                        session.itemCount(table.superDoubleItemId() > 0 ? table.superDoubleItemId() : SUPER_DOUBLE_ITEM_ID));
+            } catch (RuntimeException failure) {
+                LOG.debug("服务器 ONNX 加倍模型失败，使用规则策略: {}", rootMessage(failure));
+            }
+        } else if ("OPENAI".equals(configuration.inferenceEngine())) {
             try {
                 String action = openAi.decide(session.ownerId(), session, phase("DOUBLE")).join().action();
                 decision = new ServerAiDecisionService.DoubleDecision(action, decision.strength());
@@ -271,11 +309,18 @@ public final class ServerAiAutomationService {
         if (table.turnSeatId() != table.seatId()) return;
         if (!table.availableActions().contains(TableAction.PLAY)
                 && !table.availableActions().contains(TableAction.PASS)) return;
+        List<List<Integer>> legalMoves = local.legalMoves(table);
         ServerAiDecisionService.PlayDecision localDecision = local.choosePlay(table);
         ServerAiDecisionService.PlayDecision decision = localDecision;
-        if ("OPENAI".equals(configuration.inferenceEngine()) && !local.legalMoves(table).isEmpty()) {
+        if ("DOUZERO".equals(configuration.inferenceEngine()) && !legalMoves.isEmpty()) {
             try {
-                var remote = openAi.decide(session.ownerId(), session, playPayload(local.legalMoves(table))).join();
+                decision = onnx.choosePlay(table, legalMoves);
+            } catch (RuntimeException failure) {
+                LOG.debug("服务器 ONNX 出牌模型失败，使用规则策略: {}", rootMessage(failure));
+            }
+        } else if ("OPENAI".equals(configuration.inferenceEngine()) && !legalMoves.isEmpty()) {
+            try {
+                var remote = openAi.decide(session.ownerId(), session, playPayload(legalMoves)).join();
                 decision = new ServerAiDecisionService.PlayDecision(remote.cards(),
                         "PASS".equals(remote.action()), localDecision.candidates(), remote.reason());
             } catch (RuntimeException failure) {

@@ -1,8 +1,15 @@
 <script setup>
+import { computed } from 'vue'
 import defaultAvatar from '@/assets/original/default-avatar.png'
 
-defineProps({ session: Object, connected: Boolean, tab: String })
-const emit = defineEmits(['tab', 'qr', 'logout'])
+const props = defineProps({ session: Object, connected: Boolean, tab: String, aiRuntime: Object })
+const emit = defineEmits(['tab', 'qr', 'logout', 'watch'])
+const canWatch = computed(
+  () =>
+    Boolean(props.aiRuntime?.active) &&
+    Number(props.session?.table?.sceneId || 0) > 0 &&
+    props.session?.table?.stage !== 'IDLE',
+)
 const number = (value) => new Intl.NumberFormat('zh-CN').format(Number(value || 0))
 function avatarFallback(event) {
   if (event.currentTarget.src !== defaultAvatar) event.currentTarget.src = defaultAvatar
@@ -41,6 +48,9 @@ function avatarFallback(event) {
       <div class="currency">
         <i class="diamond-icon">◆</i><strong>{{ number(session?.diamonds) }}</strong>
       </div>
+      <button v-if="canWatch" class="watch-room-action" type="button" @click="emit('watch')">
+        <span>◉</span>进入观战
+      </button>
       <button
         class="round-action"
         type="button"

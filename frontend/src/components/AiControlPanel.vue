@@ -176,7 +176,7 @@ function clearApiKey() {
           >豆</b
         >
       </div>
-      <small>0 表示持续运行</small>
+      <small>0 表示不设置目标上限</small>
     </label>
 
     <label class="ai-field bean-limit">
@@ -186,7 +186,11 @@ function clearApiKey() {
           >豆</b
         >
       </div>
-      <small>领豆后仍不足才停止</small>
+      <small>{{
+        draft.hostingMode === 'SERVER'
+          ? '0 表示按场次准入线保护，配置保护线取更高值'
+          : '0 表示不设置最低保护线，领豆后仍不足才停止'
+      }}</small>
     </label>
 
     <div class="ai-actions">

@@ -163,6 +163,7 @@ export function useGameAi(client) {
 
   async function start(values) {
     const saved = await save({ ...values, enabled: true })
+    client.state.aiStopReason = ''
     runtime.active = true
     runtime.state = 'RUNNING'
     runtime.hostingMode = saved.hostingMode || 'BROWSER'
@@ -189,7 +190,7 @@ export function useGameAi(client) {
       stopBelowBeans: saved.stopBelowBeans,
       hostingMode: saved.hostingMode,
     })
-    client.screen.value = client.table.value?.sceneId ? 'room' : 'lobby'
+    client.showRoom()
     schedule(50)
     return saved
   }
@@ -462,7 +463,7 @@ export function useGameAi(client) {
         return
       }
       if (!table || table.stage === 'IDLE' || !table.sceneId) {
-        client.screen.value = 'lobby'
+        if (!client.roomHidden.value) client.screen.value = 'lobby'
         await act(
           `${fingerprint}:enter:${selectedConfig.sceneId}`,
           'MODE_ENTER',
@@ -470,11 +471,11 @@ export function useGameAi(client) {
           '正在自动进入所选场次',
           250,
         )
-        if (runtime.active) client.screen.value = 'room'
+        if (runtime.active && !client.roomHidden.value) client.showRoom()
         return
       }
 
-      client.screen.value = 'room'
+      if (!client.roomHidden.value) client.showRoom()
       const actions = new Set(table.availableActions || [])
       if (table.stage === 'TIMED_OUT') {
         if (selectedConfig.stopAfterRound) {
@@ -668,7 +669,11 @@ export function useGameAi(client) {
       } else if (enabled && runtime.active) {
         runtime.stopAfterRound = Boolean(stopAfterRound)
         if (stopAfterRound) runtime.status = '本局结束后停止托管'
-      } else if (!enabled && runtime.active) stop('AI 已停止', false)
+      } else if (!enabled && runtime.active) {
+        const reason = client.state.aiStopReason || 'AI 已停止'
+        client.state.aiStopReason = ''
+        stop(reason, false)
+      }
     },
   )
   watch(
