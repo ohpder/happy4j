@@ -105,6 +105,7 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
      */
     public ServerAiDecisionService.PlayDecision choosePlay(TableSnapshot table,
                                                             List<List<Integer>> candidates) {
+        long start = System.currentTimeMillis();
         if (candidates == null || candidates.isEmpty())
             return new ServerAiDecisionService.PlayDecision(List.of(), true, 0,
                     "服务器 ONNX 没有可提交的合法动作");
@@ -120,6 +121,7 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
         float[] scores = scoreCandidates(session, table, candidates, role);
         int best = bestIndex(scores);
         List<Integer> cards = List.copyOf(candidates.get(best));
+        log.debug("服务器 ONNX 出牌评分: {} {} {} {}ms", role, cards, Arrays.toString(scores), System.currentTimeMillis() - start);
         return new ServerAiDecisionService.PlayDecision(cards, cards.isEmpty(), candidates.size(),
                 "DouZero FullAuto ResNet ONNX " + PLAY_MODELS.get(role));
     }
