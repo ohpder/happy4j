@@ -16,7 +16,7 @@ services:
       timeout: 3s
       retries: 20
   happy4j-backed:
-    image: ubuntu/jre:25-26.04_stable
+    image: eclipse-temurin:25-jre
     container_name: happy4j
     restart: unless-stopped
     working_dir: /app
@@ -30,12 +30,10 @@ services:
       - LANG=C.UTF-8
       - LC_ALL=C.UTF-8
       - JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
-    gpus: all
     depends_on:
       - happy4j-mysql
     volumes:
+      - ./frontend/public/models/douzero_fullauto:/app/static/models/douzero_fullauto
       - ./build/libs/happy4j-0.0.1-SNAPSHOT.jar:/app/happy4j.jar
     entrypoint: ["java", "-jar", "happy4j.jar"]
   happy4j-frontend:

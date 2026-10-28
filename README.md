@@ -28,9 +28,6 @@ java -jar build/libs/happy4j-0.0.1-SNAPSHOT.jar
 打开 <http://127.0.0.1:8080/>，选择“QQ 扫码”或“微信扫码”并用手机确认。
 端口可通过 `HAPPY4J_PORT` 修改。
 
-服务器托管使用 `onnxruntime_gpu`，后端运行镜像和 Docker 主机需要 NVIDIA Container Toolkit 及 CUDA/cuDNN
-运行库；Compose 会把 GPU 暴露给后端容器。若 CUDA Provider 无法加载或显卡不支持模型，后台会记录原因并回退到 CPU 推理。
-
 前端独立开发：
 
 ```bash
@@ -116,7 +113,7 @@ protocol/generated/     Gradle 构建生成的强类型 Java
 
 默认推理引擎是 **DouZero FullAuto ResNet**：叫抢地主、加倍、出牌三个阶段各自加载
 独立的 ONNX 模型。浏览器托管使用 `onnxruntime-web`，服务器托管使用 Java
-`onnxruntime_gpu` 优先通过 CUDA 执行（设备不支持时回退 CPU）；手牌不会上传到第三方模型服务。模型与转换脚本来自两个上游开源项目（均为 Apache-2.0，见
+`onnxruntime` 在服务器 CPU 上执行；手牌不会上传到第三方模型服务。模型与转换脚本来自两个上游开源项目（均为 Apache-2.0，见
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)）：
 
 - [`DouZero_For_HappyDouDiZhu`](https://github.com/tianqiraf/DouZero_For_HappyDouDiZhu) —
