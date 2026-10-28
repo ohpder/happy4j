@@ -26,6 +26,7 @@ services:
       - HAPPY4J_DB_URL=jdbc:mysql://happy4j-mysql:3306/happy4j?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
       - HAPPY4J_DB_USERNAME=happy4j
       - HAPPY4J_DB_PASSWORD=happy4j
+      - HAPPY4J_MODEL_ROOT=static/models/douzero_fullauto/
       - TZ=Asia/Shanghai
       - LANG=C.UTF-8
       - LC_ALL=C.UTF-8

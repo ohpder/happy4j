@@ -172,7 +172,7 @@ tasks.named('compileJava') {
 }
 
 tasks.named('processResources') {
-    dependsOn tasks.named('generateProto'), tasks.named('frontendBuild')
+    dependsOn tasks.named('generateProto') //, tasks.named('frontendBuild')
 }
 
 tasks.named('test') {
