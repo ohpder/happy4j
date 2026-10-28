@@ -315,6 +315,7 @@ public final class ServerAiAutomationService {
         if ("DOUZERO".equals(configuration.inferenceEngine()) && !legalMoves.isEmpty()) {
             try {
                 decision = onnx.choosePlay(table, legalMoves);
+                LOG.debug("服务器 ONNX 出牌模型决策: {}", decision);
             } catch (RuntimeException failure) {
                 LOG.debug("服务器 ONNX 出牌模型失败，使用规则策略: {}", rootMessage(failure));
             }
