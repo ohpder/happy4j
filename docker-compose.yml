@@ -10,6 +10,8 @@ services:
       MYSQL_ROOT_PASSWORD: happy4j-root
       TZ: Asia/Shanghai
     volumes: ["happy4j_mysql:/var/lib/mysql"]
+    ports:
+      - 13306:3306
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "0.0.0.0", "-uhappy4j", "-phappy4j"]
       interval: 5s
@@ -26,8 +28,8 @@ services:
       - HAPPY4J_DB_URL=jdbc:mysql://happy4j-mysql:3306/happy4j?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
       - HAPPY4J_DB_USERNAME=happy4j
       - HAPPY4J_DB_PASSWORD=happy4j
-      - HAPPY4J_MODEL_ROOT=static/models/douzero_fullauto/
-      - HAPPY4J_PERFECTDOU_MODEL_ROOT=models/
+      #- HAPPY4J_MODEL_ROOT=static/models/douzero_fullauto/
+      - HAPPY4J_MODEL_ROOT=models/
       - TZ=Asia/Shanghai
       - LANG=C.UTF-8
       - LC_ALL=C.UTF-8
