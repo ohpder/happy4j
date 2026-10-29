@@ -39,6 +39,9 @@ function avatarFallback(event) {
       <button :class="{ active: tab === 'ai' }" type="button" @click="emit('tab', 'ai')">
         <span>◎</span> AI 托管
       </button>
+      <button :class="{ active: tab === 'records' }" type="button" @click="emit('tab', 'records')">
+        <span>▤</span> 战绩
+      </button>
     </nav>
 
     <div class="wallet-bar">

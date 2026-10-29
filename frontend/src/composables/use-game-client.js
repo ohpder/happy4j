@@ -16,6 +16,7 @@ const state = reactive({
   evicted: false,
   aiConfig: null,
   aiStopReason: '',
+  records: { stats: {}, records: [] },
 })
 
 const screen = ref('lobby')
@@ -33,11 +34,22 @@ export function useGameClient() {
   function updateSession(snapshot) {
     if (!snapshot?.id) return
     state.sessions[snapshot.id] = snapshot
-    state.activeSessionId ||= snapshot.id
+    const current = state.sessions[state.activeSessionId]
+    if (!state.activeSessionId || ['DISCONNECTED', 'FAILED'].includes(current?.phase))
+      state.activeSessionId = snapshot.id
     const active = state.sessions[state.activeSessionId]
     if (active?.phase === 'EVICTED') {
       roomHidden.value = false
       state.evicted = true
+      screen.value = 'lobby'
+      return
+    }
+    // A socket failure may arrive before the table snapshot is cleared (or a
+    // reconnect can restore the phase while an old snapshot is still cached).
+    // Connection phases always belong in the lobby so the room view cannot be
+    // left with disabled actions and no usable game connection.
+    if (['CREATED', 'HALL_CONNECTED', 'DISCONNECTED', 'FAILED'].includes(active?.phase)) {
+      roomHidden.value = false
       screen.value = 'lobby'
       return
     }
@@ -71,6 +83,7 @@ export function useGameClient() {
       state.activeSessionId = data.session.id
       state.evicted = preview === 'evicted'
       state.aiConfig = data.aiConfig || null
+      state.records = { stats: {}, records: [] }
       state.aiStopReason = ''
       roomHidden.value = false
       screen.value = ['lobby', 'evicted', 'ai-config'].includes(preview) ? 'lobby' : 'room'
@@ -117,9 +130,28 @@ export function useGameClient() {
           }
         }
       } else updateSession(state.sessions[state.activeSessionId])
+      try {
+        state.records = await socket.command('RECORDS_GET', { limit: 30 })
+      } catch {
+        // History is supplementary; the lobby remains usable when it is unavailable.
+      }
       return
     }
     if (envelope.type === 'SNAPSHOT') updateSession(envelope.payload)
+    if (
+      envelope.type === 'EVENT' &&
+      envelope.payload?.kind === 'GAME_SO' &&
+      /subtype=(5|102)\b/.test(envelope.payload.message || '')
+    ) {
+      setTimeout(() => {
+        socket
+          ?.command('RECORDS_GET', { limit: 30 })
+          .then((result) => {
+            state.records = result || { stats: {}, records: [] }
+          })
+          .catch(() => {})
+      }, 500)
+    }
     if (
       envelope.type === 'EVENT' &&
       envelope.payload?.kind === 'AI_SERVER' &&
@@ -147,6 +179,7 @@ export function useGameClient() {
       'AI_CONFIG_SAVE',
       'AI_STOP',
       'AI_PROVIDER_TEST',
+      'RECORDS_GET',
     ])
     if (!state.activeSessionId && !userCommands.has(name)) {
       throw new Error('请先建立游戏会话')
@@ -156,6 +189,7 @@ export function useGameClient() {
       const result = await socket.command(name, payload)
       if (result?.id && result?.phase) updateSession(result)
       if (name === 'AI_CONFIG_GET' || name === 'AI_CONFIG_SAVE' || name === 'AI_STOP') state.aiConfig = result
+      if (name === 'RECORDS_GET') state.records = result || { stats: {}, records: [] }
       if (successMessage) push(successMessage)
       return result
     } catch (error) {
@@ -192,6 +226,7 @@ export function useGameClient() {
     state.activeSessionId = null
     state.aiConfig = null
     state.aiStopReason = ''
+    state.records = { stats: {}, records: [] }
     roomHidden.value = false
     screen.value = 'lobby'
   }

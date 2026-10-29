@@ -30,6 +30,7 @@ const active = computed(() => Boolean(props.runtime?.active))
 const selectedMode = computed(() =>
   classicModes.value.find((mode) => Number(mode.sceneId) === Number(draft.sceneId)),
 )
+const perfectDou = computed(() => draft.inferenceEngine === 'PERFECTDOU')
 
 watch(
   () => props.config,
@@ -124,7 +125,9 @@ function clearApiKey() {
               ? '服务器 AI 托管'
               : draft.inferenceEngine === 'OPENAI'
                 ? 'OpenAI LLM'
-                : 'DouZero FullAuto ResNet'
+                : draft.inferenceEngine === 'PERFECTDOU'
+                  ? 'PerfectDou'
+                  : 'DouZero FullAuto ResNet'
           }}</strong>
           <small>{{ draft.hostingMode === 'SERVER' ? '关闭浏览器后仍继续运行' : '浏览器端本地推理' }}</small>
         </div>
@@ -206,15 +209,18 @@ function clearApiKey() {
         <select v-model="draft.inferenceEngine" :disabled="active">
           <option value="OPENAI">OpenAI兼容大模型</option>
           <option value="DOUZERO">本地DouZero FullAuto ResNet ADP</option>
+          <option value="PERFECTDOU">PerfectDou ONNX</option>
         </select>
         <small>{{
-          draft.hostingMode === 'SERVER'
-            ? draft.inferenceEngine === 'OPENAI'
-              ? '服务器调用兼容 API，不向浏览器返回密钥'
-              : '服务器使用内置合法动作策略，浏览器关闭后仍可运行'
-            : draft.inferenceEngine === 'OPENAI'
-              ? '服务端安全调用，不向浏览器返回密钥'
-              : '浏览器端本地推理'
+          perfectDou
+            ? 'Netease PerfectDou ONNX 推理，服务器和浏览器均可运行'
+            : draft.hostingMode === 'SERVER'
+              ? draft.inferenceEngine === 'OPENAI'
+                ? '服务器调用兼容 API，不向浏览器返回密钥'
+                : '服务器使用内置合法动作策略，浏览器关闭后仍可运行'
+              : draft.inferenceEngine === 'OPENAI'
+                ? '服务端安全调用，不向浏览器返回密钥'
+                : '浏览器端本地推理'
         }}</small>
       </label>
       <template v-if="draft.inferenceEngine === 'OPENAI'">

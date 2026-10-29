@@ -3,6 +3,8 @@ package cc.superbaby.happy4j.web;
 import cc.superbaby.happy4j.application.HappyDdzClientService;
 import cc.superbaby.happy4j.application.port.QrAuthPort;
 import cc.superbaby.happy4j.domain.ActivityView;
+import cc.superbaby.happy4j.application.GameRecordService;
+import cc.superbaby.happy4j.domain.GameRecordPage;
 import cc.superbaby.happy4j.domain.AppPrincipal;
 import cc.superbaby.happy4j.domain.ClientSession;
 import cc.superbaby.happy4j.domain.GameMode;
@@ -36,9 +38,11 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping("/api")
 public final class ClientController {
     private final HappyDdzClientService client;
+    private final GameRecordService records;
 
-    public ClientController(HappyDdzClientService client) {
+    public ClientController(HappyDdzClientService client, GameRecordService records) {
         this.client = client;
+        this.records = records;
     }
 
     @PostMapping("/sessions")
@@ -66,6 +70,20 @@ public final class ClientController {
     public List<RemoteEvent> eventHistory(@PathVariable UUID id,
                                           @RequestParam(defaultValue = "0") long after) {
         return client.session(id).eventsAfter(after);
+    }
+
+    @GetMapping("/records")
+    public GameRecordPage records(@AuthenticationPrincipal AppPrincipal user,
+                                  @RequestParam(defaultValue = "30") int limit) {
+        return records.page(user.userId(), limit);
+    }
+
+    @GetMapping("/sessions/{id}/records")
+    public GameRecordPage sessionRecords(@AuthenticationPrincipal AppPrincipal user,
+                                         @PathVariable UUID id,
+                                         @RequestParam(defaultValue = "30") int limit) {
+        client.ownedSession(user.userId(), id);
+        return records.page(user.userId(), id, limit);
     }
 
     @PostMapping("/sessions/{id}/login/qr")

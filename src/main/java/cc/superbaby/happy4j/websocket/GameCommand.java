@@ -14,6 +14,7 @@ public enum GameCommand {
     AI_PROVIDER_TEST,
     AI_DECIDE,
     SNAPSHOT_GET,
+    RECORDS_GET,
     QR_START,
     WALLET_REFRESH,
     PROFILE_REFRESH,

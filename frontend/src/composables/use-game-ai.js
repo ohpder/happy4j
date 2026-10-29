@@ -2,6 +2,7 @@ import { computed, onBeforeUnmount, reactive, watch } from 'vue'
 import { chooseFullAutoBid, chooseFullAutoDouble, chooseFullAutoMove } from '@/ai/douzero-fullauto.js'
 import { enumerateLegalMoves } from '@/ai/legal-moves.js'
 import { chooseDoubleDecision, chooseLandlordDecision } from '@/ai/policy.js'
+import { choosePerfectDouMove, perfectDouLegalMoves } from '@/ai/perfectdou.js'
 
 const SUPPORT_MISSION_ID = 1563
 const SUPER_DOUBLE_ITEM_ID = 1030108
@@ -145,11 +146,20 @@ export function useGameAi(client) {
     return config.value?.inferenceEngine === 'OPENAI'
   }
 
+  function perfectDouEnabled() {
+    return config.value?.inferenceEngine === 'PERFECTDOU'
+  }
+
   async function testProvider(values) {
     runtime.providerTesting = true
     try {
       const saved = await save({ ...values, enabled: Boolean(config.value?.enabled) })
-      runtime.strategy = saved.inferenceEngine === 'OPENAI' ? '大模型胜率优先' : 'FullAuto ResNet 高胜率策略'
+      runtime.strategy =
+        saved.inferenceEngine === 'OPENAI'
+          ? '大模型胜率优先'
+          : saved.inferenceEngine === 'PERFECTDOU'
+            ? 'PerfectDou 服务器策略'
+            : 'FullAuto ResNet 高胜率策略'
       const result = await client.command('AI_PROVIDER_TEST')
       log('SUCCESS', 'MODEL_TEST', `大模型连接成功 · ${result.model}`, result)
       return result
@@ -172,10 +182,14 @@ export function useGameAi(client) {
       saved.hostingMode === 'SERVER'
         ? saved.inferenceEngine === 'OPENAI'
           ? '服务器大模型托管'
-          : '服务器规则托管'
+          : saved.inferenceEngine === 'PERFECTDOU'
+            ? '服务器 PerfectDou 托管'
+            : '服务器规则托管'
         : saved.inferenceEngine === 'OPENAI'
           ? '大模型胜率优先'
-          : 'FullAuto ResNet 高胜率策略'
+          : saved.inferenceEngine === 'PERFECTDOU'
+            ? 'PerfectDou 服务器策略'
+            : 'FullAuto ResNet 高胜率策略'
     runtime.status =
       saved.hostingMode === 'SERVER' ? '服务器托管运行中，关闭浏览器仍会继续' : 'AI 正在接管牌局'
     runtime.lastError = ''
@@ -328,12 +342,20 @@ export function useGameAi(client) {
     const before = tableFingerprint(client.table.value, client.session.value?.beans)
     runtime.status = openAiEnabled() ? '大模型正在计算最优出牌' : 'DouZero FullAuto ResNet 正在计算最优出牌'
     const startedAt = performance.now()
-    const result = openAiEnabled()
-      ? await chooseOpenAiMove(table).catch(async (error) => {
-          log('ERROR', 'OPENAI', '大模型决策失败，已切换本地模型', { message: error.message })
-          return chooseFullAutoMove(table, setModelState)
-        })
-      : await chooseFullAutoMove(table, setModelState)
+    const result = perfectDouEnabled()
+      ? await choosePerfectDouMove(table, perfectDouLegalMoves(table)).then((move) => ({
+          ...move,
+          fallback: false,
+          candidates: move.candidates,
+          reason: 'PERFECTDOU_ONNX',
+          role: table.seatId === table.landlordSeatId ? 'landlord' : 'farmer',
+        }))
+      : openAiEnabled()
+        ? await chooseOpenAiMove(table).catch(async (error) => {
+            log('ERROR', 'OPENAI', '大模型决策失败，已切换本地模型', { message: error.message })
+            return chooseFullAutoMove(table, setModelState)
+          })
+        : await chooseFullAutoMove(table, setModelState)
     if (!runtime.active || before !== tableFingerprint(client.table.value, client.session.value?.beans))
       return
     const elapsed = Math.round(performance.now() - startedAt)
@@ -651,9 +673,11 @@ export function useGameAi(client) {
         runtime.stopAfterRound = Boolean(stopAfterRound)
         runtime.strategy =
           config.value?.hostingMode === 'SERVER'
-            ? openAiEnabled()
-              ? '服务器大模型托管'
-              : '服务器规则托管'
+            ? config.value?.inferenceEngine === 'PERFECTDOU'
+              ? '服务器 PerfectDou 托管'
+              : openAiEnabled()
+                ? '服务器大模型托管'
+                : '服务器规则托管'
             : openAiEnabled()
               ? '大模型胜率优先'
               : 'FullAuto ResNet 高胜率策略'

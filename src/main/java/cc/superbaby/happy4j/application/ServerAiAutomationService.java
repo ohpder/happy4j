@@ -44,6 +44,7 @@ public final class ServerAiAutomationService {
     private final OpenAiDecisionService openAi;
     private final ServerAiDecisionService local;
     private final ServerOnnxDecisionService onnx;
+    private final PerfectDouDecisionService perfectDou;
     private final GameRealtimeGateway realtime;
     private final ObjectMapper json;
     private final ScheduledExecutorService ticker;
@@ -53,13 +54,15 @@ public final class ServerAiAutomationService {
 
     public ServerAiAutomationService(AiConfigurationService configurations, HappyDdzClientService clients,
                                      OpenAiDecisionService openAi, ServerAiDecisionService local,
-                                     ServerOnnxDecisionService onnx, GameRealtimeGateway realtime,
+                                     ServerOnnxDecisionService onnx, PerfectDouDecisionService perfectDou,
+                                     GameRealtimeGateway realtime,
                                      ObjectMapper json) {
         this.configurations = configurations;
         this.clients = clients;
         this.openAi = openAi;
         this.local = local;
         this.onnx = onnx;
+        this.perfectDou = perfectDou;
         this.realtime = realtime;
         this.json = json;
         ThreadFactory threads = runnable -> {
@@ -105,6 +108,16 @@ public final class ServerAiAutomationService {
                     publish(userId, null, "服务器托管已恢复游戏登录", Map.of());
                 } catch (RuntimeException failure) {
                     LOG.debug("服务器 AI 暂无可用游戏会话 user={}: {}", userId, rootMessage(failure));
+                }
+                return;
+            }
+            if (!clients.connected(session.id())) {
+                try {
+                    ClientSession.Snapshot restored = clients.resumeSavedLogin(userId).join();
+                    realtime.watchAndSync(clients.ownedSession(userId, restored.id()));
+                    publish(userId, null, "服务器托管已重连游戏登录", Map.of());
+                } catch (RuntimeException failure) {
+                    LOG.debug("服务器 AI 等待游戏登录重连 user={}: {}", userId, rootMessage(failure));
                 }
                 return;
             }
@@ -325,6 +338,12 @@ public final class ServerAiAutomationService {
                         "PASS".equals(remote.action()), localDecision.candidates(), remote.reason());
             } catch (RuntimeException failure) {
                 LOG.debug("服务器 AI 出牌模型失败，使用规则策略: {}", rootMessage(failure));
+            }
+        } else if ("PERFECTDOU".equals(configuration.inferenceEngine()) && !legalMoves.isEmpty()) {
+            try {
+                decision = perfectDou.choosePlay(table, legalMoves);
+            } catch (RuntimeException failure) {
+                LOG.debug("服务器 PerfectDou 推理失败，使用规则策略: {}", rootMessage(failure));
             }
         }
         if (!stillEnabled(session.ownerId())) return;

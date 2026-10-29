@@ -115,7 +115,7 @@ public class AiConfigurationService {
 
     private static String normalizeEngine(String value) {
         String engine = value == null ? "DOUZERO" : value.trim().toUpperCase(Locale.ROOT);
-        if (!engine.equals("DOUZERO") && !engine.equals("OPENAI"))
+        if (!engine.equals("DOUZERO") && !engine.equals("OPENAI") && !engine.equals("PERFECTDOU"))
             throw new IllegalArgumentException("未知AI推理引擎");
         return engine;
     }

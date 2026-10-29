@@ -12,6 +12,7 @@ const props = defineProps({
   tab: { type: String, default: 'modes' },
   aiConfig: Object,
   aiRuntime: Object,
+  records: Object,
 })
 const emit = defineEmits([
   'tab',
@@ -27,6 +28,7 @@ const emit = defineEmits([
   'watch',
 ])
 const category = ref('ALL')
+const expandedRecordId = ref(null)
 const categories = [
   ['ALL', '全部'],
   ['CLASSIC', '经典'],
@@ -58,6 +60,19 @@ const supportLabel = computed(() => {
   return '立即领取'
 })
 const missionState = { 0: '未开始', 1: '待激活', 2: '进行中', 3: '可领取', 4: '已领取' }
+const signed = (value) => {
+  const number = Number(value || 0)
+  return `${number > 0 ? '+' : ''}${new Intl.NumberFormat('zh-CN').format(number)}`
+}
+const time = (value) =>
+  value
+    ? new Intl.DateTimeFormat('zh-CN', {
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+      }).format(new Date(value))
+    : '时间未知'
 </script>
 
 <template>
@@ -123,6 +138,78 @@ const missionState = { 0: '未开始', 1: '待激活', 2: '进行中', 3: '可�
       @logs="emit('ai-logs')"
       @provider-test="emit('ai-provider-test', $event)"
     />
+
+    <section v-else-if="tab === 'records'" class="lobby-content records-view">
+      <div class="records-heading">
+        <div>
+          <span>GAME RECORD</span>
+          <h1>战绩与对局记录</h1>
+          <p>每局结算后自动保存，展示最近 30 局对局。</p>
+        </div>
+        <button class="game-button soft" type="button" @click="emit('command', 'RECORDS_GET', { limit: 30 })">
+          刷新战绩
+        </button>
+      </div>
+      <div class="record-stat-grid">
+        <article>
+          <span>总对局</span><strong>{{ records?.stats?.totalRounds || 0 }}</strong>
+        </article>
+        <article>
+          <span>胜率</span><strong>{{ Number(records?.stats?.winRate || 0).toFixed(1) }}%</strong>
+        </article>
+        <article>
+          <span>胜 / 负</span
+          ><strong>{{ records?.stats?.wins || 0 }} / {{ records?.stats?.losses || 0 }}</strong>
+        </article>
+        <article>
+          <span>欢乐豆净变化</span
+          ><strong :class="{ negative: Number(records?.stats?.totalBeanChange || 0) < 0 }">{{
+            signed(records?.stats?.totalBeanChange)
+          }}</strong>
+        </article>
+      </div>
+      <div class="record-list">
+        <article v-for="record in records?.records || []" :key="record.id" class="record-row">
+          <div class="record-result" :class="record.result.toLowerCase()">
+            {{ record.result === 'WIN' ? '胜' : record.result === 'LOSS' ? '负' : '和' }}
+          </div>
+          <button
+            class="record-main record-toggle"
+            type="button"
+            @click="expandedRecordId = expandedRecordId === record.id ? null : record.id"
+          >
+            <strong>{{
+              record.result === 'WIN' ? '本局获胜' : record.result === 'LOSS' ? '本局失利' : '本局平局'
+            }}</strong>
+            <small
+              >{{ time(record.finishedAt) }} · 场次 {{ record.sceneId }} · 房间 {{ record.roomId }}</small
+            >
+          </button>
+          <span>倍率 ×{{ record.multiplier }}</span>
+          <b :class="{ negative: record.beanChange < 0 }">{{ signed(record.beanChange) }} 豆</b>
+          <div v-if="expandedRecordId === record.id" class="record-detail">
+            <div class="record-detail-players">
+              <span v-for="player in record.players || []" :key="player.seatId">
+                {{ player.nickname }} {{ player.beanChange > 0 ? '+' : '' }}{{ player.beanChange }} 豆
+              </span>
+            </div>
+            <div class="record-detail-actions">
+              <span
+                v-for="(action, index) in (record.actions || []).slice(-8)"
+                :key="`${record.id}-${index}`"
+              >
+                {{ action.player }}：{{ action.action }}
+              </span>
+            </div>
+            <small
+              >展示最近 {{ Math.min(record.actions?.length || 0, 8) }} 次操作 · 地主座位
+              {{ record.landlordSeatId + 1 }}</small
+            >
+          </div>
+        </article>
+        <p v-if="!(records?.records || []).length" class="empty-copy">完成一局结算后，这里会显示对局记录。</p>
+      </div>
+    </section>
 
     <section v-else class="lobby-content reward-view">
       <div class="reward-heading">

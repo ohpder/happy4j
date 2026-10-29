@@ -79,6 +79,23 @@ class AiConfigurationServiceTest {
     }
 
     @Test
+    void acceptsPerfectDouForBothHostingModes() {
+        UUID userId = UUID.randomUUID();
+        when(repository.findById(userId)).thenReturn(Optional.empty());
+        when(repository.save(any(AiConfigurationEntity.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        var result = service.save(userId,
+                new AiConfigurationService.Update(1260, "SERVER", true, true, 0, 0,
+                        "PERFECTDOU", "", "", "", false, true));
+        assertThat(result.inferenceEngine()).isEqualTo("PERFECTDOU");
+
+        var browser = service.save(userId,
+                new AiConfigurationService.Update(1260, "BROWSER", true, true, 0, 0,
+                        "PERFECTDOU", "", "", "", false, true));
+        assertThat(browser.hostingMode()).isEqualTo("BROWSER");
+    }
+
+    @Test
     void supportsImmediateAndAfterRoundStopRequests() {
         UUID userId = UUID.randomUUID();
         when(repository.findById(userId)).thenReturn(Optional.empty());

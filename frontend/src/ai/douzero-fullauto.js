@@ -13,6 +13,12 @@ export const FULLAUTO_MODEL_NAME = 'DouZero FullAuto ResNet ADP'
 export const FULLAUTO_MODEL_SOURCE = 'Vincentzyx/DouZero_For_HLDDZ_FullAuto'
 
 const MODEL_ROOT = '/models/douzero_fullauto'
+export const PERFECTDOU_MODEL_ROOT = '/models/perfectdou'
+export const PERFECTDOU_MODELS = Object.freeze({
+  landlord: 'landlord.onnx',
+  landlord_up: 'landlord_up.onnx',
+  landlord_down: 'landlord_down.onnx',
+})
 export const FULLAUTO_PLAY_MODELS = Object.freeze({
   landlord: 'landlord.onnx',
   landlord_up: 'landlord_up.onnx',

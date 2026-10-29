@@ -44,7 +44,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public final class ServerOnnxDecisionService implements AutoCloseable {
     @Value("${happy4j.model.root:frontend/public/models/douzero_fullauto/}")
-    private String MODEL_ROOT;
+    private String MODEL_ROOT = "frontend/public/models/douzero_fullauto/";
     private static final int FEATURE_WIDTH = 54;
     private static final int FEATURE_ROWS = 40;
     private static final int MAX_BATCH = 64;

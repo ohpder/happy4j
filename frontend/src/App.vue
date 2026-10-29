@@ -123,6 +123,7 @@ onBeforeUnmount(() => document.removeEventListener('contextmenu', blockContextMe
     :connected="client.state.connected"
     :tab="client.lobbyTab.value"
     :ai-config="client.state.aiConfig"
+    :records="client.state.records"
     :ai-runtime="ai.runtime"
     @tab="client.lobbyTab.value = $event"
     @enter="enterMode"

@@ -3,6 +3,7 @@ package cc.superbaby.happy4j.websocket;
 import cc.superbaby.happy4j.application.HappyDdzClientService;
 import cc.superbaby.happy4j.application.AiConfigurationService;
 import cc.superbaby.happy4j.application.OpenAiDecisionService;
+import cc.superbaby.happy4j.application.GameRecordService;
 import cc.superbaby.happy4j.domain.AppPrincipal;
 import cc.superbaby.happy4j.domain.ClientSession;
 
@@ -33,18 +34,21 @@ public class GameWebSocketHandler extends TextWebSocketHandler {
     private final QrLoginCoordinator qr;
     private final AiConfigurationService aiConfigurations;
     private final OpenAiDecisionService aiDecisions;
+    private final GameRecordService gameRecords;
     private final ObjectMapper json;
 
     public GameWebSocketHandler(HappyDdzClientService clients, UserWebSocketHub hub,
                                 GameRealtimeGateway realtime, QrLoginCoordinator qr,
                                 AiConfigurationService aiConfigurations,
-                                OpenAiDecisionService aiDecisions, ObjectMapper json) {
+                                OpenAiDecisionService aiDecisions, GameRecordService gameRecords,
+                                ObjectMapper json) {
         this.clients = clients;
         this.hub = hub;
         this.realtime = realtime;
         this.qr = qr;
         this.aiConfigurations = aiConfigurations;
         this.aiDecisions = aiDecisions;
+        this.gameRecords = gameRecords;
         this.json = json;
     }
 
@@ -119,6 +123,8 @@ public class GameWebSocketHandler extends TextWebSocketHandler {
             return done(aiConfigurations.requestStop(user.userId(), mode));
         }
         if (command == GameCommand.AI_PROVIDER_TEST) return aiDecisions.test(user.userId());
+        if (command == GameCommand.RECORDS_GET)
+            return done(gameRecords.page(user.userId(), payload.path("limit").asInt(30)));
         UUID sessionId = UUID.fromString(payload.path("sessionId").asString());
         ClientSession session = clients.ownedSession(user.userId(), sessionId);
         return switch (command) {

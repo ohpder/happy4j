@@ -74,6 +74,7 @@ public final class HappyDdzClientService implements AutoCloseable {
     private final TableActionCoordinator tableActions;
     private final CredentialVaultService credentialVault;
     private final ServerConfigService serverConfig;
+    private final GameRecordService gameRecords;
     private final java.util.Set<UUID> walletRefreshPending = ConcurrentHashMap.newKeySet();
 
     public HappyDdzClientService(List<QrAuthPort> qrProviders, GameLoginPort gameLogin,
@@ -84,6 +85,7 @@ public final class HappyDdzClientService implements AutoCloseable {
                                  ClientRuntimeRegistry runtime,
                                  CredentialVaultService credentialVault,
                                  ServerConfigService serverConfig,
+                                 GameRecordService gameRecords,
                                  Happy4jProperties properties, ObjectMapper json) {
         this.qrAuth = qrProviders.stream().collect(java.util.stream.Collectors.toUnmodifiableMap(
                 provider -> provider.provider().toLowerCase(java.util.Locale.ROOT), provider -> provider));
@@ -96,6 +98,7 @@ public final class HappyDdzClientService implements AutoCloseable {
         this.runtime = runtime;
         this.credentialVault = credentialVault;
         this.serverConfig = serverConfig;
+        this.gameRecords = gameRecords;
         this.workers = workerPool(
                 serverConfig.integer(ServerConfigKeys.RUNTIME_WORKER_THREADS, 32),
                 serverConfig.integer(ServerConfigKeys.RUNTIME_WORKER_QUEUE_CAPACITY, 512));
@@ -135,6 +138,15 @@ public final class HappyDdzClientService implements AutoCloseable {
                 serverConfig.integer(ServerConfigKeys.RUNTIME_WORKER_THREADS, 32),
                 serverConfig.integer(ServerConfigKeys.RUNTIME_WORKER_QUEUE_CAPACITY, 512),
                 serverConfig.integer(ServerConfigKeys.RUNTIME_QR_POLL_THREADS, 8));
+    }
+
+    /**
+     * Reports whether the live Lotus connection for a session is still usable.
+     * Server-hosted automation uses this to ignore stale sessions after a socket
+     * failure and restore the saved login on a fresh session.
+     */
+    public boolean connected(UUID id) {
+        return runtime.connected(id);
     }
 
     public void closeSession(UUID ownerId, UUID sessionId) {
@@ -856,11 +868,22 @@ public final class HappyDdzClientService implements AutoCloseable {
         session.publish("REMOTE", "收到服务器消息 " + event.messageId(), Map.of(
                 "messageId", event.messageId(), "messageType", event.messageType(), "json", event.json(),
                 "payload", Base64.getEncoder().encodeToString(event.payload())));
-        if (event.messageId() == 0 && event.json().contains("gameTransportError"))
-            session.transition(ClientPhase.FAILED, "游戏服务器连接断开");
-        else if (event.messageId() == 0)
-            session.transition(ClientPhase.DISCONNECTED, "Lotus 连接断开");
-        else if (GameMessage.READY.matches(event.messageId()))
+        if (event.messageId() == 0) {
+            boolean gameTransportFailure = event.json().contains("gameTransportError");
+            // A dead socket cannot answer LEAVE_ROOM. Clear the local table first so
+            // the client can always return to the lobby instead of remaining on a
+            // stale PLAYING snapshot with no available actions.
+            tableActions.clear(session.id());
+            session.table(TableSnapshot.empty());
+            if (gameTransportFailure) {
+                // The Lotus hall connection is still usable; the next MODE_ENTER
+                // creates a fresh GameSvr channel.
+                session.transition(ClientPhase.HALL_CONNECTED, "游戏服务器连接断开，可重新进入牌局");
+            } else {
+                session.transition(ClientPhase.DISCONNECTED, "Lotus 连接断开");
+                runtime.disconnect(session.id());
+            }
+        } else if (GameMessage.READY.matches(event.messageId()))
             updateTablePrompt(session, "已准备，等待服务器发牌");
         else if (GameMessage.ROOM_EVENT.matches(event.messageId()))
             applyRoomEvents(session, event.payload());
@@ -912,6 +935,14 @@ public final class HappyDdzClientService implements AutoCloseable {
             }
             TableSnapshot next = session.updateTable(current -> tableState.applyGameSo(current, event));
             tableActions.confirm(session.id(), pending, event, next);
+            if ((event.type() == GameSoType.SETTLEMENT || event.type() == GameSoType.ROUND_END)
+                    && event.settlement().available()) {
+                try {
+                    gameRecords.recordSettlement(session, next);
+                } catch (RuntimeException failure) {
+                    LOG.warn("对局记录保存失败 session={} cause={}", session.id(), rootMessage(failure));
+                }
+            }
             if (event.type() == GameSoType.SETTLEMENT || event.type() == GameSoType.ROUND_END)
                 scheduleWalletRefresh(session, "牌局结算");
             LOG.info("Table reduced localSeat={} turn={} landlord={} stage={} actions={} hand={} lastPlay={} multiplier={}",

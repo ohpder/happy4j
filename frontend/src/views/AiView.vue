@@ -10,6 +10,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['start', 'stop', 'save', 'logs', 'provider-test'])
 const openAiEnabled = computed(() => props.config?.inferenceEngine === 'OPENAI')
+const perfectDouEnabled = computed(() => props.config?.inferenceEngine === 'PERFECTDOU')
 const serverHosting = computed(() => props.config?.hostingMode === 'SERVER')
 
 const games = computed(() => Number(props.runtime?.wins || 0) + Number(props.runtime?.losses || 0))
@@ -37,7 +38,7 @@ function time(value) {
   <section class="lobby-content ai-page">
     <header class="ai-page-heading">
       <div>
-        <span>DOUZERO AUTOPILOT</span>
+        <span>{{ perfectDouEnabled ? 'PERFECTDOU AUTOPILOT' : 'DOUZERO AUTOPILOT' }}</span>
         <h1>AI 托管中心</h1>
         <p>配置自动对局策略、资金保护与场次循环；回到大厅后托管仍在后台运行，可随时进入观战。</p>
       </div>
@@ -81,7 +82,13 @@ function time(value) {
         </article>
         <article>
           <span>主动出牌</span><b>{{ runtime?.plays || 0 }}</b
-          ><small>{{ openAiEnabled ? '大模型或本地降级策略' : 'FullAuto ResNet与控牌路径策略' }}</small>
+          ><small>{{
+            perfectDouEnabled
+              ? 'PerfectDou服务器策略'
+              : openAiEnabled
+                ? '大模型或本地降级策略'
+                : 'FullAuto ResNet与控牌路径策略'
+          }}</small>
         </article>
         <article>
           <span>选择不出</span><b>{{ runtime?.passes || 0 }}</b
@@ -95,7 +102,7 @@ function time(value) {
             <span>DECISION PIPELINE</span>
             <h2>胜率优先决策链</h2>
           </div>
-          <b>{{ openAiEnabled ? 'LLM' : 'RESNET ADP' }}</b>
+          <b>{{ perfectDouEnabled ? 'PERFECTDOU' : openAiEnabled ? 'LLM' : 'RESNET ADP' }}</b>
         </div>
         <ol>
           <li>
@@ -112,12 +119,16 @@ function time(value) {
               <strong>{{ serverHosting ? '服务器推理' : openAiEnabled ? '大模型推理' : '端侧推理' }}</strong>
               <span>{{
                 serverHosting
-                  ? openAiEnabled
-                    ? '后端持续调用OpenAI兼容Chat Completions'
-                    : '后端持续执行内置合法动作策略'
+                  ? perfectDouEnabled
+                    ? '后端调用PerfectDou ONNX与官方特征编码器'
+                    : openAiEnabled
+                      ? '后端持续调用OpenAI兼容Chat Completions'
+                      : '后端持续执行内置合法动作策略'
                   : openAiEnabled
                     ? '通过服务端调用OpenAI兼容Chat Completions'
-                    : '按地主、上家、下家加载对应ONNX'
+                    : perfectDouEnabled
+                      ? '服务器调用PerfectDou ONNX与官方特征编码器'
+                      : '按地主、上家、下家加载对应ONNX'
               }}</span>
             </div>
           </li>

@@ -90,6 +90,9 @@ const roomPrompt = computed(() => playerMessage(table.value?.prompt || '等待�
 const hasRoundResult = computed(() => isRoundResultSnapshot(table.value))
 const trustAction = computed(() => trustControlAction(table.value))
 const tableTimedOut = computed(() => isTableTimeoutSnapshot(table.value))
+const connectionLost = computed(() =>
+  ['CREATED', 'HALL_CONNECTED', 'DISCONNECTED', 'FAILED'].includes(props.session?.phase),
+)
 const handOverlap = computed(() => {
   if (hand.value.length <= 1) return 0
   const mobile = viewportWidth.value <= 720
@@ -196,7 +199,7 @@ function actionDisabled(action) {
 }
 
 function exitRoom() {
-  if (props.aiRuntime?.active) {
+  if (props.aiRuntime?.active || connectionLost.value) {
     emit('lobby')
     return
   }
@@ -291,10 +294,10 @@ onBeforeUnmount(() => {
         <button
           class="room-back"
           type="button"
-          :disabled="!props.aiRuntime?.active && !actionSet.has('LEAVE_ROOM')"
+          :disabled="!props.aiRuntime?.active && !connectionLost && !actionSet.has('LEAVE_ROOM')"
           @click="exitRoom"
         >
-          <span>‹</span>{{ props.aiRuntime?.active ? '回到大厅' : '退出' }}
+          <span>‹</span>{{ props.aiRuntime?.active || connectionLost ? '回到大厅' : '退出' }}
         </button>
         <div class="room-brand">
           <i>♠</i><span><b>欢乐牌局</b><small>PREMIUM TABLE</small></span>
