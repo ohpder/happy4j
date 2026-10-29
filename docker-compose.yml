@@ -27,7 +27,7 @@ services:
       - HAPPY4J_DB_USERNAME=happy4j
       - HAPPY4J_DB_PASSWORD=happy4j
       - HAPPY4J_MODEL_ROOT=static/models/douzero_fullauto/
-      - HAPPY4J_PERFECTDOU_MODEL_ROOT=static/models/perfectdou/
+      - HAPPY4J_PERFECTDOU_MODEL_ROOT=models/
       - TZ=Asia/Shanghai
       - LANG=C.UTF-8
       - LC_ALL=C.UTF-8
@@ -35,8 +35,7 @@ services:
     depends_on:
       - happy4j-mysql
     volumes:
-      - ./frontend/public/models/douzero_fullauto:/app/static/models/douzero_fullauto
-      - ./frontend/public/models/perfectdou:/app/static/models/perfectdou
+      - ./frontend/public/models:/app/models
       - ./build/libs/happy4j-0.0.1-SNAPSHOT.jar:/app/happy4j.jar
     entrypoint: ["java", "-jar", "happy4j.jar"]
   happy4j-frontend:

@@ -27,7 +27,7 @@ class ServerOnnxDecisionServiceTest {
                 List.of(), GameStage.PLAYING, List.of(TableAction.PLAY, TableAction.PASS),
                 1, false, "test");
 
-        try (ServerOnnxDecisionService service = new ServerOnnxDecisionService(new ServerAiDecisionService())) {
+        try (ServerOnnxDecisionService service = new ServerOnnxDecisionService(new ServerAiDecisionService(), "path/to/model")) {
             ServerAiDecisionService.PlayDecision decision = service.choosePlay(
                     table, new ServerAiDecisionService().legalMoves(table));
             assertThat(decision.reason()).startsWith("DouZero FullAuto ResNet ONNX");

@@ -58,10 +58,10 @@ public final class PerfectDouDecisionService implements AutoCloseable {
     private final Map<String, OrtSession> sessions = new ConcurrentHashMap<>();
 
     public PerfectDouDecisionService(ObjectMapper json,
-                                     @Value("${happy4j.ai.perfectdou-model-root:frontend/public/models/perfectdou/}")
+                                     @Value("${happy4j.model-root}")
                                      String modelRoot) {
         this.json = json;
-        this.modelRoot = modelRoot == null || modelRoot.isBlank() ? "frontend/public/models/perfectdou/" : modelRoot;
+        this.modelRoot = modelRoot + "perfectdou/";
         loadActionSpace();
     }
 

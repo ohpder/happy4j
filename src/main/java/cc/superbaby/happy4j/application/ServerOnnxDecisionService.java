@@ -1,36 +1,19 @@
 package cc.superbaby.happy4j.application;
 
-import ai.onnxruntime.OnnxTensor;
-import ai.onnxruntime.OnnxValue;
-import ai.onnxruntime.OrtEnvironment;
-import ai.onnxruntime.OrtException;
-import ai.onnxruntime.OrtSession;
-
+import ai.onnxruntime.*;
 import cc.superbaby.happy4j.domain.Card;
 import cc.superbaby.happy4j.domain.GameStage;
 import cc.superbaby.happy4j.domain.TableSnapshot;
-
 import jakarta.annotation.PreDestroy;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.FloatBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -43,8 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Service
 public final class ServerOnnxDecisionService implements AutoCloseable {
-    @Value("${happy4j.model.root:frontend/public/models/douzero_fullauto/}")
-    private String MODEL_ROOT = "frontend/public/models/douzero_fullauto/";
+    private final String MODEL_ROOT;
     private static final int FEATURE_WIDTH = 54;
     private static final int FEATURE_ROWS = 40;
     private static final int MAX_BATCH = 64;
@@ -69,7 +51,8 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
     private final ConcurrentHashMap<String, OrtSession> playSessions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, OrtSession> preGameSessions = new ConcurrentHashMap<>();
 
-    public ServerOnnxDecisionService(ServerAiDecisionService local) {
+    public ServerOnnxDecisionService(ServerAiDecisionService local, @Value("${happy4j.model-root}") String modelRoot) {
+        this.MODEL_ROOT = modelRoot;
         environment = OrtEnvironment.getEnvironment();
         this.local = local;
     }
@@ -193,7 +176,7 @@ public final class ServerOnnxDecisionService implements AutoCloseable {
     }
 
     private OrtSession loadSession(String role, String file) {
-        try (InputStream input = new FileInputStream(MODEL_ROOT + file);
+        try (InputStream input = new FileInputStream(MODEL_ROOT + "douzero_fullauto" + file);
              OrtSession.SessionOptions options = new OrtSession.SessionOptions()) {
             options.setIntraOpNumThreads(1);
             options.setInterOpNumThreads(1);

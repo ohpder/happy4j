@@ -1,5 +1,7 @@
 package cc.superbaby.happy4j.domain;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.time.Instant;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.function.UnaryOperator;
 /**
  * Session aggregate: owns the complete login, hall, room and table state machine.
  */
+@Slf4j
 public final class ClientSession {
     private static final int MAX_EVENTS = 300;
     private final UUID id;
@@ -158,6 +161,7 @@ public final class ClientSession {
     }
 
     public void publish(String kind, String message, Object data) {
+        log.debug("publishing {} {}", kind, message);
         RemoteEvent event = new RemoteEvent(eventIndex.incrementAndGet(), kind, message, data, Instant.now());
         synchronized (this) {
             events.addLast(event);
